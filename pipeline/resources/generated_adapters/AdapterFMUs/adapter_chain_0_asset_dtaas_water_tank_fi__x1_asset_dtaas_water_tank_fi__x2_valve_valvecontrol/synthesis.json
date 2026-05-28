@@ -1,0 +1,77 @@
+{
+  "adapter_id": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "mapping": {
+            "false": 0.0,
+            "true": 1.0
+          },
+          "source_type": "boolean",
+          "target_type": "real",
+          "transform_kind": "mode_signal"
+        }
+      },
+      "sysml": {
+        "name": "valve"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "mapping": {
+            "false": 0.0,
+            "true": 1.0
+          },
+          "source_type": "boolean",
+          "target_type": "real",
+          "transform_kind": "mode_signal"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "valvecontrol"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol",
+  "notes": [
+    "Boolean to Real conversion for valve control signal",
+    "Maps discrete Boolean valve state to continuous Real valvecontrol input",
+    "Stateless mapping: false\u21920.0, true\u21921.0"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_dtaas_water_tank_fi__x1"
+    },
+    {
+      "name": "asset_dtaas_water_tank_fi__x2"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

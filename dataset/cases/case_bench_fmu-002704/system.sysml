@@ -1,0 +1,1 @@
+../../sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/Dymola/2024x Refresh 1/CoupledClutches_fmi2_Inline/CoupledClutches_fmi2_Inline.sysml

@@ -1,0 +1,81 @@
+{
+  "case_id": "case_dtaas_mass_spring_damper",
+  "criteria": [
+    {
+      "metric": "within_range(x2)",
+      "notes": "第二质量块位移应保持在当前参考轨迹对应的有界范围内。",
+      "operator": "in",
+      "signals": [
+        "x2"
+      ],
+      "unit": "m",
+      "value": [
+        -0.2,
+        0.2
+      ]
+    },
+    {
+      "metric": "within_range(v2)",
+      "notes": "第二质量块速度应保持在当前参考轨迹对应的有界范围内。",
+      "operator": "in",
+      "signals": [
+        "v2"
+      ],
+      "unit": "m/s",
+      "value": [
+        -0.2,
+        0.2
+      ]
+    },
+    {
+      "metric": "abs(x2) at t=10s",
+      "notes": "末端位移在 10s 时应保持接近静止点。",
+      "operator": "<=",
+      "signals": [
+        "x2"
+      ],
+      "unit": "m",
+      "value": 0.01
+    }
+  ],
+  "decision_rule": {
+    "criteria_source": "verification_requirement.criteria",
+    "kind": "acceptance_criteria",
+    "requires_ground_truth": true
+  },
+  "derivation_basis": {
+    "expected_behavior": "The coupled FMUs exchange displacement, velocity, and force so the two-mass system evolves coherently under the configured fixed-step schedule.",
+    "signals_of_interest": [
+      "x2",
+      "v2"
+    ],
+    "source_root": "sources/dtaas_examples/case_dtaas_mass_spring_damper"
+  },
+  "judgement_policy": "acceptance_criteria_from_requirement",
+  "scenario_window": {
+    "start_time": 0,
+    "step_size": 0.001,
+    "stop_time": 10
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "v2": [
+      "v2",
+      "asset_dtaas_mass_spring_damper__msd2.v2"
+    ],
+    "x2": [
+      "x2",
+      "asset_dtaas_mass_spring_damper__msd2.x2"
+    ]
+  },
+  "signals": [],
+  "text": "Mass Spring Damper bounded-response check. The coupled second mass should remain within the displacement and velocity envelope exhibited by the canonical trace, and settle close to the origin by 10s.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Mass Spring Damper Verification Requirement",
+  "tolerances": {}
+}

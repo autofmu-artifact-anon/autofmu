@@ -1,0 +1,73 @@
+{
+  "adapter_id": "adapter_chain_2_asset_case_case_manual_002__CartPolePlant_asset_case_case_manual_001__ThermalController_x_dot_mps_soc",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "m/s",
+          "target_unit": "1",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "sysml": {
+        "name": "x_dot_mps"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "m/s",
+          "target_unit": "1",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "soc"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_2_asset_case_case_manual_002__CartPolePlant_asset_case_case_manual_001__ThermalController_x_dot_mps_soc",
+  "notes": [
+    "Using conservative fallback transform: no physically meaningful conversion from m/s to dimensionless SOC",
+    "Semantic mismatch between cart velocity source and battery SOC target; connection may require architectural review",
+    "Target signal name mismatch: expected x_dot_mps per semantic_intent, actual target is soc"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_case_case_manual_002__CartPolePlant"
+    },
+    {
+      "name": "asset_case_case_manual_001__ThermalController"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

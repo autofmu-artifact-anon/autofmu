@@ -1,0 +1,258 @@
+{
+  "asset_id": "asset_case_case_manual_002__SwingUpBalanceController",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "case_origin": [
+    "case_manual_002"
+  ],
+  "default_experiment": {
+    "startTime": 0,
+    "stepSize": 0.001,
+    "stopTime": 20
+  },
+  "description": "倒立摆混合控制器：能量整形摆起 + 倒立附近 LQR/PD 平衡 + 位置积分跟踪。含模式切换（整数状态）与积分器状态；输出力受限并具有抗积分饱和。",
+  "description_relpath": "description.md",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "fmu_relpath": "model.fmu",
+  "ground_truth_only": false,
+  "inputs": [
+    "x_m",
+    "x_dot_mps",
+    "theta_hat_rad",
+    "theta_dot_hat_rps",
+    "x_ref_m",
+    "enable"
+  ],
+  "library_visible": true,
+  "metadata_relpath": "metadata.json",
+  "name": "SwingUpBalanceController",
+  "outputs": [
+    "force_cmd_N",
+    "mode"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "小车位置",
+      "name": "x_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "小车速度",
+      "name": "x_dot_mps",
+      "type": "Real",
+      "unit": "m/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "估计杆角度",
+      "name": "theta_hat_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "估计杆角速度",
+      "name": "theta_dot_hat_rps",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "位置参考",
+      "name": "x_ref_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "使能（false 时输出 0 并冻结积分器）",
+      "name": "enable",
+      "type": "Boolean",
+      "unit": "bool",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "力指令（经过内部饱和）",
+      "name": "force_cmd_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "0=摆起(SwingUp), 1=平衡(Balance)",
+      "name": "mode",
+      "type": "Integer",
+      "unit": "enum",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "控制输出饱和限制",
+      "name": "F_max_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "进入平衡模式的角度阈值（相对 pi）",
+      "name": "theta_balance_thresh_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "退出平衡回到摆起的阈值（滞回）",
+      "name": "theta_fallback_thresh_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "能量整形增益（摆起用）",
+      "name": "swingup_energy_gain",
+      "type": "Real",
+      "unit": "N",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "摆起附加阻尼（抑制过激）",
+      "name": "swingup_damping",
+      "type": "Real",
+      "unit": "N*s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "平衡时位置反馈增益",
+      "name": "balance_kx",
+      "type": "Real",
+      "unit": "N/m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "平衡时速度反馈增益",
+      "name": "balance_kxd",
+      "type": "Real",
+      "unit": "N/(m/s)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "平衡时角度反馈增益（相对 pi）",
+      "name": "balance_kth",
+      "type": "Real",
+      "unit": "N/rad",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "平衡时角速度反馈增益",
+      "name": "balance_kthd",
+      "type": "Real",
+      "unit": "N/(rad/s)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "位置误差积分增益",
+      "name": "x_int_ki",
+      "type": "Real",
+      "unit": "N/(m*s)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "积分器限幅（防 windup）",
+      "name": "x_int_limit",
+      "type": "Real",
+      "unit": "m*s",
+      "variability": "fixed"
+    }
+  ],
+  "provenance": {
+    "case_id": "case_manual_002",
+    "legacy_fmu_list_entry": {
+      "description": "Hybrid controller with energy-based swing-up and LQR-style balance mode. Includes mode switching with hysteresis, output saturation, and anti-windup integrator.",
+      "fmi_version": "2.0",
+      "inputs": [
+        {
+          "description": "Cart position",
+          "name": "x_m",
+          "unit": "m"
+        },
+        {
+          "description": "Cart velocity",
+          "name": "x_dot_mps",
+          "unit": "m/s"
+        },
+        {
+          "description": "Estimated pole angle",
+          "name": "theta_hat_rad",
+          "unit": "rad"
+        },
+        {
+          "description": "Estimated angular velocity",
+          "name": "theta_dot_hat_rps",
+          "unit": "rad/s"
+        },
+        {
+          "description": "Position reference",
+          "name": "x_ref_m",
+          "unit": "m"
+        },
+        {
+          "description": "Controller enable",
+          "name": "enable",
+          "unit": "bool"
+        }
+      ],
+      "name": "SwingUpBalanceController",
+      "outputs": [
+        {
+          "description": "Force command (saturated)",
+          "name": "force_cmd_N",
+          "unit": "N"
+        },
+        {
+          "description": "Control mode (0=SwingUp, 1=Balance)",
+          "name": "mode",
+          "unit": "enum"
+        }
+      ],
+      "path": "fmus/SwingUpBalanceController.fmu",
+      "type": "Co-Simulation"
+    }
+  },
+  "schema": "UNIFIED_ASSET_V1",
+  "source_id": "case_manual_002::SwingUpBalanceController",
+  "source_type": "manual_case_fmu",
+  "tags": [
+    "case_manual_002",
+    "manual_case"
+  ]
+}

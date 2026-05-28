@@ -1,0 +1,71 @@
+{
+  "id": "REQ-TMS-001",
+  "title": "电池热管理与功率请求跟踪",
+  "description": "在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。",
+  "scenario": {
+    "t_start_s": 0,
+    "t_end_s": 1200,
+    "inputs": {
+      "ambient_temp_C": 35.0,
+      "driver_power_request_W_profile": [
+        {"t_s": 0, "value_W": 0},
+        {"t_s": 10, "value_W": 20000},
+        {"t_s": 600, "value_W": 25000},
+        {"t_s": 900, "value_W": 15000}
+      ]
+    },
+    "initial_conditions": {
+      "soc": 0.8,
+      "T_core_C": 30.0,
+      "T_surface_C": 30.0,
+      "coolant_temp_C": 30.0
+    }
+  },
+  "acceptance_criteria": [
+    {
+      "metric": "max(T_core_C)",
+      "operator": "<=",
+      "value": 55.0,
+      "unit": "C",
+      "notes": "控制器应避免进入过热关断；若发生降额也应将T_core限制在上限之下。"
+    },
+    {
+      "metric": "min(soc)",
+      "operator": ">=",
+      "value": 0.2,
+      "unit": "1",
+      "notes": "持续放电后SOC不应跌破下限（避免不可用工况）。"
+    },
+    {
+      "metric": "within_range(voltage_V)",
+      "operator": "in",
+      "value": [280.0, 420.0],
+      "unit": "V",
+      "notes": "电压应保持在典型高压电池工作范围（用于发现模型/连接错误）。"
+    },
+    {
+      "metric": "within_range(pump_cmd)",
+      "operator": "in",
+      "value": [0.0, 1.0],
+      "unit": "1"
+    },
+    {
+      "metric": "within_range(fan_cmd)",
+      "operator": "in",
+      "value": [0.0, 1.0],
+      "unit": "1"
+    }
+  ],
+  "signals_of_interest": [
+    "driver_power_request_W",
+    "current_A",
+    "voltage_V",
+    "soc",
+    "T_core_C",
+    "T_surface_C",
+    "coolant_in_temp_C",
+    "coolant_flow_kgps",
+    "pump_cmd",
+    "fan_cmd"
+  ]
+}

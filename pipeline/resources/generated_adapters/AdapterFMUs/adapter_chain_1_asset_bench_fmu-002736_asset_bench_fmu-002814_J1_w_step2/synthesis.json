@@ -1,0 +1,73 @@
+{
+  "adapter_id": "adapter_chain_1_asset_bench_fmu-002736_asset_bench_fmu-002814_J1_w_step2",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "rad/s",
+          "target_unit": "1",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "sysml": {
+        "name": "J1_w"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "rad/s",
+          "target_unit": "1",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "step2"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_1_asset_bench_fmu-002736_asset_bench_fmu-002814_J1_w_step2",
+  "notes": [
+    "Source J1_w is angular velocity (rad/s), target step2 is normalized force (0..1, dimensionless)",
+    "No normalization reference provided in context; using conservative pass-through transform",
+    "Semantic mismatch between velocity and normalized force requires domain knowledge not present"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_bench_fmu-002736"
+    },
+    {
+      "name": "asset_bench_fmu-002814"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "case_id": "case_manual_005",
+  "criteria": [
+    {
+      "metric": "max(temp_cell_C)_over_all",
+      "notes": "电芯安全温度上限。",
+      "operator": "<=",
+      "signals": [
+        "temp_cell_C"
+      ],
+      "unit": "C",
+      "value": 45.0
+    },
+    {
+      "metric": "max(abs(temp_cell_C - temp_ref_C))_after_t=250s",
+      "notes": "负载与环境变化后的温度偏差应保持在可接受带宽内。",
+      "operator": "<=",
+      "signals": [
+        "temp_cell_C"
+      ],
+      "unit": "C",
+      "value": 8.5
+    },
+    {
+      "metric": "within_range(pump_cmd)",
+      "operator": "in",
+      "signals": [
+        "pump_cmd"
+      ],
+      "unit": "-",
+      "value": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "metric": "max(abs(d(pump_cmd)/dt))",
+      "notes": "泵命令变化速率限制（反映执行器惯性/保护）。",
+      "operator": "<=",
+      "signals": [
+        "pump_cmd"
+      ],
+      "unit": "1/s",
+      "value": 1.0
+    },
+    {
+      "metric": "within_range(soc)",
+      "operator": "in",
+      "signals": [
+        "soc"
+      ],
+      "unit": "-",
+      "value": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "metric": "within_range(v_term_V)",
+      "notes": "电压范围依据当前 ground truth 轨迹下界回推，避免把正常放电误判为失效。",
+      "operator": "in",
+      "signals": [
+        "v_term_V"
+      ],
+      "unit": "V",
+      "value": [
+        160.0,
+        430.0
+      ]
+    }
+  ],
+  "decision_rule": {
+    "criteria_source": "verification_requirement.criteria",
+    "kind": "acceptance_criteria",
+    "requires_ground_truth": true
+  },
+  "derivation_basis": {
+    "acceptance_criteria_count": 6,
+    "signals_of_interest": [
+      "pump_cmd",
+      "coolant_temp_C",
+      "soc",
+      "temp_cell_C",
+      "heat_gen_W",
+      "v_term_V"
+    ],
+    "source_root": "sources/cases/case_manual_005"
+  },
+  "judgement_policy": "acceptance_criteria_from_requirement",
+  "scenario_window": {
+    "start_time": 0,
+    "stop_time": 900
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "coolant_temp_C": [
+      "coolant_temp_C",
+      "asset_case_case_manual_005__CoolantLoopPlant.coolant_temp_C"
+    ],
+    "heat_gen_W": [
+      "heat_gen_W",
+      "asset_case_case_manual_005__BatteryPackPlant.heat_gen_W"
+    ],
+    "heat_removed_W": [
+      "heat_removed_W",
+      "asset_case_case_manual_005__CoolantLoopPlant.heat_removed_W"
+    ],
+    "pump_cmd": [
+      "pump_cmd",
+      "asset_case_case_manual_005__ThermalController.pump_cmd"
+    ],
+    "sat_flag": [
+      "sat_flag",
+      "asset_case_case_manual_005__ThermalController.sat_flag"
+    ],
+    "soc": [
+      "soc",
+      "asset_case_case_manual_005__BatteryPackPlant.soc"
+    ],
+    "temp_cell_C": [
+      "temp_cell_C",
+      "asset_case_case_manual_005__BatteryPackPlant.temp_cell_C"
+    ],
+    "v_term_V": [
+      "v_term_V",
+      "asset_case_case_manual_005__BatteryPackPlant.v_term_V"
+    ]
+  },
+  "signals": [],
+  "text": "电池包热管理安全包络检查. 在给定放电电流与环境温度变化下，电芯温度、泵命令、SOC 与端电压都应保持在当前场景可接受的热电包络内。Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+  "time_column_aliases": [],
+  "title": "电池包热管理安全包络检查 Verification Requirement",
+  "tolerances": {}
+}

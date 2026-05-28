@@ -1,0 +1,77 @@
+{
+  "case_id": "case_bench_fmu-001934",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "operator": "<=",
+      "signals": [
+        "real_continuous_out",
+        "real_discrete_out",
+        "int_out",
+        "bool_out"
+      ],
+      "value": 1e-05
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "signals": [
+      "real_continuous_out",
+      "real_discrete_out",
+      "int_out",
+      "bool_out"
+    ],
+    "time_column": "time",
+    "tolerance": 1e-05
+  },
+  "derivation_basis": {
+    "ground_truth_source": "Feedthrough_ref.csv",
+    "input_source": "Feedthrough_in.csv",
+    "signals": [
+      "real_continuous_out",
+      "real_discrete_out",
+      "int_out",
+      "bool_out"
+    ],
+    "source_root": "sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/Test-FMUs/0.0.2/Feedthrough",
+    "source_type": "benchmark_single_fmu_case"
+  },
+  "judgement_policy": "trajectory_match",
+  "scenario_window": {
+    "start_time": 0,
+    "step_size": 0,
+    "stop_time": 2
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "bool_out": [
+      "bool_out"
+    ],
+    "int_out": [
+      "int_out"
+    ],
+    "real_continuous_out": [
+      "real_continuous_out"
+    ],
+    "real_discrete_out": [
+      "real_discrete_out"
+    ]
+  },
+  "signals": [
+    "real_continuous_out",
+    "real_discrete_out",
+    "int_out",
+    "bool_out"
+  ],
+  "text": "Run the benchmark FMU Feedthrough under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs real_continuous_out, real_discrete_out, int_out, bool_out.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Verify benchmark FMU Feedthrough",
+  "tolerances": {
+    "trajectory_match": 1e-05
+  }
+}

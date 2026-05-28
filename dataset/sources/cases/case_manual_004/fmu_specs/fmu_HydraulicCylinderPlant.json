@@ -1,0 +1,50 @@
+{
+  "name": "HydraulicCylinderPlant",
+  "description": "Double-acting hydraulic cylinder + moving table. Nonlinear orifice flows, pressure dynamics, and friction.",
+  "inputs": [
+    {"name": "spool_u", "type": "Real", "unit": "-1..1", "description": "Normalized spool opening. Positive extends (A->supply, B->tank)."},
+    {"name": "load_force_N", "type": "Real", "unit": "N", "description": "External load force acting against extension (positive resists extension)."}
+  ],
+  "outputs": [
+    {"name": "x_m", "type": "Real", "unit": "m", "description": "Rod position (0..stroke)"},
+    {"name": "v_mps", "type": "Real", "unit": "m/s", "description": "Rod velocity"},
+    {"name": "pA_Pa", "type": "Real", "unit": "Pa", "description": "Chamber A pressure"},
+    {"name": "pB_Pa", "type": "Real", "unit": "Pa", "description": "Chamber B pressure"},
+    {"name": "rod_force_N", "type": "Real", "unit": "N", "description": "Net hydraulic force on rod (A*pA - B*pB)"}
+  ],
+  "parameters": [
+    {"name": "stroke_m", "type": "Real", "default": 0.10, "unit": "m", "description": "Cylinder stroke"},
+    {"name": "x_min_m", "type": "Real", "default": 0.0, "unit": "m", "description": "Minimum position (soft stop)"},
+    {"name": "x_max_m", "type": "Real", "default": 0.10, "unit": "m", "description": "Maximum position (soft stop)"},
+
+    {"name": "m_kg", "type": "Real", "default": 12.0, "unit": "kg", "description": "Moving mass"},
+    {"name": "k_stop_Npm", "type": "Real", "default": 200000.0, "unit": "N/m", "description": "Soft stop stiffness near limits"},
+    {"name": "c_stop_Nspm", "type": "Real", "default": 1200.0, "unit": "N*s/m", "description": "Soft stop damping near limits"},
+
+    {"name": "A_A_m2", "type": "Real", "default": 0.0012, "unit": "m^2", "description": "Effective area chamber A"},
+    {"name": "A_B_m2", "type": "Real", "default": 0.0010, "unit": "m^2", "description": "Effective area chamber B"},
+    {"name": "V0_A_m3", "type": "Real", "default": 3.0e-4, "unit": "m^3", "description": "Dead volume chamber A at x=0"},
+    {"name": "V0_B_m3", "type": "Real", "default": 3.0e-4, "unit": "m^3", "description": "Dead volume chamber B at x=stroke"},
+
+    {"name": "beta_eff_Pa", "type": "Real", "default": 8.0e8, "unit": "Pa", "description": "Effective bulk modulus"},
+    {"name": "leak_C_L", "type": "Real", "default": 2.0e-12, "unit": "m^3/(s*Pa)", "description": "Internal leakage coefficient between chambers"},
+
+    {"name": "p_supply_Pa", "type": "Real", "default": 2.0e7, "unit": "Pa", "description": "Supply pressure"},
+    {"name": "p_tank_Pa", "type": "Real", "default": 2.0e5, "unit": "Pa", "description": "Tank/return pressure"},
+
+    {"name": "Cq", "type": "Real", "default": 3.2e-5, "unit": "m^3/(s*sqrt(Pa))", "description": "Orifice flow coefficient (lumped)"},
+    {"name": "u_flow_sat", "type": "Real", "default": 1.0, "unit": "-", "description": "Spool normalization for orifice area (|u|<=1)"},
+
+    {"name": "F_coulomb_N", "type": "Real", "default": 250.0, "unit": "N", "description": "Coulomb friction"},
+    {"name": "F_static_N", "type": "Real", "default": 380.0, "unit": "N", "description": "Static friction peak"},
+    {"name": "v_stribeck_mps", "type": "Real", "default": 0.004, "unit": "m/s", "description": "Stribeck velocity scale"},
+    {"name": "b_visc_Nspm", "type": "Real", "default": 900.0, "unit": "N*s/m", "description": "Viscous friction coefficient"},
+    {"name": "v_tanh_mps", "type": "Real", "default": 0.002, "unit": "m/s", "description": "Smoothing velocity for tanh sign"}
+  ],
+  "states": [
+    {"name": "x_m", "derivative": "dx_dt", "description": "Rod position"},
+    {"name": "v_mps", "derivative": "dv_dt", "description": "Rod velocity"},
+    {"name": "pA_Pa", "derivative": "dpA_dt", "description": "Chamber A pressure"},
+    {"name": "pB_Pa", "derivative": "dpB_dt", "description": "Chamber B pressure"}
+  ]
+}

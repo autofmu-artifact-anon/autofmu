@@ -1,0 +1,133 @@
+{
+  "case_id": "case_manual_001",
+  "criteria": [
+    {
+      "metric": "max(T_core_C)",
+      "notes": "控制器应避免进入过热关断；若发生降额也应将T_core限制在上限之下。",
+      "operator": "<=",
+      "unit": "C",
+      "value": 55.0
+    },
+    {
+      "metric": "min(soc)",
+      "notes": "持续放电后SOC不应跌破下限（避免不可用工况）。",
+      "operator": ">=",
+      "unit": "1",
+      "value": 0.2
+    },
+    {
+      "metric": "within_range(voltage_V)",
+      "notes": "电压应保持在典型高压电池工作范围（用于发现模型/连接错误）。",
+      "operator": "in",
+      "unit": "V",
+      "value": [
+        280.0,
+        420.0
+      ]
+    },
+    {
+      "metric": "within_range(pump_cmd)",
+      "operator": "in",
+      "unit": "1",
+      "value": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "metric": "within_range(fan_cmd)",
+      "operator": "in",
+      "unit": "1",
+      "value": [
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "decision_rule": {
+    "criteria_source": "verification_requirement.criteria",
+    "kind": "acceptance_criteria",
+    "requires_ground_truth": true
+  },
+  "derivation_basis": {
+    "acceptance_criteria_count": 5,
+    "signals_of_interest": [
+      "driver_power_request_W",
+      "current_A",
+      "voltage_V",
+      "soc",
+      "T_core_C",
+      "T_surface_C",
+      "coolant_in_temp_C",
+      "coolant_flow_kgps",
+      "pump_cmd",
+      "fan_cmd"
+    ],
+    "source_root": "sources/cases/case_manual_001"
+  },
+  "judgement_policy": "acceptance_criteria_from_requirement",
+  "scenario_window": {
+    "start_time": 0,
+    "step_size": 0.1,
+    "stop_time": 1200
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "T_core_C": [
+      "T_core_C",
+      "asset_case_case_manual_001__BatteryPackElectroThermal.T_core_C"
+    ],
+    "T_surface_C": [
+      "T_surface_C",
+      "asset_case_case_manual_001__BatteryPackElectroThermal.T_surface_C"
+    ],
+    "coolant_flow_kgps": [
+      "coolant_flow_kgps",
+      "asset_case_case_manual_001__CoolingLoop.coolant_flow_kgps"
+    ],
+    "coolant_in_temp_C": [
+      "coolant_in_temp_C",
+      "asset_case_case_manual_001__CoolingLoop.coolant_in_temp_C"
+    ],
+    "current_A": [
+      "current_A",
+      "asset_case_case_manual_001__ThermalController.current_A"
+    ],
+    "fan_cmd": [
+      "fan_cmd",
+      "asset_case_case_manual_001__ThermalController.fan_cmd"
+    ],
+    "mode": [
+      "mode",
+      "asset_case_case_manual_001__ThermalController.mode"
+    ],
+    "pump_cmd": [
+      "pump_cmd",
+      "asset_case_case_manual_001__ThermalController.pump_cmd"
+    ],
+    "soc": [
+      "soc",
+      "asset_case_case_manual_001__BatteryPackElectroThermal.soc"
+    ],
+    "voltage_V": [
+      "voltage_V",
+      "asset_case_case_manual_001__BatteryPackElectroThermal.voltage_V"
+    ]
+  },
+  "signals": [
+    "soc",
+    "T_core_C",
+    "voltage_V",
+    "current_A",
+    "pump_cmd",
+    "fan_cmd",
+    "mode",
+    "coolant_in_temp_C",
+    "coolant_flow_kgps",
+    "T_surface_C"
+  ],
+  "text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+  "time_column_aliases": [],
+  "title": "电池热管理与功率请求跟踪 Verification Requirement",
+  "tolerances": {}
+}

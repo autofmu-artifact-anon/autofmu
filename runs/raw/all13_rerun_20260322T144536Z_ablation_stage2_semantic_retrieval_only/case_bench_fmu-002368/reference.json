@@ -1,0 +1,456 @@
+{
+  "case_id": "case_bench_fmu-002368",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_bench_fmu-001613"
+      ],
+      [
+        "asset_bench_fmu-002368"
+      ]
+    ],
+    "case_id": "case_bench_fmu-002368",
+    "equivalence_class_id": "bench_eq_8b3b6d39c5ab",
+    "equivalence_reason": "benchmark requirement text does not distinguish identical model/interface variants",
+    "oracle_mode": "equivalence_class",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_bench_fmu-002368",
+    "connections": [],
+    "execution_order": [
+      "asset_bench_fmu-002368"
+    ],
+    "external_inputs": [],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "tank.valve_outflow_int",
+        "source": "asset_bench_fmu-002368.tank.valve_outflow_int"
+      },
+      {
+        "name": "tank.volume",
+        "source": "asset_bench_fmu-002368.tank.volume"
+      },
+      {
+        "name": "der(tank.valve_outflow_int)",
+        "source": "asset_bench_fmu-002368.der(tank.valve_outflow_int)"
+      },
+      {
+        "name": "der(tank.volume)",
+        "source": "asset_bench_fmu-002368.der(tank.volume)"
+      },
+      {
+        "name": "control1.level",
+        "source": "asset_bench_fmu-002368.control1.level"
+      },
+      {
+        "name": "control1.valve",
+        "source": "asset_bench_fmu-002368.control1.valve"
+      },
+      {
+        "name": "tank.drain_p_e",
+        "source": "asset_bench_fmu-002368.tank.drain_p_e"
+      },
+      {
+        "name": "tank.fs_inflow",
+        "source": "asset_bench_fmu-002368.tank.fs_inflow"
+      },
+      {
+        "name": "tank.tank_p_f",
+        "source": "asset_bench_fmu-002368.tank.tank_p_f"
+      },
+      {
+        "name": "tank.valve_outflow",
+        "source": "asset_bench_fmu-002368.tank.valve_outflow"
+      },
+      {
+        "name": "tank.valve_powerIn_p",
+        "source": "asset_bench_fmu-002368.tank.valve_powerIn_p"
+      },
+      {
+        "name": "tank.valve_powerIn_phi",
+        "source": "asset_bench_fmu-002368.tank.valve_powerIn_phi"
+      },
+      {
+        "name": "tank.valve_powerOut_f",
+        "source": "asset_bench_fmu-002368.tank.valve_powerOut_f"
+      },
+      {
+        "name": "tank.valve_puddle",
+        "source": "asset_bench_fmu-002368.tank.valve_puddle"
+      },
+      {
+        "name": "tank.drain_p_f",
+        "source": "asset_bench_fmu-002368.tank.drain_p_f"
+      },
+      {
+        "name": "tank.fs_p_p",
+        "source": "asset_bench_fmu-002368.tank.fs_p_p"
+      },
+      {
+        "name": "tank.level",
+        "source": "asset_bench_fmu-002368.tank.level"
+      },
+      {
+        "name": "tank.tank_p_e",
+        "source": "asset_bench_fmu-002368.tank.tank_p_e"
+      },
+      {
+        "name": "tank.valve_powerOut_e",
+        "source": "asset_bench_fmu-002368.tank.valve_powerOut_e"
+      },
+      {
+        "name": "tank.valvecontrol",
+        "source": "asset_bench_fmu-002368.tank.valvecontrol"
+      }
+    ],
+    "notes": [
+      "Auto-generated single-FMU benchmark solution."
+    ],
+    "schedule": {
+      "kind": "single_fmu",
+      "start_time": 0,
+      "step_size": 0.0005,
+      "stop_time": 1
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_bench_fmu-002368"
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_bench_fmu-002368",
+    "criteria": [
+      {
+        "metric": "trajectory_match",
+        "operator": "<=",
+        "signals": [
+          "tank.valve_outflow_int",
+          "tank.volume",
+          "der(tank.valve_outflow_int)",
+          "der(tank.volume)",
+          "control1.level",
+          "control1.valve",
+          "tank.drain_p_e",
+          "tank.fs_inflow",
+          "tank.tank_p_f",
+          "tank.valve_outflow",
+          "tank.valve_powerIn_p",
+          "tank.valve_powerIn_phi",
+          "tank.valve_powerOut_f",
+          "tank.valve_puddle",
+          "tank.drain_p_f",
+          "tank.fs_p_p",
+          "tank.level",
+          "tank.tank_p_e",
+          "tank.valve_powerOut_e",
+          "tank.valvecontrol"
+        ],
+        "value": 1e-06
+      }
+    ],
+    "decision_rule": {
+      "kind": "trajectory_tolerance",
+      "signals": [
+        "tank.valve_outflow_int",
+        "tank.volume",
+        "der(tank.valve_outflow_int)",
+        "der(tank.volume)",
+        "control1.level",
+        "control1.valve",
+        "tank.drain_p_e",
+        "tank.fs_inflow",
+        "tank.tank_p_f",
+        "tank.valve_outflow",
+        "tank.valve_powerIn_p",
+        "tank.valve_powerIn_phi",
+        "tank.valve_powerOut_f",
+        "tank.valve_puddle",
+        "tank.drain_p_f",
+        "tank.fs_p_p",
+        "tank.level",
+        "tank.tank_p_e",
+        "tank.valve_powerOut_e",
+        "tank.valvecontrol"
+      ],
+      "time_column": "time",
+      "tolerance": 1e-06
+    },
+    "derivation_basis": {
+      "ground_truth_source": "WaterTank.TestSingleWaterTank_ref.csv",
+      "input_source": "",
+      "signals": [
+        "tank.valve_outflow_int",
+        "tank.volume",
+        "der(tank.valve_outflow_int)",
+        "der(tank.volume)",
+        "control1.level",
+        "control1.valve",
+        "tank.drain_p_e",
+        "tank.fs_inflow",
+        "tank.tank_p_f",
+        "tank.valve_outflow",
+        "tank.valve_powerIn_p",
+        "tank.valve_powerIn_phi",
+        "tank.valve_powerOut_f",
+        "tank.valve_puddle",
+        "tank.drain_p_f",
+        "tank.fs_p_p",
+        "tank.level",
+        "tank.tank_p_e",
+        "tank.valve_powerOut_e",
+        "tank.valvecontrol"
+      ],
+      "source_root": "sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/OpenModelica/v1.11.0/WaterTank.TestSingleWaterTank",
+      "source_type": "benchmark_single_fmu_case"
+    },
+    "judgement_policy": "trajectory_match",
+    "scenario_window": {
+      "start_time": 0,
+      "step_size": 0.0005,
+      "stop_time": 1
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "control1.level": [
+        "control1.level"
+      ],
+      "control1.valve": [
+        "control1.valve"
+      ],
+      "der(tank.valve_outflow_int)": [
+        "der(tank.valve_outflow_int)"
+      ],
+      "der(tank.volume)": [
+        "der(tank.volume)"
+      ],
+      "tank.drain_p_e": [
+        "tank.drain_p_e"
+      ],
+      "tank.drain_p_f": [
+        "tank.drain_p_f"
+      ],
+      "tank.fs_inflow": [
+        "tank.fs_inflow"
+      ],
+      "tank.fs_p_p": [
+        "tank.fs_p_p"
+      ],
+      "tank.level": [
+        "tank.level"
+      ],
+      "tank.tank_p_e": [
+        "tank.tank_p_e"
+      ],
+      "tank.tank_p_f": [
+        "tank.tank_p_f"
+      ],
+      "tank.valve_outflow": [
+        "tank.valve_outflow"
+      ],
+      "tank.valve_outflow_int": [
+        "tank.valve_outflow_int"
+      ],
+      "tank.valve_powerIn_p": [
+        "tank.valve_powerIn_p"
+      ],
+      "tank.valve_powerIn_phi": [
+        "tank.valve_powerIn_phi"
+      ],
+      "tank.valve_powerOut_e": [
+        "tank.valve_powerOut_e"
+      ],
+      "tank.valve_powerOut_f": [
+        "tank.valve_powerOut_f"
+      ],
+      "tank.valve_puddle": [
+        "tank.valve_puddle"
+      ],
+      "tank.valvecontrol": [
+        "tank.valvecontrol"
+      ],
+      "tank.volume": [
+        "tank.volume"
+      ]
+    },
+    "signals": [
+      "tank.valve_outflow_int",
+      "tank.volume",
+      "der(tank.valve_outflow_int)",
+      "der(tank.volume)",
+      "control1.level",
+      "control1.valve",
+      "tank.drain_p_e",
+      "tank.fs_inflow",
+      "tank.tank_p_f",
+      "tank.valve_outflow",
+      "tank.valve_powerIn_p",
+      "tank.valve_powerIn_phi",
+      "tank.valve_powerOut_f",
+      "tank.valve_puddle",
+      "tank.drain_p_f",
+      "tank.fs_p_p",
+      "tank.level",
+      "tank.tank_p_e",
+      "tank.valve_powerOut_e",
+      "tank.valvecontrol"
+    ],
+    "text": "Run the benchmark FMU WaterTank.TestSingleWaterTank under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs tank.valve_outflow_int, tank.volume, der(tank.valve_outflow_int), der(tank.volume), control1.level, control1.valve, tank.drain_p_e, tank.fs_inflow, tank.tank_p_f, tank.valve_outflow, tank.valve_powerIn_p, tank.valve_powerIn_phi, tank.valve_powerOut_f, tank.valve_puddle, tank.drain_p_f, tank.fs_p_p, tank.level, tank.tank_p_e, tank.valve_powerOut_e, tank.valvecontrol.",
+    "time_column_aliases": [
+      "time",
+      "TIME",
+      "Time",
+      "t"
+    ],
+    "title": "Verify benchmark FMU WaterTank.TestSingleWaterTank",
+    "tolerances": {
+      "trajectory_match": 1e-06
+    }
+  },
+  "verification_result": {
+    "case_id": "case_bench_fmu-002368",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "source_kind": "benchmark_ref_csv"
+    },
+    "missing_requirements": [],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "The normalized benchmark case ships with an archived reference trajectory from the source dataset; that trajectory is treated as the ground-truth verification outcome for the reference model.",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_bench_fmu-002368",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "ground_truth_trajectory.csv",
+    "input_relpath": "",
+    "reference_generation_method": "benchmark_ref_csv",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "control1.level": [
+        "control1.level"
+      ],
+      "control1.valve": [
+        "control1.valve"
+      ],
+      "der(tank.valve_outflow_int)": [
+        "der(tank.valve_outflow_int)"
+      ],
+      "der(tank.volume)": [
+        "der(tank.volume)"
+      ],
+      "tank.drain_p_e": [
+        "tank.drain_p_e"
+      ],
+      "tank.drain_p_f": [
+        "tank.drain_p_f"
+      ],
+      "tank.fs_inflow": [
+        "tank.fs_inflow"
+      ],
+      "tank.fs_p_p": [
+        "tank.fs_p_p"
+      ],
+      "tank.level": [
+        "tank.level"
+      ],
+      "tank.tank_p_e": [
+        "tank.tank_p_e"
+      ],
+      "tank.tank_p_f": [
+        "tank.tank_p_f"
+      ],
+      "tank.valve_outflow": [
+        "tank.valve_outflow"
+      ],
+      "tank.valve_outflow_int": [
+        "tank.valve_outflow_int"
+      ],
+      "tank.valve_powerIn_p": [
+        "tank.valve_powerIn_p"
+      ],
+      "tank.valve_powerIn_phi": [
+        "tank.valve_powerIn_phi"
+      ],
+      "tank.valve_powerOut_e": [
+        "tank.valve_powerOut_e"
+      ],
+      "tank.valve_powerOut_f": [
+        "tank.valve_powerOut_f"
+      ],
+      "tank.valve_puddle": [
+        "tank.valve_puddle"
+      ],
+      "tank.valvecontrol": [
+        "tank.valvecontrol"
+      ],
+      "tank.volume": [
+        "tank.volume"
+      ]
+    },
+    "signal_columns": [
+      "tank.valve_outflow_int",
+      "tank.volume",
+      "der(tank.valve_outflow_int)",
+      "der(tank.volume)",
+      "control1.level",
+      "control1.valve",
+      "tank.drain_p_e",
+      "tank.fs_inflow",
+      "tank.tank_p_f",
+      "tank.valve_outflow",
+      "tank.valve_powerIn_p",
+      "tank.valve_powerIn_phi",
+      "tank.valve_powerOut_f",
+      "tank.valve_puddle",
+      "tank.drain_p_f",
+      "tank.fs_p_p",
+      "tank.level",
+      "tank.tank_p_e",
+      "tank.valve_powerOut_e",
+      "tank.valvecontrol"
+    ],
+    "source_kind": "benchmark_ref_csv",
+    "stage_segments": [],
+    "supports_numerical_fidelity": true,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "dataset/sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/OpenModelica/v1.11.0/WaterTank.TestSingleWaterTank/WaterTank.TestSingleWaterTank_ref.csv",
+  "input_trajectory_path": null,
+  "declared_scenario_window": {
+    "start_time": 0,
+    "stop_time": 1,
+    "step_size": 0.0005
+  },
+  "declared_initial_conditions": {},
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": true,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "benchmark_single_fmu_case",
+    "expected_behavior": "Ground-truth trajectory available via benchmark_ref_csv.",
+    "title": "WaterTank.TestSingleWaterTank",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": true,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": true,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

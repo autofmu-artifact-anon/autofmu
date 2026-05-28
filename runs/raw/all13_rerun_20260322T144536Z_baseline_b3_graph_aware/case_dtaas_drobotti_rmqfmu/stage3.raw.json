@@ -1,0 +1,3406 @@
+{
+  "graph_augmented": {
+    "nodes": [
+      "asset_dtaas_drobotti_rmqfmu__rbmq",
+      "asset_dtaas_drobotti_rmqfmu__distance"
+    ],
+    "port_nodes": [
+      "asset_dtaas_drobotti_rmqfmu__distance.distance",
+      "asset_dtaas_drobotti_rmqfmu__distance.xpos",
+      "asset_dtaas_drobotti_rmqfmu__distance.ypos",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.xpos",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.ypos",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.distance",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.hostname",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.port",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.username",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.password",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.routingkey",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.communicationtimeout",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.precision",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.maxage",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.lookahead",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.exchangename",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.exchangetype",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.healthdata.exchangename",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.healthdata.exchangetype",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.routingkey.from_cosim",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.ssl",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.queueupperbound",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.config.vhost"
+    ],
+    "bindings": [
+      {
+        "source_fmu": "asset_dtaas_drobotti_rmqfmu__rbmq",
+        "source_signal": "xpos",
+        "target_fmu": "asset_dtaas_drobotti_rmqfmu__distance",
+        "target_signal": "xpos",
+        "score": 1.0,
+        "chain_id": "",
+        "segment_id": "",
+        "selected_by": "hybrid_name_semantic",
+        "score_breakdown": {},
+        "reasons": [
+          "port_name_match",
+          "semantic_tiebreak"
+        ]
+      }
+    ],
+    "component_to_fmu": {
+      "distance": "asset_dtaas_drobotti_rmqfmu__distance",
+      "rbmq": "asset_dtaas_drobotti_rmqfmu__rbmq"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "hybrid_name_semantic_match",
+      "stage3_variant": "greedy_multirate_scheduler",
+      "rate_adjustment_count": 1,
+      "adapter_generation": false,
+      "linearized_binding_count": 1,
+      "coarse_multirate": true
+    }
+  },
+  "adapters": [],
+  "schedule": {
+    "base_tick": 0.1,
+    "duration": 16.0,
+    "per_node_period": {
+      "asset_dtaas_drobotti_rmqfmu__rbmq": 0.1,
+      "asset_dtaas_drobotti_rmqfmu__distance": 0.2
+    },
+    "per_edge_hold_policy": [
+      {
+        "source_fmu": "asset_dtaas_drobotti_rmqfmu__rbmq",
+        "source_signal": "xpos",
+        "target_fmu": "asset_dtaas_drobotti_rmqfmu__distance",
+        "target_signal": "xpos",
+        "source_period": 0.1,
+        "target_period": 0.2,
+        "async": true,
+        "hold": "zoh"
+      }
+    ],
+    "loop_wrappers": [],
+    "warnings": [],
+    "base_tick_method": "max_default_step",
+    "materialized": true,
+    "communication_point_count": 161,
+    "family": "greedy_multirate",
+    "node_order": [
+      "asset_dtaas_drobotti_rmqfmu__rbmq",
+      "asset_dtaas_drobotti_rmqfmu__distance"
+    ],
+    "adjustments": [
+      {
+        "node": "asset_dtaas_drobotti_rmqfmu__distance",
+        "old_period": 0.1,
+        "new_period": 0.2,
+        "reason": "coarse_linearized_downstream"
+      }
+    ],
+    "adjusted_nodes": {
+      "asset_dtaas_drobotti_rmqfmu__distance": {
+        "old_step": 0.1,
+        "new_step": 0.2,
+        "aligned_with": ""
+      }
+    },
+    "initial_fmu_steps": {
+      "asset_dtaas_drobotti_rmqfmu__rbmq": 0.1,
+      "asset_dtaas_drobotti_rmqfmu__distance": 0.1
+    }
+  },
+  "loop_resolution": [],
+  "simulation_config": {
+    "step_size": 0.1,
+    "duration": 16.0,
+    "fmus": [
+      {
+        "uid": "asset_dtaas_drobotti_rmqfmu__rbmq",
+        "name": "rbmq",
+        "description": "rbmq instance of RabbitMq in Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.",
+        "path": "dataset/assets/asset_dtaas_drobotti_rmqfmu__rbmq/model.fmu",
+        "fmi_version": "2.0",
+        "fmi_types": [
+          "CoSimulation"
+        ],
+        "ports": [
+          {
+            "name": "xpos",
+            "causality": "output",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "ypos",
+            "causality": "output",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "distance",
+            "causality": "input",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.hostname",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "String",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.port",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.username",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "String",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.password",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "String",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.routingkey",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "String",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.communicationtimeout",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Integer",
+            "unit": "",
+            "description": "Network read time out in seconds",
+            "dimensions": []
+          },
+          {
+            "name": "config.precision",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Integer",
+            "unit": "",
+            "description": "Communication step comparison precision. Number of decimals to consider",
+            "dimensions": []
+          },
+          {
+            "name": "config.maxage",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Integer",
+            "unit": "",
+            "description": "The max age of a value specified in ms,",
+            "dimensions": []
+          },
+          {
+            "name": "config.lookahead",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Integer",
+            "unit": "",
+            "description": "The number of queue messages that should be considered on each processing. Value must be greater than 0",
+            "dimensions": []
+          },
+          {
+            "name": "config.exchangename",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "String",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.exchangetype",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "String",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.healthdata.exchangename",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "String",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.healthdata.exchangetype",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "String",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.routingkey.from_cosim",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "String",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.ssl",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Boolean",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.queueupperbound",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "config.vhost",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "String",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          }
+        ],
+        "inputs": [
+          "distance"
+        ],
+        "outputs": [
+          "xpos",
+          "ypos"
+        ],
+        "tags": [
+          "drobotti_rmqfmu",
+          "rabbitmq",
+          "runtime_io"
+        ],
+        "capabilities": {
+          "needs_execution_tool": true,
+          "can_handle_variable_communication_step_size": true,
+          "can_interpolate_inputs": false,
+          "can_run_asynchronously": false,
+          "can_be_instantiated_only_once_per_process": true,
+          "provides_directional_derivatives": false,
+          "fixed_internal_step_size": null
+        },
+        "meta": {
+          "asset_dir": "dataset/assets/asset_dtaas_drobotti_rmqfmu__rbmq",
+          "asset_json": {
+            "asset_id": "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "backend_kind": "rabbitmq_bridge_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": true,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": true,
+              "provides_directional_derivatives": false
+            },
+            "case_origin": [
+              "case_dtaas_drobotti_rmqfmu"
+            ],
+            "default_experiment": {
+              "startTime": 0.0,
+              "stepSize": 0.01,
+              "stopTime": 16.0
+            },
+            "description": "rbmq instance of RabbitMq in Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.",
+            "description_relpath": "description.md",
+            "fmi_types": [
+              "CoSimulation"
+            ],
+            "fmi_version": "2.0",
+            "fmu_relpath": "model.fmu",
+            "ground_truth_only": false,
+            "inputs": [
+              "distance"
+            ],
+            "library_visible": true,
+            "metadata_relpath": "metadata.json",
+            "name": "rbmq",
+            "outputs": [
+              "xpos",
+              "ypos"
+            ],
+            "ports": [
+              {
+                "causality": "output",
+                "description": "",
+                "name": "xpos",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "ypos",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "distance",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.hostname",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.port",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.username",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.password",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.routingkey",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "Network read time out in seconds",
+                "name": "config.communicationtimeout",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "Communication step comparison precision. Number of decimals to consider",
+                "name": "config.precision",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "The max age of a value specified in ms,",
+                "name": "config.maxage",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "The number of queue messages that should be considered on each processing. Value must be greater than 0",
+                "name": "config.lookahead",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.exchangename",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.exchangetype",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.healthdata.exchangename",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.healthdata.exchangetype",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.routingkey.from_cosim",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.ssl",
+                "type": "Boolean",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.queueupperbound",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.vhost",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              }
+            ],
+            "provenance": {
+              "base_model_name": "RabbitMq",
+              "example_path": "digital_twins/drobotti_rmqfmu",
+              "example_slug": "drobotti_rmqfmu",
+              "generated": false,
+              "workspace_path": "models/rmqfmu-vhost.fmu"
+            },
+            "schema": "UNIFIED_ASSET_V1",
+            "source_id": "case_dtaas_drobotti_rmqfmu::rbmq",
+            "source_type": "dtaas_example_fmu",
+            "tags": [
+              "drobotti_rmqfmu",
+              "rabbitmq",
+              "runtime_io"
+            ]
+          },
+          "metadata_json": {
+            "asset_id": "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "backend_kind": "rabbitmq_bridge_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": true,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": true,
+              "provides_directional_derivatives": false
+            },
+            "default_experiment": {
+              "startTime": 0.0,
+              "stepSize": 0.01,
+              "stopTime": 16.0
+            },
+            "description": "rbmq instance of RabbitMq in Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.",
+            "fmi_types": [
+              "CoSimulation"
+            ],
+            "fmi_version": "2.0",
+            "inputs": [
+              "distance"
+            ],
+            "name": "rbmq",
+            "outputs": [
+              "xpos",
+              "ypos"
+            ],
+            "ports": [
+              {
+                "causality": "output",
+                "description": "",
+                "name": "xpos",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "ypos",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "distance",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.hostname",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.port",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.username",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.password",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.routingkey",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "Network read time out in seconds",
+                "name": "config.communicationtimeout",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "Communication step comparison precision. Number of decimals to consider",
+                "name": "config.precision",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "The max age of a value specified in ms,",
+                "name": "config.maxage",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "The number of queue messages that should be considered on each processing. Value must be greater than 0",
+                "name": "config.lookahead",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.exchangename",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.exchangetype",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.healthdata.exchangename",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.healthdata.exchangetype",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.routingkey.from_cosim",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.ssl",
+                "type": "Boolean",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.queueupperbound",
+                "type": "Integer",
+                "unit": "",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "",
+                "name": "config.vhost",
+                "type": "String",
+                "unit": "",
+                "variability": "fixed"
+              }
+            ],
+            "schema": "UNIFIED_FMU_METADATA_V1"
+          },
+          "default_experiment": {
+            "startTime": 0.0,
+            "stepSize": 0.01,
+            "stopTime": 16.0
+          },
+          "source_type": "dtaas_example_fmu"
+        }
+      },
+      {
+        "uid": "asset_dtaas_drobotti_rmqfmu__distance",
+        "name": "distance",
+        "description": "distance instance of unifmu in Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.",
+        "path": "dataset/assets/asset_dtaas_drobotti_rmqfmu__distance/model.fmu",
+        "fmi_version": "2.0",
+        "fmi_types": [
+          "CoSimulation"
+        ],
+        "ports": [
+          {
+            "name": "distance",
+            "causality": "output",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "xpos",
+            "causality": "input",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "ypos",
+            "causality": "input",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          }
+        ],
+        "inputs": [
+          "xpos",
+          "ypos"
+        ],
+        "outputs": [
+          "distance"
+        ],
+        "tags": [
+          "drobotti_rmqfmu",
+          "rabbitmq",
+          "runtime_io"
+        ],
+        "capabilities": {
+          "needs_execution_tool": true,
+          "can_handle_variable_communication_step_size": true,
+          "can_interpolate_inputs": false,
+          "can_run_asynchronously": false,
+          "can_be_instantiated_only_once_per_process": false,
+          "provides_directional_derivatives": false,
+          "fixed_internal_step_size": null
+        },
+        "meta": {
+          "asset_dir": "dataset/assets/asset_dtaas_drobotti_rmqfmu__distance",
+          "asset_json": {
+            "asset_id": "asset_dtaas_drobotti_rmqfmu__distance",
+            "backend_kind": "rabbitmq_bridge_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": true,
+              "provides_directional_derivatives": false
+            },
+            "case_origin": [
+              "case_dtaas_drobotti_rmqfmu"
+            ],
+            "default_experiment": {
+              "startTime": 0,
+              "stepSize": 0.1,
+              "stopTime": 10
+            },
+            "description": "distance instance of unifmu in Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.",
+            "description_relpath": "description.md",
+            "fmi_types": [
+              "CoSimulation"
+            ],
+            "fmi_version": "2.0",
+            "fmu_relpath": "model.fmu",
+            "ground_truth_only": false,
+            "inputs": [
+              "xpos",
+              "ypos"
+            ],
+            "library_visible": true,
+            "metadata_relpath": "metadata.json",
+            "name": "distance",
+            "outputs": [
+              "distance"
+            ],
+            "ports": [
+              {
+                "causality": "output",
+                "description": "",
+                "name": "distance",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "xpos",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "ypos",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              }
+            ],
+            "provenance": {
+              "base_model_name": "unifmu",
+              "example_path": "digital_twins/drobotti_rmqfmu",
+              "example_slug": "drobotti_rmqfmu",
+              "generated": false,
+              "workspace_path": "models/distance_from_zero.fmu"
+            },
+            "schema": "UNIFIED_ASSET_V1",
+            "source_id": "case_dtaas_drobotti_rmqfmu::distance",
+            "source_type": "dtaas_example_fmu",
+            "tags": [
+              "drobotti_rmqfmu",
+              "rabbitmq",
+              "runtime_io"
+            ]
+          },
+          "metadata_json": {
+            "asset_id": "asset_dtaas_drobotti_rmqfmu__distance",
+            "backend_kind": "rabbitmq_bridge_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": true,
+              "provides_directional_derivatives": false
+            },
+            "default_experiment": {
+              "startTime": 0,
+              "stepSize": 0.1,
+              "stopTime": 10
+            },
+            "description": "distance instance of unifmu in Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.",
+            "fmi_types": [
+              "CoSimulation"
+            ],
+            "fmi_version": "2.0",
+            "inputs": [
+              "xpos",
+              "ypos"
+            ],
+            "name": "distance",
+            "outputs": [
+              "distance"
+            ],
+            "ports": [
+              {
+                "causality": "output",
+                "description": "",
+                "name": "distance",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "xpos",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "ypos",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              }
+            ],
+            "schema": "UNIFIED_FMU_METADATA_V1"
+          },
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 10
+          },
+          "source_type": "dtaas_example_fmu"
+        }
+      }
+    ],
+    "connections": [
+      {
+        "source": "asset_dtaas_drobotti_rmqfmu__rbmq.xpos",
+        "target": "asset_dtaas_drobotti_rmqfmu__distance.xpos",
+        "kind": "direct",
+        "selected_by": "hybrid_name_semantic",
+        "scheduler_family": "greedy_multirate"
+      }
+    ],
+    "scheduler": {
+      "base_tick": 0.1,
+      "per_node_period": {
+        "asset_dtaas_drobotti_rmqfmu__rbmq": 0.1,
+        "asset_dtaas_drobotti_rmqfmu__distance": 0.2
+      },
+      "communication_grid": [
+        0.0,
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9,
+        1.0,
+        1.1,
+        1.2,
+        1.3,
+        1.4,
+        1.5,
+        1.6,
+        1.7,
+        1.8,
+        1.9,
+        2.0,
+        2.1,
+        2.2,
+        2.3,
+        2.4,
+        2.5,
+        2.6,
+        2.7,
+        2.8,
+        2.9,
+        3.0,
+        3.1,
+        3.2,
+        3.3,
+        3.4,
+        3.5,
+        3.6,
+        3.7,
+        3.8,
+        3.9,
+        4.0,
+        4.1,
+        4.2,
+        4.3,
+        4.4,
+        4.5,
+        4.6,
+        4.7,
+        4.8,
+        4.9,
+        5.0,
+        5.1,
+        5.2,
+        5.3,
+        5.4,
+        5.5,
+        5.6,
+        5.7,
+        5.8,
+        5.9,
+        6.0,
+        6.1,
+        6.2,
+        6.3,
+        6.4,
+        6.5,
+        6.6,
+        6.7,
+        6.8,
+        6.9,
+        7.0,
+        7.1,
+        7.2,
+        7.3,
+        7.4,
+        7.5,
+        7.6,
+        7.7,
+        7.8,
+        7.9,
+        8.0,
+        8.1,
+        8.2,
+        8.3,
+        8.4,
+        8.5,
+        8.6,
+        8.7,
+        8.8,
+        8.9,
+        9.0,
+        9.1,
+        9.2,
+        9.3,
+        9.4,
+        9.5,
+        9.6,
+        9.7,
+        9.8,
+        9.9,
+        10.0,
+        10.1,
+        10.2,
+        10.3,
+        10.4,
+        10.5,
+        10.6,
+        10.7,
+        10.8,
+        10.9,
+        11.0,
+        11.1,
+        11.2,
+        11.3,
+        11.4,
+        11.5,
+        11.6,
+        11.7,
+        11.8,
+        11.9,
+        12.0,
+        12.1,
+        12.2,
+        12.3,
+        12.4,
+        12.5,
+        12.6,
+        12.7,
+        12.8,
+        12.9,
+        13.0,
+        13.1,
+        13.2,
+        13.3,
+        13.4,
+        13.5,
+        13.6,
+        13.7,
+        13.8,
+        13.9,
+        14.0,
+        14.1,
+        14.2,
+        14.3,
+        14.4,
+        14.5,
+        14.6,
+        14.7,
+        14.8,
+        14.9,
+        15.0,
+        15.1,
+        15.2,
+        15.3,
+        15.4,
+        15.5,
+        15.6,
+        15.7,
+        15.8,
+        15.9,
+        16.0
+      ],
+      "per_node_schedule": {
+        "asset_dtaas_drobotti_rmqfmu__rbmq": [
+          0.0,
+          0.1,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0,
+          1.1,
+          1.2,
+          1.3,
+          1.4,
+          1.5,
+          1.6,
+          1.7,
+          1.8,
+          1.9,
+          2.0,
+          2.1,
+          2.2,
+          2.3,
+          2.4,
+          2.5,
+          2.6,
+          2.7,
+          2.8,
+          2.9,
+          3.0,
+          3.1,
+          3.2,
+          3.3,
+          3.4,
+          3.5,
+          3.6,
+          3.7,
+          3.8,
+          3.9,
+          4.0,
+          4.1,
+          4.2,
+          4.3,
+          4.4,
+          4.5,
+          4.6,
+          4.7,
+          4.8,
+          4.9,
+          5.0,
+          5.1,
+          5.2,
+          5.3,
+          5.4,
+          5.5,
+          5.6,
+          5.7,
+          5.8,
+          5.9,
+          6.0,
+          6.1,
+          6.2,
+          6.3,
+          6.4,
+          6.5,
+          6.6,
+          6.7,
+          6.8,
+          6.9,
+          7.0,
+          7.1,
+          7.2,
+          7.3,
+          7.4,
+          7.5,
+          7.6,
+          7.7,
+          7.8,
+          7.9,
+          8.0,
+          8.1,
+          8.2,
+          8.3,
+          8.4,
+          8.5,
+          8.6,
+          8.7,
+          8.8,
+          8.9,
+          9.0,
+          9.1,
+          9.2,
+          9.3,
+          9.4,
+          9.5,
+          9.6,
+          9.7,
+          9.8,
+          9.9,
+          10.0,
+          10.1,
+          10.2,
+          10.3,
+          10.4,
+          10.5,
+          10.6,
+          10.7,
+          10.8,
+          10.9,
+          11.0,
+          11.1,
+          11.2,
+          11.3,
+          11.4,
+          11.5,
+          11.6,
+          11.7,
+          11.8,
+          11.9,
+          12.0,
+          12.1,
+          12.2,
+          12.3,
+          12.4,
+          12.5,
+          12.6,
+          12.7,
+          12.8,
+          12.9,
+          13.0,
+          13.1,
+          13.2,
+          13.3,
+          13.4,
+          13.5,
+          13.6,
+          13.7,
+          13.8,
+          13.9,
+          14.0,
+          14.1,
+          14.2,
+          14.3,
+          14.4,
+          14.5,
+          14.6,
+          14.7,
+          14.8,
+          14.9,
+          15.0,
+          15.1,
+          15.2,
+          15.3,
+          15.4,
+          15.5,
+          15.6,
+          15.7,
+          15.8,
+          15.9,
+          16.0
+        ],
+        "asset_dtaas_drobotti_rmqfmu__distance": [
+          0.0,
+          0.2,
+          0.4,
+          0.6,
+          0.8,
+          1.0,
+          1.2,
+          1.4,
+          1.6,
+          1.8,
+          2.0,
+          2.2,
+          2.4,
+          2.6,
+          2.8,
+          3.0,
+          3.2,
+          3.4,
+          3.6,
+          3.8,
+          4.0,
+          4.2,
+          4.4,
+          4.6,
+          4.8,
+          5.0,
+          5.2,
+          5.4,
+          5.6,
+          5.8,
+          6.0,
+          6.2,
+          6.4,
+          6.6,
+          6.8,
+          7.0,
+          7.2,
+          7.4,
+          7.6,
+          7.8,
+          8.0,
+          8.2,
+          8.4,
+          8.6,
+          8.8,
+          9.0,
+          9.2,
+          9.4,
+          9.6,
+          9.8,
+          10.0,
+          10.2,
+          10.4,
+          10.6,
+          10.8,
+          11.0,
+          11.2,
+          11.4,
+          11.6,
+          11.8,
+          12.0,
+          12.2,
+          12.4,
+          12.6,
+          12.8,
+          13.0,
+          13.2,
+          13.4,
+          13.6,
+          13.8,
+          14.0,
+          14.2,
+          14.4,
+          14.6,
+          14.8,
+          15.0,
+          15.2,
+          15.4,
+          15.6,
+          15.8,
+          16.0
+        ]
+      },
+      "per_edge_hold_policy": [
+        {
+          "source_fmu": "asset_dtaas_drobotti_rmqfmu__rbmq",
+          "source_signal": "xpos",
+          "target_fmu": "asset_dtaas_drobotti_rmqfmu__distance",
+          "target_signal": "xpos",
+          "source_period": 0.1,
+          "target_period": 0.2,
+          "async": true,
+          "hold": "zoh"
+        }
+      ],
+      "execution_plan": [
+        {
+          "time": 0.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 2.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 2.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 2.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 2.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 2.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 2.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 2.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 2.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 2.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 2.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 3.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 3.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 3.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 3.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 3.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 3.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 3.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 3.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 3.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 3.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 4.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 4.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 4.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 4.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 4.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 4.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 4.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 4.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 4.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 4.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 5.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 5.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 5.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 5.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 5.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 5.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 5.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 5.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 5.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 5.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 6.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 6.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 6.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 6.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 6.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 6.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 6.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 6.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 6.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 6.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 7.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 7.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 7.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 7.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 7.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 7.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 7.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 7.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 7.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 7.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 8.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 8.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 8.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 8.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 8.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 8.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 8.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 8.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 8.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 8.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 9.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 9.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 9.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 9.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 9.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 9.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 9.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 9.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 9.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 9.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 10.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 10.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 10.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 10.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 10.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 10.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 10.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 10.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 10.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 10.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 11.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 11.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 11.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 11.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 11.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 11.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 11.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 11.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 11.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 11.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 12.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 12.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 12.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 12.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 12.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 12.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 12.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 12.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 12.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 12.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 13.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 13.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 13.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 13.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 13.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 13.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 13.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 13.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 13.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 13.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 14.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 14.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 14.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 14.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 14.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 14.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 14.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 14.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 14.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 14.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 15.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 15.1,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 15.2,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 15.3,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 15.4,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 15.5,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 15.6,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 15.7,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 15.8,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 15.9,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0
+          },
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 16.0,
+          "active_nodes": [
+            "asset_dtaas_drobotti_rmqfmu__rbmq",
+            "asset_dtaas_drobotti_rmqfmu__distance"
+          ],
+          "family": "greedy_multirate",
+          "rate_multiples": {
+            "asset_dtaas_drobotti_rmqfmu__rbmq": 1.0,
+            "asset_dtaas_drobotti_rmqfmu__distance": 2.0
+          },
+          "requires_fixed_point_iteration": false
+        }
+      ],
+      "materialized": true,
+      "warnings": [],
+      "family": "greedy_multirate",
+      "node_order": [
+        "asset_dtaas_drobotti_rmqfmu__rbmq",
+        "asset_dtaas_drobotti_rmqfmu__distance"
+      ],
+      "adjustments": [
+        {
+          "node": "asset_dtaas_drobotti_rmqfmu__distance",
+          "old_period": 0.1,
+          "new_period": 0.2,
+          "reason": "coarse_linearized_downstream"
+        }
+      ],
+      "adjusted_nodes": {
+        "asset_dtaas_drobotti_rmqfmu__distance": {
+          "old_step": 0.1,
+          "new_step": 0.2,
+          "aligned_with": ""
+        }
+      },
+      "async_edges": [
+        {
+          "source_fmu": "asset_dtaas_drobotti_rmqfmu__rbmq",
+          "source_signal": "xpos",
+          "target_fmu": "asset_dtaas_drobotti_rmqfmu__distance",
+          "target_signal": "xpos",
+          "source_period": 0.1,
+          "target_period": 0.2,
+          "async": true,
+          "hold": "zoh"
+        }
+      ],
+      "start_time": 0.0,
+      "stop_time": 16.0,
+      "communication_point_count": 161
+    },
+    "meta": {
+      "method_name": "baseline_b3_graph_aware",
+      "workspace_root": "./baseline/workspaces/baseline_b3_graph_aware",
+      "selected_task_set_id": "taskset_0",
+      "selected_asset_ids": [
+        "asset_dtaas_drobotti_rmqfmu__rbmq",
+        "asset_dtaas_drobotti_rmqfmu__distance"
+      ],
+      "rate_adjustments": [
+        {
+          "node": "asset_dtaas_drobotti_rmqfmu__distance",
+          "old_period": 0.1,
+          "new_period": 0.2,
+          "reason": "coarse_linearized_downstream"
+        }
+      ],
+      "adjusted_nodes": {
+        "asset_dtaas_drobotti_rmqfmu__distance": {
+          "old_step": 0.1,
+          "new_step": 0.2,
+          "aligned_with": ""
+        }
+      },
+      "adapters": []
+    }
+  },
+  "diagnostics": {
+    "stage3_variant": "greedy_multirate_scheduler",
+    "rate_adjustment_count": 1,
+    "validation_issues": [],
+    "linearized_binding_count": 1,
+    "coarse_multirate": true
+  }
+}

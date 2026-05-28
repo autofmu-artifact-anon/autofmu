@@ -1,0 +1,2862 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_monolithic",
+        "objective": "Run the benchmark FMU BouncingBall under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monito",
+        "required_signals": [],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "output"
+        ],
+        "grounded_component_types": [
+          "OutputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {
+          "components": [
+            "output"
+          ],
+          "ports": [],
+          "signals": [],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 0,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      }
+    ],
+    "rationale": "rule-generated holistic raw task set",
+    "score": 0.6100000000000001,
+    "p_value": 0.5238095238095238,
+    "task_set_id": "taskset_1",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.5238095238095238,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.3899999999999999,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 1.0,
+      "criteria_coverage": 0.0,
+      "constraint_completeness": 0.0,
+      "regime_coverage": 0.0,
+      "topology_alignment": 1.0,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.0,
+      "final_score": 0.6100000000000001
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "required_chain_count": 0,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.5238095238095238,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.3899999999999999,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_monolithic",
+      "task_index": 0,
+      "fmu_uid": "asset_bench_fmu-001930",
+      "score": 6.754499655283494,
+      "cost": -5.754499655283494,
+      "hard_ok": true,
+      "semantic_cost": -5.754499655283494,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "transport_top_mass=1.000000"
+      ],
+      "grounded_components": [
+        "output"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_bench_fmu-001930",
+      "name": "BouncingBall",
+      "description": "This model calculates the trajectory, over time, of a ball dropped from a height of 1 m.",
+      "path": "dataset/assets/asset_bench_fmu-001930/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "ModelExchange",
+        "CoSimulation"
+      ],
+      "ports": [
+        {
+          "name": "h",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Position of the ball",
+          "dimensions": []
+        },
+        {
+          "name": "v",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Velocity of the ball",
+          "dimensions": []
+        },
+        {
+          "name": "g",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Gravity acting on the ball",
+          "dimensions": []
+        },
+        {
+          "name": "e",
+          "causality": "parameter",
+          "variability": "tunable",
+          "type": "Real",
+          "unit": "",
+          "description": "Coefficient of restitution",
+          "dimensions": []
+        },
+        {
+          "name": "v_min",
+          "causality": "local",
+          "variability": "constant",
+          "type": "Real",
+          "unit": "",
+          "description": "Velocity below which the ball stops bouncing",
+          "dimensions": []
+        }
+      ],
+      "inputs": [],
+      "outputs": [
+        "h",
+        "v"
+      ],
+      "tags": [
+        "Test-FMUs",
+        "linux64"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_bench_fmu-001930",
+        "asset_json": {
+          "asset_id": "asset_bench_fmu-001930",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_bench_fmu-001930"
+          ],
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0,
+            "stopTime": 3,
+            "tolerance": 1e-05
+          },
+          "description": "This model calculates the trajectory, over time, of a ball dropped from a height of 1 m.",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "ModelExchange",
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "BouncingBall",
+          "outputs": [
+            "h",
+            "v"
+          ],
+          "ports": [
+            {
+              "causality": "output",
+              "description": "Position of the ball",
+              "name": "h",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Velocity of the ball",
+              "name": "v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "Gravity acting on the ball",
+              "name": "g",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Coefficient of restitution",
+              "name": "e",
+              "type": "Real",
+              "unit": "",
+              "variability": "tunable"
+            },
+            {
+              "causality": "local",
+              "description": "Velocity below which the ball stops bouncing",
+              "name": "v_min",
+              "type": "Real",
+              "unit": "",
+              "variability": "constant"
+            }
+          ],
+          "provenance": {
+            "path_to_fmu": "fmus/2.0/cs/linux64/Test-FMUs/0.0.2/BouncingBall/BouncingBall.fmu",
+            "path_to_metadata": "fmus/2.0/cs/linux64/Test-FMUs/0.0.2/BouncingBall/BouncingBall.metadata.json",
+            "source_path": "fmus/2.0/cs/win64/Test-FMUs/0.0.2/BouncingBall/BouncingBall.fmu",
+            "source_repo": "fmi-cross-check-master"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "fmu-001930",
+          "source_type": "benchmark_single_fmu",
+          "tags": [
+            "Test-FMUs",
+            "linux64"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_bench_fmu-001930",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "dataset_id": "fmu-001930",
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0,
+            "stopTime": 3,
+            "tolerance": 1e-05
+          },
+          "description": "This model calculates the trajectory, over time, of a ball dropped from a height of 1 m.",
+          "fmi_types": [
+            "ModelExchange",
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [],
+          "name": "BouncingBall",
+          "outputs": [
+            "h",
+            "v"
+          ],
+          "ports": [
+            {
+              "causality": "output",
+              "description": "Position of the ball",
+              "name": "h",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Velocity of the ball",
+              "name": "v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "Gravity acting on the ball",
+              "name": "g",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Coefficient of restitution",
+              "name": "e",
+              "type": "Real",
+              "unit": "",
+              "variability": "tunable"
+            },
+            {
+              "causality": "local",
+              "description": "Velocity below which the ball stops bouncing",
+              "name": "v_min",
+              "type": "Real",
+              "unit": "",
+              "variability": "constant"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0,
+          "stepSize": 0,
+          "stopTime": 3,
+          "tolerance": 1e-05
+        },
+        "source_type": "benchmark_single_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_bench_fmu-001930"
+    ],
+    "port_nodes": [
+      "asset_bench_fmu-001930.h",
+      "asset_bench_fmu-001930.v",
+      "asset_bench_fmu-001930.g",
+      "asset_bench_fmu-001930.e",
+      "asset_bench_fmu-001930.v_min"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "output": "asset_bench_fmu-001930"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "status": "ok",
+      "note": "no_required_signal_chains",
+      "routing_failure_count": 0
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "assignment": [
+        {
+          "task_id": "task_monolithic",
+          "task_index": 0,
+          "fmu_uid": "asset_bench_fmu-001930",
+          "semantic_cost": -5.754499655283494,
+          "transport_mass": 1.0
+        }
+      ],
+      "closure_failure": null,
+      "failure_type": "",
+      "failure_class": "",
+      "revision_eligible": false
+    }
+  ],
+  "final_cost": -5.754499655283494,
+  "transport_plans": [
+    {
+      "revision": 0,
+      "objective": -5.754499655283494,
+      "cost_matrix": [
+        [
+          -1.2544996552834942,
+          -0.6112206080257078,
+          -0.6425126303037358,
+          -0.6379288308352481,
+          -0.689103544216111,
+          -0.6325220968373726,
+          -0.6199144568132512,
+          -0.608862938714327,
+          -0.6310338444894805,
+          -0.6254116567627809,
+          -1.2551849194749702,
+          -0.611241394254149,
+          -0.6428728535378123,
+          -0.6384693477744694,
+          -0.6328348307860812,
+          -0.6047975336264179,
+          -0.6022866785445646,
+          -0.6328348307860812,
+          -0.6047975336264179,
+          -0.6022866785445646,
+          -0.61033230158996,
+          -0.6019302811172867,
+          -0.6012292337769926,
+          -0.61033230158996,
+          -0.6019302811172867,
+          -0.6012292337769926,
+          -0.6121976741410172,
+          -0.6021681451861339,
+          -0.6012292337769926,
+          -0.6080551862481833,
+          -0.612052870476281,
+          -0.6024071518804125,
+          -0.60201230005608,
+          -0.6104435128969451,
+          -0.6020309701142017,
+          -0.6011972008319163,
+          -0.6102578740378942,
+          -0.6020250085293737,
+          -0.6011972008319163,
+          -0.6043201932518256,
+          -0.602348026489958,
+          -0.6050262522107018,
+          -0.6043486404462668,
+          -0.6012556579475475,
+          -0.6047967530766285,
+          -0.6052364631604191,
+          -0.6003554134653429,
+          -0.6032566327027966,
+          -0.6099968820388408,
+          -1.2547697312833652,
+          -0.6112288032410541,
+          -0.6426538036243215,
+          -0.6381395598668247,
+          -1.2545748881362728,
+          -0.6112228912860282,
+          -0.6425518525396615,
+          -0.6379872367803605,
+          -0.6169627543421857,
+          -5.754499655283494,
+          -0.6112206080257078,
+          -0.6425126303037358,
+          -0.6379288308352481,
+          -0.6169626001333717,
+          -0.6169628026398305,
+          -0.619750719887231,
+          -0.608851749652558,
+          -0.6308440102182884,
+          -0.6250740586900185,
+          -1.2547314717530431,
+          -0.6112276425235852,
+          -0.6426337420840016,
+          -0.6384737752832353,
+          -0.6328351391067085,
+          -0.6073050581670181,
+          -0.6022866796930036,
+          -0.6328351391067085,
+          -0.6073050581670181,
+          -0.6022866796930036,
+          -0.6103323148782877,
+          -0.6021944552553675,
+          -0.6012292341456141,
+          -0.6103323148782877,
+          -0.6021944552553675,
+          -0.6012292341456141,
+          -0.6121976960040555,
+          -0.6021681453516663,
+          -0.6012292341456141,
+          -0.608055192544775,
+          -0.6120528857260902,
+          -0.6027406345496513,
+          -0.6020123006060721,
+          -0.6104435266189935,
+          -0.6023194648590742,
+          -0.6011972011724642,
+          -0.6102578870411222,
+          -0.6023110787950425,
+          -0.6011972011724642,
+          -0.6169629437788894,
+          -0.6039060161030804,
+          -0.6023114350462303,
+          -0.6043860785672919,
+          -0.6037215787711354,
+          -0.6011798968418619,
+          -0.60435196916284,
+          -0.6004640520109319,
+          -0.6135216124509781,
+          -0.6005798930824459,
+          -0.6010324434023216,
+          -0.6052584584894659,
+          -0.6003554375756519,
+          -0.6032753392126863,
+          -0.6099970514720179,
+          -1.2545748881362728,
+          -0.6112228912860282,
+          -0.6425518525396615,
+          -0.6379872367803605,
+          -0.6169627543421857,
+          -1.2544996552834942,
+          -0.6112206080257078,
+          -0.6425126303037358,
+          -0.6379288308352481,
+          -0.6251820199195555,
+          -0.6251820199195555,
+          -0.6251821326675399,
+          -0.6251821326675399,
+          -0.6251823011318355,
+          -0.6251823011318355,
+          -0.6251820199195555,
+          -0.6251820199195555,
+          -0.6251821326675399,
+          -0.6251821326675399,
+          -0.6251820199195555,
+          -0.6251820199195555,
+          -0.6251821326675399,
+          -0.6251821326675399,
+          -0.6251821474647224,
+          -0.6251821474647224,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "transport_matrix": [
+        [
+          8.194012623990515e-40,
+          2.118584632570448e-45,
+          3.961365088319284e-45,
+          3.6143523951795387e-45,
+          1.005838850413617e-44,
+          3.243905534656627e-45,
+          2.5209232798805066e-45,
+          2.0210048805738415e-45,
+          3.148773364337851e-45,
+          2.8138937893348917e-45,
+          8.307086980846172e-40,
+          2.1194655633529394e-45,
+          3.9900076564847704e-45,
+          3.6536367249402265e-45,
+          3.264258707326013e-45,
+          1.8631838125934615e-45,
+          1.7719305350110625e-45,
+          3.264258707326013e-45,
+          1.8631838125934615e-45,
+          1.7719305350110625e-45,
+          2.0812779641017042e-45,
+          1.7593452123831286e-45,
+          1.7348496535020922e-45,
+          2.0812779641017042e-45,
+          1.7593452123831286e-45,
+          1.7348496535020922e-45,
+          2.160391730319885e-45,
+          1.7677348527147963e-45,
+          1.7348496535020922e-45,
+          1.988617759196052e-45,
+          2.1541441286464278e-45,
+          1.776205090291287e-45,
+          1.7622335732842163e-45,
+          2.08591234900287e-45,
+          1.762891716216983e-45,
+          1.733738562581905e-45,
+          2.0781821803086924e-45,
+          1.7626815361771195e-45,
+          1.733738562581905e-45,
+          1.8454809925750758e-45,
+          1.7741059552678556e-45,
+          1.871726231073865e-45,
+          1.846531266452861e-45,
+          1.7357667350745542e-45,
+          1.8631547266658406e-45,
+          1.8796119430615284e-45,
+          1.704794112597185e-45,
+          1.8066399396423222e-45,
+          2.0673626645128978e-45,
+          8.238392498524356e-40,
+          2.1189319061753648e-45,
+          3.972565674389076e-45,
+          3.62961752023422e-45,
+          8.206351083145651e-40,
+          2.1186813803839883e-45,
+          3.964473779379617e-45,
+          3.618576855387318e-45,
+          2.376410523688393e-45,
+          1.0,
+          2.118584632570448e-45,
+          3.961365088319284e-45,
+          3.6143523951795387e-45,
+          2.3764031944307146e-45,
+          2.3764128191901213e-45,
+          2.5126814176461858e-45,
+          2.0205526682051436e-45,
+          3.136841128209413e-45,
+          2.794958484092425e-45,
+          8.232090969215275e-40,
+          2.1188827171207538e-45,
+          3.970972078381335e-45,
+          3.653960269437474e-45,
+          3.264278836153923e-45,
+          1.959006079648663e-45,
+          1.7719305757101655e-45,
+          3.264278836153923e-45,
+          1.959006079648663e-45,
+          1.7719305757101655e-45,
+          2.0812785172358606e-45,
+          1.7686652820171547e-45,
+          1.734849666292134e-45,
+          2.0812785172358606e-45,
+          1.7686652820171547e-45,
+          1.734849666292134e-45,
+          2.160392674974635e-45,
+          1.7677348585671405e-45,
+          1.734849666292134e-45,
+          1.9886180096263492e-45,
+          2.1541447856522535e-45,
+          1.7880913571612032e-45,
+          1.7622335926685056e-45,
+          2.085912921462745e-45,
+          1.773092817475199e-45,
+          1.7337385743903363e-45,
+          2.078182720770312e-45,
+          1.7727954570147066e-45,
+          1.7337385743903363e-45,
+          2.3764195272929464e-45,
+          1.8302570127612152e-45,
+          1.772808088269453e-45,
+          1.8479143974270866e-45,
+          1.823518095078331e-45,
+          1.7331386544990464e-45,
+          1.846654202129572e-45,
+          1.7085022666814534e-45,
+          2.2183603193068032e-45,
+          1.712465150220727e-45,
+          1.7280350385390594e-45,
+          1.8804389786207436e-45,
+          1.7047949346596322e-45,
+          1.8073159846568324e-45,
+          2.0673696701212604e-45,
+          8.206351083145651e-40,
+          2.1186813803839883e-45,
+          3.964473779379617e-45,
+          3.618576855387318e-45,
+          2.376410523688393e-45,
+          8.194012623990515e-40,
+          2.118584632570448e-45,
+          3.961365088319284e-45,
+          3.6143523951795387e-45,
+          2.8009999472720746e-45,
+          2.8009999472720746e-45,
+          2.8010062634211466e-45,
+          2.8010062634211466e-45,
+          2.8010157008280116e-45,
+          2.8010157008280116e-45,
+          2.8009999472720746e-45,
+          2.8009999472720746e-45,
+          2.8010062634211466e-45,
+          2.8010062634211466e-45,
+          2.8009999472720746e-45,
+          2.8009999472720746e-45,
+          2.8010062634211466e-45,
+          2.8010062634211466e-45,
+          2.8010070923612867e-45,
+          2.8010070923612867e-45,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "iterations": 2,
+      "converged": true,
+      "epsilon": 0.05
+    }
+  ],
+  "mask_history": [
+    {
+      "revision": 0,
+      "finite_pairs": 137,
+      "blocked_pairs": 44,
+      "mask_matrix": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "mask_explanations": [
+        [
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          }
+        ]
+      ],
+      "applied_exclusion_pair": null,
+      "exclusion_reason": null
+    }
+  ],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": -5.705989852420541,
+      "final_cost": -5.705989852420541,
+      "selected_fmus": [
+        "asset_bench_fmu-001930"
+      ],
+      "discrepancy_count": 0
+    },
+    {
+      "task_set_id": "taskset_1",
+      "status": "ok",
+      "selected_task_set_cost": -5.754499655283494,
+      "final_cost": -5.754499655283494,
+      "selected_fmus": [
+        "asset_bench_fmu-001930"
+      ],
+      "discrepancy_count": 0
+    }
+  ],
+  "selected_task_set_cost": -5.754499655283494,
+  "diagnostics": {
+    "status": "ok",
+    "revisions": 1,
+    "objective_kind": "fused_transport"
+  }
+}

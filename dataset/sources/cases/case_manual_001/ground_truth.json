@@ -1,0 +1,34 @@
+{
+  "correct_fmus": [
+    "fmu_BatteryPackElectroThermal",
+    "fmu_CoolingLoop",
+    "fmu_ThermalController"
+  ],
+  "correct_connections": [
+    {"from": "fmu_ThermalController.current_A", "to": "fmu_BatteryPackElectroThermal.current_A"},
+
+    {"from": "fmu_ThermalController.pump_cmd", "to": "fmu_CoolingLoop.pump_cmd"},
+    {"from": "fmu_ThermalController.fan_cmd", "to": "fmu_CoolingLoop.fan_cmd"},
+
+    {"from": "fmu_BatteryPackElectroThermal.T_surface_C", "to": "fmu_CoolingLoop.T_batt_surface_C"},
+    {"from": "fmu_BatteryPackElectroThermal.heat_W", "to": "fmu_CoolingLoop.heat_load_W"},
+
+    {"from": "fmu_CoolingLoop.coolant_in_temp_C", "to": "fmu_BatteryPackElectroThermal.coolant_in_temp_C"},
+    {"from": "fmu_CoolingLoop.coolant_flow_kgps", "to": "fmu_BatteryPackElectroThermal.coolant_flow_kgps"},
+
+    {"from": "fmu_BatteryPackElectroThermal.T_core_C", "to": "fmu_ThermalController.T_core_C"},
+    {"from": "fmu_BatteryPackElectroThermal.soc", "to": "fmu_ThermalController.soc"},
+    {"from": "fmu_BatteryPackElectroThermal.voltage_V", "to": "fmu_ThermalController.voltage_V"}
+  ],
+  "exogenous_inputs": {
+    "ambient_temp_C": [
+      "fmu_BatteryPackElectroThermal.ambient_temp_C",
+      "fmu_CoolingLoop.ambient_temp_C",
+      "fmu_ThermalController.ambient_temp_C"
+    ],
+    "driver_power_request_W": [
+      "fmu_ThermalController.driver_power_request_W"
+    ]
+  },
+  "expected_behavior": "When ambient_temp_C=35C and driver_power_request_W steps up, controller increases pump_cmd/fan_cmd and may derate current_A to keep T_core_C <= 55C. SOC decreases monotonically during sustained discharge; voltage stays within [280, 420] V."
+}

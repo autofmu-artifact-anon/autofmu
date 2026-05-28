@@ -1,0 +1,513 @@
+{
+  "case_id": "case_dtaas_water_tank_swap",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_dtaas_water_tank_swap__x1",
+        "asset_dtaas_water_tank_swap__x2",
+        "asset_dtaas_water_tank_swap__x3",
+        "asset_dtaas_water_tank_swap__x4"
+      ]
+    ],
+    "case_id": "case_dtaas_water_tank_swap",
+    "equivalence_class_id": "",
+    "equivalence_reason": "",
+    "oracle_mode": "exact_asset_set",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_dtaas_water_tank_swap",
+    "connections": [
+      {
+        "source": "asset_dtaas_water_tank_swap__x1.valve",
+        "target": "asset_dtaas_water_tank_swap__x2.valvecontrol"
+      },
+      {
+        "source": "asset_dtaas_water_tank_swap__x2.level",
+        "target": "asset_dtaas_water_tank_swap__x1.level"
+      },
+      {
+        "source": "asset_dtaas_water_tank_swap__x1.valve",
+        "target": "asset_dtaas_water_tank_swap__x3.valve"
+      },
+      {
+        "source": "asset_dtaas_water_tank_swap__x2.level",
+        "target": "asset_dtaas_water_tank_swap__x3.level"
+      },
+      {
+        "source": "asset_dtaas_water_tank_swap__x4.valve",
+        "target": "asset_dtaas_water_tank_swap__x2.valvecontrol"
+      },
+      {
+        "source": "asset_dtaas_water_tank_swap__x4.valve",
+        "target": "asset_dtaas_water_tank_swap__x3.valve"
+      },
+      {
+        "source": "asset_dtaas_water_tank_swap__x2.level",
+        "target": "asset_dtaas_water_tank_swap__x4.level"
+      },
+      {
+        "source": "asset_dtaas_water_tank_swap__x3.leak",
+        "target": "asset_dtaas_water_tank_swap__x4.leak"
+      }
+    ],
+    "execution_order": [
+      "asset_dtaas_water_tank_swap__x1",
+      "asset_dtaas_water_tank_swap__x2",
+      "asset_dtaas_water_tank_swap__x3",
+      "asset_dtaas_water_tank_swap__x4"
+    ],
+    "extensions": {
+      "fault_injection": [
+        {
+          "configuration_relpath": "raw/digital_twins/water_tank_swap/wt_fault.xml",
+          "instances": {
+            "tank": "id-A"
+          }
+        }
+      ],
+      "model_swap": [
+        {
+          "model_transfers": {
+            "controller": "controller",
+            "tank": "tank"
+          },
+          "swaps": [
+            {
+              "connections": [
+                {
+                  "source": "asset_dtaas_water_tank_swap__x4.valve",
+                  "target": "asset_dtaas_water_tank_swap__x2.valvecontrol"
+                },
+                {
+                  "source": "asset_dtaas_water_tank_swap__x4.valve",
+                  "target": "asset_dtaas_water_tank_swap__x3.valve"
+                },
+                {
+                  "source": "asset_dtaas_water_tank_swap__x2.level",
+                  "target": "asset_dtaas_water_tank_swap__x4.level"
+                },
+                {
+                  "source": "asset_dtaas_water_tank_swap__x3.leak",
+                  "target": "asset_dtaas_water_tank_swap__x4.leak"
+                }
+              ],
+              "step_condition": "(true)",
+              "swap_condition": "(true)",
+              "swap_id": "controller",
+              "swap_instance": "leak_controller"
+            }
+          ]
+        }
+      ],
+      "parameter_overrides": [
+        {
+          "target": "asset_dtaas_water_tank_swap__x1.maxlevel",
+          "value": 2
+        },
+        {
+          "target": "asset_dtaas_water_tank_swap__x1.minlevel",
+          "value": 1
+        },
+        {
+          "target": "asset_dtaas_water_tank_swap__x4.maxlevel",
+          "value": 2
+        },
+        {
+          "target": "asset_dtaas_water_tank_swap__x4.minlevel",
+          "value": 1
+        }
+      ],
+      "raw_config_relpaths": [
+        "raw/digital_twins/water_tank_swap/README.md",
+        "raw/digital_twins/water_tank_swap/mm1.json",
+        "raw/digital_twins/water_tank_swap/simulation-config.json",
+        "raw/digital_twins/water_tank_swap/wt_fault.xml",
+        "raw/digital_twins/water_tank_swap/FaultInject.mabl",
+        "raw/digital_twins/water_tank_swap/mm2.json"
+      ]
+    },
+    "external_inputs": [],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "valve",
+        "source": "asset_dtaas_water_tank_swap__x1.valve"
+      },
+      {
+        "name": "level",
+        "source": "asset_dtaas_water_tank_swap__x2.level"
+      },
+      {
+        "name": "leak",
+        "source": "asset_dtaas_water_tank_swap__x3.leak"
+      },
+      {
+        "name": "valve",
+        "source": "asset_dtaas_water_tank_swap__x4.valve"
+      }
+    ],
+    "notes": [
+      "Stage 1 executes the nominal water-tank co-simulation with injected faults, and stage 2 introduces leak detection plus runtime swap to the leak controller when the swap condition is satisfied."
+    ],
+    "schedule": {
+      "kind": "multi_stage",
+      "stage_count": 2,
+      "start_time": 0,
+      "stop_time": 100
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_dtaas_water_tank_swap__x1",
+      "asset_dtaas_water_tank_swap__x2",
+      "asset_dtaas_water_tank_swap__x3",
+      "asset_dtaas_water_tank_swap__x4"
+    ],
+    "stages": [
+      {
+        "connections": [
+          {
+            "source": "asset_dtaas_water_tank_swap__x1.valve",
+            "target": "asset_dtaas_water_tank_swap__x2.valvecontrol"
+          },
+          {
+            "source": "asset_dtaas_water_tank_swap__x2.level",
+            "target": "asset_dtaas_water_tank_swap__x1.level"
+          }
+        ],
+        "execution_order": [
+          "asset_dtaas_water_tank_swap__x1",
+          "asset_dtaas_water_tank_swap__x2"
+        ],
+        "extensions": {
+          "fault_injection": {
+            "configuration_relpath": "raw/digital_twins/water_tank_swap/wt_fault.xml",
+            "instances": {
+              "tank": "id-A"
+            }
+          },
+          "parameter_overrides": [
+            {
+              "target": "asset_dtaas_water_tank_swap__x1.maxlevel",
+              "value": 2
+            },
+            {
+              "target": "asset_dtaas_water_tank_swap__x1.minlevel",
+              "value": 1
+            }
+          ],
+          "raw_config_relpaths": [
+            "raw/digital_twins/water_tank_swap/mm1.json",
+            "raw/digital_twins/water_tank_swap/simulation-config.json",
+            "raw/digital_twins/water_tank_swap/wt_fault.xml",
+            "raw/digital_twins/water_tank_swap/FaultInject.mabl"
+          ]
+        },
+        "external_inputs": [],
+        "monitored_outputs": [
+          {
+            "name": "valve",
+            "source": "asset_dtaas_water_tank_swap__x1.valve"
+          },
+          {
+            "name": "level",
+            "source": "asset_dtaas_water_tank_swap__x2.level"
+          }
+        ],
+        "schedule": {
+          "co_simulation_type": "fixed-step",
+          "kind": "co_simulation",
+          "live_log_interval": 0,
+          "report_progress": true,
+          "start_time": 0,
+          "step_size": 0.1,
+          "stop_time": 100
+        },
+        "selected_asset_ids": [
+          "asset_dtaas_water_tank_swap__x1",
+          "asset_dtaas_water_tank_swap__x2"
+        ],
+        "stage_id": "stage1"
+      },
+      {
+        "connections": [
+          {
+            "source": "asset_dtaas_water_tank_swap__x1.valve",
+            "target": "asset_dtaas_water_tank_swap__x2.valvecontrol"
+          },
+          {
+            "source": "asset_dtaas_water_tank_swap__x1.valve",
+            "target": "asset_dtaas_water_tank_swap__x3.valve"
+          },
+          {
+            "source": "asset_dtaas_water_tank_swap__x2.level",
+            "target": "asset_dtaas_water_tank_swap__x1.level"
+          },
+          {
+            "source": "asset_dtaas_water_tank_swap__x2.level",
+            "target": "asset_dtaas_water_tank_swap__x3.level"
+          }
+        ],
+        "execution_order": [
+          "asset_dtaas_water_tank_swap__x1",
+          "asset_dtaas_water_tank_swap__x2",
+          "asset_dtaas_water_tank_swap__x3",
+          "asset_dtaas_water_tank_swap__x4"
+        ],
+        "extensions": {
+          "model_swap": {
+            "model_transfers": {
+              "controller": "controller",
+              "tank": "tank"
+            },
+            "swaps": [
+              {
+                "connections": [
+                  {
+                    "source": "asset_dtaas_water_tank_swap__x4.valve",
+                    "target": "asset_dtaas_water_tank_swap__x2.valvecontrol"
+                  },
+                  {
+                    "source": "asset_dtaas_water_tank_swap__x4.valve",
+                    "target": "asset_dtaas_water_tank_swap__x3.valve"
+                  },
+                  {
+                    "source": "asset_dtaas_water_tank_swap__x2.level",
+                    "target": "asset_dtaas_water_tank_swap__x4.level"
+                  },
+                  {
+                    "source": "asset_dtaas_water_tank_swap__x3.leak",
+                    "target": "asset_dtaas_water_tank_swap__x4.leak"
+                  }
+                ],
+                "step_condition": "(true)",
+                "swap_condition": "(true)",
+                "swap_id": "controller",
+                "swap_instance": "leak_controller"
+              }
+            ]
+          },
+          "parameter_overrides": [
+            {
+              "target": "asset_dtaas_water_tank_swap__x1.maxlevel",
+              "value": 2
+            },
+            {
+              "target": "asset_dtaas_water_tank_swap__x1.minlevel",
+              "value": 1
+            },
+            {
+              "target": "asset_dtaas_water_tank_swap__x4.maxlevel",
+              "value": 2
+            },
+            {
+              "target": "asset_dtaas_water_tank_swap__x4.minlevel",
+              "value": 1
+            }
+          ],
+          "raw_config_relpaths": [
+            "raw/digital_twins/water_tank_swap/mm2.json",
+            "raw/digital_twins/water_tank_swap/simulation-config.json"
+          ]
+        },
+        "external_inputs": [],
+        "monitored_outputs": [
+          {
+            "name": "valve",
+            "source": "asset_dtaas_water_tank_swap__x1.valve"
+          },
+          {
+            "name": "level",
+            "source": "asset_dtaas_water_tank_swap__x2.level"
+          },
+          {
+            "name": "leak",
+            "source": "asset_dtaas_water_tank_swap__x3.leak"
+          },
+          {
+            "name": "valve",
+            "source": "asset_dtaas_water_tank_swap__x4.valve"
+          }
+        ],
+        "schedule": {
+          "co_simulation_type": "fixed-step",
+          "kind": "co_simulation",
+          "live_log_interval": 0,
+          "report_progress": true,
+          "start_time": 0,
+          "step_size": 0.1,
+          "stop_time": 100
+        },
+        "selected_asset_ids": [
+          "asset_dtaas_water_tank_swap__x1",
+          "asset_dtaas_water_tank_swap__x2",
+          "asset_dtaas_water_tank_swap__x3",
+          "asset_dtaas_water_tank_swap__x4"
+        ],
+        "stage_id": "stage2"
+      }
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_dtaas_water_tank_swap",
+    "criteria": [
+      {
+        "metric": "trajectory_match",
+        "notes": "Requires canonical DTaaS reference execution trace.",
+        "operator": "<=",
+        "signals": [
+          "valve",
+          "level",
+          "leak"
+        ],
+        "value": null
+      }
+    ],
+    "decision_rule": {
+      "kind": "trajectory_tolerance",
+      "requires_ground_truth": true,
+      "signals": [
+        "valve",
+        "level",
+        "leak"
+      ],
+      "time_column": "time"
+    },
+    "derivation_basis": {
+      "expected_behavior": "Stage 1 executes the nominal water-tank co-simulation with injected faults, and stage 2 introduces leak detection plus runtime swap to the leak controller when the swap condition is satisfied.",
+      "signals_of_interest": [
+        "valve",
+        "level",
+        "leak"
+      ],
+      "source_root": "sources/dtaas_examples/case_dtaas_water_tank_swap"
+    },
+    "judgement_policy": "behavioral_expectation_pending_execution",
+    "scenario_window": {
+      "start_time": 0,
+      "stop_time": 100
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "leak": [
+        "leak",
+        "asset_dtaas_water_tank_swap__x3.leak"
+      ],
+      "level": [
+        "level",
+        "asset_dtaas_water_tank_swap__x2.level"
+      ],
+      "valve": [
+        "valve",
+        "asset_dtaas_water_tank_swap__x4.valve"
+      ]
+    },
+    "signals": [
+      "valve",
+      "level",
+      "leak"
+    ],
+    "text": "Water Tank Model Swap. Two-stage water-tank scenario with fault injection followed by dynamic controller swap.. Signals of interest: valve, level, leak Expected ground-truth behavior: Stage 1 executes the nominal water-tank co-simulation with injected faults, and stage 2 introduces leak detection plus runtime swap to the leak controller when the swap condition is satisfied. A final pass/fail conclusion remains pending until a reference execution trace is normalized.",
+    "time_column_aliases": [
+      "time",
+      "TIME",
+      "Time",
+      "t"
+    ],
+    "title": "Water Tank Model Swap Verification Requirement",
+    "tolerances": {}
+  },
+  "verification_result": {
+    "case_id": "case_dtaas_water_tank_swap",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "",
+      "input_trajectory_relpath": "",
+      "source_kind": "none"
+    },
+    "missing_requirements": [
+      "ground_truth_execution_trace",
+      "objective_pass_fail_conclusion"
+    ],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "Reference truth and decision label materialized from the source-ground-truth solution execution.",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_dtaas_water_tank_swap",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "runs/raw/all13_rerun_20260322T144536Z_ablation_stage2_greedy_hybrid/case_dtaas_water_tank_swap/_reference_truth/generated_trajectory.csv",
+    "input_relpath": "",
+    "reference_generation_method": "none",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "leak": [
+        "leak",
+        "asset_dtaas_water_tank_swap__x3.leak"
+      ],
+      "level": [
+        "level",
+        "asset_dtaas_water_tank_swap__x2.level"
+      ],
+      "valve": [
+        "valve",
+        "asset_dtaas_water_tank_swap__x4.valve"
+      ]
+    },
+    "signal_columns": [
+      "valve",
+      "level",
+      "leak"
+    ],
+    "source_kind": "none",
+    "stage_segments": [
+      {
+        "stage_id": "stage1",
+        "start_time": 0,
+        "stop_time": 100
+      },
+      {
+        "stage_id": "stage2",
+        "start_time": 0,
+        "stop_time": 100
+      }
+    ],
+    "supports_numerical_fidelity": true,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "runs/raw/all13_rerun_20260322T144536Z_ablation_stage2_greedy_hybrid/case_dtaas_water_tank_swap/_reference_truth/generated_trajectory.csv",
+  "input_trajectory_path": null,
+  "declared_scenario_window": {
+    "start_time": 0,
+    "stop_time": 100
+  },
+  "declared_initial_conditions": {},
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": true,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "dtaas_multi_fmu_case",
+    "expected_behavior": "Stage 1 executes the nominal water-tank co-simulation with injected faults, and stage 2 introduces leak detection plus runtime swap to the leak controller when the swap condition is satisfied.",
+    "title": "Water Tank Model Swap",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "",
+      "input_trajectory_relpath": "",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": false,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": false,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

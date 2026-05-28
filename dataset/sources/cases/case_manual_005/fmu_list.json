@@ -1,0 +1,109 @@
+{
+  "case_id": "case_manual_005",
+  "case_name": "电池包热管理闭环",
+  "fmus": [
+    {
+      "name": "ThermalController",
+      "description": "电池热管理控制器：带迟滞的 PI 控制 + 抗积分饱和，输出泵命令 pump_cmd（0..1）。",
+      "inputs": [
+        {"name": "enable", "type": "Boolean", "unit": "-", "description": "使能"},
+        {"name": "temp_ref_C", "type": "Real", "unit": "C", "description": "目标电芯温度（°C）"},
+        {"name": "temp_cell_C", "type": "Real", "unit": "C", "description": "测量电芯温度（°C）"},
+        {"name": "coolant_temp_C", "type": "Real", "unit": "C", "description": "测量冷却液温度（°C）（可用于前馈/保护）"}
+      ],
+      "outputs": [
+        {"name": "pump_cmd", "type": "Real", "unit": "0..1", "description": "泵命令（0..1）"},
+        {"name": "sat_flag", "type": "Boolean", "unit": "-", "description": "饱和指示（抗积分饱和触发）"}
+      ],
+      "parameters": [
+        {"name": "kp", "type": "Real", "default": 0.08, "unit": "1/C", "description": "比例增益"},
+        {"name": "ki", "type": "Real", "default": 0.010, "unit": "1/(C*s)", "description": "积分增益"},
+        {"name": "u_min", "type": "Real", "default": 0.0, "unit": "-", "description": "泵命令最小值"},
+        {"name": "u_max", "type": "Real", "default": 1.0, "unit": "-", "description": "泵命令最大值"},
+        {"name": "hys_band_C", "type": "Real", "default": 0.8, "unit": "C", "description": "迟滞带（°C），用于避免频繁开关/抖动"},
+        {"name": "coolant_overtemp_C", "type": "Real", "default": 60.0, "unit": "C", "description": "冷却液过温保护阈值（超过则强制高泵速）"},
+        {"name": "u_slew_per_s", "type": "Real", "default": 0.8, "unit": "1/s", "description": "输出命令最大变化率"}
+      ],
+      "states": [
+        {"name": "integrator", "description": "PI 积分器内部状态"},
+        {"name": "u_cmd_state", "description": "泵命令限速内部状态"}
+      ],
+      "fmu_path": "fmus/ThermalController.fmu"
+    },
+    {
+      "name": "CoolantLoopPlant",
+      "description": "简化冷却回路：泵命令驱动换热系数 UA(pump_cmd)（非线性饱和），冷却液温度为一阶动态并与环境换热。",
+      "inputs": [
+        {"name": "pump_cmd", "type": "Real", "unit": "0..1", "description": "泵速度/占空比命令（0..1）"},
+        {"name": "ambient_temp_C", "type": "Real", "unit": "C", "description": "环境温度（°C）"},
+        {"name": "heat_in_W", "type": "Real", "unit": "W", "description": "进入冷却回路的热量（来自电池包）（W）"}
+      ],
+      "outputs": [
+        {"name": "coolant_temp_C", "type": "Real", "unit": "C", "description": "回路代表性冷却液温度（°C）"},
+        {"name": "heat_removed_W", "type": "Real", "unit": "W", "description": "通过散热器向环境移除的热量（W）"}
+      ],
+      "parameters": [
+        {"name": "coolant_thermal_mass_JK", "type": "Real", "default": 18000.0, "unit": "J/K", "description": "冷却液等效热容"},
+        {"name": "ua_min_WK", "type": "Real", "default": 40.0, "unit": "W/K", "description": "最小等效 UA"},
+        {"name": "ua_max_WK", "type": "Real", "default": 320.0, "unit": "W/K", "description": "最大等效 UA"},
+        {"name": "ua_shape", "type": "Real", "default": 2.2, "unit": "-", "description": "UA(pump_cmd) 非线性形状参数"},
+        {"name": "pump_tau_s", "type": "Real", "default": 2.5, "unit": "s", "description": "泵一阶惯性时间常数"},
+        {"name": "pump_rate_limit_per_s", "type": "Real", "default": 0.6, "unit": "1/s", "description": "泵内部状态变化率限制"},
+        {"name": "temp_min_C", "type": "Real", "default": -20.0, "unit": "C", "description": "数值保护下限温度"},
+        {"name": "temp_max_C", "type": "Real", "default": 120.0, "unit": "C", "description": "数值保护上限温度"}
+      ],
+      "states": [
+        {"name": "coolant_temp_C", "description": "冷却液温度状态"},
+        {"name": "pump_state", "description": "泵内部一阶/限速状态"}
+      ],
+      "fmu_path": "fmus/CoolantLoopPlant.fmu"
+    },
+    {
+      "name": "BatteryPackPlant",
+      "description": "电池包电-热耦合模型（SOC + 电芯温度），包含非线性 OCV(SOC)、Rint(T,SOC) 与热生成。",
+      "inputs": [
+        {"name": "i_load_A", "type": "Real", "unit": "A", "description": "放电电流（A），放电为正；充电为负。"},
+        {"name": "coolant_in_temp_C", "type": "Real", "unit": "C", "description": "进入冷板/电池包的冷却液温度（°C）。"}
+      ],
+      "outputs": [
+        {"name": "v_term_V", "type": "Real", "unit": "V", "description": "电池包端电压（V）。"},
+        {"name": "soc", "type": "Real", "unit": "0..1", "description": "荷电状态（0..1）。"},
+        {"name": "temp_cell_C", "type": "Real", "unit": "C", "description": "代表性电芯温度（°C）。"},
+        {"name": "heat_gen_W", "type": "Real", "unit": "W", "description": "电池包发热功率（W），包含欧姆热与极化损耗。"}
+      ],
+      "parameters": [
+        {"name": "n_series", "type": "Integer", "default": 96, "unit": "-", "description": "串联电芯数"},
+        {"name": "capacity_Ah", "type": "Real", "default": 50.0, "unit": "Ah", "description": "电芯标称容量"},
+        {"name": "coulombic_eff", "type": "Real", "default": 0.995, "unit": "-", "description": "库仑效率"},
+        {"name": "soc_min", "type": "Real", "default": 0.05, "unit": "-", "description": "SOC 软下限"},
+        {"name": "soc_max", "type": "Real", "default": 0.98, "unit": "-", "description": "SOC 软上限"},
+        {"name": "ocv_a0_V", "type": "Real", "default": 3.20, "unit": "V", "description": "OCV(SOC) 常数项"},
+        {"name": "ocv_a1_V", "type": "Real", "default": 0.90, "unit": "V", "description": "OCV(SOC) 一次项"},
+        {"name": "ocv_a2_V", "type": "Real", "default": -0.60, "unit": "V", "description": "OCV(SOC) 二次项"},
+        {"name": "ocv_a3_V", "type": "Real", "default": 0.35, "unit": "V", "description": "OCV(SOC) 三次项"},
+        {"name": "r0_Ohm", "type": "Real", "default": 0.0020, "unit": "Ohm", "description": "内阻基值"},
+        {"name": "r_soc_gain", "type": "Real", "default": 1.2, "unit": "-", "description": "低 SOC 内阻增益"},
+        {"name": "r_temp_beta", "type": "Real", "default": 0.035, "unit": "1/C", "description": "温度对内阻的指数系数"},
+        {"name": "k_pol_V", "type": "Real", "default": 0.010, "unit": "V", "description": "极化损耗等效电压系数"},
+        {"name": "thermal_mass_JK", "type": "Real", "default": 65000.0, "unit": "J/K", "description": "电池包等效热容"},
+        {"name": "h_cool_WK", "type": "Real", "default": 120.0, "unit": "W/K", "description": "电池到冷却液的等效换热系数"},
+        {"name": "temp_min_C", "type": "Real", "default": -10.0, "unit": "C", "description": "数值保护下限温度"},
+        {"name": "temp_max_C", "type": "Real", "default": 80.0, "unit": "C", "description": "数值保护上限温度"}
+      ],
+      "states": [
+        {"name": "soc", "description": "荷电状态"},
+        {"name": "temp_cell_C", "description": "电芯温度"}
+      ],
+      "fmu_path": "fmus/BatteryPackPlant.fmu"
+    }
+  ],
+  "total_fmus": 3,
+  "signal_flow": {
+    "controller_to_coolant": "controller.pump_cmd -> coolant.pump_cmd",
+    "battery_to_coolant": "battery.heat_gen_W -> coolant.heat_in_W",
+    "coolant_to_battery": "coolant.coolant_temp_C -> battery.coolant_in_temp_C",
+    "battery_to_controller": "battery.temp_cell_C -> controller.temp_cell_C",
+    "coolant_to_controller": "coolant.coolant_temp_C -> controller.coolant_temp_C"
+  },
+  "created_at": "2026-03-09T02:08:00Z"
+}

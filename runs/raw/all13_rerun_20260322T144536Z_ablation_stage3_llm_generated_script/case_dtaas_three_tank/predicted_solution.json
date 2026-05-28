@@ -1,0 +1,69 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_three_tank",
+  "selected_asset_ids": [
+    "asset_dtaas_three_tank__tank1",
+    "asset_dtaas_three_tank__tank3"
+  ],
+  "connections": [],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "asset_dtaas_three_tank__tank1.outPort",
+      "source": "asset_dtaas_three_tank__tank1.outPort"
+    },
+    {
+      "name": "asset_dtaas_three_tank__tank1.leak",
+      "source": "asset_dtaas_three_tank__tank1.leak"
+    }
+  ],
+  "schedule": {
+    "kind": "fixed_step",
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "duration": 10.0,
+    "step_size": 0.5,
+    "execution_order": [
+      "asset_dtaas_three_tank__tank1",
+      "asset_dtaas_three_tank__tank3"
+    ],
+    "node_order": [
+      "asset_dtaas_three_tank__tank1",
+      "asset_dtaas_three_tank__tank3"
+    ],
+    "warnings": [
+      "weak_stage3_fallback"
+    ],
+    "per_node_period": {
+      "asset_dtaas_three_tank__tank1": 0.5,
+      "asset_dtaas_three_tank__tank3": 0.5
+    }
+  },
+  "execution_order": [
+    "asset_dtaas_three_tank__tank1",
+    "asset_dtaas_three_tank__tank3"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=2",
+    "task_goal=Generate the final UNIFIED_SOLUTION_V1 orchestration payload fields for 2 FMUs in SystemThreeTank without using adapters or loop wrappers.",
+    "connection_count=0",
+    "fallback_mode=weak_fixed_step",
+    "stage3_variant=llm_generated_script",
+    "case_extensions_extracted"
+  ],
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_three_tank__tank1.level",
+        "value": 2
+      },
+      {
+        "target": "asset_dtaas_three_tank__tank3.level",
+        "value": 35
+      }
+    ]
+  }
+}

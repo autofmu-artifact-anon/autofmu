@@ -1,0 +1,99 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_water_tank_swap",
+  "selected_asset_ids": [
+    "asset_dtaas_water_tank_swap__x1",
+    "asset_dtaas_water_tank_swap__x2",
+    "asset_dtaas_water_tank_swap__x3",
+    "asset_dtaas_water_tank_swap__x4"
+  ],
+  "connections": [],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "valve",
+      "source": "asset_dtaas_water_tank_swap__x4.valve"
+    },
+    {
+      "name": "level",
+      "source": "asset_dtaas_water_tank_swap__x2.level"
+    },
+    {
+      "name": "leak",
+      "source": "asset_dtaas_water_tank_swap__x3.leak"
+    }
+  ],
+  "schedule": {
+    "kind": "fixed_step",
+    "start_time": 0.0,
+    "stop_time": 100.0,
+    "duration": 100.0,
+    "step_size": 0.01,
+    "execution_order": [
+      "asset_dtaas_water_tank_swap__x1",
+      "asset_dtaas_water_tank_swap__x2",
+      "asset_dtaas_water_tank_swap__x3",
+      "asset_dtaas_water_tank_swap__x4"
+    ],
+    "node_order": [
+      "asset_dtaas_water_tank_swap__x1",
+      "asset_dtaas_water_tank_swap__x2",
+      "asset_dtaas_water_tank_swap__x3",
+      "asset_dtaas_water_tank_swap__x4"
+    ],
+    "warnings": [
+      "weak_stage3_fallback"
+    ],
+    "per_node_period": {
+      "asset_dtaas_water_tank_swap__x1": 0.01,
+      "asset_dtaas_water_tank_swap__x2": 0.01,
+      "asset_dtaas_water_tank_swap__x3": 0.01,
+      "asset_dtaas_water_tank_swap__x4": 0.01
+    }
+  },
+  "execution_order": [
+    "asset_dtaas_water_tank_swap__x1",
+    "asset_dtaas_water_tank_swap__x2",
+    "asset_dtaas_water_tank_swap__x3",
+    "asset_dtaas_water_tank_swap__x4"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=4",
+    "task_goal=Generate the final UNIFIED_SOLUTION_V1 orchestration payload fields for 4 FMUs in SystemWaterTankSwap without using adapters or loop wrappers.",
+    "connection_count=0",
+    "fallback_mode=weak_fixed_step",
+    "stage3_variant=llm_generated_script",
+    "case_extensions_extracted"
+  ],
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_water_tank_swap__x1.maxlevel",
+        "value": 2
+      },
+      {
+        "target": "asset_dtaas_water_tank_swap__x1.minlevel",
+        "value": 1
+      },
+      {
+        "target": "asset_dtaas_water_tank_swap__x4.maxlevel",
+        "value": 2
+      },
+      {
+        "target": "asset_dtaas_water_tank_swap__x4.minlevel",
+        "value": 1
+      }
+    ],
+    "fault_injection": [
+      {
+        "configuration_relpath": "raw/digital_twins/water_tank_swap/wt_fault.xml",
+        "instances": {
+          "tank": "id-A"
+        }
+      }
+    ]
+  }
+}

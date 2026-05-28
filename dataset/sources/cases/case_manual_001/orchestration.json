@@ -1,0 +1,162 @@
+{
+  "case_id": "case_manual_001",
+  "case_name": "电池热管理",
+  "description": "Battery thermal management system orchestration with closed-loop control.",
+  "fmi_version": "2.0",
+  "co_simulation": {
+    "step_size": 0.1,
+    "start_time": 0,
+    "stop_time": 3600
+  },
+  "fmus": [
+    {
+      "name": "BatteryPackElectroThermal",
+      "path": "fmus/BatteryPackElectroThermal.fmu",
+      "step_size": 0.1
+    },
+    {
+      "name": "CoolingLoop",
+      "path": "fmus/CoolingLoop.fmu",
+      "step_size": 0.1
+    },
+    {
+      "name": "ThermalController",
+      "path": "fmus/ThermalController.fmu",
+      "step_size": 0.1
+    }
+  ],
+  "connections": [
+    {
+      "source": "ThermalController.current_A",
+      "target": "BatteryPackElectroThermal.current_A",
+      "description": "Battery current command from controller"
+    },
+    {
+      "source": "ThermalController.pump_cmd",
+      "target": "CoolingLoop.pump_cmd",
+      "description": "Pump command from controller"
+    },
+    {
+      "source": "ThermalController.fan_cmd",
+      "target": "CoolingLoop.fan_cmd",
+      "description": "Fan command from controller"
+    },
+    {
+      "source": "BatteryPackElectroThermal.T_core_C",
+      "target": "ThermalController.T_core_C",
+      "description": "Core temperature feedback to controller"
+    },
+    {
+      "source": "BatteryPackElectroThermal.soc",
+      "target": "ThermalController.soc",
+      "description": "SOC feedback to controller"
+    },
+    {
+      "source": "BatteryPackElectroThermal.voltage_V",
+      "target": "ThermalController.voltage_V",
+      "description": "Voltage feedback to controller"
+    },
+    {
+      "source": "BatteryPackElectroThermal.T_surface_C",
+      "target": "CoolingLoop.T_batt_surface_C",
+      "description": "Surface temperature for heat pickup calculation"
+    },
+    {
+      "source": "BatteryPackElectroThermal.heat_W",
+      "target": "CoolingLoop.heat_load_W",
+      "description": "Heat generation to cooling loop"
+    },
+    {
+      "source": "CoolingLoop.coolant_in_temp_C",
+      "target": "BatteryPackElectroThermal.coolant_in_temp_C",
+      "description": "Coolant inlet temperature to battery"
+    },
+    {
+      "source": "CoolingLoop.coolant_flow_kgps",
+      "target": "BatteryPackElectroThermal.coolant_flow_kgps",
+      "description": "Coolant flow rate to battery"
+    }
+  ],
+  "external_inputs": [
+    {
+      "name": "driver_power_request_W",
+      "target": "ThermalController.driver_power_request_W",
+      "default": 0.0,
+      "unit": "W",
+      "description": "Driver power request (external input)"
+    },
+    {
+      "name": "ambient_temp_C",
+      "targets": [
+        "BatteryPackElectroThermal.ambient_temp_C",
+        "CoolingLoop.ambient_temp_C",
+        "ThermalController.ambient_temp_C"
+      ],
+      "default": 25.0,
+      "unit": "degC",
+      "description": "Ambient temperature (shared among all FMUs)"
+    }
+  ],
+  "monitored_outputs": [
+    {
+      "name": "soc",
+      "source": "BatteryPackElectroThermal.soc",
+      "unit": "1",
+      "description": "State of charge"
+    },
+    {
+      "name": "T_core_C",
+      "source": "BatteryPackElectroThermal.T_core_C",
+      "unit": "degC",
+      "description": "Battery core temperature"
+    },
+    {
+      "name": "voltage_V",
+      "source": "BatteryPackElectroThermal.voltage_V",
+      "unit": "V",
+      "description": "Battery terminal voltage"
+    },
+    {
+      "name": "current_A",
+      "source": "ThermalController.current_A",
+      "unit": "A",
+      "description": "Battery current command"
+    },
+    {
+      "name": "pump_cmd",
+      "source": "ThermalController.pump_cmd",
+      "unit": "0..1",
+      "description": "Pump command"
+    },
+    {
+      "name": "fan_cmd",
+      "source": "ThermalController.fan_cmd",
+      "unit": "0..1",
+      "description": "Fan command"
+    },
+    {
+      "name": "mode",
+      "source": "ThermalController.mode",
+      "unit": "enum",
+      "description": "Controller mode (0=NORMAL, 1=DERATE, 2=SHUTDOWN)"
+    },
+    {
+      "name": "coolant_in_temp_C",
+      "source": "CoolingLoop.coolant_in_temp_C",
+      "unit": "degC",
+      "description": "Coolant inlet temperature"
+    },
+    {
+      "name": "coolant_flow_kgps",
+      "source": "CoolingLoop.coolant_flow_kgps",
+      "unit": "kg/s",
+      "description": "Coolant flow rate"
+    }
+  ],
+  "execution_order": [
+    "ThermalController",
+    "CoolingLoop",
+    "BatteryPackElectroThermal"
+  ],
+  "created_at": "2026-03-09T01:14:00Z"
+}

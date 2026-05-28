@@ -1,0 +1,263 @@
+{
+  "asset_id": "asset_case_case_manual_005__ThermalController",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "case_origin": [
+    "case_manual_005"
+  ],
+  "default_experiment": {
+    "startTime": 0.0,
+    "stepSize": 0.01,
+    "stopTime": 1.0
+  },
+  "description": "电池热管理控制器：带迟滞的 PI 控制 + 抗积分饱和，输出泵命令 pump_cmd（0..1）。",
+  "description_relpath": "description.md",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "fmu_relpath": "model.fmu",
+  "ground_truth_only": false,
+  "inputs": [
+    "enable",
+    "temp_ref_C",
+    "temp_cell_C",
+    "coolant_temp_C"
+  ],
+  "library_visible": true,
+  "metadata_relpath": "metadata.json",
+  "name": "ThermalController",
+  "outputs": [
+    "pump_cmd",
+    "sat_flag"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "使能",
+      "name": "enable",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "目标电芯温度（°C）",
+      "name": "temp_ref_C",
+      "type": "Real",
+      "unit": "C",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "测量电芯温度（°C）",
+      "name": "temp_cell_C",
+      "type": "Real",
+      "unit": "C",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "测量冷却液温度（°C）（可用于前馈/保护）",
+      "name": "coolant_temp_C",
+      "type": "Real",
+      "unit": "C",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "泵命令（0..1）",
+      "name": "pump_cmd",
+      "type": "Real",
+      "unit": "0..1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "饱和指示（抗积分饱和触发）",
+      "name": "sat_flag",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "比例增益",
+      "name": "kp",
+      "type": "Real",
+      "unit": "1/C",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "积分增益",
+      "name": "ki",
+      "type": "Real",
+      "unit": "1/(C*s)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "泵命令最小值",
+      "name": "u_min",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "泵命令最大值",
+      "name": "u_max",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "迟滞带（°C），用于避免频繁开关/抖动",
+      "name": "hys_band_C",
+      "type": "Real",
+      "unit": "C",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "冷却液过温保护阈值（超过则强制高泵速）",
+      "name": "coolant_overtemp_C",
+      "type": "Real",
+      "unit": "C",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "输出命令最大变化率",
+      "name": "u_slew_per_s",
+      "type": "Real",
+      "unit": "1/s",
+      "variability": "fixed"
+    }
+  ],
+  "provenance": {
+    "case_id": "case_manual_005",
+    "legacy_fmu_list_entry": {
+      "description": "电池热管理控制器：带迟滞的 PI 控制 + 抗积分饱和，输出泵命令 pump_cmd（0..1）。",
+      "fmu_path": "fmus/ThermalController.fmu",
+      "inputs": [
+        {
+          "description": "使能",
+          "name": "enable",
+          "type": "Boolean",
+          "unit": "-"
+        },
+        {
+          "description": "目标电芯温度（°C）",
+          "name": "temp_ref_C",
+          "type": "Real",
+          "unit": "C"
+        },
+        {
+          "description": "测量电芯温度（°C）",
+          "name": "temp_cell_C",
+          "type": "Real",
+          "unit": "C"
+        },
+        {
+          "description": "测量冷却液温度（°C）（可用于前馈/保护）",
+          "name": "coolant_temp_C",
+          "type": "Real",
+          "unit": "C"
+        }
+      ],
+      "name": "ThermalController",
+      "outputs": [
+        {
+          "description": "泵命令（0..1）",
+          "name": "pump_cmd",
+          "type": "Real",
+          "unit": "0..1"
+        },
+        {
+          "description": "饱和指示（抗积分饱和触发）",
+          "name": "sat_flag",
+          "type": "Boolean",
+          "unit": "-"
+        }
+      ],
+      "parameters": [
+        {
+          "default": 0.08,
+          "description": "比例增益",
+          "name": "kp",
+          "type": "Real",
+          "unit": "1/C"
+        },
+        {
+          "default": 0.01,
+          "description": "积分增益",
+          "name": "ki",
+          "type": "Real",
+          "unit": "1/(C*s)"
+        },
+        {
+          "default": 0.0,
+          "description": "泵命令最小值",
+          "name": "u_min",
+          "type": "Real",
+          "unit": "-"
+        },
+        {
+          "default": 1.0,
+          "description": "泵命令最大值",
+          "name": "u_max",
+          "type": "Real",
+          "unit": "-"
+        },
+        {
+          "default": 0.8,
+          "description": "迟滞带（°C），用于避免频繁开关/抖动",
+          "name": "hys_band_C",
+          "type": "Real",
+          "unit": "C"
+        },
+        {
+          "default": 60.0,
+          "description": "冷却液过温保护阈值（超过则强制高泵速）",
+          "name": "coolant_overtemp_C",
+          "type": "Real",
+          "unit": "C"
+        },
+        {
+          "default": 0.8,
+          "description": "输出命令最大变化率",
+          "name": "u_slew_per_s",
+          "type": "Real",
+          "unit": "1/s"
+        }
+      ],
+      "states": [
+        {
+          "description": "PI 积分器内部状态",
+          "name": "integrator"
+        },
+        {
+          "description": "泵命令限速内部状态",
+          "name": "u_cmd_state"
+        }
+      ]
+    }
+  },
+  "schema": "UNIFIED_ASSET_V1",
+  "source_id": "case_manual_005::ThermalController",
+  "source_type": "manual_case_fmu",
+  "tags": [
+    "case_manual_005",
+    "manual_case"
+  ]
+}

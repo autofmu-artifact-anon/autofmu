@@ -1,0 +1,305 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_mass_spring_damper_monitor",
+  "selected_asset_ids": [
+    "asset_dtaas_mass_spring_damper__msd1",
+    "asset_dtaas_mass_spring_damper_monitor__rti1",
+    "asset_dtaas_mass_spring_damper_monitor__rti2"
+  ],
+  "connections": [
+    {
+      "source": "asset_dtaas_mass_spring_damper__msd1.x1",
+      "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u",
+      "kind": "direct",
+      "chain_id": "case_structure_hint_chain_1",
+      "segment_id": "case_structure_hint_chain_1_seg_0"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+      "target": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u.input",
+      "kind": "adapter_in",
+      "adapter_id": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u",
+      "transform_kind": "mode_signal",
+      "chain_id": "case_structure_hint_chain_2",
+      "segment_id": "case_structure_hint_chain_2_seg_0"
+    },
+    {
+      "source": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u.output",
+      "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u",
+      "kind": "adapter_out",
+      "adapter_id": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u",
+      "transform_kind": "mode_signal",
+      "chain_id": "case_structure_hint_chain_2",
+      "segment_id": "case_structure_hint_chain_2_seg_0"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper__msd1.v1",
+      "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u",
+      "kind": "direct",
+      "chain_id": "case_structure_hint_chain_5",
+      "segment_id": "case_structure_hint_chain_5_seg_0"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+      "target": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u.input",
+      "kind": "adapter_in",
+      "adapter_id": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u",
+      "transform_kind": "mode_signal",
+      "chain_id": "case_structure_hint_chain_6",
+      "segment_id": "case_structure_hint_chain_6_seg_0"
+    },
+    {
+      "source": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u.output",
+      "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u",
+      "kind": "adapter_out",
+      "adapter_id": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u",
+      "transform_kind": "mode_signal",
+      "chain_id": "case_structure_hint_chain_6",
+      "segment_id": "case_structure_hint_chain_6_seg_0"
+    }
+  ],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "x2"
+    },
+    {
+      "name": "v2"
+    },
+    {
+      "name": "y",
+      "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y"
+    },
+    {
+      "name": "_output"
+    }
+  ],
+  "schedule": {
+    "kind": "multi_rate",
+    "base_tick": 0.001,
+    "duration": 10.0,
+    "per_node_period": {
+      "asset_dtaas_mass_spring_damper__msd1": 0.001,
+      "asset_dtaas_mass_spring_damper_monitor__rti1": 0.001,
+      "asset_dtaas_mass_spring_damper_monitor__rti2": 0.001,
+      "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u": 0.001
+    },
+    "per_edge_hold_policy": [
+      {
+        "source": "asset_dtaas_mass_spring_damper__msd1.x1",
+        "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+        "target": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u.input",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u.output",
+        "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper__msd1.v1",
+        "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+        "target": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u.input",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u.output",
+        "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      }
+    ],
+    "loop_wrappers": [],
+    "materialized": false,
+    "warnings": [
+      "fallback_step_size_for_asset_dtaas_mass_spring_damper_monitor__rti1=0.01",
+      "fallback_step_size_for_asset_dtaas_mass_spring_damper_monitor__rti2=0.01",
+      "scenario_step_size_refine=0.01->0.001"
+    ],
+    "base_tick_method": "microgrid_gcd",
+    "execution_plan": [],
+    "async_edges": [],
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "communication_point_count": 10001
+  },
+  "execution_order": [
+    "asset_dtaas_mass_spring_damper_monitor__rti1",
+    "asset_dtaas_mass_spring_damper_monitor__rti2",
+    "asset_dtaas_mass_spring_damper__msd1"
+  ],
+  "adapters": [
+    {
+      "adapter_id": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u",
+      "kind": "mode_signal_adapter",
+      "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+      "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u",
+      "transform": {
+        "transform_kind": "mode_signal",
+        "source_type": "integer",
+        "target_type": "real",
+        "mapping": {
+          "0": 0.0,
+          "1": 1.0
+        }
+      },
+      "stateful": false,
+      "artifact_kind": "proxy_fmu",
+      "artifact_path": "pipeline/resources/generated_adapters/AdapterFMUs/adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u.fmu",
+      "inserted_node_id": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u",
+      "io_contract": {
+        "inputs": [
+          {
+            "name": "input",
+            "channel_index": 0,
+            "signal_name": "y",
+            "endpoint": "asset_dtaas_mass_spring_damper_monitor__rti2",
+            "port_meta": {
+              "name": "y",
+              "causality": "output",
+              "variability": "discrete",
+              "type": "Integer",
+              "unit": "",
+              "description": "",
+              "dimensions": []
+            },
+            "dtype": "Integer",
+            "unit": "",
+            "dimensions": [],
+            "semantic_role": "primary"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "output",
+            "channel_index": 0,
+            "signal_name": "u",
+            "endpoint": "asset_dtaas_mass_spring_damper_monitor__rti1",
+            "port_meta": {
+              "name": "u",
+              "causality": "input",
+              "variability": "continuous",
+              "type": "Real",
+              "unit": "",
+              "description": "",
+              "dimensions": []
+            },
+            "dtype": "Real",
+            "unit": "",
+            "dimensions": [],
+            "semantic_role": "primary"
+          }
+        ],
+        "stateful": false,
+        "transform_kind": "mode_signal"
+      },
+      "generation_source": "llm",
+      "notes": [
+        "Integer to Real type conversion for discrete mode signal",
+        "Source port y (Integer, discrete) to target port u (Real, continuous)",
+        "Mapping preserves semantic meaning of mode values 0 and 1"
+      ]
+    },
+    {
+      "adapter_id": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u",
+      "kind": "mode_signal_adapter",
+      "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+      "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u",
+      "transform": {
+        "transform_kind": "mode_signal",
+        "source_type": "integer",
+        "target_type": "real",
+        "mapping": {
+          "0": 0.0,
+          "1": 1.0
+        }
+      },
+      "stateful": false,
+      "artifact_kind": "proxy_fmu",
+      "artifact_path": "pipeline/resources/generated_adapters/AdapterFMUs/adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u.fmu",
+      "inserted_node_id": "adapter_case_structure_hint_chain_6_asset_dtaas_mass_spring_damper_monitor__rti2_asset_dtaas_mass_spring_damper_monitor__rti1_y_u",
+      "io_contract": {
+        "inputs": [
+          {
+            "name": "input",
+            "channel_index": 0,
+            "signal_name": "y",
+            "endpoint": "asset_dtaas_mass_spring_damper_monitor__rti2",
+            "port_meta": {
+              "name": "y",
+              "causality": "output",
+              "variability": "discrete",
+              "type": "Integer",
+              "unit": "",
+              "description": "",
+              "dimensions": []
+            },
+            "dtype": "Integer",
+            "unit": "",
+            "dimensions": [],
+            "semantic_role": "primary"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "output",
+            "channel_index": 0,
+            "signal_name": "u",
+            "endpoint": "asset_dtaas_mass_spring_damper_monitor__rti1",
+            "port_meta": {
+              "name": "u",
+              "causality": "input",
+              "variability": "continuous",
+              "type": "Real",
+              "unit": "",
+              "description": "",
+              "dimensions": []
+            },
+            "dtype": "Real",
+            "unit": "",
+            "dimensions": [],
+            "semantic_role": "primary"
+          }
+        ],
+        "stateful": false,
+        "transform_kind": "mode_signal"
+      },
+      "generation_source": "llm",
+      "notes": [
+        "Integer to Real type conversion for discrete mode signal",
+        "Source port y (Integer, discrete) to target port u (Real, continuous)",
+        "Mapping preserves semantic meaning of mode values 0 and 1"
+      ]
+    }
+  ],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=3"
+  ]
+}

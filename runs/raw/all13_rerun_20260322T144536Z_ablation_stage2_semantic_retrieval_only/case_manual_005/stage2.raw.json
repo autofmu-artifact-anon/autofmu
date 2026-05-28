@@ -1,0 +1,920 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_component_0",
+        "objective": "Verify ThermalController behavior for requirement: 电池包热管理安全包络检查. 在给定放电电流与环境温度变化下，电芯温度、泵命令、SOC 与端电压都应保持在当前场景可接受的热电包络内。Verification should conclude pass only when the co-simulation runs to completion and satisfies",
+        "required_signals": [
+          "enable",
+          "temp_ref_C",
+          "temp_cell_C",
+          "coolant_temp_C",
+          "pump_cmd",
+          "sat_flag"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "enable",
+            "direction": "in",
+            "component_hint": "thermalController",
+            "port_hint": "thermalController.io.enable",
+            "unit_hint": "",
+            "type_hint": "Boolean",
+            "role": "driven",
+            "source_text": "enable",
+            "grounded_component_ref": "thermalController",
+            "grounded_port_ref": "thermalController.io.enable"
+          },
+          {
+            "signal_name": "temp_ref_C",
+            "direction": "in",
+            "component_hint": "thermalController",
+            "port_hint": "thermalController.io.temp_ref_C",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "temp_ref_C",
+            "grounded_component_ref": "thermalController",
+            "grounded_port_ref": "thermalController.io.temp_ref_C"
+          },
+          {
+            "signal_name": "temp_cell_C",
+            "direction": "in",
+            "component_hint": "thermalController",
+            "port_hint": "thermalController.io.temp_cell_C",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "temp_cell_C",
+            "grounded_component_ref": "thermalController",
+            "grounded_port_ref": "thermalController.io.temp_cell_C"
+          },
+          {
+            "signal_name": "coolant_temp_C",
+            "direction": "in",
+            "component_hint": "thermalController",
+            "port_hint": "thermalController.io.coolant_temp_C",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "coolant_temp_C",
+            "grounded_component_ref": "thermalController",
+            "grounded_port_ref": "thermalController.io.coolant_temp_C"
+          },
+          {
+            "signal_name": "pump_cmd",
+            "direction": "out",
+            "component_hint": "thermalController",
+            "port_hint": "thermalController.io.pump_cmd",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "pump_cmd",
+            "grounded_component_ref": "thermalController",
+            "grounded_port_ref": "thermalController.io.pump_cmd"
+          },
+          {
+            "signal_name": "sat_flag",
+            "direction": "out",
+            "component_hint": "thermalController",
+            "port_hint": "thermalController.io.sat_flag",
+            "unit_hint": "",
+            "type_hint": "Boolean",
+            "role": "observed",
+            "source_text": "sat_flag",
+            "grounded_component_ref": "thermalController",
+            "grounded_port_ref": "thermalController.io.sat_flag"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "thermalController"
+        ],
+        "grounded_component_types": [
+          "ThermalController"
+        ],
+        "grounded_ports": [
+          "enable",
+          "temp_ref_C",
+          "temp_cell_C",
+          "coolant_temp_C",
+          "pump_cmd",
+          "sat_flag"
+        ],
+        "task_trace": {
+          "components": [
+            "thermalController"
+          ],
+          "ports": [
+            "enable",
+            "temp_ref_C",
+            "temp_cell_C",
+            "coolant_temp_C",
+            "pump_cmd",
+            "sat_flag"
+          ],
+          "signals": [
+            "enable",
+            "temp_ref_C",
+            "temp_cell_C",
+            "coolant_temp_C",
+            "pump_cmd",
+            "sat_flag"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_component",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 6,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_component_1",
+        "objective": "Verify CoolantLoopPlant behavior for requirement: 电池包热管理安全包络检查. 在给定放电电流与环境温度变化下，电芯温度、泵命令、SOC 与端电压都应保持在当前场景可接受的热电包络内。Verification should conclude pass only when the co-simulation runs to completion and satisfies",
+        "required_signals": [
+          "pump_cmd",
+          "ambient_temp_C",
+          "heat_in_W",
+          "coolant_temp_C",
+          "heat_removed_W"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "pump_cmd",
+            "direction": "in",
+            "component_hint": "coolantLoopPlant",
+            "port_hint": "coolantLoopPlant.io.pump_cmd",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "pump_cmd",
+            "grounded_component_ref": "coolantLoopPlant",
+            "grounded_port_ref": "coolantLoopPlant.io.pump_cmd"
+          },
+          {
+            "signal_name": "ambient_temp_C",
+            "direction": "in",
+            "component_hint": "coolantLoopPlant",
+            "port_hint": "coolantLoopPlant.io.ambient_temp_C",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "ambient_temp_C",
+            "grounded_component_ref": "coolantLoopPlant",
+            "grounded_port_ref": "coolantLoopPlant.io.ambient_temp_C"
+          },
+          {
+            "signal_name": "heat_in_W",
+            "direction": "in",
+            "component_hint": "coolantLoopPlant",
+            "port_hint": "coolantLoopPlant.io.heat_in_W",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "heat_in_W",
+            "grounded_component_ref": "coolantLoopPlant",
+            "grounded_port_ref": "coolantLoopPlant.io.heat_in_W"
+          },
+          {
+            "signal_name": "coolant_temp_C",
+            "direction": "out",
+            "component_hint": "coolantLoopPlant",
+            "port_hint": "coolantLoopPlant.io.coolant_temp_C",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "coolant_temp_C",
+            "grounded_component_ref": "coolantLoopPlant",
+            "grounded_port_ref": "coolantLoopPlant.io.coolant_temp_C"
+          },
+          {
+            "signal_name": "heat_removed_W",
+            "direction": "out",
+            "component_hint": "coolantLoopPlant",
+            "port_hint": "coolantLoopPlant.io.heat_removed_W",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "heat_removed_W",
+            "grounded_component_ref": "coolantLoopPlant",
+            "grounded_port_ref": "coolantLoopPlant.io.heat_removed_W"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "coolantLoopPlant"
+        ],
+        "grounded_component_types": [
+          "CoolantLoopPlant"
+        ],
+        "grounded_ports": [
+          "pump_cmd",
+          "ambient_temp_C",
+          "heat_in_W",
+          "coolant_temp_C",
+          "heat_removed_W"
+        ],
+        "task_trace": {
+          "components": [
+            "coolantLoopPlant"
+          ],
+          "ports": [
+            "pump_cmd",
+            "ambient_temp_C",
+            "heat_in_W",
+            "coolant_temp_C",
+            "heat_removed_W"
+          ],
+          "signals": [
+            "pump_cmd",
+            "ambient_temp_C",
+            "heat_in_W",
+            "coolant_temp_C",
+            "heat_removed_W"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_component",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 5,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_component_2",
+        "objective": "Verify BatteryPackPlant behavior for requirement: 电池包热管理安全包络检查. 在给定放电电流与环境温度变化下，电芯温度、泵命令、SOC 与端电压都应保持在当前场景可接受的热电包络内。Verification should conclude pass only when the co-simulation runs to completion and satisfies",
+        "required_signals": [
+          "soc"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "soc",
+            "direction": "out",
+            "component_hint": "batteryPackPlant",
+            "port_hint": "batteryPackPlant.io.soc",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "soc",
+            "grounded_component_ref": "batteryPackPlant",
+            "grounded_port_ref": "batteryPackPlant.io.soc"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "batteryPackPlant"
+        ],
+        "grounded_component_types": [
+          "BatteryPackPlant"
+        ],
+        "grounded_ports": [
+          "soc"
+        ],
+        "task_trace": {
+          "components": [
+            "batteryPackPlant"
+          ],
+          "ports": [
+            "soc"
+          ],
+          "signals": [
+            "soc"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_component",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      }
+    ],
+    "rationale": "rule-generated component-aligned raw task set",
+    "score": 0.4347802197802198,
+    "p_value": 0.2857142857142857,
+    "task_set_id": "taskset_0",
+    "generation_source": "rules_component",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "thermalController",
+        "target_component": "coolantLoopPlant",
+        "signals": [
+          "pump_cmd",
+          "pump_cmd"
+        ],
+        "origin_task_ids": [
+          "task_component_0",
+          "task_component_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "thermalController",
+            "source_signal": "pump_cmd",
+            "target_component": "coolantLoopPlant",
+            "target_signal": "pump_cmd",
+            "must_route": true,
+            "semantic_intent": "thermalController.pump_cmd -> coolantLoopPlant.pump_cmd",
+            "adjacency_evidence": {
+              "source_component": "thermalController",
+              "target_component": "coolantLoopPlant"
+            }
+          }
+        ],
+        "semantic_intent": "thermalController.pump_cmd -> coolantLoopPlant.pump_cmd",
+        "details": {
+          "source_signal": "pump_cmd",
+          "target_signal": "pump_cmd"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "batteryPackPlant",
+        "target_component": "coolantLoopPlant",
+        "signals": [
+          "heat_gen_W",
+          "heat_in_W"
+        ],
+        "origin_task_ids": [
+          "task_component_2",
+          "task_component_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "batteryPackPlant",
+            "source_signal": "heat_gen_W",
+            "target_component": "coolantLoopPlant",
+            "target_signal": "heat_in_W",
+            "must_route": true,
+            "semantic_intent": "batteryPackPlant.heat_gen_W -> coolantLoopPlant.heat_in_W",
+            "adjacency_evidence": {
+              "source_component": "batteryPackPlant",
+              "target_component": "coolantLoopPlant"
+            }
+          }
+        ],
+        "semantic_intent": "batteryPackPlant.heat_gen_W -> coolantLoopPlant.heat_in_W",
+        "details": {
+          "source_signal": "heat_gen_W",
+          "target_signal": "heat_in_W"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "coolantLoopPlant",
+        "target_component": "batteryPackPlant",
+        "signals": [
+          "coolant_temp_C",
+          "coolant_in_temp_C"
+        ],
+        "origin_task_ids": [
+          "task_component_1",
+          "task_component_2",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "coolantLoopPlant",
+            "source_signal": "coolant_temp_C",
+            "target_component": "batteryPackPlant",
+            "target_signal": "coolant_in_temp_C",
+            "must_route": true,
+            "semantic_intent": "coolantLoopPlant.coolant_temp_C -> batteryPackPlant.coolant_in_temp_C",
+            "adjacency_evidence": {
+              "source_component": "coolantLoopPlant",
+              "target_component": "batteryPackPlant"
+            }
+          }
+        ],
+        "semantic_intent": "coolantLoopPlant.coolant_temp_C -> batteryPackPlant.coolant_in_temp_C",
+        "details": {
+          "source_signal": "coolant_temp_C",
+          "target_signal": "coolant_in_temp_C"
+        }
+      },
+      {
+        "chain_id": "chain_3",
+        "source_component": "batteryPackPlant",
+        "target_component": "thermalController",
+        "signals": [
+          "temp_cell_C",
+          "temp_cell_C"
+        ],
+        "origin_task_ids": [
+          "task_component_2",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_3_seg_0",
+            "source_component": "batteryPackPlant",
+            "source_signal": "temp_cell_C",
+            "target_component": "thermalController",
+            "target_signal": "temp_cell_C",
+            "must_route": true,
+            "semantic_intent": "batteryPackPlant.temp_cell_C -> thermalController.temp_cell_C",
+            "adjacency_evidence": {
+              "source_component": "batteryPackPlant",
+              "target_component": "thermalController"
+            }
+          }
+        ],
+        "semantic_intent": "batteryPackPlant.temp_cell_C -> thermalController.temp_cell_C",
+        "details": {
+          "source_signal": "temp_cell_C",
+          "target_signal": "temp_cell_C"
+        }
+      },
+      {
+        "chain_id": "chain_4",
+        "source_component": "coolantLoopPlant",
+        "target_component": "thermalController",
+        "signals": [
+          "coolant_temp_C",
+          "coolant_temp_C"
+        ],
+        "origin_task_ids": [
+          "task_component_1",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_4_seg_0",
+            "source_component": "coolantLoopPlant",
+            "source_signal": "coolant_temp_C",
+            "target_component": "thermalController",
+            "target_signal": "coolant_temp_C",
+            "must_route": true,
+            "semantic_intent": "coolantLoopPlant.coolant_temp_C -> thermalController.coolant_temp_C",
+            "adjacency_evidence": {
+              "source_component": "coolantLoopPlant",
+              "target_component": "thermalController"
+            }
+          }
+        ],
+        "semantic_intent": "coolantLoopPlant.coolant_temp_C -> thermalController.coolant_temp_C",
+        "details": {
+          "source_signal": "coolant_temp_C",
+          "target_signal": "coolant_temp_C"
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.2857142857142857,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.5652197802197803,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 0.7142857142857143,
+      "criteria_coverage": 0.0,
+      "constraint_completeness": 0.0,
+      "regime_coverage": 0.0,
+      "topology_alignment": 0.0,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.038461538461538464,
+      "final_score": 0.4347802197802198
+    },
+    "meta": {
+      "generation_source": "rules_component",
+      "generation_family": "rules",
+      "required_chain_count": 5,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_component_0:component_signal_grounded",
+        "task_component_1:component_signal_grounded",
+        "task_component_2:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.2857142857142857,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.5652197802197803,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_component_0",
+      "task_index": 0,
+      "fmu_uid": "asset_case_case_manual_005__ThermalController",
+      "score": 0.6710056063061449,
+      "cost": 0.3289943936938551,
+      "hard_ok": true,
+      "semantic_cost": 0.3289943936938551,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "thermalController"
+      ]
+    },
+    {
+      "task_id": "task_component_1",
+      "task_index": 1,
+      "fmu_uid": "asset_case_case_manual_005__CoolantLoopPlant",
+      "score": 0.5153942406522366,
+      "cost": 0.4846057593477634,
+      "hard_ok": true,
+      "semantic_cost": 0.4846057593477634,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "coolantLoopPlant"
+      ]
+    },
+    {
+      "task_id": "task_component_2",
+      "task_index": 2,
+      "fmu_uid": "asset_case_case_manual_005__BatteryPackPlant",
+      "score": 0.43995799905512833,
+      "cost": 0.5600420009448717,
+      "hard_ok": true,
+      "semantic_cost": 0.5600420009448717,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "batteryPackPlant"
+      ]
+    }
+  ],
+  "selected_fmus": [],
+  "graph": {
+    "nodes": [
+      "asset_case_case_manual_005__ThermalController",
+      "asset_case_case_manual_005__CoolantLoopPlant",
+      "asset_case_case_manual_005__BatteryPackPlant"
+    ],
+    "port_nodes": [
+      "asset_case_case_manual_005__ThermalController.enable",
+      "asset_case_case_manual_005__ThermalController.temp_ref_C",
+      "asset_case_case_manual_005__ThermalController.temp_cell_C",
+      "asset_case_case_manual_005__ThermalController.coolant_temp_C",
+      "asset_case_case_manual_005__ThermalController.pump_cmd",
+      "asset_case_case_manual_005__ThermalController.sat_flag",
+      "asset_case_case_manual_005__ThermalController.kp",
+      "asset_case_case_manual_005__ThermalController.ki",
+      "asset_case_case_manual_005__ThermalController.u_min",
+      "asset_case_case_manual_005__ThermalController.u_max",
+      "asset_case_case_manual_005__ThermalController.hys_band_C",
+      "asset_case_case_manual_005__ThermalController.coolant_overtemp_C",
+      "asset_case_case_manual_005__ThermalController.u_slew_per_s",
+      "asset_case_case_manual_005__CoolantLoopPlant.pump_cmd",
+      "asset_case_case_manual_005__CoolantLoopPlant.ambient_temp_C",
+      "asset_case_case_manual_005__CoolantLoopPlant.heat_in_W",
+      "asset_case_case_manual_005__CoolantLoopPlant.coolant_temp_C",
+      "asset_case_case_manual_005__CoolantLoopPlant.heat_removed_W",
+      "asset_case_case_manual_005__CoolantLoopPlant.coolant_thermal_mass_JK",
+      "asset_case_case_manual_005__CoolantLoopPlant.ua_min_WK",
+      "asset_case_case_manual_005__CoolantLoopPlant.ua_max_WK",
+      "asset_case_case_manual_005__CoolantLoopPlant.ua_shape",
+      "asset_case_case_manual_005__CoolantLoopPlant.pump_tau_s",
+      "asset_case_case_manual_005__CoolantLoopPlant.pump_rate_limit_per_s",
+      "asset_case_case_manual_005__CoolantLoopPlant.temp_min_C",
+      "asset_case_case_manual_005__CoolantLoopPlant.temp_max_C",
+      "asset_case_case_manual_005__BatteryPackPlant.i_load_A",
+      "asset_case_case_manual_005__BatteryPackPlant.coolant_in_temp_C",
+      "asset_case_case_manual_005__BatteryPackPlant.v_term_V",
+      "asset_case_case_manual_005__BatteryPackPlant.soc",
+      "asset_case_case_manual_005__BatteryPackPlant.temp_cell_C",
+      "asset_case_case_manual_005__BatteryPackPlant.heat_gen_W",
+      "asset_case_case_manual_005__BatteryPackPlant.n_series",
+      "asset_case_case_manual_005__BatteryPackPlant.capacity_Ah",
+      "asset_case_case_manual_005__BatteryPackPlant.coulombic_eff",
+      "asset_case_case_manual_005__BatteryPackPlant.soc_min",
+      "asset_case_case_manual_005__BatteryPackPlant.soc_max",
+      "asset_case_case_manual_005__BatteryPackPlant.ocv_a0_V",
+      "asset_case_case_manual_005__BatteryPackPlant.ocv_a1_V",
+      "asset_case_case_manual_005__BatteryPackPlant.ocv_a2_V",
+      "asset_case_case_manual_005__BatteryPackPlant.ocv_a3_V",
+      "asset_case_case_manual_005__BatteryPackPlant.r0_Ohm",
+      "asset_case_case_manual_005__BatteryPackPlant.r_soc_gain",
+      "asset_case_case_manual_005__BatteryPackPlant.r_temp_beta",
+      "asset_case_case_manual_005__BatteryPackPlant.k_pol_V",
+      "asset_case_case_manual_005__BatteryPackPlant.thermal_mass_JK",
+      "asset_case_case_manual_005__BatteryPackPlant.h_cool_WK",
+      "asset_case_case_manual_005__BatteryPackPlant.temp_min_C",
+      "asset_case_case_manual_005__BatteryPackPlant.temp_max_C"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "thermalController": "asset_case_case_manual_005__ThermalController",
+      "coolantLoopPlant": "asset_case_case_manual_005__CoolantLoopPlant",
+      "batteryPackPlant": "asset_case_case_manual_005__BatteryPackPlant"
+    },
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "thermalController",
+        "target_component": "coolantLoopPlant",
+        "signals": [
+          "pump_cmd",
+          "pump_cmd"
+        ],
+        "origin_task_ids": [
+          "task_component_0",
+          "task_component_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "thermalController",
+            "source_signal": "pump_cmd",
+            "target_component": "coolantLoopPlant",
+            "target_signal": "pump_cmd",
+            "must_route": true,
+            "semantic_intent": "thermalController.pump_cmd -> coolantLoopPlant.pump_cmd",
+            "adjacency_evidence": {
+              "source_component": "thermalController",
+              "target_component": "coolantLoopPlant"
+            }
+          }
+        ],
+        "semantic_intent": "thermalController.pump_cmd -> coolantLoopPlant.pump_cmd",
+        "details": {
+          "source_signal": "pump_cmd",
+          "target_signal": "pump_cmd"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "batteryPackPlant",
+        "target_component": "coolantLoopPlant",
+        "signals": [
+          "heat_gen_W",
+          "heat_in_W"
+        ],
+        "origin_task_ids": [
+          "task_component_2",
+          "task_component_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "batteryPackPlant",
+            "source_signal": "heat_gen_W",
+            "target_component": "coolantLoopPlant",
+            "target_signal": "heat_in_W",
+            "must_route": true,
+            "semantic_intent": "batteryPackPlant.heat_gen_W -> coolantLoopPlant.heat_in_W",
+            "adjacency_evidence": {
+              "source_component": "batteryPackPlant",
+              "target_component": "coolantLoopPlant"
+            }
+          }
+        ],
+        "semantic_intent": "batteryPackPlant.heat_gen_W -> coolantLoopPlant.heat_in_W",
+        "details": {
+          "source_signal": "heat_gen_W",
+          "target_signal": "heat_in_W"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "coolantLoopPlant",
+        "target_component": "batteryPackPlant",
+        "signals": [
+          "coolant_temp_C",
+          "coolant_in_temp_C"
+        ],
+        "origin_task_ids": [
+          "task_component_1",
+          "task_component_2",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "coolantLoopPlant",
+            "source_signal": "coolant_temp_C",
+            "target_component": "batteryPackPlant",
+            "target_signal": "coolant_in_temp_C",
+            "must_route": true,
+            "semantic_intent": "coolantLoopPlant.coolant_temp_C -> batteryPackPlant.coolant_in_temp_C",
+            "adjacency_evidence": {
+              "source_component": "coolantLoopPlant",
+              "target_component": "batteryPackPlant"
+            }
+          }
+        ],
+        "semantic_intent": "coolantLoopPlant.coolant_temp_C -> batteryPackPlant.coolant_in_temp_C",
+        "details": {
+          "source_signal": "coolant_temp_C",
+          "target_signal": "coolant_in_temp_C"
+        }
+      },
+      {
+        "chain_id": "chain_3",
+        "source_component": "batteryPackPlant",
+        "target_component": "thermalController",
+        "signals": [
+          "temp_cell_C",
+          "temp_cell_C"
+        ],
+        "origin_task_ids": [
+          "task_component_2",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_3_seg_0",
+            "source_component": "batteryPackPlant",
+            "source_signal": "temp_cell_C",
+            "target_component": "thermalController",
+            "target_signal": "temp_cell_C",
+            "must_route": true,
+            "semantic_intent": "batteryPackPlant.temp_cell_C -> thermalController.temp_cell_C",
+            "adjacency_evidence": {
+              "source_component": "batteryPackPlant",
+              "target_component": "thermalController"
+            }
+          }
+        ],
+        "semantic_intent": "batteryPackPlant.temp_cell_C -> thermalController.temp_cell_C",
+        "details": {
+          "source_signal": "temp_cell_C",
+          "target_signal": "temp_cell_C"
+        }
+      },
+      {
+        "chain_id": "chain_4",
+        "source_component": "coolantLoopPlant",
+        "target_component": "thermalController",
+        "signals": [
+          "coolant_temp_C",
+          "coolant_temp_C"
+        ],
+        "origin_task_ids": [
+          "task_component_1",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_4_seg_0",
+            "source_component": "coolantLoopPlant",
+            "source_signal": "coolant_temp_C",
+            "target_component": "thermalController",
+            "target_signal": "coolant_temp_C",
+            "must_route": true,
+            "semantic_intent": "coolantLoopPlant.coolant_temp_C -> thermalController.coolant_temp_C",
+            "adjacency_evidence": {
+              "source_component": "coolantLoopPlant",
+              "target_component": "thermalController"
+            }
+          }
+        ],
+        "semantic_intent": "coolantLoopPlant.coolant_temp_C -> thermalController.coolant_temp_C",
+        "details": {
+          "source_signal": "coolant_temp_C",
+          "target_signal": "coolant_temp_C"
+        }
+      }
+    ],
+    "binding_candidates": [],
+    "closure_ok": false,
+    "closure_failures": [
+      "no_structural_reasoning"
+    ],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "semantic_only_no_bindings"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "failed",
+      "closure_ok": false
+    }
+  ],
+  "final_cost": 1.37364215398649,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_1",
+      "status": "failed",
+      "selected_task_set_cost": 2.9016709959748916,
+      "final_cost": 2.9016709959748916,
+      "selected_fmus": [
+        "asset_case_case_manual_005__CoolantLoopPlant",
+        "asset_bench_fmu-001524",
+        "asset_case_case_manual_005__ThermalController"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": "port_graph_closure"
+    },
+    {
+      "task_set_id": "taskset_0",
+      "status": "failed",
+      "selected_task_set_cost": 1.37364215398649,
+      "final_cost": 1.37364215398649,
+      "selected_fmus": [
+        "asset_case_case_manual_005__ThermalController",
+        "asset_case_case_manual_005__CoolantLoopPlant",
+        "asset_case_case_manual_005__BatteryPackPlant"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": "port_graph_closure"
+    }
+  ],
+  "selected_task_set_cost": 1.37364215398649,
+  "diagnostics": {
+    "status": "failed",
+    "stage2_variant": "semantic_retrieval_only",
+    "structural_reasoning": false,
+    "selected_task_count": 3,
+    "failure_type": "port_graph_closure"
+  }
+}

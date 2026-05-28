@@ -1,0 +1,20 @@
+{
+  "name": "SpoolValveActuator",
+  "description": "Spool valve actuator with deadzone, first-order dynamics and rate limiting.",
+  "inputs": [
+    {"name": "valve_cmd", "type": "Real", "unit": "-1..1", "description": "Normalized valve command"}
+  ],
+  "outputs": [
+    {"name": "spool_u", "type": "Real", "unit": "-1..1", "description": "Normalized spool opening (after dynamics)"}
+  ],
+  "parameters": [
+    {"name": "tau_s", "type": "Real", "default": 0.03, "unit": "s", "description": "First-order time constant"},
+    {"name": "deadzone", "type": "Real", "default": 0.05, "unit": "-", "description": "Command deadzone (|cmd| below this yields zero effective command)"},
+    {"name": "rate_limit_per_s", "type": "Real", "default": 25.0, "unit": "1/s", "description": "Maximum |d(spool_u)/dt|"},
+    {"name": "u_min", "type": "Real", "default": -1.0, "unit": "-", "description": "Min spool"},
+    {"name": "u_max", "type": "Real", "default": 1.0, "unit": "-", "description": "Max spool"}
+  ],
+  "states": [
+    {"name": "spool_state", "derivative": "dspool_dt", "description": "Internal spool position state"}
+  ]
+}

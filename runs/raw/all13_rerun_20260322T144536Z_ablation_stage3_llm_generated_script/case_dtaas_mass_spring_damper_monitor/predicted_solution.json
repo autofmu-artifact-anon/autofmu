@@ -1,0 +1,67 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_mass_spring_damper_monitor",
+  "selected_asset_ids": [
+    "asset_dtaas_mass_spring_damper__msd1",
+    "asset_dtaas_mass_spring_damper_monitor__rti1",
+    "asset_dtaas_mass_spring_damper_monitor__rti2"
+  ],
+  "connections": [],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "x2"
+    },
+    {
+      "name": "v2"
+    },
+    {
+      "name": "y",
+      "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y"
+    },
+    {
+      "name": "_output"
+    }
+  ],
+  "schedule": {
+    "kind": "fixed_step",
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "duration": 10.0,
+    "step_size": 0.01,
+    "execution_order": [
+      "asset_dtaas_mass_spring_damper__msd1",
+      "asset_dtaas_mass_spring_damper_monitor__rti1",
+      "asset_dtaas_mass_spring_damper_monitor__rti2"
+    ],
+    "node_order": [
+      "asset_dtaas_mass_spring_damper__msd1",
+      "asset_dtaas_mass_spring_damper_monitor__rti1",
+      "asset_dtaas_mass_spring_damper_monitor__rti2"
+    ],
+    "warnings": [
+      "weak_stage3_fallback"
+    ],
+    "per_node_period": {
+      "asset_dtaas_mass_spring_damper__msd1": 0.01,
+      "asset_dtaas_mass_spring_damper_monitor__rti1": 0.01,
+      "asset_dtaas_mass_spring_damper_monitor__rti2": 0.01
+    }
+  },
+  "execution_order": [
+    "asset_dtaas_mass_spring_damper__msd1",
+    "asset_dtaas_mass_spring_damper_monitor__rti1",
+    "asset_dtaas_mass_spring_damper_monitor__rti2"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=3",
+    "task_goal=Generate the final UNIFIED_SOLUTION_V1 orchestration payload fields for 3 FMUs in SystemMassSpringDamperMonitor without using adapters or loop wrappers.",
+    "connection_count=0",
+    "fallback_mode=weak_fixed_step",
+    "stage3_variant=llm_generated_script"
+  ],
+  "extensions": {}
+}

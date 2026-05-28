@@ -1,0 +1,4416 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_manual_003",
+  "selected_asset_ids": [
+    "asset_case_case_manual_003__InvertedPendulumPlant",
+    "asset_case_case_manual_003__PendulumController"
+  ],
+  "connections": [
+    {
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.x_m",
+      "target": "asset_case_case_manual_003__PendulumController.x_m",
+      "kind": "direct",
+      "chain_id": "chain_0",
+      "segment_id": "chain_0_seg_0"
+    },
+    {
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps",
+      "target": "asset_case_case_manual_003__PendulumController.x_dot_mps",
+      "kind": "direct",
+      "chain_id": "chain_1",
+      "segment_id": "chain_1_seg_0"
+    },
+    {
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad",
+      "target": "asset_case_case_manual_003__PendulumController.theta_rad",
+      "kind": "direct",
+      "chain_id": "chain_2",
+      "segment_id": "chain_2_seg_0"
+    },
+    {
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps",
+      "target": "asset_case_case_manual_003__PendulumController.theta_dot_radps",
+      "kind": "direct",
+      "chain_id": "chain_3",
+      "segment_id": "chain_3_seg_0"
+    },
+    {
+      "source": "asset_case_case_manual_003__PendulumController.force_cmd_N",
+      "target": "asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N",
+      "kind": "direct",
+      "chain_id": "chain_4",
+      "segment_id": "chain_4_seg_0"
+    }
+  ],
+  "external_inputs": [
+    {
+      "name": "disturbance_N",
+      "targets": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.disturbance_N"
+      ],
+      "default": null
+    },
+    {
+      "name": "theta_ref_rad",
+      "targets": [
+        "asset_case_case_manual_003__PendulumController.theta_ref_rad"
+      ],
+      "default": null
+    },
+    {
+      "name": "x_ref_m",
+      "targets": [
+        "asset_case_case_manual_003__PendulumController.x_ref_m"
+      ],
+      "default": null
+    }
+  ],
+  "initial_conditions": [
+    {
+      "name": "force_act_N",
+      "targets": []
+    },
+    {
+      "name": "int_theta",
+      "targets": []
+    },
+    {
+      "name": "int_x",
+      "targets": []
+    },
+    {
+      "name": "theta_dot_radps",
+      "targets": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps"
+      ]
+    },
+    {
+      "name": "theta_rad",
+      "targets": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad"
+      ]
+    },
+    {
+      "name": "x_dot_mps",
+      "targets": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps"
+      ]
+    },
+    {
+      "name": "x_m",
+      "targets": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.x_m"
+      ]
+    }
+  ],
+  "monitored_outputs": [
+    {
+      "name": "theta_rad",
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad"
+    },
+    {
+      "name": "x_m",
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.x_m"
+    },
+    {
+      "name": "force_cmd_N",
+      "source": "asset_case_case_manual_003__PendulumController.force_cmd_N"
+    }
+  ],
+  "schedule": {
+    "kind": "multi_rate",
+    "base_tick": 0.01,
+    "duration": 1.0,
+    "per_node_period": {
+      "asset_case_case_manual_003__InvertedPendulumPlant": 0.01,
+      "asset_case_case_manual_003__PendulumController": 0.01
+    },
+    "per_edge_hold_policy": [
+      {
+        "source": "asset_case_case_manual_003__InvertedPendulumPlant.x_m",
+        "target": "asset_case_case_manual_003__PendulumController.x_m",
+        "policy": "direct",
+        "source_period": 0.01,
+        "target_period": 0.01,
+        "async": false
+      },
+      {
+        "source": "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps",
+        "target": "asset_case_case_manual_003__PendulumController.x_dot_mps",
+        "policy": "direct",
+        "source_period": 0.01,
+        "target_period": 0.01,
+        "async": false
+      },
+      {
+        "source": "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad",
+        "target": "asset_case_case_manual_003__PendulumController.theta_rad",
+        "policy": "direct",
+        "source_period": 0.01,
+        "target_period": 0.01,
+        "async": false
+      },
+      {
+        "source": "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps",
+        "target": "asset_case_case_manual_003__PendulumController.theta_dot_radps",
+        "policy": "direct",
+        "source_period": 0.01,
+        "target_period": 0.01,
+        "async": false
+      },
+      {
+        "source": "asset_case_case_manual_003__PendulumController.force_cmd_N",
+        "target": "asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N",
+        "policy": "direct",
+        "source_period": 0.01,
+        "target_period": 0.01,
+        "async": false
+      }
+    ],
+    "loop_wrappers": [
+      {
+        "loop_id": "loop_0",
+        "nodes": [
+          "asset_case_case_manual_003__PendulumController",
+          "asset_case_case_manual_003__InvertedPendulumPlant"
+        ],
+        "node_order": [
+          "asset_case_case_manual_003__PendulumController",
+          "asset_case_case_manual_003__InvertedPendulumPlant"
+        ],
+        "iteration_order": [
+          {
+            "step_index": 0,
+            "node": "asset_case_case_manual_003__PendulumController",
+            "reads": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m"
+            ],
+            "writes": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ]
+          },
+          {
+            "step_index": 1,
+            "node": "asset_case_case_manual_003__InvertedPendulumPlant",
+            "reads": [
+              "asset_case_case_manual_003__PendulumController.force_cmd_N"
+            ],
+            "writes": [
+              "asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__PendulumController.x_m"
+            ]
+          }
+        ],
+        "boundary_variables": [
+          "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+          "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+          "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+          "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+          "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+        ],
+        "boundary_reads": [
+          "asset_case_case_manual_003__InvertedPendulumPlant.x_m",
+          "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps",
+          "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad",
+          "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps",
+          "asset_case_case_manual_003__PendulumController.force_cmd_N"
+        ],
+        "boundary_writes": [
+          "asset_case_case_manual_003__PendulumController.x_m",
+          "asset_case_case_manual_003__PendulumController.x_dot_mps",
+          "asset_case_case_manual_003__PendulumController.theta_rad",
+          "asset_case_case_manual_003__PendulumController.theta_dot_radps",
+          "asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+        ],
+        "convergence_signals": [
+          "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+          "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+          "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+          "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+          "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+        ],
+        "method": "gauss_seidel",
+        "tol": 1e-06,
+        "max_iters": 20,
+        "initial_guess_policy": "last_communication_value",
+        "convergence_check": {
+          "norm": "linf",
+          "signals": [
+            "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+            "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+            "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+            "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+            "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+          ],
+          "tol": 1e-06
+        },
+        "runtime_policy": {
+          "kind": "fixed_point_iteration",
+          "iterate_until_converged": true,
+          "fail_on_nonconvergence": false,
+          "fallback": "accept_last_iterate"
+        }
+      }
+    ],
+    "materialized": true,
+    "warnings": [],
+    "base_tick_method": "microgrid_gcd",
+    "execution_plan": [
+      {
+        "time": 0.0,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.01,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.02,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.03,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.04,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.05,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.06,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.07,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.08,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.09,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.1,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.11,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.12,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.13,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.14,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.15,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.16,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.17,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.18,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.19,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.2,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.21,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.22,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.23,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.24,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.25,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.26,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.27,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.28,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.29,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.3,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.31,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.32,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.33,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.34,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.35,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.36,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.37,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.38,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.39,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.4,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.41,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.42,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.43,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.44,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.45,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.46,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.47,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.48,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.49,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.5,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.51,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.52,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.53,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.54,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.55,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.56,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.57,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.58,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.59,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.6,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.61,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.62,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.63,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.64,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.65,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.66,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.67,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.68,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.69,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.7,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.71,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.72,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.73,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.74,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.75,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.76,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.77,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.78,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.79,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.8,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.81,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.82,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.83,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.84,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.85,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.86,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.87,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.88,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.89,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.9,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.91,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.92,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.93,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.94,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.95,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.96,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.97,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.98,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 0.99,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      },
+      {
+        "time": 1.0,
+        "active_nodes": [
+          "asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_case_case_manual_003__PendulumController"
+        ],
+        "loop_ids": [
+          "loop_0"
+        ],
+        "active_loops": [
+          {
+            "loop_id": "loop_0",
+            "iteration_budget": 20,
+            "tol": 1e-06,
+            "method": "gauss_seidel",
+            "node_order": [
+              "asset_case_case_manual_003__PendulumController",
+              "asset_case_case_manual_003__InvertedPendulumPlant"
+            ],
+            "iterate_until_converged": true,
+            "boundary_variables": [
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+              "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+              "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+              "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+            ],
+            "runtime_policy": {
+              "kind": "fixed_point_iteration",
+              "iterate_until_converged": true,
+              "fail_on_nonconvergence": false,
+              "fallback": "accept_last_iterate"
+            }
+          }
+        ],
+        "requires_fixed_point_iteration": true
+      }
+    ],
+    "async_edges": [],
+    "start_time": 0.0,
+    "stop_time": 1.0,
+    "communication_point_count": 101,
+    "communication_grid": [
+      0.0,
+      0.01,
+      0.02,
+      0.03,
+      0.04,
+      0.05,
+      0.06,
+      0.07,
+      0.08,
+      0.09,
+      0.1,
+      0.11,
+      0.12,
+      0.13,
+      0.14,
+      0.15,
+      0.16,
+      0.17,
+      0.18,
+      0.19,
+      0.2,
+      0.21,
+      0.22,
+      0.23,
+      0.24,
+      0.25,
+      0.26,
+      0.27,
+      0.28,
+      0.29,
+      0.3,
+      0.31,
+      0.32,
+      0.33,
+      0.34,
+      0.35,
+      0.36,
+      0.37,
+      0.38,
+      0.39,
+      0.4,
+      0.41,
+      0.42,
+      0.43,
+      0.44,
+      0.45,
+      0.46,
+      0.47,
+      0.48,
+      0.49,
+      0.5,
+      0.51,
+      0.52,
+      0.53,
+      0.54,
+      0.55,
+      0.56,
+      0.57,
+      0.58,
+      0.59,
+      0.6,
+      0.61,
+      0.62,
+      0.63,
+      0.64,
+      0.65,
+      0.66,
+      0.67,
+      0.68,
+      0.69,
+      0.7,
+      0.71,
+      0.72,
+      0.73,
+      0.74,
+      0.75,
+      0.76,
+      0.77,
+      0.78,
+      0.79,
+      0.8,
+      0.81,
+      0.82,
+      0.83,
+      0.84,
+      0.85,
+      0.86,
+      0.87,
+      0.88,
+      0.89,
+      0.9,
+      0.91,
+      0.92,
+      0.93,
+      0.94,
+      0.95,
+      0.96,
+      0.97,
+      0.98,
+      0.99,
+      1.0
+    ],
+    "per_node_schedule": {
+      "asset_case_case_manual_003__InvertedPendulumPlant": [
+        0.0,
+        0.01,
+        0.02,
+        0.03,
+        0.04,
+        0.05,
+        0.06,
+        0.07,
+        0.08,
+        0.09,
+        0.1,
+        0.11,
+        0.12,
+        0.13,
+        0.14,
+        0.15,
+        0.16,
+        0.17,
+        0.18,
+        0.19,
+        0.2,
+        0.21,
+        0.22,
+        0.23,
+        0.24,
+        0.25,
+        0.26,
+        0.27,
+        0.28,
+        0.29,
+        0.3,
+        0.31,
+        0.32,
+        0.33,
+        0.34,
+        0.35,
+        0.36,
+        0.37,
+        0.38,
+        0.39,
+        0.4,
+        0.41,
+        0.42,
+        0.43,
+        0.44,
+        0.45,
+        0.46,
+        0.47,
+        0.48,
+        0.49,
+        0.5,
+        0.51,
+        0.52,
+        0.53,
+        0.54,
+        0.55,
+        0.56,
+        0.57,
+        0.58,
+        0.59,
+        0.6,
+        0.61,
+        0.62,
+        0.63,
+        0.64,
+        0.65,
+        0.66,
+        0.67,
+        0.68,
+        0.69,
+        0.7,
+        0.71,
+        0.72,
+        0.73,
+        0.74,
+        0.75,
+        0.76,
+        0.77,
+        0.78,
+        0.79,
+        0.8,
+        0.81,
+        0.82,
+        0.83,
+        0.84,
+        0.85,
+        0.86,
+        0.87,
+        0.88,
+        0.89,
+        0.9,
+        0.91,
+        0.92,
+        0.93,
+        0.94,
+        0.95,
+        0.96,
+        0.97,
+        0.98,
+        0.99,
+        1.0
+      ],
+      "asset_case_case_manual_003__PendulumController": [
+        0.0,
+        0.01,
+        0.02,
+        0.03,
+        0.04,
+        0.05,
+        0.06,
+        0.07,
+        0.08,
+        0.09,
+        0.1,
+        0.11,
+        0.12,
+        0.13,
+        0.14,
+        0.15,
+        0.16,
+        0.17,
+        0.18,
+        0.19,
+        0.2,
+        0.21,
+        0.22,
+        0.23,
+        0.24,
+        0.25,
+        0.26,
+        0.27,
+        0.28,
+        0.29,
+        0.3,
+        0.31,
+        0.32,
+        0.33,
+        0.34,
+        0.35,
+        0.36,
+        0.37,
+        0.38,
+        0.39,
+        0.4,
+        0.41,
+        0.42,
+        0.43,
+        0.44,
+        0.45,
+        0.46,
+        0.47,
+        0.48,
+        0.49,
+        0.5,
+        0.51,
+        0.52,
+        0.53,
+        0.54,
+        0.55,
+        0.56,
+        0.57,
+        0.58,
+        0.59,
+        0.6,
+        0.61,
+        0.62,
+        0.63,
+        0.64,
+        0.65,
+        0.66,
+        0.67,
+        0.68,
+        0.69,
+        0.7,
+        0.71,
+        0.72,
+        0.73,
+        0.74,
+        0.75,
+        0.76,
+        0.77,
+        0.78,
+        0.79,
+        0.8,
+        0.81,
+        0.82,
+        0.83,
+        0.84,
+        0.85,
+        0.86,
+        0.87,
+        0.88,
+        0.89,
+        0.9,
+        0.91,
+        0.92,
+        0.93,
+        0.94,
+        0.95,
+        0.96,
+        0.97,
+        0.98,
+        0.99,
+        1.0
+      ]
+    }
+  },
+  "execution_order": [
+    "asset_case_case_manual_003__PendulumController",
+    "asset_case_case_manual_003__InvertedPendulumPlant"
+  ],
+  "adapters": [],
+  "loop_resolution": [
+    {
+      "loop_id": "loop_0",
+      "nodes": [
+        "asset_case_case_manual_003__PendulumController",
+        "asset_case_case_manual_003__InvertedPendulumPlant"
+      ],
+      "node_order": [
+        "asset_case_case_manual_003__PendulumController",
+        "asset_case_case_manual_003__InvertedPendulumPlant"
+      ],
+      "iteration_order": [
+        {
+          "step_index": 0,
+          "node": "asset_case_case_manual_003__PendulumController",
+          "reads": [
+            "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps",
+            "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad",
+            "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps",
+            "asset_case_case_manual_003__InvertedPendulumPlant.x_m"
+          ],
+          "writes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+          ]
+        },
+        {
+          "step_index": 1,
+          "node": "asset_case_case_manual_003__InvertedPendulumPlant",
+          "reads": [
+            "asset_case_case_manual_003__PendulumController.force_cmd_N"
+          ],
+          "writes": [
+            "asset_case_case_manual_003__PendulumController.theta_dot_radps",
+            "asset_case_case_manual_003__PendulumController.theta_rad",
+            "asset_case_case_manual_003__PendulumController.x_dot_mps",
+            "asset_case_case_manual_003__PendulumController.x_m"
+          ]
+        }
+      ],
+      "boundary_variables": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+        "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+        "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+        "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+        "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+      ],
+      "boundary_reads": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.x_m",
+        "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps",
+        "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad",
+        "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps",
+        "asset_case_case_manual_003__PendulumController.force_cmd_N"
+      ],
+      "boundary_writes": [
+        "asset_case_case_manual_003__PendulumController.x_m",
+        "asset_case_case_manual_003__PendulumController.x_dot_mps",
+        "asset_case_case_manual_003__PendulumController.theta_rad",
+        "asset_case_case_manual_003__PendulumController.theta_dot_radps",
+        "asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+      ],
+      "convergence_signals": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+        "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+        "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+        "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+        "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+      ],
+      "method": "gauss_seidel",
+      "tol": 1e-06,
+      "max_iters": 20,
+      "initial_guess_policy": "last_communication_value",
+      "convergence_check": {
+        "norm": "linf",
+        "signals": [
+          "asset_case_case_manual_003__InvertedPendulumPlant.x_m->asset_case_case_manual_003__PendulumController.x_m",
+          "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps->asset_case_case_manual_003__PendulumController.x_dot_mps",
+          "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad->asset_case_case_manual_003__PendulumController.theta_rad",
+          "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps->asset_case_case_manual_003__PendulumController.theta_dot_radps",
+          "asset_case_case_manual_003__PendulumController.force_cmd_N->asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+        ],
+        "tol": 1e-06
+      },
+      "runtime_policy": {
+        "kind": "fixed_point_iteration",
+        "iterate_until_converged": true,
+        "fail_on_nonconvergence": false,
+        "fallback": "accept_last_iterate"
+      }
+    }
+  ],
+  "notes": [
+    "selected_fmu_count=2"
+  ]
+}

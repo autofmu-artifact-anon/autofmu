@@ -1,0 +1,81 @@
+{
+  "adapter_id": "adapter_chain_0_asset_dtaas_water_tank_fi_monitor__x4_asset_dtaas_water_tank_fi__x2__output_valvecontrol",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "mapping": {
+            "0": 0.0,
+            "1": 1.0,
+            "false": 0.0,
+            "true": 1.0
+          },
+          "source_type": "integer",
+          "target_type": "real",
+          "transform_kind": "mode_signal"
+        }
+      },
+      "sysml": {
+        "name": "_output"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "mapping": {
+            "0": 0.0,
+            "1": 1.0,
+            "false": 0.0,
+            "true": 1.0
+          },
+          "source_type": "integer",
+          "target_type": "real",
+          "transform_kind": "mode_signal"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "valvecontrol"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_0_asset_dtaas_water_tank_fi_monitor__x4_asset_dtaas_water_tank_fi__x2__output_valvecontrol",
+  "notes": [
+    "Adapter converts discrete Integer output to continuous Real input for valvecontrol.",
+    "Mapping preserves boolean semantics: 0/false maps to 0.0, 1/true maps to 1.0.",
+    "No state required; pure conversion based on provided fallback transform."
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_dtaas_water_tank_fi_monitor__x4"
+    },
+    {
+      "name": "asset_dtaas_water_tank_fi__x2"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

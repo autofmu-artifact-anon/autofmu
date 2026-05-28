@@ -1,0 +1,237 @@
+{
+  "version": "0.1.0",
+  "timestamp": "2025-12-12T10:31:45Z",
+  "file": "/root/mbse_val/fmu-benchmark-mini/fmus/2.0/me/linux64/Test-FMUs/0.0.1/Stair/Stair.fmu",
+  "metadata_summary": {
+    "fmi": {
+      "fmiVersion": "2.0",
+      "fmiTypes": [
+        "ModelExchange",
+        "CoSimulation"
+      ],
+      "modelName": "Stair",
+      "guid": "{8c4e810f-3df3-4a00-8276-176fa3c9f008}",
+      "description": "",
+      "author": "",
+      "generationTool": "",
+      "generationDateAndTime": "",
+      "variableNamingConvention": "flat",
+      "numberOfEventIndicators": 0,
+      "defaultExperiment": {
+        "startTime": 0.0,
+        "stopTime": 10.0
+      }
+    },
+    "implementation": {
+      "platforms": [
+        "linux64",
+        "c-code"
+      ],
+      "modelExchange": {
+        "modelIdentifier": "Stair"
+      },
+      "coSimulation": {
+        "modelIdentifier": "Stair",
+        "canHandleVariableCommunicationStepSize": true
+      }
+    }
+  },
+  "variables": {
+    "all": [
+      {
+        "name": "counter",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Integer",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 1,
+        "description": "counts the seconds",
+        "writable": false
+      }
+    ],
+    "inputs": [],
+    "outputs_observed": [
+      {
+        "name": "counter",
+        "valueReference": 0,
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Integer",
+        "description": "counts the seconds",
+        "initial": "exact",
+        "start": 1
+      }
+    ]
+  },
+  "probe_config": {
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "step_size": 0.05,
+    "scenarios": [
+      {
+        "kind": "step",
+        "start_time": 0.0,
+        "stop_time": 10.0,
+        "step_size": 0.05,
+        "seed": 0
+      },
+      {
+        "kind": "ramp",
+        "start_time": 0.0,
+        "stop_time": 10.0,
+        "step_size": 0.05,
+        "seed": 0
+      },
+      {
+        "kind": "sine",
+        "start_time": 0.0,
+        "stop_time": 10.0,
+        "step_size": 0.05,
+        "seed": 0
+      }
+    ],
+    "selected_inputs": [],
+    "selected_outputs": [
+      "counter"
+    ],
+    "narrative": "Generic excitation on representative inputs (step/ramp/sine)."
+  },
+  "features": {
+    "counter": {
+      "variable_meta": {
+        "name": "counter",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Integer",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 1
+      },
+      "basic_stats": {
+        "mean": 5.527363184079602,
+        "variance": 8.358703992475435,
+        "std": 2.8911423334860973,
+        "min": 1.0,
+        "max": 11.0,
+        "peak_to_peak": 10.0,
+        "first": 1.0,
+        "last": 11.0
+      },
+      "steady_state": 10.05,
+      "step_metrics": {
+        "baseline": 1.0,
+        "final": 10.05,
+        "amplitude": 9.05,
+        "rise_time": 8.0,
+        "overshoot_ratio": 0.10497237569060765,
+        "settling_time": null,
+        "steady_slope": 0.8217636022514043
+      },
+      "spectral_metrics": {
+        "dominant_frequency_hz": 0.09950248756218939,
+        "dominant_power_ratio": 0.9120420912062783,
+        "spectral_centroid_hz": 0.1833816373070888,
+        "spectral_bandwidth_hz": 0.5478219918167798,
+        "low_freq_energy_ratio": 0.9120420912062783
+      },
+      "lag_phase": {},
+      "stability_flags": {
+        "diverged": false,
+        "saturated": false,
+        "jump_count": 0
+      },
+      "behavior_labels": [
+        "integrator-like",
+        "oscillatory"
+      ],
+      "ramp_basic_stats": {
+        "mean": 5.527363184079602,
+        "variance": 8.358703992475435,
+        "std": 2.8911423334860973,
+        "min": 1.0,
+        "max": 11.0,
+        "peak_to_peak": 10.0,
+        "first": 1.0,
+        "last": 11.0
+      }
+    }
+  },
+  "fmu_profile": {
+    "num_inputs": 0,
+    "num_outputs_observed": 1,
+    "outputs_source": "outputs",
+    "continuous_ratio": 1.0,
+    "recommended_step_size_range": [
+      0.25124999999999914,
+      1.0049999999999966
+    ],
+    "typical_dynamic_labels": [
+      "integrator-like",
+      "oscillatory"
+    ]
+  },
+  "llm_guidance": {
+    "prompt": {
+      "task": "Propose a reasonable reproducible usage scenario for probing FMU behavior.",
+      "constraints": [
+        "Return JSON only.",
+        "Select up to 3 representative inputs and up to 5 representative outputs by exact name.",
+        "Scenario must include step, ramp, sine excitations.",
+        "Do not invent variables not in the list."
+      ],
+      "model_info": {
+        "fmiVersion": "2.0",
+        "fmiTypes": [
+          "ModelExchange",
+          "CoSimulation"
+        ],
+        "modelName": "Stair",
+        "guid": "{8c4e810f-3df3-4a00-8276-176fa3c9f008}",
+        "description": "",
+        "author": "",
+        "generationTool": "",
+        "generationDateAndTime": "",
+        "variableNamingConvention": "flat",
+        "numberOfEventIndicators": 0,
+        "defaultExperiment": {
+          "startTime": 0.0,
+          "stopTime": 10.0
+        }
+      },
+      "variables": [
+        {
+          "name": "counter",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Integer",
+          "unit": "",
+          "description": "counts the seconds"
+        }
+      ],
+      "output_schema": {
+        "inputs": [
+          "..."
+        ],
+        "outputs": [
+          "..."
+        ],
+        "narrative": "short scenario description"
+      }
+    },
+    "raw_response": "```json\n{\n  \"inputs\": [\n    \"stepInput\",\n    \"rampInput\",\n    \"sineInput\"\n  ],\n  \"outputs\": [\n    \"counter\"\n  ],\n  \"narrative\": \"This scenario tests the behavior of the 'Stair' model by applying three distinct excitation profiles to the input variables. First, a step input is applied to simulate a sudden change in conditions. Second, a ramp input is used to simulate a gradual increase in excitation, providing insight into how the model responds to continuous growth. Finally, a sine input is introduced to test the model's response to periodic oscillations. The output, 'counter', represents the number of seconds the system has been running, tracking how the system's state evolves over time under these varying conditions.\"\n}\n```"
+  },
+  "log_summary": {
+    "scenario_status": {
+      "step": "ok",
+      "ramp": "ok",
+      "sine": "ok"
+    },
+    "scenario_errors": {},
+    "elapsed_sec": 5.909430742263794
+  }
+}

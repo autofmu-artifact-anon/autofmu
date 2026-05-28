@@ -1,0 +1,565 @@
+{
+  "dataset_id": "fmu-002306",
+  "source_repo": "fmi-cross-check-master",
+  "source_path": "fmus/2.0/cs/linux64/MapleSim/2021.2/CoupledClutches/CoupledClutches.fmu",
+  "source_commit": "",
+  "fmi": {
+    "fmiVersion": "2.0",
+    "fmiTypes": [
+      "CoSimulation"
+    ],
+    "modelName": "CoupledClutches",
+    "guid": "{ff08717c-6278-f5a6-d941-851ff4a17d93}",
+    "description": "CoupledClutches example from the FMI test suite",
+    "author": "",
+    "generationTool": "MapleSim (1579660/1578573)",
+    "generationDateAndTime": "2021-12-09T11:51:33Z",
+    "variableNamingConvention": "structured",
+    "numberOfEventIndicators": 25,
+    "defaultExperiment": {
+      "startTime": 0.0,
+      "stopTime": 1.5,
+      "stepSize": 0.01
+    }
+  },
+  "implementation": {
+    "platforms": [
+      "linux64"
+    ],
+    "coSimulation": {
+      "modelIdentifier": "CoupledClutches",
+      "canGetAndSetFMUstate": true,
+      "canSerializeFMUstate": true,
+      "providesDirectionalDerivative": false,
+      "canHandleVariableCommunicationStepSize": true,
+      "canInterpolateInputs": false
+    }
+  },
+  "variables": [
+    {
+      "name": "internalTime",
+      "valueReference": 0,
+      "causality": "independent",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal time",
+      "unit": "s"
+    },
+    {
+      "name": "T2",
+      "valueReference": 62,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Time when clutch2 is invoked",
+      "unit": "s",
+      "start": 0.4
+    },
+    {
+      "name": "freqHz",
+      "valueReference": 63,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Frequency of sine function to invoke clutch1",
+      "unit": "Hz",
+      "start": 0.2
+    },
+    {
+      "name": "inputs",
+      "valueReference": 22,
+      "causality": "input",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "RI1",
+      "start": 0.0
+    },
+    {
+      "name": "outputs[1]",
+      "valueReference": 18,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "RO1",
+      "initial": "calculated"
+    },
+    {
+      "name": "outputs[2]",
+      "valueReference": 19,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "RO2",
+      "initial": "calculated"
+    },
+    {
+      "name": "outputs[3]",
+      "valueReference": 20,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "RO3",
+      "initial": "calculated"
+    },
+    {
+      "name": "outputs[4]",
+      "valueReference": 21,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "RO4",
+      "initial": "calculated"
+    },
+    {
+      "name": "J1.phi",
+      "valueReference": 1,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J1.phi",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "J1.phi.der",
+      "valueReference": 2,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J1.phi.der",
+      "initial": "exact",
+      "start": 10.0
+    },
+    {
+      "name": "J2.phi",
+      "valueReference": 3,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J2.phi",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "J2.phi.der",
+      "valueReference": 4,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J2.phi.der",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "J3.phi",
+      "valueReference": 5,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J3.phi",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "J3.phi.der",
+      "valueReference": 6,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J3.phi.der",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "J4.phi",
+      "valueReference": 7,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J4.phi",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "J4.phi.der",
+      "valueReference": 8,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J4.phi.der",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "clutch1.sa",
+      "valueReference": 9,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch1.sa",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch2.sa",
+      "valueReference": 10,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch2.sa",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch2.tau0_max",
+      "valueReference": 11,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch2.tau0_max",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch3.sa",
+      "valueReference": 12,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch3.sa",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch1.tau",
+      "valueReference": 13,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch1.tau",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch2.tau",
+      "valueReference": 14,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch2.tau",
+      "initial": "calculated"
+    },
+    {
+      "name": "J1.phi.nder_2",
+      "valueReference": 15,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J1.phi.nder_2",
+      "initial": "calculated"
+    },
+    {
+      "name": "J3.phi.nder_2",
+      "valueReference": 16,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J3.phi.nder_2",
+      "initial": "calculated"
+    },
+    {
+      "name": "J4.phi.nder_2",
+      "valueReference": 17,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J4.phi.nder_2",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch1.locked",
+      "valueReference": 23,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch1.locked"
+    },
+    {
+      "name": "clutch1.mode",
+      "valueReference": 24,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch1.mode"
+    },
+    {
+      "name": "clutch2.locked",
+      "valueReference": 25,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch2.locked"
+    },
+    {
+      "name": "clutch2.mode",
+      "valueReference": 26,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch2.mode"
+    },
+    {
+      "name": "clutch3.locked",
+      "valueReference": 27,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch3.locked"
+    },
+    {
+      "name": "clutch3.mode",
+      "valueReference": 28,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch3.mode"
+    },
+    {
+      "name": "clutch1.startBackward",
+      "valueReference": 29,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch1.startBackward"
+    },
+    {
+      "name": "clutch1.startForward",
+      "valueReference": 30,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch1.startForward"
+    },
+    {
+      "name": "clutch2.startBackward",
+      "valueReference": 31,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch2.startBackward"
+    },
+    {
+      "name": "clutch2.startForward",
+      "valueReference": 32,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch2.startForward"
+    },
+    {
+      "name": "clutch3.startBackward",
+      "valueReference": 33,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch3.startBackward"
+    },
+    {
+      "name": "clutch3.startForward",
+      "valueReference": 34,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch3.startForward"
+    },
+    {
+      "name": "clutch1.free",
+      "valueReference": 37,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch1.free"
+    },
+    {
+      "name": "clutch3.free",
+      "valueReference": 38,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch3.free"
+    },
+    {
+      "name": "clutch2.free",
+      "valueReference": 39,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch2.free"
+    },
+    {
+      "name": "der(J1.phi)",
+      "valueReference": 64,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J1.phi)",
+      "derivative": 9
+    },
+    {
+      "name": "der(J1.phi.der)",
+      "valueReference": 65,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J1.phi.der)",
+      "derivative": 10
+    },
+    {
+      "name": "der(J2.phi)",
+      "valueReference": 66,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J2.phi)",
+      "derivative": 11
+    },
+    {
+      "name": "der(J2.phi.der)",
+      "valueReference": 67,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J2.phi.der)",
+      "derivative": 12
+    },
+    {
+      "name": "der(J3.phi)",
+      "valueReference": 68,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J3.phi)",
+      "derivative": 13
+    },
+    {
+      "name": "der(J3.phi.der)",
+      "valueReference": 69,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J3.phi.der)",
+      "derivative": 14
+    },
+    {
+      "name": "der(J4.phi)",
+      "valueReference": 70,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J4.phi)",
+      "derivative": 15
+    },
+    {
+      "name": "der(J4.phi.der)",
+      "valueReference": 71,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J4.phi.der)",
+      "derivative": 16
+    },
+    {
+      "name": "minsamplestep",
+      "valueReference": 158,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Minimum time step between samples in binary data file",
+      "unit": "s",
+      "start": 0.025
+    },
+    {
+      "name": "binfilename",
+      "valueReference": 159,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "String",
+      "description": "Name of binary data file",
+      "start": "DISABLED"
+    }
+  ],
+  "interface": {
+    "inputs": [
+      "inputs"
+    ],
+    "outputs": [
+      "outputs[1]",
+      "outputs[2]",
+      "outputs[3]",
+      "outputs[4]"
+    ],
+    "parameters": [
+      "T2",
+      "freqHz",
+      "minsamplestep",
+      "binfilename"
+    ],
+    "locals": [
+      "J1.phi",
+      "J1.phi.der",
+      "J2.phi",
+      "J2.phi.der",
+      "J3.phi",
+      "J3.phi.der",
+      "J4.phi",
+      "J4.phi.der",
+      "clutch1.sa",
+      "clutch2.sa",
+      "clutch2.tau0_max",
+      "clutch3.sa",
+      "clutch1.tau",
+      "clutch2.tau",
+      "J1.phi.nder_2",
+      "J3.phi.nder_2",
+      "J4.phi.nder_2",
+      "clutch1.locked",
+      "clutch1.mode",
+      "clutch2.locked",
+      "clutch2.mode",
+      "clutch3.locked",
+      "clutch3.mode",
+      "clutch1.startBackward",
+      "clutch1.startForward",
+      "clutch2.startBackward",
+      "clutch2.startForward",
+      "clutch3.startBackward",
+      "clutch3.startForward",
+      "clutch1.free",
+      "clutch3.free",
+      "clutch2.free",
+      "der(J1.phi)",
+      "der(J1.phi.der)",
+      "der(J2.phi)",
+      "der(J2.phi.der)",
+      "der(J3.phi)",
+      "der(J3.phi.der)",
+      "der(J4.phi)",
+      "der(J4.phi.der)"
+    ],
+    "states": [
+      "der(J1.phi)",
+      "der(J1.phi.der)",
+      "der(J2.phi)",
+      "der(J2.phi.der)",
+      "der(J3.phi)",
+      "der(J3.phi.der)",
+      "der(J4.phi)",
+      "der(J4.phi.der)"
+    ]
+  },
+  "test": {
+    "hasReferenceInput": true,
+    "hasReferenceOutput": true,
+    "referenceInputFile": "CoupledClutches_in.csv",
+    "referenceOutputFile": "CoupledClutches_ref.csv",
+    "simulationOptionsFile": "CoupledClutches_simopt.json"
+  },
+  "validation": {
+    "fmiCompliance": "not_checked"
+  }
+}

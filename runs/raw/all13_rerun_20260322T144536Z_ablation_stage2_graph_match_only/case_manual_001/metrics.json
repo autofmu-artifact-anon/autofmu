@@ -1,0 +1,197 @@
+{
+  "schema": "EVALUATOR_CASE_METRICS_V2",
+  "retrieval": {
+    "top_k": 5,
+    "oracle_mode": "exact_asset_set",
+    "equivalence_class_id": "",
+    "acceptable_asset_set_count": 1,
+    "acceptable_asset_sets": [
+      [
+        "asset_case_case_manual_001__BatteryPackElectroThermal",
+        "asset_case_case_manual_001__CoolingLoop",
+        "asset_case_case_manual_001__ThermalController"
+      ]
+    ],
+    "top1_asset_ids": [
+      "asset_case_case_manual_001__CoolingLoop"
+    ],
+    "candidate_asset_sets": [
+      [
+        "asset_case_case_manual_001__CoolingLoop"
+      ],
+      [
+        "asset_case_case_manual_001__BatteryPackElectroThermal",
+        "asset_case_case_manual_001__CoolingLoop",
+        "asset_case_case_manual_001__ThermalController"
+      ],
+      [
+        "asset_case_case_manual_001__BatteryPackElectroThermal",
+        "asset_case_case_manual_001__CoolingLoop"
+      ]
+    ],
+    "top1_hit": false,
+    "topk_hit": true
+  },
+  "execution": {
+    "supported": true,
+    "success": true,
+    "backend": "mixed_cosim",
+    "execution_time_seconds": 5.18446688586846,
+    "generated_trajectory_path": "runs/raw/all13_rerun_20260322T144536Z_ablation_stage2_graph_match_only/case_manual_001/generated_trajectory.csv",
+    "error": null,
+    "warnings": [
+      "non_output_observation:pump_cmd:asset_case_case_manual_001__CoolingLoop.pump_cmd",
+      "non_output_observation:fan_cmd:asset_case_case_manual_001__CoolingLoop.fan_cmd"
+    ]
+  },
+  "numerical_fidelity": {
+    "supported": true,
+    "mae": 9.554684878536182,
+    "rmse": 20.455817996853806,
+    "nrmse": 0.7066102449356009,
+    "max_abs_error": 61.43610167485254,
+    "aligned_sample_count": 36001,
+    "signal_count": 10,
+    "signals": [
+      "soc",
+      "T_core_C",
+      "voltage_V",
+      "current_A",
+      "pump_cmd",
+      "fan_cmd",
+      "mode",
+      "coolant_in_temp_C",
+      "coolant_flow_kgps",
+      "T_surface_C"
+    ],
+    "generated_time_column": "time",
+    "reference_time_column": "time",
+    "generated_signal_map": {
+      "pump_cmd": "pump_cmd",
+      "fan_cmd": "fan_cmd",
+      "coolant_in_temp_C": "coolant_in_temp_C",
+      "coolant_flow_kgps": "coolant_flow_kgps"
+    },
+    "reference_signal_map": {
+      "soc": "soc",
+      "T_core_C": "T_core_C",
+      "voltage_V": "voltage_V",
+      "current_A": "current_A",
+      "pump_cmd": "pump_cmd",
+      "fan_cmd": "fan_cmd",
+      "mode": "mode",
+      "coolant_in_temp_C": "coolant_in_temp_C",
+      "coolant_flow_kgps": "coolant_flow_kgps",
+      "T_surface_C": "T_surface_C"
+    },
+    "unresolved_generated_signals": [
+      "soc",
+      "T_core_C",
+      "voltage_V",
+      "current_A",
+      "mode",
+      "T_surface_C"
+    ],
+    "unresolved_reference_signals": [],
+    "nrmse_common_only": 0.26652561233900224,
+    "common_signal_count": 4,
+    "missing_signal_count": 6,
+    "common_signals": [
+      "pump_cmd",
+      "fan_cmd",
+      "coolant_in_temp_C",
+      "coolant_flow_kgps"
+    ],
+    "missing_signals": [
+      "soc",
+      "T_core_C",
+      "voltage_V",
+      "current_A",
+      "mode",
+      "T_surface_C"
+    ]
+  },
+  "decision": {
+    "supported": false,
+    "predicted_conclusion": "unknown",
+    "reference_conclusion": "pass",
+    "passed": null,
+    "correct": null,
+    "evidence": {
+      "rule_kind": "acceptance_criteria",
+      "supported": false,
+      "conclusion": "unknown",
+      "criterion_results": [
+        {
+          "metric": "max(T_core_C)",
+          "operator": "<=",
+          "expected": 55.0,
+          "observed": null,
+          "passed": false,
+          "error": "unresolved_expression"
+        },
+        {
+          "metric": "min(soc)",
+          "operator": ">=",
+          "expected": 0.2,
+          "observed": null,
+          "passed": false,
+          "error": "unresolved_expression"
+        },
+        {
+          "metric": "within_range(voltage_V)",
+          "operator": "in",
+          "expected": [
+            280.0,
+            420.0
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "unresolved_expression"
+        },
+        {
+          "metric": "within_range(pump_cmd)",
+          "operator": "in",
+          "expected": [
+            0.0,
+            1.0
+          ],
+          "observed": [
+            0.5,
+            0.5
+          ],
+          "passed": true,
+          "error": ""
+        },
+        {
+          "metric": "within_range(fan_cmd)",
+          "operator": "in",
+          "expected": [
+            0.0,
+            1.0
+          ],
+          "observed": [
+            0.5,
+            0.5
+          ],
+          "passed": true,
+          "error": ""
+        }
+      ],
+      "unsupported_criteria": [
+        "max(T_core_C)",
+        "min(soc)",
+        "within_range(voltage_V)"
+      ],
+      "time_coverage": {
+        "observed_start_time": 0.0,
+        "observed_stop_time": 3600.0,
+        "declared_start_time": 0,
+        "declared_stop_time": 1200,
+        "sample_count": 36001
+      },
+      "initial_condition_results": [],
+      "coverage_failures": []
+    }
+  }
+}

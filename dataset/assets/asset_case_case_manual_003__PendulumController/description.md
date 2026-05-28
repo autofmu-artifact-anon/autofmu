@@ -1,0 +1,1 @@
+../../sources/cases/case_manual_003/fmu_specs/fmu_PendulumController.md

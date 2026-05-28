@@ -1,0 +1,290 @@
+{
+  "asset_id": "asset_case_case_manual_002__CartPolePlant",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "case_origin": [
+    "case_manual_002"
+  ],
+  "default_experiment": {
+    "startTime": 0,
+    "stepSize": 0.001,
+    "stopTime": 20
+  },
+  "description": "小车-倒立摆非线性动力学（含电机饱和、非线性摩擦、软限位与简化传感器）。角度定义：theta=0 为下垂，theta=pi 为倒立。",
+  "description_relpath": "description.md",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "fmu_relpath": "model.fmu",
+  "ground_truth_only": false,
+  "inputs": [
+    "force_cmd_N",
+    "disturbance_force_N"
+  ],
+  "library_visible": true,
+  "metadata_relpath": "metadata.json",
+  "name": "CartPolePlant",
+  "outputs": [
+    "x_m",
+    "x_dot_mps",
+    "theta_rad",
+    "theta_dot_rps",
+    "theta_meas_rad",
+    "theta_dot_meas_rps"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "电机期望输出水平力（将被内部饱和与一阶执行器动态处理）",
+      "name": "force_cmd_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "外部扰动力（脉冲推/拉，用于鲁棒性测试）",
+      "name": "disturbance_force_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "小车位置",
+      "name": "x_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "小车速度",
+      "name": "x_dot_mps",
+      "type": "Real",
+      "unit": "m/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "杆角度（0下垂，pi倒立）",
+      "name": "theta_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "杆角速度",
+      "name": "theta_dot_rps",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "角度测量值（含噪声/量化/wrap）",
+      "name": "theta_meas_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "角速度测量值（含偏置与噪声）",
+      "name": "theta_dot_meas_rps",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "小车质量",
+      "name": "m_cart_kg",
+      "type": "Real",
+      "unit": "kg",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "杆质量",
+      "name": "m_pole_kg",
+      "type": "Real",
+      "unit": "kg",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "转轴到杆质心距离",
+      "name": "l_com_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "杆绕质心转动惯量",
+      "name": "I_pole_kgm2",
+      "type": "Real",
+      "unit": "kg*m^2",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "重力加速度",
+      "name": "g_mps2",
+      "type": "Real",
+      "unit": "m/s^2",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "电机最大输出力（饱和）",
+      "name": "F_max_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "执行器一阶滞后时间常数",
+      "name": "actuator_tau_s",
+      "type": "Real",
+      "unit": "s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "小车库仑摩擦等效力幅值",
+      "name": "cart_fric_coulomb_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "小车粘性摩擦系数",
+      "name": "cart_fric_visc_Ns_per_m",
+      "type": "Real",
+      "unit": "N*s/m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "tanh 平滑摩擦的速度尺度",
+      "name": "fric_smooth_v0_mps",
+      "type": "Real",
+      "unit": "m/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "轨道软限位（超出后施加非线性弹簧力）",
+      "name": "x_limit_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "软限位等效弹簧刚度",
+      "name": "x_limit_k_N_per_m",
+      "type": "Real",
+      "unit": "N/m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "角度测量噪声标准差",
+      "name": "theta_meas_sigma_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "角速度测量偏置（常值）",
+      "name": "theta_dot_bias_rps",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "角速度测量噪声标准差",
+      "name": "theta_dot_meas_sigma_rps",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "fixed"
+    }
+  ],
+  "provenance": {
+    "case_id": "case_manual_002",
+    "legacy_fmu_list_entry": {
+      "description": "Nonlinear cart-pole dynamics with actuator saturation, friction, soft limits, and noisy sensors. Angle convention: theta=0 is hanging down, theta=pi is upright.",
+      "fmi_version": "2.0",
+      "inputs": [
+        {
+          "description": "Motor force command",
+          "name": "force_cmd_N",
+          "unit": "N"
+        },
+        {
+          "description": "External disturbance force",
+          "name": "disturbance_force_N",
+          "unit": "N"
+        }
+      ],
+      "name": "CartPolePlant",
+      "outputs": [
+        {
+          "description": "Cart position",
+          "name": "x_m",
+          "unit": "m"
+        },
+        {
+          "description": "Cart velocity",
+          "name": "x_dot_mps",
+          "unit": "m/s"
+        },
+        {
+          "description": "Pole angle (0=down, pi=up)",
+          "name": "theta_rad",
+          "unit": "rad"
+        },
+        {
+          "description": "Pole angular velocity",
+          "name": "theta_dot_rps",
+          "unit": "rad/s"
+        },
+        {
+          "description": "Measured angle (with noise)",
+          "name": "theta_meas_rad",
+          "unit": "rad"
+        },
+        {
+          "description": "Measured angular velocity (with bias+noise)",
+          "name": "theta_dot_meas_rps",
+          "unit": "rad/s"
+        }
+      ],
+      "path": "fmus/CartPolePlant.fmu",
+      "type": "Co-Simulation"
+    }
+  },
+  "schema": "UNIFIED_ASSET_V1",
+  "source_id": "case_manual_002::CartPolePlant",
+  "source_type": "manual_case_fmu",
+  "tags": [
+    "case_manual_002",
+    "manual_case"
+  ]
+}

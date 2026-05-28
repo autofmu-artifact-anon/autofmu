@@ -1,0 +1,1 @@
+../../sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/solidThinking_Activate/2020/sb_Boocwen/sb_Boocwen.sysml

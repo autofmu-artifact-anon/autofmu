@@ -1,0 +1,417 @@
+{
+  "case_id": "case_dtaas_mass_spring_damper_monitor",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_dtaas_mass_spring_damper_monitor__msd1",
+        "asset_dtaas_mass_spring_damper_monitor__msd2",
+        "asset_dtaas_mass_spring_damper_monitor__m2",
+        "asset_dtaas_mass_spring_damper_monitor__rti1",
+        "asset_dtaas_mass_spring_damper_monitor__rti2"
+      ]
+    ],
+    "case_id": "case_dtaas_mass_spring_damper_monitor",
+    "equivalence_class_id": "",
+    "equivalence_reason": "",
+    "oracle_mode": "exact_asset_set",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_dtaas_mass_spring_damper_monitor",
+    "connections": [
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.x1"
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+        "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u"
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__rti1.y",
+        "target": "asset_dtaas_mass_spring_damper_monitor__m2.x1"
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd1.v1",
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.v1"
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd2.fk",
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd1.fk"
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd2.x2",
+        "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u"
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+        "target": "asset_dtaas_mass_spring_damper_monitor__m2.x2"
+      }
+    ],
+    "execution_order": [
+      "asset_dtaas_mass_spring_damper_monitor__msd1",
+      "asset_dtaas_mass_spring_damper_monitor__msd2",
+      "asset_dtaas_mass_spring_damper_monitor__m2",
+      "asset_dtaas_mass_spring_damper_monitor__rti1",
+      "asset_dtaas_mass_spring_damper_monitor__rti2"
+    ],
+    "extensions": {
+      "parameter_overrides": [
+        {
+          "target": "asset_dtaas_mass_spring_damper_monitor__msd2.c2",
+          "value": 1.0
+        },
+        {
+          "target": "asset_dtaas_mass_spring_damper_monitor__msd2.cc",
+          "value": 1.0
+        },
+        {
+          "target": "asset_dtaas_mass_spring_damper_monitor__msd2.d2",
+          "value": 1.0
+        },
+        {
+          "target": "asset_dtaas_mass_spring_damper_monitor__msd2.dc",
+          "value": 1.0
+        },
+        {
+          "target": "asset_dtaas_mass_spring_damper_monitor__msd2.m2",
+          "value": 1.0
+        }
+      ],
+      "raw_config_relpaths": [
+        "raw/digital_twins/mass-spring-damper-monitor/README.md",
+        "raw/digital_twins/mass-spring-damper-monitor/cosim.json",
+        "raw/digital_twins/mass-spring-damper-monitor/time.json",
+        "raw/digital_twins/mass-spring-damper-monitor/model/m2.smv",
+        "raw/digital_twins/mass-spring-damper-monitor/model/observables_m2.list"
+      ]
+    },
+    "external_inputs": [],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "x2",
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd2.x2"
+      },
+      {
+        "name": "v2",
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd2.v2"
+      },
+      {
+        "name": "y",
+        "source": "asset_dtaas_mass_spring_damper_monitor__rti1.y"
+      },
+      {
+        "name": "y",
+        "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y"
+      },
+      {
+        "name": "_output",
+        "source": "asset_dtaas_mass_spring_damper_monitor__m2._output"
+      }
+    ],
+    "notes": [
+      "The monitor observes the displacement relationship between the two masses through RtI helper FMUs and remains non-violating for the bundled scenario."
+    ],
+    "schedule": {
+      "co_simulation_type": "fixed-step",
+      "kind": "co_simulation",
+      "live_log_interval": 0,
+      "report_progress": true,
+      "start_time": 0,
+      "step_size": 0.001,
+      "stop_time": 10
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_dtaas_mass_spring_damper_monitor__msd1",
+      "asset_dtaas_mass_spring_damper_monitor__msd2",
+      "asset_dtaas_mass_spring_damper_monitor__m2",
+      "asset_dtaas_mass_spring_damper_monitor__rti1",
+      "asset_dtaas_mass_spring_damper_monitor__rti2"
+    ],
+    "stages": [
+      {
+        "connections": [
+          {
+            "source": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+            "target": "asset_dtaas_mass_spring_damper_monitor__msd2.x1"
+          },
+          {
+            "source": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+            "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u"
+          },
+          {
+            "source": "asset_dtaas_mass_spring_damper_monitor__rti1.y",
+            "target": "asset_dtaas_mass_spring_damper_monitor__m2.x1"
+          },
+          {
+            "source": "asset_dtaas_mass_spring_damper_monitor__msd1.v1",
+            "target": "asset_dtaas_mass_spring_damper_monitor__msd2.v1"
+          },
+          {
+            "source": "asset_dtaas_mass_spring_damper_monitor__msd2.fk",
+            "target": "asset_dtaas_mass_spring_damper_monitor__msd1.fk"
+          },
+          {
+            "source": "asset_dtaas_mass_spring_damper_monitor__msd2.x2",
+            "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u"
+          },
+          {
+            "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+            "target": "asset_dtaas_mass_spring_damper_monitor__m2.x2"
+          }
+        ],
+        "execution_order": [
+          "asset_dtaas_mass_spring_damper_monitor__msd1",
+          "asset_dtaas_mass_spring_damper_monitor__msd2",
+          "asset_dtaas_mass_spring_damper_monitor__m2",
+          "asset_dtaas_mass_spring_damper_monitor__rti1",
+          "asset_dtaas_mass_spring_damper_monitor__rti2"
+        ],
+        "extensions": {
+          "parameter_overrides": [
+            {
+              "target": "asset_dtaas_mass_spring_damper_monitor__msd2.c2",
+              "value": 1.0
+            },
+            {
+              "target": "asset_dtaas_mass_spring_damper_monitor__msd2.cc",
+              "value": 1.0
+            },
+            {
+              "target": "asset_dtaas_mass_spring_damper_monitor__msd2.d2",
+              "value": 1.0
+            },
+            {
+              "target": "asset_dtaas_mass_spring_damper_monitor__msd2.dc",
+              "value": 1.0
+            },
+            {
+              "target": "asset_dtaas_mass_spring_damper_monitor__msd2.m2",
+              "value": 1.0
+            }
+          ],
+          "raw_config_relpaths": [
+            "raw/digital_twins/mass-spring-damper-monitor/cosim.json",
+            "raw/digital_twins/mass-spring-damper-monitor/time.json",
+            "raw/digital_twins/mass-spring-damper-monitor/model/m2.smv",
+            "raw/digital_twins/mass-spring-damper-monitor/model/observables_m2.list"
+          ]
+        },
+        "external_inputs": [],
+        "monitored_outputs": [
+          {
+            "name": "x2",
+            "source": "asset_dtaas_mass_spring_damper_monitor__msd2.x2"
+          },
+          {
+            "name": "v2",
+            "source": "asset_dtaas_mass_spring_damper_monitor__msd2.v2"
+          },
+          {
+            "name": "y",
+            "source": "asset_dtaas_mass_spring_damper_monitor__rti1.y"
+          },
+          {
+            "name": "y",
+            "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y"
+          },
+          {
+            "name": "_output",
+            "source": "asset_dtaas_mass_spring_damper_monitor__m2._output"
+          }
+        ],
+        "schedule": {
+          "co_simulation_type": "fixed-step",
+          "kind": "co_simulation",
+          "live_log_interval": 0,
+          "report_progress": true,
+          "start_time": 0,
+          "step_size": 0.001,
+          "stop_time": 10
+        },
+        "selected_asset_ids": [
+          "asset_dtaas_mass_spring_damper_monitor__msd1",
+          "asset_dtaas_mass_spring_damper_monitor__msd2",
+          "asset_dtaas_mass_spring_damper_monitor__m2",
+          "asset_dtaas_mass_spring_damper_monitor__rti1",
+          "asset_dtaas_mass_spring_damper_monitor__rti2"
+        ],
+        "stage_id": "stage1"
+      }
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_dtaas_mass_spring_damper_monitor",
+    "criteria": [
+      {
+        "metric": "trajectory_match",
+        "notes": "Requires canonical DTaaS reference execution trace.",
+        "operator": "<=",
+        "signals": [
+          "x2",
+          "v2",
+          "y",
+          "_output"
+        ],
+        "value": null
+      }
+    ],
+    "decision_rule": {
+      "kind": "trajectory_tolerance",
+      "requires_ground_truth": true,
+      "signals": [
+        "x2",
+        "v2",
+        "y",
+        "_output"
+      ],
+      "time_column": "time"
+    },
+    "derivation_basis": {
+      "expected_behavior": "The monitor observes the displacement relationship between the two masses through RtI helper FMUs and remains non-violating for the bundled scenario.",
+      "signals_of_interest": [
+        "x2",
+        "v2",
+        "y",
+        "_output"
+      ],
+      "source_root": "sources/dtaas_examples/case_dtaas_mass_spring_damper_monitor"
+    },
+    "judgement_policy": "behavioral_expectation_pending_execution",
+    "scenario_window": {
+      "start_time": 0,
+      "step_size": 0.001,
+      "stop_time": 10
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "_output": [
+        "_output",
+        "asset_dtaas_mass_spring_damper_monitor__m2._output"
+      ],
+      "v2": [
+        "v2",
+        "asset_dtaas_mass_spring_damper_monitor__msd2.v2"
+      ],
+      "x2": [
+        "x2",
+        "asset_dtaas_mass_spring_damper_monitor__msd2.x2"
+      ],
+      "y": [
+        "y",
+        "asset_dtaas_mass_spring_damper_monitor__rti2.y"
+      ]
+    },
+    "signals": [
+      "x2",
+      "v2",
+      "y",
+      "_output"
+    ],
+    "text": "Mass Spring Damper with Monitor. Mass-spring-damper co-simulation extended with generated monitor FMU and two RtI instances.. Scenario time window 0s to 10s. Signals of interest: x2, v2, y, _output Expected ground-truth behavior: The monitor observes the displacement relationship between the two masses through RtI helper FMUs and remains non-violating for the bundled scenario. A final pass/fail conclusion remains pending until a reference execution trace is normalized.",
+    "time_column_aliases": [
+      "time",
+      "TIME",
+      "Time",
+      "t"
+    ],
+    "title": "Mass Spring Damper with Monitor Verification Requirement",
+    "tolerances": {}
+  },
+  "verification_result": {
+    "case_id": "case_dtaas_mass_spring_damper_monitor",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "",
+      "input_trajectory_relpath": "",
+      "source_kind": "none"
+    },
+    "missing_requirements": [
+      "ground_truth_execution_trace",
+      "objective_pass_fail_conclusion"
+    ],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "Reference truth and decision label materialized from the source-ground-truth solution execution.",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_dtaas_mass_spring_damper_monitor",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "runs/raw/all13_rerun_20260322T144536Z_baseline_b1_rule_sequential/case_dtaas_mass_spring_damper_monitor/_reference_truth/generated_trajectory.csv",
+    "input_relpath": "",
+    "reference_generation_method": "none",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "_output": [
+        "_output",
+        "asset_dtaas_mass_spring_damper_monitor__m2._output"
+      ],
+      "v2": [
+        "v2",
+        "asset_dtaas_mass_spring_damper_monitor__msd2.v2"
+      ],
+      "x2": [
+        "x2",
+        "asset_dtaas_mass_spring_damper_monitor__msd2.x2"
+      ],
+      "y": [
+        "y",
+        "asset_dtaas_mass_spring_damper_monitor__rti2.y"
+      ]
+    },
+    "signal_columns": [
+      "x2",
+      "v2",
+      "y",
+      "_output"
+    ],
+    "source_kind": "none",
+    "stage_segments": [
+      {
+        "stage_id": "stage1",
+        "start_time": 0,
+        "stop_time": 10
+      }
+    ],
+    "supports_numerical_fidelity": true,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "runs/raw/all13_rerun_20260322T144536Z_baseline_b1_rule_sequential/case_dtaas_mass_spring_damper_monitor/_reference_truth/generated_trajectory.csv",
+  "input_trajectory_path": null,
+  "declared_scenario_window": {
+    "start_time": 0,
+    "stop_time": 10,
+    "step_size": 0.001
+  },
+  "declared_initial_conditions": {},
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": true,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "dtaas_multi_fmu_case",
+    "expected_behavior": "The monitor observes the displacement relationship between the two masses through RtI helper FMUs and remains non-violating for the bundled scenario.",
+    "title": "Mass Spring Damper with Monitor",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "",
+      "input_trajectory_relpath": "",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": false,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": false,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

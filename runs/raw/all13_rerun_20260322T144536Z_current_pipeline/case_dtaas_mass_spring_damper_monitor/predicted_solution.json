@@ -1,0 +1,216 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_mass_spring_damper_monitor",
+  "selected_asset_ids": [
+    "asset_dtaas_mass_spring_damper_monitor__m2",
+    "asset_dtaas_mass_spring_damper_monitor__msd1",
+    "asset_dtaas_mass_spring_damper_monitor__rti1",
+    "asset_dtaas_mass_spring_damper_monitor__rti2",
+    "asset_dtaas_mass_spring_damper_monitor__msd2"
+  ],
+  "connections": [
+    {
+      "source": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+      "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u",
+      "kind": "direct",
+      "chain_id": "chain_1",
+      "segment_id": "chain_1_seg_0"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper_monitor__rti1.y",
+      "target": "asset_dtaas_mass_spring_damper_monitor__m2.x1",
+      "kind": "direct",
+      "chain_id": "chain_2",
+      "segment_id": "chain_2_seg_0"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper_monitor__msd1.v1",
+      "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u",
+      "kind": "direct",
+      "chain_id": "chain_5",
+      "segment_id": "chain_5_seg_0"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+      "target": "asset_dtaas_mass_spring_damper_monitor__m2.x2",
+      "kind": "direct",
+      "chain_id": "chain_6",
+      "segment_id": "chain_6_seg_0"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+      "target": "asset_dtaas_mass_spring_damper_monitor__msd2.x1",
+      "kind": "direct",
+      "chain_id": "ica_chain_0",
+      "segment_id": "ica_seg_0"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper_monitor__msd1.v1",
+      "target": "asset_dtaas_mass_spring_damper_monitor__msd2.v1",
+      "kind": "direct",
+      "chain_id": "ica_chain_3",
+      "segment_id": "ica_seg_3"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper_monitor__msd2.fk",
+      "target": "asset_dtaas_mass_spring_damper_monitor__msd1.fk",
+      "kind": "direct",
+      "chain_id": "ica_chain_4",
+      "segment_id": "ica_seg_4"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper_monitor__msd2.x2",
+      "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u",
+      "kind": "direct",
+      "chain_id": "ica_chain_5",
+      "segment_id": "ica_seg_5"
+    }
+  ],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "x2",
+      "source": "asset_dtaas_mass_spring_damper_monitor__msd2.x2"
+    },
+    {
+      "name": "v2",
+      "source": "asset_dtaas_mass_spring_damper_monitor__msd2.v2"
+    },
+    {
+      "name": "y",
+      "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y"
+    },
+    {
+      "name": "_output",
+      "source": "asset_dtaas_mass_spring_damper_monitor__m2._output"
+    }
+  ],
+  "schedule": {
+    "kind": "multi_rate",
+    "base_tick": 0.001,
+    "duration": 10.0,
+    "per_node_period": {
+      "asset_dtaas_mass_spring_damper_monitor__m2": 0.001,
+      "asset_dtaas_mass_spring_damper_monitor__msd1": 0.001,
+      "asset_dtaas_mass_spring_damper_monitor__rti1": 0.001,
+      "asset_dtaas_mass_spring_damper_monitor__rti2": 0.001,
+      "asset_dtaas_mass_spring_damper_monitor__msd2": 0.001
+    },
+    "per_edge_hold_policy": [
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+        "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__rti1.y",
+        "target": "asset_dtaas_mass_spring_damper_monitor__m2.x1",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd1.v1",
+        "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+        "target": "asset_dtaas_mass_spring_damper_monitor__m2.x2",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.x1",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd1.v1",
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.v1",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd2.fk",
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd1.fk",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper_monitor__msd2.x2",
+        "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u",
+        "policy": "direct",
+        "source_period": 0.001,
+        "target_period": 0.001,
+        "async": false
+      }
+    ],
+    "loop_wrappers": [],
+    "materialized": false,
+    "warnings": [
+      "fallback_step_size_for_asset_dtaas_mass_spring_damper_monitor__rti1=0.01",
+      "fallback_step_size_for_asset_dtaas_mass_spring_damper_monitor__rti2=0.01"
+    ],
+    "base_tick_method": "microgrid_gcd",
+    "execution_plan": [],
+    "async_edges": [],
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "communication_point_count": 10001
+  },
+  "execution_order": [
+    "asset_dtaas_mass_spring_damper_monitor__msd1",
+    "asset_dtaas_mass_spring_damper_monitor__msd2",
+    "asset_dtaas_mass_spring_damper_monitor__rti1",
+    "asset_dtaas_mass_spring_damper_monitor__rti2",
+    "asset_dtaas_mass_spring_damper_monitor__m2"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=5",
+    "case_extensions_extracted"
+  ],
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.c2",
+        "value": 1.0
+      },
+      {
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.cc",
+        "value": 1.0
+      },
+      {
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.d2",
+        "value": 1.0
+      },
+      {
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.dc",
+        "value": 1.0
+      },
+      {
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.m2",
+        "value": 1.0
+      }
+    ]
+  }
+}

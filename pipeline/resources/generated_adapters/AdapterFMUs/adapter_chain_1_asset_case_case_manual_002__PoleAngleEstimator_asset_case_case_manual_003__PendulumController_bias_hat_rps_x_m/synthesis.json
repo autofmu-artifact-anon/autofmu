@@ -1,0 +1,73 @@
+{
+  "adapter_id": "adapter_chain_1_asset_case_case_manual_002__PoleAngleEstimator_asset_case_case_manual_003__PendulumController_bias_hat_rps_x_m",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "rad/s",
+          "target_unit": "m",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "sysml": {
+        "name": "bias_hat_rps"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "rad/s",
+          "target_unit": "m",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "x_m"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_1_asset_case_case_manual_002__PoleAngleEstimator_asset_case_case_manual_003__PendulumController_bias_hat_rps_x_m",
+  "notes": [
+    "Unit mismatch: rad/s (angular velocity) to m (position) has no standard physical conversion",
+    "Using conservative fallback scale=1.0, offset=0.0 as no conversion factor provided in context",
+    "Source signal bias_hat_rps may not match semantic intent which expects x_m -> x_m"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_case_case_manual_002__PoleAngleEstimator"
+    },
+    {
+      "name": "asset_case_case_manual_003__PendulumController"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

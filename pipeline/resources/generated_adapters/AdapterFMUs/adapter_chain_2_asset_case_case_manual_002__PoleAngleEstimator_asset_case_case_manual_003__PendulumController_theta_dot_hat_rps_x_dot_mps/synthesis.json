@@ -1,0 +1,73 @@
+{
+  "adapter_id": "adapter_chain_2_asset_case_case_manual_002__PoleAngleEstimator_asset_case_case_manual_003__PendulumController_theta_dot_hat_rps_x_dot_mps",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "rad/s",
+          "target_unit": "m/s",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "sysml": {
+        "name": "theta_dot_hat_rps"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "rad/s",
+          "target_unit": "m/s",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "x_dot_mps"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_2_asset_case_case_manual_002__PoleAngleEstimator_asset_case_case_manual_003__PendulumController_theta_dot_hat_rps_x_dot_mps",
+  "notes": [
+    "rad/s to m/s conversion requires physical parameter (e.g., pendulum length) not available in context",
+    "Using conservative fallback pass-through transform",
+    "Potential semantic mismatch: source is pole angular velocity estimate, target expects cart linear velocity"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_case_case_manual_002__PoleAngleEstimator"
+    },
+    {
+      "name": "asset_case_case_manual_003__PendulumController"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

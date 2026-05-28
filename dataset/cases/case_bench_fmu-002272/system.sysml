@@ -1,0 +1,1 @@
+../../sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/Test-FMUs/0.0.1/Feedthrough/Feedthrough.sysml

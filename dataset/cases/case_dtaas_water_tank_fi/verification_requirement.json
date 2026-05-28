@@ -1,0 +1,62 @@
+{
+  "case_id": "case_dtaas_water_tank_fi",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "notes": "Threshold TBD pending baseline evaluation.",
+      "operator": "<=",
+      "signals": [
+        "valve",
+        "level"
+      ],
+      "value": null
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "requires_ground_truth": true,
+    "signals": [
+      "valve",
+      "level"
+    ],
+    "time_column": "time"
+  },
+  "derivation_basis": {
+    "expected_behavior": "Fault injection tampers with controller output during the configured interval, causing the tank level to rise beyond the nominal operating band.",
+    "signals_of_interest": [
+      "valve",
+      "level"
+    ],
+    "source_root": "sources/dtaas_examples/case_dtaas_water_tank_fi"
+  },
+  "judgement_policy": "behavioral_expectation_pending_execution",
+  "scenario_window": {
+    "start_time": 0,
+    "step_size": 0.1,
+    "stop_time": 100
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "level": [
+      "level",
+      "asset_dtaas_water_tank_fi__x2.level"
+    ],
+    "valve": [
+      "valve",
+      "asset_dtaas_water_tank_fi__x1.valve"
+    ]
+  },
+  "signals": [
+    "valve",
+    "level"
+  ],
+  "text": "Water Tank Fault Injection. Water-tank controller and plant co-simulation with Maestro fault injection extension.. Scenario time window 0s to 100s. Signals of interest: valve, level Expected ground-truth behavior: Fault injection tampers with controller output during the configured interval, causing the tank level to rise beyond the nominal operating band. A final pass/fail conclusion remains pending until a reference execution trace is normalized.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Water Tank Fault Injection Verification Requirement",
+  "tolerances": {}
+}

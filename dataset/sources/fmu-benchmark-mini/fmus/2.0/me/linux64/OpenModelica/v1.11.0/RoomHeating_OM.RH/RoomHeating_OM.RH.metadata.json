@@ -1,0 +1,578 @@
+{
+  "dataset_id": "fmu-001629",
+  "source_repo": "fmi-cross-check-master",
+  "source_path": "fmus/2.0/me/arm-linux-gnueabi/OpenModelica/v1.11.0/RoomHeating_OM_RH/RoomHeating_OM_RH.fmu",
+  "source_commit": "",
+  "fmi": {
+    "fmiVersion": "2.0",
+    "fmiTypes": [
+      "ModelExchange",
+      "CoSimulation"
+    ],
+    "modelName": "RoomHeating_OM.RH",
+    "guid": "{e0da2bdb-ec76-42d1-bd09-a8db9cb3c63a}",
+    "description": "",
+    "author": "",
+    "generationTool": "OpenModelica Compiler OMCompiler v1.12.0-dev.131+gc80769b",
+    "generationDateAndTime": "2017-01-20T18:26:00Z",
+    "variableNamingConvention": "structured",
+    "numberOfEventIndicators": 2,
+    "defaultExperiment": {
+      "startTime": 0.0,
+      "stopTime": 1.0,
+      "tolerance": 1e-06
+    }
+  },
+  "implementation": {
+    "platforms": [
+      "arm-linux-gnueabihf",
+      "win64",
+      "darwin64",
+      "win32",
+      "linux64",
+      "darwin32",
+      "linux32",
+      "c-code"
+    ],
+    "modelExchange": {
+      "modelIdentifier": "RoomHeating_OM_RH"
+    },
+    "coSimulation": {
+      "modelIdentifier": "RoomHeating_OM_RH",
+      "needsExecutionTool": false,
+      "canBeInstantiatedOnlyOncePerProcess": false,
+      "canNotUseMemoryManagementFunctions": false,
+      "canGetAndSetFMUstate": false,
+      "canSerializeFMUstate": false,
+      "canHandleVariableCommunicationStepSize": true,
+      "canInterpolateInputs": false,
+      "canRunAsynchronuously": false,
+      "maxOutputDerivativeOrder": 1
+    }
+  },
+  "variables": [
+    {
+      "name": "room.RAT",
+      "valueReference": 0,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "room.energy",
+      "valueReference": 1,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "wall.Tisurf",
+      "valueReference": 2,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal surface temperature of the wall",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "wall.Tosurf",
+      "valueReference": 3,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "external surface temperature of the wall",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "der(room.RAT)",
+      "valueReference": 4,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "calculated",
+      "derivative": 1
+    },
+    {
+      "name": "der(room.energy)",
+      "valueReference": 5,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "calculated",
+      "derivative": 2
+    },
+    {
+      "name": "der(wall.Tisurf)",
+      "valueReference": 6,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal surface temperature of the wall",
+      "initial": "calculated",
+      "derivative": 3
+    },
+    {
+      "name": "der(wall.Tosurf)",
+      "valueReference": 7,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "external surface temperature of the wall",
+      "initial": "calculated",
+      "derivative": 4
+    },
+    {
+      "name": "OAT",
+      "valueReference": 8,
+      "causality": "input",
+      "variability": "continuous",
+      "type": "Real",
+      "start": 0.0
+    },
+    {
+      "name": "RAT",
+      "valueReference": 9,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "calculated"
+    },
+    {
+      "name": "fanspeed",
+      "valueReference": 10,
+      "causality": "input",
+      "variability": "continuous",
+      "type": "Real",
+      "start": 0.0
+    },
+    {
+      "name": "room.DT",
+      "valueReference": 11,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "room.EWT",
+      "valueReference": 12,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "entering water temperature",
+      "initial": "calculated"
+    },
+    {
+      "name": "room.Qin",
+      "valueReference": 13,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "heat transferred to the air in the coil",
+      "initial": "calculated"
+    },
+    {
+      "name": "room.Qout",
+      "valueReference": 14,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "heat lost through room walls",
+      "initial": "calculated"
+    },
+    {
+      "name": "room.SAT",
+      "valueReference": 15,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "supply air temperature",
+      "initial": "calculated"
+    },
+    {
+      "name": "room.fs",
+      "valueReference": 16,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "exact",
+      "start": 0.0001
+    },
+    {
+      "name": "room.mdota",
+      "valueReference": 17,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "air flow rate leaving the fan",
+      "initial": "exact",
+      "start": 5e-05
+    },
+    {
+      "name": "room.mdotw",
+      "valueReference": 18,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "water flow rate leaving the valve",
+      "initial": "exact",
+      "start": 1e-05
+    },
+    {
+      "name": "room.vo",
+      "valueReference": 19,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "exact",
+      "start": 0.0001
+    },
+    {
+      "name": "valveopen",
+      "valueReference": 20,
+      "causality": "input",
+      "variability": "continuous",
+      "type": "Real",
+      "start": 0.0
+    },
+    {
+      "name": "wall.C",
+      "valueReference": 21,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "thermal capacity of the wall",
+      "initial": "calculated"
+    },
+    {
+      "name": "wall.R",
+      "valueReference": 22,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "wall resistance",
+      "initial": "calculated"
+    },
+    {
+      "name": "room.Awall",
+      "valueReference": 23,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "wall surface area",
+      "initial": "exact",
+      "start": 60.0
+    },
+    {
+      "name": "room.LWT",
+      "valueReference": 24,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "leaving water temperature",
+      "initial": "exact",
+      "start": 40.0
+    },
+    {
+      "name": "room.RATinit",
+      "valueReference": 25,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "initial room air temperature",
+      "initial": "exact",
+      "start": 16.0
+    },
+    {
+      "name": "room.cAir",
+      "valueReference": 26,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "specific heat of air",
+      "initial": "exact",
+      "start": 1012.0
+    },
+    {
+      "name": "room.cWater",
+      "valueReference": 27,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "specific heat of water",
+      "initial": "exact",
+      "start": 4181.0
+    },
+    {
+      "name": "room.eps",
+      "valueReference": 28,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "coil effectiveness",
+      "initial": "exact",
+      "start": 0.4
+    },
+    {
+      "name": "room.hAir",
+      "valueReference": 29,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "heat transfer coefficient",
+      "initial": "exact",
+      "start": 4.0
+    },
+    {
+      "name": "room.mdotat",
+      "valueReference": 30,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "total air flow rate availbale from the fan",
+      "initial": "exact",
+      "start": 0.5
+    },
+    {
+      "name": "room.mdotwt",
+      "valueReference": 31,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "total water flow rate availbale from the heat pump",
+      "initial": "exact",
+      "start": 0.1
+    },
+    {
+      "name": "room.rohAir",
+      "valueReference": 32,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "density of air",
+      "initial": "exact",
+      "start": 1.204
+    },
+    {
+      "name": "room.vAir",
+      "valueReference": 33,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "room air volume",
+      "initial": "exact",
+      "start": 300.0
+    },
+    {
+      "name": "wall.TisurfInit",
+      "valueReference": 34,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "initial internal surface temperature of the wall",
+      "initial": "exact",
+      "start": 16.0
+    },
+    {
+      "name": "wall.TosurfInit",
+      "valueReference": 35,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "initial external surface temperature of the wall",
+      "initial": "exact",
+      "start": 10.0
+    },
+    {
+      "name": "wall.aWall",
+      "valueReference": 36,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "wall area",
+      "initial": "exact",
+      "start": 60.0
+    },
+    {
+      "name": "wall.cWall",
+      "valueReference": 37,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "initial": "exact",
+      "start": 1360.71
+    },
+    {
+      "name": "wall.hi",
+      "valueReference": 38,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "indoor heat transfer coefficient",
+      "initial": "exact",
+      "start": 8.33
+    },
+    {
+      "name": "wall.ho",
+      "valueReference": 39,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "outdoor heat transfer coefficient",
+      "initial": "exact",
+      "start": 33.33
+    },
+    {
+      "name": "wall.lWall",
+      "valueReference": 40,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "wall thickness",
+      "initial": "exact",
+      "start": 0.03
+    },
+    {
+      "name": "wall.lambda_Wall",
+      "valueReference": 41,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "initial": "exact",
+      "start": 0.1192
+    },
+    {
+      "name": "wall.rhoWall",
+      "valueReference": 42,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "initial": "exact",
+      "start": 1312.0
+    },
+    {
+      "name": "room.Tisurf",
+      "valueReference": 2,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "wall internal surface temperature"
+    },
+    {
+      "name": "room.fanspeed",
+      "valueReference": 10,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real"
+    },
+    {
+      "name": "room.valveopen",
+      "valueReference": 20,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real"
+    },
+    {
+      "name": "wall.OAT",
+      "valueReference": 8,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real"
+    },
+    {
+      "name": "wall.RAT",
+      "valueReference": 0,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real"
+    },
+    {
+      "name": "wall.lambdaOut",
+      "valueReference": 41,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real"
+    }
+  ],
+  "interface": {
+    "inputs": [
+      "OAT",
+      "fanspeed",
+      "valveopen"
+    ],
+    "outputs": [
+      "RAT"
+    ],
+    "parameters": [
+      "room.Awall",
+      "room.LWT",
+      "room.RATinit",
+      "room.cAir",
+      "room.cWater",
+      "room.eps",
+      "room.hAir",
+      "room.mdotat",
+      "room.mdotwt",
+      "room.rohAir",
+      "room.vAir",
+      "wall.TisurfInit",
+      "wall.TosurfInit",
+      "wall.aWall",
+      "wall.cWall",
+      "wall.hi",
+      "wall.ho",
+      "wall.lWall",
+      "wall.lambda_Wall",
+      "wall.rhoWall"
+    ],
+    "locals": [
+      "room.RAT",
+      "room.energy",
+      "wall.Tisurf",
+      "wall.Tosurf",
+      "der(room.RAT)",
+      "der(room.energy)",
+      "der(wall.Tisurf)",
+      "der(wall.Tosurf)",
+      "room.DT",
+      "room.EWT",
+      "room.Qin",
+      "room.Qout",
+      "room.SAT",
+      "room.fs",
+      "room.mdota",
+      "room.mdotw",
+      "room.vo",
+      "wall.C",
+      "wall.R",
+      "room.Tisurf",
+      "room.fanspeed",
+      "room.valveopen",
+      "wall.OAT",
+      "wall.RAT",
+      "wall.lambdaOut"
+    ],
+    "states": [
+      "der(room.RAT)",
+      "der(room.energy)",
+      "der(wall.Tisurf)",
+      "der(wall.Tosurf)"
+    ]
+  },
+  "test": {
+    "hasReferenceInput": false,
+    "hasReferenceOutput": true,
+    "referenceOutputFile": "RoomHeating_OM.RH_ref.csv",
+    "simulationOptionsFile": "RoomHeating_OM.RH_simopt.json"
+  },
+  "validation": {
+    "fmiCompliance": "not_checked"
+  }
+}

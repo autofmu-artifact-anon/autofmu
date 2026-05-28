@@ -1,0 +1,135 @@
+{
+  "case_id": "case_manual_004",
+  "criteria": [
+    {
+      "metric": "within_range(x_m)",
+      "notes": "缸位移必须保持在当前场景对应的有效包络内。",
+      "operator": "in",
+      "signals": [
+        "x_m"
+      ],
+      "unit": "m",
+      "value": [
+        0.0,
+        0.13
+      ]
+    },
+    {
+      "metric": "within_range(valve_cmd)",
+      "notes": "阀命令需保持在饱和器定义的范围内。",
+      "operator": "in",
+      "signals": [
+        "valve_cmd"
+      ],
+      "unit": "-",
+      "value": [
+        -1.0,
+        1.0
+      ]
+    },
+    {
+      "metric": "within_range(spool_u)",
+      "notes": "阀芯位移应维持在执行器物理范围内。",
+      "operator": "in",
+      "signals": [
+        "spool_u"
+      ],
+      "unit": "-",
+      "value": [
+        -0.1,
+        0.1
+      ]
+    },
+    {
+      "metric": "within_range(pA_Pa)",
+      "notes": "A 腔压力需维持在模型有效压力边界内。",
+      "operator": "in",
+      "signals": [
+        "pA_Pa"
+      ],
+      "unit": "Pa",
+      "value": [
+        100000.0,
+        21000000.0
+      ]
+    },
+    {
+      "metric": "within_range(pB_Pa)",
+      "notes": "B 腔压力需维持在模型有效压力边界内。",
+      "operator": "in",
+      "signals": [
+        "pB_Pa"
+      ],
+      "unit": "Pa",
+      "value": [
+        100000.0,
+        21000000.0
+      ]
+    }
+  ],
+  "decision_rule": {
+    "criteria_source": "verification_requirement.criteria",
+    "kind": "acceptance_criteria",
+    "requires_ground_truth": true
+  },
+  "derivation_basis": {
+    "acceptance_criteria_count": 5,
+    "signals_of_interest": [
+      "x_m",
+      "valve_cmd",
+      "spool_u",
+      "pA_Pa",
+      "pB_Pa"
+    ],
+    "source_root": "sources/cases/case_manual_004"
+  },
+  "judgement_policy": "acceptance_criteria_from_requirement",
+  "scenario_window": {
+    "start_time": 0,
+    "stop_time": 5
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "pA_Pa": [
+      "pA_Pa",
+      "asset_case_case_manual_004__HydraulicCylinderPlant.pA_Pa"
+    ],
+    "pB_Pa": [
+      "pB_Pa",
+      "asset_case_case_manual_004__HydraulicCylinderPlant.pB_Pa"
+    ],
+    "rod_force_N": [
+      "rod_force_N",
+      "asset_case_case_manual_004__HydraulicCylinderPlant.rod_force_N"
+    ],
+    "sat_flag": [
+      "sat_flag",
+      "asset_case_case_manual_004__PositionController.sat_flag"
+    ],
+    "spool_state": [
+      "spool_state",
+      "asset_case_case_manual_004__SpoolValveActuator.spool_state"
+    ],
+    "spool_u": [
+      "spool_u",
+      "asset_case_case_manual_004__SpoolValveActuator.spool_u"
+    ],
+    "v_mps": [
+      "v_mps",
+      "asset_case_case_manual_004__HydraulicCylinderPlant.v_mps"
+    ],
+    "valve_cmd": [
+      "valve_cmd",
+      "asset_case_case_manual_004__PositionController.valve_cmd"
+    ],
+    "x_m": [
+      "x_m",
+      "asset_case_case_manual_004__HydraulicCylinderPlant.x_m"
+    ]
+  },
+  "signals": [],
+  "text": "电液伺服缸有界响应检查. 在 0s 到 5s 的阀控场景下，位移、阀命令、阀芯位移与腔压都应保持在物理可接受范围内。Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+  "time_column_aliases": [],
+  "title": "电液伺服缸有界响应检查 Verification Requirement",
+  "tolerances": {}
+}

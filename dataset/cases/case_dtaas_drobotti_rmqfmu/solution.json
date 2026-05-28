@@ -1,0 +1,195 @@
+{
+  "adapters": [],
+  "case_id": "case_dtaas_drobotti_rmqfmu",
+  "connections": [
+    {
+      "source": "asset_dtaas_drobotti_rmqfmu__distance.distance",
+      "target": "asset_dtaas_drobotti_rmqfmu__rbmq.distance"
+    },
+    {
+      "source": "asset_dtaas_drobotti_rmqfmu__rbmq.xpos",
+      "target": "asset_dtaas_drobotti_rmqfmu__distance.xpos"
+    },
+    {
+      "source": "asset_dtaas_drobotti_rmqfmu__rbmq.ypos",
+      "target": "asset_dtaas_drobotti_rmqfmu__distance.ypos"
+    }
+  ],
+  "execution_order": [
+    "asset_dtaas_drobotti_rmqfmu__rbmq",
+    "asset_dtaas_drobotti_rmqfmu__distance"
+  ],
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.maxage",
+        "value": 300
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.hostname",
+        "value": "host"
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.username",
+        "value": "usr"
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.password",
+        "value": "pass"
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.vhost",
+        "value": "vhost"
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.port",
+        "value": 5672
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.precision",
+        "value": 10
+      }
+    ],
+    "raw_config_relpaths": [
+      "raw/digital_twins/drobotti_rmqfmu/README.md",
+      "raw/digital_twins/drobotti_rmqfmu/multimodel.json",
+      "raw/digital_twins/drobotti_rmqfmu/coe.json",
+      "raw/digital_twins/drobotti_rmqfmu/rabbitMQ-credentials.json",
+      "raw/data/drobotti_rmqfmu/consume.py",
+      "raw/data/drobotti_rmqfmu/drobotti_playback_data.csv",
+      "raw/data/drobotti_rmqfmu/get_credentials.py",
+      "raw/data/drobotti_rmqfmu/rmq-publisher.py"
+    ],
+    "runtime_io": {
+      "raw_relpaths": [
+        "raw/digital_twins/drobotti_rmqfmu/rabbitMQ-credentials.json",
+        "raw/data/drobotti_rmqfmu/consume.py",
+        "raw/data/drobotti_rmqfmu/drobotti_playback_data.csv",
+        "raw/data/drobotti_rmqfmu/get_credentials.py",
+        "raw/data/drobotti_rmqfmu/rmq-publisher.py"
+      ],
+      "summary": "RabbitMQ publisher and consumer scripts emulate the physical twin around the co-simulation."
+    }
+  },
+  "external_inputs": [],
+  "loop_resolution": [],
+  "monitored_outputs": [
+    {
+      "name": "distance",
+      "source": "asset_dtaas_drobotti_rmqfmu__distance.distance"
+    },
+    {
+      "name": "xpos",
+      "source": "asset_dtaas_drobotti_rmqfmu__rbmq.xpos"
+    },
+    {
+      "name": "ypos",
+      "source": "asset_dtaas_drobotti_rmqfmu__rbmq.ypos"
+    }
+  ],
+  "notes": [
+    "The RabbitMQ FMU receives playback robot coordinates and forwards the computed distance back to the consumer during fixed-step co-simulation."
+  ],
+  "schedule": {
+    "co_simulation_type": "fixed-step",
+    "kind": "co_simulation",
+    "live_log_interval": 0,
+    "report_progress": true,
+    "start_time": 0,
+    "step_size": 0.1,
+    "stop_time": 10
+  },
+  "schema": "UNIFIED_SOLUTION_V1",
+  "selected_asset_ids": [
+    "asset_dtaas_drobotti_rmqfmu__rbmq",
+    "asset_dtaas_drobotti_rmqfmu__distance"
+  ],
+  "stages": [
+    {
+      "connections": [
+        {
+          "source": "asset_dtaas_drobotti_rmqfmu__distance.distance",
+          "target": "asset_dtaas_drobotti_rmqfmu__rbmq.distance"
+        },
+        {
+          "source": "asset_dtaas_drobotti_rmqfmu__rbmq.xpos",
+          "target": "asset_dtaas_drobotti_rmqfmu__distance.xpos"
+        },
+        {
+          "source": "asset_dtaas_drobotti_rmqfmu__rbmq.ypos",
+          "target": "asset_dtaas_drobotti_rmqfmu__distance.ypos"
+        }
+      ],
+      "execution_order": [
+        "asset_dtaas_drobotti_rmqfmu__rbmq",
+        "asset_dtaas_drobotti_rmqfmu__distance"
+      ],
+      "extensions": {
+        "parameter_overrides": [
+          {
+            "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.maxage",
+            "value": 300
+          },
+          {
+            "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.hostname",
+            "value": "host"
+          },
+          {
+            "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.username",
+            "value": "usr"
+          },
+          {
+            "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.password",
+            "value": "pass"
+          },
+          {
+            "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.vhost",
+            "value": "vhost"
+          },
+          {
+            "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.port",
+            "value": 5672
+          },
+          {
+            "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.precision",
+            "value": 10
+          }
+        ],
+        "raw_config_relpaths": [
+          "raw/digital_twins/drobotti_rmqfmu/multimodel.json",
+          "raw/digital_twins/drobotti_rmqfmu/coe.json",
+          "raw/digital_twins/drobotti_rmqfmu/rabbitMQ-credentials.json"
+        ]
+      },
+      "external_inputs": [],
+      "monitored_outputs": [
+        {
+          "name": "distance",
+          "source": "asset_dtaas_drobotti_rmqfmu__distance.distance"
+        },
+        {
+          "name": "xpos",
+          "source": "asset_dtaas_drobotti_rmqfmu__rbmq.xpos"
+        },
+        {
+          "name": "ypos",
+          "source": "asset_dtaas_drobotti_rmqfmu__rbmq.ypos"
+        }
+      ],
+      "schedule": {
+        "co_simulation_type": "fixed-step",
+        "kind": "co_simulation",
+        "live_log_interval": 0,
+        "report_progress": true,
+        "start_time": 0,
+        "step_size": 0.1,
+        "stop_time": 10
+      },
+      "selected_asset_ids": [
+        "asset_dtaas_drobotti_rmqfmu__rbmq",
+        "asset_dtaas_drobotti_rmqfmu__distance"
+      ],
+      "stage_id": "stage1"
+    }
+  ]
+}

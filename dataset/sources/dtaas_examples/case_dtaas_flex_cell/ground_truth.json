@@ -1,0 +1,171 @@
+{
+  "correct_connections": [
+    {
+      "from": "asset_dtaas_flex_cell__rabbitmq.target_Z_kuka",
+      "to": "asset_dtaas_flex_cell__kuka.target_Z"
+    },
+    {
+      "from": "asset_dtaas_flex_cell__rabbitmq.target_X_ur5e",
+      "to": "asset_dtaas_flex_cell__ur5e.target_X"
+    },
+    {
+      "from": "asset_dtaas_flex_cell__rabbitmq.target_Y_ur5e",
+      "to": "asset_dtaas_flex_cell__ur5e.target_Y"
+    },
+    {
+      "from": "asset_dtaas_flex_cell__rabbitmq.target_Y_kuka",
+      "to": "asset_dtaas_flex_cell__kuka.target_Y"
+    },
+    {
+      "from": "asset_dtaas_flex_cell__rabbitmq.target_Z_ur5e",
+      "to": "asset_dtaas_flex_cell__ur5e.target_Z"
+    },
+    {
+      "from": "asset_dtaas_flex_cell__rabbitmq.target_X_kuka",
+      "to": "asset_dtaas_flex_cell__kuka.target_X"
+    },
+    {
+      "from": "asset_dtaas_flex_cell__rabbitmq.motion_time_ur5e",
+      "to": "asset_dtaas_flex_cell__ur5e.motion_time"
+    },
+    {
+      "from": "asset_dtaas_flex_cell__rabbitmq.motion_time_kuka",
+      "to": "asset_dtaas_flex_cell__kuka.motion_time"
+    }
+  ],
+  "correct_fmus": [
+    "fmu_rabbitmq",
+    "fmu_kuka",
+    "fmu_ur5e"
+  ],
+  "expected_behavior": "The RabbitMQ FMU injects target Cartesian positions and motion durations for both robot FMUs, and the logged robot states track those commands over fixed-step co-simulation.",
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q4_param",
+        "value": -0.073072
+      },
+      {
+        "target": "asset_dtaas_flex_cell__ur5e.prev_q2_param",
+        "value": 2.315173
+      },
+      {
+        "target": "asset_dtaas_flex_cell__ur5e.prev_q3_param",
+        "value": -2.248468
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q3_param",
+        "value": -1.851805
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q1_param",
+        "value": 0.287188
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q0_param",
+        "value": 0.285609
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q2_param",
+        "value": 0.220264
+      },
+      {
+        "target": "asset_dtaas_flex_cell__ur5e.prev_q4_param",
+        "value": -0.890721
+      },
+      {
+        "target": "asset_dtaas_flex_cell__ur5e.prev_q0_param",
+        "value": -2.666677
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q6_param",
+        "value": 0.536052
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q5_param",
+        "value": 1.010198
+      },
+      {
+        "target": "asset_dtaas_flex_cell__ur5e.prev_q1_param",
+        "value": -2.06638
+      },
+      {
+        "target": "asset_dtaas_flex_cell__ur5e.prev_q5_param",
+        "value": -0.942086
+      }
+    ],
+    "raw_config_relpaths": [
+      "raw/digital_twins/flex-cell/README.md",
+      "raw/digital_twins/flex-cell/multimodel.json",
+      "raw/digital_twins/flex-cell/multimodel_with_rmq.json",
+      "raw/digital_twins/flex-cell/kuka_actual.conf",
+      "raw/digital_twins/flex-cell/kuka_experimental.conf",
+      "raw/digital_twins/flex-cell/ur5e_actual.conf",
+      "raw/digital_twins/flex-cell/ur5e_experimental.conf",
+      "raw/data/flex-cell/input/connections.conf",
+      "raw/data/flex-cell/input/publisher-flexcell-physical.py",
+      "raw/data/flex-cell/input/ur5e_mqtt_publisher.py",
+      "raw/data/flex-cell/input/physical_twin/kukalbriiwa7_actual.csv",
+      "raw/data/flex-cell/input/physical_twin/ur5e_actual.csv"
+    ],
+    "runtime_io": {
+      "raw_relpaths": [
+        "raw/data/flex-cell/input/connections.conf",
+        "raw/data/flex-cell/input/publisher-flexcell-physical.py",
+        "raw/data/flex-cell/input/ur5e_mqtt_publisher.py",
+        "raw/data/flex-cell/input/physical_twin/kukalbriiwa7_actual.csv",
+        "raw/data/flex-cell/input/physical_twin/ur5e_actual.csv"
+      ],
+      "summary": "A RabbitMQ/MQTT bridge script injects robot targets and mirrors physical-twin telemetry into the co-simulation."
+    }
+  },
+  "stages": [
+    {
+      "connections": [
+        {
+          "source": "asset_dtaas_flex_cell__rabbitmq.target_Z_kuka",
+          "target": "asset_dtaas_flex_cell__kuka.target_Z"
+        },
+        {
+          "source": "asset_dtaas_flex_cell__rabbitmq.target_X_ur5e",
+          "target": "asset_dtaas_flex_cell__ur5e.target_X"
+        },
+        {
+          "source": "asset_dtaas_flex_cell__rabbitmq.target_Y_ur5e",
+          "target": "asset_dtaas_flex_cell__ur5e.target_Y"
+        },
+        {
+          "source": "asset_dtaas_flex_cell__rabbitmq.target_Y_kuka",
+          "target": "asset_dtaas_flex_cell__kuka.target_Y"
+        },
+        {
+          "source": "asset_dtaas_flex_cell__rabbitmq.target_Z_ur5e",
+          "target": "asset_dtaas_flex_cell__ur5e.target_Z"
+        },
+        {
+          "source": "asset_dtaas_flex_cell__rabbitmq.target_X_kuka",
+          "target": "asset_dtaas_flex_cell__kuka.target_X"
+        },
+        {
+          "source": "asset_dtaas_flex_cell__rabbitmq.motion_time_ur5e",
+          "target": "asset_dtaas_flex_cell__ur5e.motion_time"
+        },
+        {
+          "source": "asset_dtaas_flex_cell__rabbitmq.motion_time_kuka",
+          "target": "asset_dtaas_flex_cell__kuka.motion_time"
+        }
+      ],
+      "schedule": {
+        "co_simulation_type": "fixed-step",
+        "kind": "co_simulation",
+        "step_size": 0.2
+      },
+      "selected_asset_ids": [
+        "asset_dtaas_flex_cell__rabbitmq",
+        "asset_dtaas_flex_cell__kuka",
+        "asset_dtaas_flex_cell__ur5e"
+      ],
+      "stage_id": "stage1"
+    }
+  ]
+}

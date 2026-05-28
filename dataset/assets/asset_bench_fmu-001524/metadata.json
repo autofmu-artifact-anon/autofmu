@@ -1,0 +1,1446 @@
+{
+  "asset_id": "asset_bench_fmu-001524",
+  "backend_kind": "native_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": true,
+    "can_handle_variable_communication_step_size": false,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "fixed_internal_step_size": null,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "dataset_id": "fmu-001524",
+  "default_experiment": {
+    "startTime": 0.0,
+    "stepSize": 0.0,
+    "stopTime": 1.5,
+    "tolerance": 1e-06
+  },
+  "description": "FMICrossCheck.CoupledClutches",
+  "fmi_types": [
+    "ModelExchange"
+  ],
+  "fmi_version": "2.0",
+  "inputs": [
+    "f_normalized"
+  ],
+  "name": "FMICrossCheck.CoupledClutches",
+  "outputs": [
+    "J1_w",
+    "J2_w",
+    "J3_w",
+    "J4_w"
+  ],
+  "ports": [
+    {
+      "causality": "local",
+      "description": "Absolute angular acceleration of component (= der(w))",
+      "name": "J1.a",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Accelerating torque acting at flange (= -flange.tau)",
+      "name": "torque.tau",
+      "type": "Real",
+      "unit": "N.m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular acceleration (= der(w_rel))",
+      "name": "clutch1.a_rel",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative rotation angle (= flange_b.phi - flange_a.phi)",
+      "name": "clutch1.phi_rel",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of phi_rel",
+      "name": "der(clutch1.phi_rel)",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Torque between flanges (= flange_b.tau)",
+      "name": "clutch1.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular velocity (= der(phi_rel))",
+      "name": "clutch1.w_rel",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of w_rel",
+      "name": "der(clutch1.w_rel)",
+      "type": "Real",
+      "unit": "rad/s/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Friction torque for w_relfric=0 and forward sliding",
+      "name": "clutch1.tau0",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Maximum friction torque for w_relfric=0 and locked",
+      "name": "clutch1.tau0_max",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "= true, if frictional element is not active",
+      "name": "clutch1.free",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "Relative rotation angle (= flange_b.phi - flange_a.phi)",
+      "name": "clutch2.phi_rel",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of phi_rel",
+      "name": "der(clutch2.phi_rel)",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Path parameter of friction characteristic tau = f(a_relfric)",
+      "name": "clutch1.sa",
+      "type": "Real",
+      "unit": "1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular velocity (= der(phi_rel))",
+      "name": "clutch2.w_rel",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of w_rel",
+      "name": "der(clutch2.w_rel)",
+      "type": "Real",
+      "unit": "rad/s/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "= true, if w_relfric=0 and start of forward sliding",
+      "name": "clutch1.startForward",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "= true, if w_relfric=0 and start of backward sliding",
+      "name": "clutch1.startBackward",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "true, if w_rel=0 and not sliding",
+      "name": "clutch1.locked",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "Relative rotation angle (= flange_b.phi - flange_a.phi)",
+      "name": "clutch3.phi_rel",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of phi_rel",
+      "name": "der(clutch3.phi_rel)",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Loss power leaving component via heatPort (> 0, if heat is flowing out of component)",
+      "name": "clutch1.lossPower",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular velocity (= der(phi_rel))",
+      "name": "clutch3.w_rel",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of w_rel",
+      "name": "der(clutch3.w_rel)",
+      "type": "Real",
+      "unit": "rad/s/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of component",
+      "name": "J4.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of phi",
+      "name": "der(J4.phi)",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Friction coefficient for w=0 and forward sliding",
+      "name": "clutch1.mue0",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute angular velocity of component (= der(phi))",
+      "name": "J4.w",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of w",
+      "name": "der(J4.w)",
+      "type": "Real",
+      "unit": "rad/s/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Normal force (fn=fn_max*f_normalized)",
+      "name": "clutch1.fn",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Mode of friction (-1: backward sliding, 0: stuck, 1: forward sliding, 2: inactive, 3: unknown)",
+      "name": "clutch1.mode",
+      "type": "Integer",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "Connector of Real output signal",
+      "name": "step1.y",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute angular acceleration of component (= der(w))",
+      "name": "J2.a",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular acceleration (= der(w_rel))",
+      "name": "clutch2.a_rel",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Torque between flanges (= flange_b.tau)",
+      "name": "clutch2.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Friction torque for w_relfric=0 and forward sliding",
+      "name": "clutch2.tau0",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Maximum friction torque for w_relfric=0 and locked",
+      "name": "clutch2.tau0_max",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "= true, if frictional element is not active",
+      "name": "clutch2.free",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "Path parameter of friction characteristic tau = f(a_relfric)",
+      "name": "clutch2.sa",
+      "type": "Real",
+      "unit": "1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "= true, if w_relfric=0 and start of forward sliding",
+      "name": "clutch2.startForward",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "= true, if w_relfric=0 and start of backward sliding",
+      "name": "clutch2.startBackward",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "true, if w_rel=0 and not sliding",
+      "name": "clutch2.locked",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "Loss power leaving component via heatPort (> 0, if heat is flowing out of component)",
+      "name": "clutch2.lossPower",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Friction coefficient for w=0 and forward sliding",
+      "name": "clutch2.mue0",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Normal force (fn=fn_max*f_normalized)",
+      "name": "clutch2.fn",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Mode of friction (-1: backward sliding, 0: stuck, 1: forward sliding, 2: inactive, 3: unknown)",
+      "name": "clutch2.mode",
+      "type": "Integer",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute angular acceleration of component (= der(w))",
+      "name": "J3.a",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular acceleration (= der(w_rel))",
+      "name": "clutch3.a_rel",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Torque between flanges (= flange_b.tau)",
+      "name": "clutch3.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Friction torque for w_relfric=0 and forward sliding",
+      "name": "clutch3.tau0",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Maximum friction torque for w_relfric=0 and locked",
+      "name": "clutch3.tau0_max",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "= true, if frictional element is not active",
+      "name": "clutch3.free",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "Path parameter of friction characteristic tau = f(a_relfric)",
+      "name": "clutch3.sa",
+      "type": "Real",
+      "unit": "1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "= true, if w_relfric=0 and start of forward sliding",
+      "name": "clutch3.startForward",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "= true, if w_relfric=0 and start of backward sliding",
+      "name": "clutch3.startBackward",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "true, if w_rel=0 and not sliding",
+      "name": "clutch3.locked",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "Loss power leaving component via heatPort (> 0, if heat is flowing out of component)",
+      "name": "clutch3.lossPower",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Friction coefficient for w=0 and forward sliding",
+      "name": "clutch3.mue0",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Normal force (fn=fn_max*f_normalized)",
+      "name": "clutch3.fn",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Mode of friction (-1: backward sliding, 0: stuck, 1: forward sliding, 2: inactive, 3: unknown)",
+      "name": "clutch3.mode",
+      "type": "Integer",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute angular acceleration of component (= der(w))",
+      "name": "J4.a",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Connector of Real output signal",
+      "name": "sin2.y",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "",
+      "name": "J1_w",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "",
+      "name": "J2_w",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "",
+      "name": "J3_w",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "",
+      "name": "J4_w",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of component",
+      "name": "J1.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute angular velocity of component (= der(phi))",
+      "name": "J1.w",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of component",
+      "name": "J2.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute angular velocity of component (= der(phi))",
+      "name": "J2.w",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of component",
+      "name": "J3.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute angular velocity of component (= der(phi))",
+      "name": "J3.w",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "Frequency of sine function to invoke clutch1",
+      "name": "freqHz",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Time when clutch2 is invoked",
+      "name": "T2",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Time when clutch3 is invoked",
+      "name": "T3",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Moment of inertia",
+      "name": "J1.J",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Priority to use phi and w as states",
+      "name": "J1.stateSelect",
+      "type": "Enumeration",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "local",
+      "description": "= true, if support flange enabled, otherwise implicitly grounded",
+      "name": "torque.useSupport",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Nominal value of phi_rel (used for scaling)",
+      "name": "clutch1.phi_nominal",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Priority to use phi_rel and w_rel as states",
+      "name": "clutch1.stateSelect",
+      "type": "Enumeration",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Relative angular velocity near to zero if jumps due to a reinit(..) of the velocity can occur (set to low value only if such impulses can occur)",
+      "name": "clutch1.w_small",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "local",
+      "description": "=true, if heatPort is enabled",
+      "name": "clutch1.useHeatPort",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "[w,mue] positive sliding friction coefficient (w_rel>=0)",
+      "name": "clutch1.mue_pos[1,1]",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "[w,mue] positive sliding friction coefficient (w_rel>=0)",
+      "name": "clutch1.mue_pos[1,2]",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "peak*mue_pos[1,2] = maximum value of mue for w_rel==0",
+      "name": "clutch1.peak",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Geometry constant containing friction distribution assumption",
+      "name": "clutch1.cgeo",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Maximum normal force",
+      "name": "clutch1.fn_max",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Amplitude of sine wave",
+      "name": "sin1.amplitude",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Frequency of sine wave",
+      "name": "sin1.freqHz",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Phase of sine wave",
+      "name": "sin1.phase",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Offset of output signal",
+      "name": "sin1.offset",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Output = offset for time < startTime",
+      "name": "sin1.startTime",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Offset of output signal y",
+      "name": "step1.offset",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "calculatedParameter",
+      "description": "Output y = offset for time < startTime",
+      "name": "step1.startTime",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Height of step",
+      "name": "step1.height",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Moment of inertia",
+      "name": "J2.J",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Priority to use phi and w as states",
+      "name": "J2.stateSelect",
+      "type": "Enumeration",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Nominal value of phi_rel (used for scaling)",
+      "name": "clutch2.phi_nominal",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Priority to use phi_rel and w_rel as states",
+      "name": "clutch2.stateSelect",
+      "type": "Enumeration",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Relative angular velocity near to zero if jumps due to a reinit(..) of the velocity can occur (set to low value only if such impulses can occur)",
+      "name": "clutch2.w_small",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "local",
+      "description": "=true, if heatPort is enabled",
+      "name": "clutch2.useHeatPort",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "[w,mue] positive sliding friction coefficient (w_rel>=0)",
+      "name": "clutch2.mue_pos[1,1]",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "[w,mue] positive sliding friction coefficient (w_rel>=0)",
+      "name": "clutch2.mue_pos[1,2]",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "peak*mue_pos[1,2] = maximum value of mue for w_rel==0",
+      "name": "clutch2.peak",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Geometry constant containing friction distribution assumption",
+      "name": "clutch2.cgeo",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Maximum normal force",
+      "name": "clutch2.fn_max",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Moment of inertia",
+      "name": "J3.J",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Priority to use phi and w as states",
+      "name": "J3.stateSelect",
+      "type": "Enumeration",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Nominal value of phi_rel (used for scaling)",
+      "name": "clutch3.phi_nominal",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Priority to use phi_rel and w_rel as states",
+      "name": "clutch3.stateSelect",
+      "type": "Enumeration",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Relative angular velocity near to zero if jumps due to a reinit(..) of the velocity can occur (set to low value only if such impulses can occur)",
+      "name": "clutch3.w_small",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "local",
+      "description": "=true, if heatPort is enabled",
+      "name": "clutch3.useHeatPort",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "[w,mue] positive sliding friction coefficient (w_rel>=0)",
+      "name": "clutch3.mue_pos[1,1]",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "[w,mue] positive sliding friction coefficient (w_rel>=0)",
+      "name": "clutch3.mue_pos[1,2]",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "peak*mue_pos[1,2] = maximum value of mue for w_rel==0",
+      "name": "clutch3.peak",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Geometry constant containing friction distribution assumption",
+      "name": "clutch3.cgeo",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Maximum normal force",
+      "name": "clutch3.fn_max",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Moment of inertia",
+      "name": "J4.J",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Priority to use phi and w as states",
+      "name": "J4.stateSelect",
+      "type": "Enumeration",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Amplitude of sine wave",
+      "name": "sin2.amplitude",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "calculatedParameter",
+      "description": "Frequency of sine wave",
+      "name": "sin2.freqHz",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Phase of sine wave",
+      "name": "sin2.phase",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Offset of output signal",
+      "name": "sin2.offset",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Output = offset for time < startTime",
+      "name": "sin2.startTime",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Fixed offset angle of housing",
+      "name": "fixed.phi0",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "input",
+      "description": "",
+      "name": "f_normalized",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "fixed.flange.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "fixed.flange.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "J4.flange_b.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "J4.flange_b.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "J4.flange_a.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "J4.flange_a.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Normalized force signal 0..1 (normal force = fn_max*f_normalized; clutch is engaged if > 0)",
+      "name": "clutch3.f_normalized",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular acceleration between frictional surfaces",
+      "name": "clutch3.a_relfric",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular velocity between frictional surfaces",
+      "name": "clutch3.w_relfric",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "clutch3.flange_b.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "clutch3.flange_b.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "clutch3.flange_a.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "clutch3.flange_a.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "J3.flange_b.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "J3.flange_b.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "J3.flange_a.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "J3.flange_a.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Normalized force signal 0..1 (normal force = fn_max*f_normalized; clutch is engaged if > 0)",
+      "name": "clutch2.f_normalized",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular acceleration between frictional surfaces",
+      "name": "clutch2.a_relfric",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular velocity between frictional surfaces",
+      "name": "clutch2.w_relfric",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "clutch2.flange_b.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "clutch2.flange_b.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "clutch2.flange_a.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "clutch2.flange_a.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "J2.flange_b.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "J2.flange_b.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "J2.flange_a.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "J2.flange_a.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Connector of Real output signal",
+      "name": "sin1.y",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Normalized force signal 0..1 (normal force = fn_max*f_normalized; clutch is engaged if > 0)",
+      "name": "clutch1.f_normalized",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular acceleration between frictional surfaces",
+      "name": "clutch1.a_relfric",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Relative angular velocity between frictional surfaces",
+      "name": "clutch1.w_relfric",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "clutch1.flange_b.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "clutch1.flange_b.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "clutch1.flange_a.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "clutch1.flange_a.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Reaction torque in the support/housing",
+      "name": "torque.support.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of the support/housing",
+      "name": "torque.support.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "torque.flange.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "torque.flange.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "J1.flange_b.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "J1.flange_b.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Cut torque in the flange",
+      "name": "J1.flange_a.tau",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Absolute rotation angle of flange",
+      "name": "J1.flange_a.phi",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of phi",
+      "name": "der(J3.phi)",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of phi",
+      "name": "der(J2.phi)",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of phi",
+      "name": "der(J1.phi)",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of w",
+      "name": "der(J3.w)",
+      "type": "Real",
+      "unit": "rad/s/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of w",
+      "name": "der(J2.w)",
+      "type": "Real",
+      "unit": "rad/s/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "local",
+      "description": "Derivative of w",
+      "name": "der(J1.w)",
+      "type": "Real",
+      "unit": "rad/s/s",
+      "variability": "continuous"
+    }
+  ],
+  "schema": "UNIFIED_FMU_METADATA_V1"
+}

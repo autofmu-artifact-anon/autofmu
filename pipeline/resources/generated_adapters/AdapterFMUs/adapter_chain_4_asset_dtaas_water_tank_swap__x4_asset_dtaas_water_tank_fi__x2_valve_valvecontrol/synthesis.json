@@ -1,0 +1,81 @@
+{
+  "adapter_id": "adapter_chain_4_asset_dtaas_water_tank_swap__x4_asset_dtaas_water_tank_fi__x2_valve_valvecontrol",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "mapping": {
+            "0": 0.0,
+            "1": 1.0,
+            "false": 0.0,
+            "true": 1.0
+          },
+          "source_type": "boolean",
+          "target_type": "real",
+          "transform_kind": "mode_signal"
+        }
+      },
+      "sysml": {
+        "name": "valve"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "mapping": {
+            "0": 0.0,
+            "1": 1.0,
+            "false": 0.0,
+            "true": 1.0
+          },
+          "source_type": "boolean",
+          "target_type": "real",
+          "transform_kind": "mode_signal"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "valvecontrol"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_4_asset_dtaas_water_tank_swap__x4_asset_dtaas_water_tank_fi__x2_valve_valvecontrol",
+  "notes": [
+    "Boolean to Real conversion for valve control signal",
+    "Maps Boolean false/0 to Real 0.0 and Boolean true/1 to Real 1.0",
+    "Stateless type adapter per fallback transform specification"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_dtaas_water_tank_swap__x4"
+    },
+    {
+      "name": "asset_dtaas_water_tank_fi__x2"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

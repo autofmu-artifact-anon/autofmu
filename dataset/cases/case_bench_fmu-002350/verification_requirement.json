@@ -1,0 +1,70 @@
+{
+  "case_id": "case_bench_fmu-002350",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "operator": "<=",
+      "signals": [
+        "out_stato",
+        "outp",
+        "overflw"
+      ],
+      "value": 0.0
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "signals": [
+      "out_stato",
+      "outp",
+      "overflw"
+    ],
+    "time_column": "time",
+    "tolerance": 0.0
+  },
+  "derivation_basis": {
+    "ground_truth_source": "b01_ref.csv",
+    "input_source": "b01_in.csv",
+    "signals": [
+      "out_stato",
+      "outp",
+      "overflw"
+    ],
+    "source_root": "sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/EDALab_HIFSuite/2017.05_antlia/b01",
+    "source_type": "benchmark_single_fmu_case"
+  },
+  "judgement_policy": "trajectory_match",
+  "scenario_window": {
+    "start_time": 0.0,
+    "step_size": 0.001,
+    "stop_time": 10
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "out_stato": [
+      "out_stato"
+    ],
+    "outp": [
+      "outp"
+    ],
+    "overflw": [
+      "overflw"
+    ]
+  },
+  "signals": [
+    "out_stato",
+    "outp",
+    "overflw"
+  ],
+  "text": "Run the benchmark FMU b01 under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs out_stato, outp, overflw.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Verify benchmark FMU b01",
+  "tolerances": {
+    "trajectory_match": 0.0
+  }
+}

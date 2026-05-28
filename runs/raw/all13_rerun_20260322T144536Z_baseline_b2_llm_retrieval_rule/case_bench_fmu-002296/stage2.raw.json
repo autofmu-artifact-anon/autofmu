@@ -1,0 +1,468 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_0",
+        "objective": "Verify that the x0 output trajectory from the Van der Pol oscillator matches the archived ground-truth trajectory under default experiment conditions.",
+        "required_signals": [
+          "x0",
+          "time"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "rmse",
+            "operator": "<=",
+            "value": 1e-06,
+            "unit": "dimensionless",
+            "notes": ""
+          },
+          {
+            "metric": "max_absolute_error",
+            "operator": "<=",
+            "value": 1e-05,
+            "unit": "dimensionless",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": 0,
+          "end_time": null,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": "Default experiment settings for Van der Pol oscillator benchmark FMU"
+        },
+        "grounded_components": [
+          "output"
+        ],
+        "grounded_component_types": [
+          "OutputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_raw",
+          "generation_family": "llm"
+        }
+      },
+      {
+        "task_id": "task_1",
+        "objective": "Verify that the x1 output trajectory from the Van der Pol oscillator matches the archived ground-truth trajectory under default experiment conditions.",
+        "required_signals": [
+          "x1",
+          "time"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "rmse",
+            "operator": "<=",
+            "value": 1e-06,
+            "unit": "dimensionless",
+            "notes": ""
+          },
+          {
+            "metric": "max_absolute_error",
+            "operator": "<=",
+            "value": 1e-05,
+            "unit": "dimensionless",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": 0,
+          "end_time": null,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": "Default experiment settings for Van der Pol oscillator benchmark FMU"
+        },
+        "grounded_components": [
+          "output"
+        ],
+        "grounded_component_types": [
+          "OutputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_raw",
+          "generation_family": "llm"
+        }
+      }
+    ],
+    "rationale": "top1_llm single candidate from LLM",
+    "score": 0.65,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "llm_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 0.0,
+      "criteria_bonus": 0.15,
+      "final_score": 0.65
+    },
+    "meta": {
+      "generation_source": "llm_raw",
+      "generation_family": "llm",
+      "grounding_valid": true
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_0",
+      "task_index": 0,
+      "fmu_uid": "asset_bench_fmu-001288",
+      "score": 0.3744645633744036,
+      "cost": 0.6255354366255964,
+      "hard_ok": true,
+      "semantic_cost": 0.6255354366255964,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "output"
+      ]
+    },
+    {
+      "task_id": "task_1",
+      "task_index": 1,
+      "fmu_uid": "asset_bench_fmu-001288",
+      "score": 0.34832991064820973,
+      "cost": 0.6516700893517903,
+      "hard_ok": true,
+      "semantic_cost": 0.6516700893517903,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "output"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_bench_fmu-001288",
+      "name": "Van der Pol oscillator",
+      "description": "This model implements the van der Pol oscillator",
+      "path": "dataset/assets/asset_bench_fmu-001288/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "ModelExchange",
+        "CoSimulation"
+      ],
+      "ports": [
+        {
+          "name": "x0",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "the first state",
+          "dimensions": []
+        },
+        {
+          "name": "der(x0)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "x1",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "the second state",
+          "dimensions": []
+        },
+        {
+          "name": "der(x1)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "mu",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        }
+      ],
+      "inputs": [],
+      "outputs": [
+        "x0",
+        "x1"
+      ],
+      "tags": [
+        "Test-FMUs",
+        "linux64"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_bench_fmu-001288",
+        "asset_json": {
+          "asset_id": "asset_bench_fmu-001288",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_bench_fmu-001288"
+          ],
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0,
+            "stopTime": 20,
+            "tolerance": 1e-05
+          },
+          "description": "This model implements the van der Pol oscillator",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "ModelExchange",
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "Van der Pol oscillator",
+          "outputs": [
+            "x0",
+            "x1"
+          ],
+          "ports": [
+            {
+              "causality": "output",
+              "description": "the first state",
+              "name": "x0",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "der(x0)",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "the second state",
+              "name": "x1",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "der(x1)",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "",
+              "name": "mu",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            }
+          ],
+          "provenance": {
+            "path_to_fmu": "fmus/2.0/me/linux64/Test-FMUs/0.0.2/Van der Pol oscillator/Van der Pol oscillator.fmu",
+            "path_to_metadata": "fmus/2.0/me/linux64/Test-FMUs/0.0.2/Van der Pol oscillator/Van der Pol oscillator.metadata.json",
+            "source_path": "fmus/2.0/me/win64/Test-FMUs/0.0.2/VanDerPol/VanDerPol.fmu",
+            "source_repo": "fmi-cross-check-master"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "fmu-001288",
+          "source_type": "benchmark_single_fmu",
+          "tags": [
+            "Test-FMUs",
+            "linux64"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_bench_fmu-001288",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "dataset_id": "fmu-001288",
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0,
+            "stopTime": 20,
+            "tolerance": 1e-05
+          },
+          "description": "This model implements the van der Pol oscillator",
+          "fmi_types": [
+            "ModelExchange",
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [],
+          "name": "Van der Pol oscillator",
+          "outputs": [
+            "x0",
+            "x1"
+          ],
+          "ports": [
+            {
+              "causality": "output",
+              "description": "the first state",
+              "name": "x0",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "der(x0)",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "the second state",
+              "name": "x1",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "der(x1)",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "",
+              "name": "mu",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0,
+          "stepSize": 0,
+          "stopTime": 20,
+          "tolerance": 1e-05
+        },
+        "source_type": "benchmark_single_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_bench_fmu-001288"
+    ],
+    "port_nodes": [
+      "asset_bench_fmu-001288.x0",
+      "asset_bench_fmu-001288.der(x0)",
+      "asset_bench_fmu-001288.x1",
+      "asset_bench_fmu-001288.der(x1)",
+      "asset_bench_fmu-001288.mu"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "output": "asset_bench_fmu-001288"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "semantic_only_no_bindings"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 1.2772055259773867,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 1.2772055259773867,
+      "final_cost": 1.2772055259773867,
+      "selected_fmus": [
+        "asset_bench_fmu-001288"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 1.2772055259773867,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "semantic_retrieval_only",
+    "structural_reasoning": false,
+    "selected_task_count": 2,
+    "failure_type": ""
+  }
+}

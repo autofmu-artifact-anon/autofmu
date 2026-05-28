@@ -1,0 +1,212 @@
+{
+  "dataset_id": "fmu-002305",
+  "source_repo": "fmi-cross-check-master",
+  "source_path": "fmus/2.0/cs/linux64/MapleSim/2021.2/ControlledTemperature/ControlledTemperature.fmu",
+  "source_commit": "",
+  "fmi": {
+    "fmiVersion": "2.0",
+    "fmiTypes": [
+      "CoSimulation"
+    ],
+    "modelName": "ControlledTemperature",
+    "guid": "{2610bd33-edde-fde5-37c9-02f5fee871f5}",
+    "description": "ControlledTemperature example from the FMI test suite",
+    "author": "",
+    "generationTool": "MapleSim (1579660/1578573)",
+    "generationDateAndTime": "2021-12-09T11:51:28Z",
+    "variableNamingConvention": "structured",
+    "numberOfEventIndicators": 5,
+    "defaultExperiment": {
+      "startTime": 0.0,
+      "stopTime": 10.0,
+      "stepSize": 0.001
+    }
+  },
+  "implementation": {
+    "platforms": [
+      "linux64"
+    ],
+    "coSimulation": {
+      "modelIdentifier": "ControlledTemperature",
+      "canGetAndSetFMUstate": true,
+      "canSerializeFMUstate": true,
+      "providesDirectionalDerivative": false,
+      "canHandleVariableCommunicationStepSize": true,
+      "canInterpolateInputs": false
+    }
+  },
+  "variables": [
+    {
+      "name": "internalTime",
+      "valueReference": 0,
+      "causality": "independent",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal time",
+      "unit": "s"
+    },
+    {
+      "name": "TAmb",
+      "valueReference": 16,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Ambient Temperature",
+      "unit": "K",
+      "start": 293.15
+    },
+    {
+      "name": "TDif",
+      "valueReference": 17,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Error in Temperature",
+      "unit": "K",
+      "start": 2.0
+    },
+    {
+      "name": "outputs[1]",
+      "valueReference": 7,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Input.value",
+      "initial": "calculated"
+    },
+    {
+      "name": "outputs[2]",
+      "valueReference": 8,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "TempInput.value",
+      "initial": "calculated",
+      "unit": "degC"
+    },
+    {
+      "name": "heatCapacitor.T",
+      "valueReference": 1,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "heatCapacitor.T",
+      "initial": "calculated"
+    },
+    {
+      "name": "onOffController.reference",
+      "valueReference": 2,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "onOffController.reference",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.heatPort.Q_flow",
+      "valueReference": 3,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "heatingResistor.heatPort.Q_flow",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.p.i",
+      "valueReference": 4,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "idealSwitch.p.i",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.s",
+      "valueReference": 5,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "idealSwitch.s",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.v",
+      "valueReference": 6,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "idealSwitch.v",
+      "initial": "calculated"
+    },
+    {
+      "name": "onOffController.y",
+      "valueReference": 9,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "onOffController.y"
+    },
+    {
+      "name": "der(heatCapacitor.T)",
+      "valueReference": 18,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(heatCapacitor.T)",
+      "derivative": 6
+    },
+    {
+      "name": "minsamplestep",
+      "valueReference": 39,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Minimum time step between samples in binary data file",
+      "unit": "s",
+      "start": 0.025
+    },
+    {
+      "name": "binfilename",
+      "valueReference": 40,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "String",
+      "description": "Name of binary data file",
+      "start": "DISABLED"
+    }
+  ],
+  "interface": {
+    "outputs": [
+      "outputs[1]",
+      "outputs[2]"
+    ],
+    "parameters": [
+      "TAmb",
+      "TDif",
+      "minsamplestep",
+      "binfilename"
+    ],
+    "locals": [
+      "heatCapacitor.T",
+      "onOffController.reference",
+      "heatingResistor.heatPort.Q_flow",
+      "idealSwitch.p.i",
+      "idealSwitch.s",
+      "idealSwitch.v",
+      "onOffController.y",
+      "der(heatCapacitor.T)"
+    ],
+    "states": [
+      "der(heatCapacitor.T)"
+    ]
+  },
+  "test": {
+    "hasReferenceInput": false,
+    "hasReferenceOutput": true,
+    "referenceOutputFile": "ControlledTemperature_ref.csv",
+    "simulationOptionsFile": "ControlledTemperature_simopt.json"
+  },
+  "validation": {
+    "fmiCompliance": "not_checked"
+  }
+}

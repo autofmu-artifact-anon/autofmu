@@ -1,0 +1,26 @@
+{
+  "correct_fmus": [
+    "fmu_PendulumController",
+    "fmu_InvertedPendulumPlant"
+  ],
+  "correct_connections": [
+    {"from": "fmu_PendulumController.force_cmd_N", "to": "fmu_InvertedPendulumPlant.force_cmd_N"},
+
+    {"from": "fmu_InvertedPendulumPlant.x_m", "to": "fmu_PendulumController.x_m"},
+    {"from": "fmu_InvertedPendulumPlant.x_dot_mps", "to": "fmu_PendulumController.x_dot_mps"},
+    {"from": "fmu_InvertedPendulumPlant.theta_rad", "to": "fmu_PendulumController.theta_rad"},
+    {"from": "fmu_InvertedPendulumPlant.theta_dot_radps", "to": "fmu_PendulumController.theta_dot_radps"}
+  ],
+  "exogenous_inputs": {
+    "x_ref_m": [
+      "fmu_PendulumController.x_ref_m"
+    ],
+    "theta_ref_rad": [
+      "fmu_PendulumController.theta_ref_rad"
+    ],
+    "disturbance_N": [
+      "fmu_InvertedPendulumPlant.disturbance_N"
+    ]
+  },
+  "expected_behavior": "With theta_ref_rad=0 and x_ref_m stepping from 0 to 0.3 m, the controller should keep the pendulum near upright (|theta| stays small) while moving the cart. When a short disturbance_N impulse is applied, the system should recover without saturating force_cmd_N for an extended time; theta_rad should return close to 0." 
+}

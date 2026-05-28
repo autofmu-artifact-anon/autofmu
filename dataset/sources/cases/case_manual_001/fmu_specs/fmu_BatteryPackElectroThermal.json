@@ -1,0 +1,96 @@
+{
+  "name": "BatteryPackElectroThermal",
+  "description": "High-voltage battery pack electro-thermal coupled model with SOC, core/surface temperatures, nonlinear OCV and temperature-dependent internal resistance.",
+  "inputs": [
+    {
+      "name": "current_A",
+      "type": "Real",
+      "unit": "A",
+      "description": "Battery current (A). Positive = discharge, negative = charge. Limited internally by I_max_discharge_A/I_max_charge_A."
+    },
+    {
+      "name": "coolant_in_temp_C",
+      "type": "Real",
+      "unit": "degC",
+      "description": "Coolant inlet temperature into battery cold-plate."
+    },
+    {
+      "name": "coolant_flow_kgps",
+      "type": "Real",
+      "unit": "kg/s",
+      "description": "Coolant mass flow rate through battery cold-plate."
+    },
+    {
+      "name": "ambient_temp_C",
+      "type": "Real",
+      "unit": "degC",
+      "description": "Ambient air temperature around the pack."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "voltage_V",
+      "type": "Real",
+      "unit": "V",
+      "description": "Pack terminal voltage."
+    },
+    {
+      "name": "soc",
+      "type": "Real",
+      "unit": "1",
+      "description": "State of charge in [0,1]."
+    },
+    {
+      "name": "T_core_C",
+      "type": "Real",
+      "unit": "degC",
+      "description": "Battery core temperature (lumped)."
+    },
+    {
+      "name": "T_surface_C",
+      "type": "Real",
+      "unit": "degC",
+      "description": "Battery surface/case temperature (lumped)."
+    },
+    {
+      "name": "heat_W",
+      "type": "Real",
+      "unit": "W",
+      "description": "Heat generation inside the pack (Joule + entropic)."
+    }
+  ],
+  "parameters": [
+    {"name": "capacity_Ah", "type": "Real", "default": 60.0, "unit": "Ah", "description": "Pack equivalent capacity."},
+    {"name": "V_nom_V", "type": "Real", "default": 360.0, "unit": "V", "description": "Nominal pack voltage used for sanity checks and controller heuristics."},
+
+    {"name": "ocv_poly_coeff", "type": "RealVector", "default": [320.0, 120.0, -80.0, 40.0, -10.0], "unit": "V", "description": "OCV(SOC) polynomial coefficients a0..a4 for OCV = sum(ai*soc^i)."},
+
+    {"name": "R0_ohm", "type": "Real", "default": 0.06, "unit": "ohm", "description": "Base internal resistance at reference temperature and SOC."},
+    {"name": "R_soc_gain", "type": "Real", "default": 0.35, "unit": "1", "description": "SOC dependence gain; increases resistance when SOC is low."},
+    {"name": "R_temp_coeff_perC", "type": "Real", "default": -0.01, "unit": "1/degC", "description": "Temperature coefficient: resistance decreases with higher temperature (approx)."},
+    {"name": "T_ref_C", "type": "Real", "default": 25.0, "unit": "degC", "description": "Reference temperature for resistance model."},
+
+    {"name": "I_max_discharge_A", "type": "Real", "default": 350.0, "unit": "A", "description": "Maximum discharge current magnitude."},
+    {"name": "I_max_charge_A", "type": "Real", "default": 200.0, "unit": "A", "description": "Maximum charge current magnitude."},
+
+    {"name": "m_core_kg", "type": "Real", "default": 120.0, "unit": "kg", "description": "Equivalent thermal mass for core."},
+    {"name": "cp_core_JpkgK", "type": "Real", "default": 950.0, "unit": "J/(kg*K)", "description": "Equivalent heat capacity for core."},
+    {"name": "m_surface_kg", "type": "Real", "default": 30.0, "unit": "kg", "description": "Equivalent thermal mass for surface/case."},
+    {"name": "cp_surface_JpkgK", "type": "Real", "default": 900.0, "unit": "J/(kg*K)", "description": "Equivalent heat capacity for surface."},
+
+    {"name": "R_core_to_surface_KpW", "type": "Real", "default": 0.08, "unit": "K/W", "description": "Thermal resistance core->surface."},
+
+    {"name": "hA_ambient_WpK", "type": "Real", "default": 25.0, "unit": "W/K", "description": "Effective convection conductance from surface to ambient."},
+
+    {"name": "coolant_cp_JpkgK", "type": "Real", "default": 3800.0, "unit": "J/(kg*K)", "description": "Coolant specific heat."},
+    {"name": "hA_coolant_base_WpK", "type": "Real", "default": 60.0, "unit": "W/K", "description": "Base cold-plate conductance at nominal flow."},
+    {"name": "flow_nom_kgps", "type": "Real", "default": 0.12, "unit": "kg/s", "description": "Nominal coolant flow used for scaling hA with flow."},
+
+    {"name": "dUdT_VpK", "type": "Real", "default": 0.06, "unit": "V/K", "description": "Simplified entropic coefficient (pack-level). Positive => extra heat during discharge."}
+  ],
+  "states": [
+    {"name": "soc", "derivative": "d_soc_dt"},
+    {"name": "T_core_C", "derivative": "d_T_core_dt"},
+    {"name": "T_surface_C", "derivative": "d_T_surface_dt"}
+  ]
+}

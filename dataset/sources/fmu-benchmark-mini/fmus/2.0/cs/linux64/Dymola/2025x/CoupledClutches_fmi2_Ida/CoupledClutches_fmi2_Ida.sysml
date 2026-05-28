@@ -1,0 +1,62 @@
+package CoupledClutches_fmi2_Ida {
+    // 输入端口定义
+    port def InputPort {
+        in attribute step2: Real;
+    }
+
+    // 输出端口定义
+    port def OutputPort {
+        out attribute J1_w: Real;
+        out attribute J2_w: Real;
+        out attribute J3_w: Real;
+        out attribute J4_w: Real;
+    }
+
+    // 参数定义
+    part def CoupledClutches {
+        attribute f: Real;
+        attribute T2: Real;
+        attribute T3: Real;
+        attribute J1_J: Real;
+        attribute clutch1_mu_pos_1_1: Real;
+        attribute clutch1_mu_pos_1_2: Real;
+        attribute clutch1_peak: Real;
+        attribute clutch1_cgeo: Real;
+        attribute clutch1_fn_max: Real;
+        attribute clutch1_w_small: Real;
+        attribute step1_height: Real;
+        attribute step1_offset: Real;
+        attribute J2_J: Real;
+        attribute clutch2_mu_pos_1_1: Real;
+        attribute clutch2_mu_pos_1_2: Real;
+        attribute clutch2_peak: Real;
+        attribute clutch2_cgeo: Real;
+        attribute clutch2_fn_max: Real;
+        attribute clutch2_w_small: Real;
+        attribute J3_J: Real;
+        attribute clutch3_mu_pos_1_1: Real;
+        attribute clutch3_mu_pos_1_2: Real;
+        attribute clutch3_peak: Real;
+        attribute clutch3_cgeo: Real;
+        attribute clutch3_fn_max: Real;
+        attribute clutch3_w_small: Real;
+        attribute J4_J: Real;
+        attribute sin2_amplitude: Real;
+        attribute sin2_phase: Real;
+        attribute sin2_offset: Real;
+    }
+
+    // 连接定义
+    part def CoupledClutchesSystem {
+        part input: InputPort;
+        part output: OutputPort;
+        part clutches: CoupledClutches;
+
+        // 连接输入输出
+        connect input.step2 to clutches.step2;
+        connect clutches.J1_w to output.J1_w;
+        connect clutches.J2_w to output.J2_w;
+        connect clutches.J3_w to output.J3_w;
+        connect clutches.J4_w to output.J4_w;
+    }
+}

@@ -1,0 +1,175 @@
+[
+  {
+    "tasks": [
+      {
+        "task_id": "task_rule_mono_0",
+        "objective": "Verify system-wide: Mass Spring Damper bounded-response check. The coupled second mass should remain within the displacement and velocity envelope exhibited by the canonical trace, and settle close to the origin by 10s.",
+        "required_signals": [
+          "fk",
+          "x1",
+          "v1",
+          "fk",
+          "x1",
+          "v1",
+          "x2",
+          "v2"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "msd1",
+          "msd2"
+        ],
+        "grounded_component_types": [
+          "Massspringdamper1",
+          "Massspringdamper2"
+        ],
+        "grounded_ports": [
+          "fk",
+          "x1",
+          "v1",
+          "fk",
+          "x1",
+          "v1",
+          "x2",
+          "v2"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules"
+        }
+      }
+    ],
+    "rationale": "rule_template monolithic fallback task set",
+    "score": 0.85,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "case_structure_hint_chain_0",
+        "source_component": "msd1",
+        "target_component": "msd2",
+        "signals": [
+          "x1",
+          "x1"
+        ],
+        "origin_task_ids": [
+          "task_rule_mono_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_0_seg_0",
+            "source_component": "msd1",
+            "source_signal": "x1",
+            "target_component": "msd2",
+            "target_signal": "x1",
+            "must_route": true,
+            "semantic_intent": "msd1.x1 -> msd2.x1",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Keep the upstream displacement coupling into the downstream mass."
+            }
+          }
+        ],
+        "semantic_intent": "msd1.x1 -> msd2.x1",
+        "details": {
+          "source_signal": "x1",
+          "target_signal": "x1",
+          "source": "case_structure_hints",
+          "rationale": "Keep the upstream displacement coupling into the downstream mass."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_1",
+        "source_component": "msd1",
+        "target_component": "msd2",
+        "signals": [
+          "v1",
+          "v1"
+        ],
+        "origin_task_ids": [
+          "task_rule_mono_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_1_seg_0",
+            "source_component": "msd1",
+            "source_signal": "v1",
+            "target_component": "msd2",
+            "target_signal": "v1",
+            "must_route": true,
+            "semantic_intent": "msd1.v1 -> msd2.v1",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve velocity coupling between the two masses."
+            }
+          }
+        ],
+        "semantic_intent": "msd1.v1 -> msd2.v1",
+        "details": {
+          "source_signal": "v1",
+          "target_signal": "v1",
+          "source": "case_structure_hints",
+          "rationale": "Preserve velocity coupling between the two masses."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_2",
+        "source_component": "msd2",
+        "target_component": "msd1",
+        "signals": [
+          "fk",
+          "fk"
+        ],
+        "origin_task_ids": [
+          "task_rule_mono_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_2_seg_0",
+            "source_component": "msd2",
+            "source_signal": "fk",
+            "target_component": "msd1",
+            "target_signal": "fk",
+            "must_route": true,
+            "semantic_intent": "msd2.fk -> msd1.fk",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve the feedback force returning from the second mass."
+            }
+          }
+        ],
+        "semantic_intent": "msd2.fk -> msd1.fk",
+        "details": {
+          "source_signal": "fk",
+          "target_signal": "fk",
+          "source": "case_structure_hints",
+          "rationale": "Preserve the feedback force returning from the second mass."
+        }
+      }
+    ],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.0,
+      "final_score": 0.85
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "grounding_valid": true,
+      "selection_mode": "single_best_rule_template",
+      "candidate_count": 1,
+      "case_structure_hints_applied": true,
+      "case_structure_hint_chain_count": 3,
+      "case_structure_hint_task_count": 0,
+      "required_chain_count": 3
+    }
+  }
+]

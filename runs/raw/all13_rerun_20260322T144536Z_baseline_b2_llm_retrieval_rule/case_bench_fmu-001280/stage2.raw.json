@@ -1,0 +1,488 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_0",
+        "objective": "Execute BouncingBall FMU under default experiment settings and verify that the simulated trajectory for outputs h (height) and v (velocity) matches the archived ground-truth trajectory.",
+        "required_signals": [
+          "h",
+          "v"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "RMSE",
+            "operator": "<=",
+            "value": 1e-06,
+            "unit": "normalized",
+            "notes": ""
+          },
+          {
+            "metric": "max_absolute_error",
+            "operator": "<=",
+            "value": 0.0001,
+            "unit": "normalized",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": null,
+          "end_time": null,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": "Default experiment settings as defined in the BouncingBall FMU benchmark configuration"
+        },
+        "grounded_components": [
+          "BouncingBall"
+        ],
+        "grounded_component_types": [
+          "BouncingBall"
+        ],
+        "grounded_ports": [
+          "h",
+          "v"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_raw",
+          "generation_family": "llm"
+        }
+      }
+    ],
+    "rationale": "top1_llm single candidate from LLM",
+    "score": 1.0,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "llm_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.15,
+      "final_score": 1.0
+    },
+    "meta": {
+      "generation_source": "llm_raw",
+      "generation_family": "llm",
+      "grounding_valid": true
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_0",
+      "task_index": 0,
+      "fmu_uid": "asset_bench_fmu-001605",
+      "score": 0.24833621325912503,
+      "cost": 0.751663786740875,
+      "hard_ok": true,
+      "semantic_cost": 0.751663786740875,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "BouncingBall"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_bench_fmu-001605",
+      "name": "FmuExportCrossCompile",
+      "description": "FmuExportCrossCompile",
+      "path": "dataset/assets/asset_bench_fmu-001605/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "ModelExchange",
+        "CoSimulation"
+      ],
+      "ports": [
+        {
+          "name": "h",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "der(h)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "der(v)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "v_new",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "e",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "g",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "_D_whenCondition1",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        }
+      ],
+      "inputs": [],
+      "outputs": [],
+      "tags": [
+        "OpenModelica",
+        "linux64"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_bench_fmu-001605",
+        "asset_json": {
+          "asset_id": "asset_bench_fmu-001605",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_bench_fmu-001605"
+          ],
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.000225,
+            "stopTime": 0.45,
+            "tolerance": 1e-06
+          },
+          "description": "FmuExportCrossCompile",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "ModelExchange",
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "FmuExportCrossCompile",
+          "outputs": [
+            "h",
+            "v",
+            "der(h)",
+            "der(v)",
+            "v_new"
+          ],
+          "ports": [
+            {
+              "causality": "local",
+              "description": "",
+              "name": "h",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "der(h)",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "der(v)",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "v_new",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "parameter",
+              "description": "",
+              "name": "e",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "",
+              "name": "g",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "_D_whenCondition1",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            }
+          ],
+          "provenance": {
+            "path_to_fmu": "fmus/2.0/me/linux64/OpenModelica/v1.11.0/FmuExportCrossCompile/FmuExportCrossCompile.fmu",
+            "path_to_metadata": "fmus/2.0/me/linux64/OpenModelica/v1.11.0/FmuExportCrossCompile/FmuExportCrossCompile.metadata.json",
+            "source_path": "fmus/2.0/me/arm-linux-gnueabi/OpenModelica/v1.11.0/FmuExportCrossCompile/FmuExportCrossCompile.fmu",
+            "source_repo": "fmi-cross-check-master"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "fmu-001605",
+          "source_type": "benchmark_single_fmu",
+          "tags": [
+            "OpenModelica",
+            "linux64"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_bench_fmu-001605",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "dataset_id": "fmu-001605",
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.000225,
+            "stopTime": 0.45,
+            "tolerance": 1e-06
+          },
+          "description": "FmuExportCrossCompile",
+          "fmi_types": [
+            "ModelExchange",
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [],
+          "name": "FmuExportCrossCompile",
+          "outputs": [
+            "h",
+            "v",
+            "der(h)",
+            "der(v)",
+            "v_new"
+          ],
+          "ports": [
+            {
+              "causality": "local",
+              "description": "",
+              "name": "h",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "der(h)",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "der(v)",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "v_new",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "parameter",
+              "description": "",
+              "name": "e",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "",
+              "name": "g",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "local",
+              "description": "",
+              "name": "_D_whenCondition1",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0,
+          "stepSize": 0.000225,
+          "stopTime": 0.45,
+          "tolerance": 1e-06
+        },
+        "source_type": "benchmark_single_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_bench_fmu-001605"
+    ],
+    "port_nodes": [
+      "asset_bench_fmu-001605.h",
+      "asset_bench_fmu-001605.v",
+      "asset_bench_fmu-001605.der(h)",
+      "asset_bench_fmu-001605.der(v)",
+      "asset_bench_fmu-001605.v_new",
+      "asset_bench_fmu-001605.e",
+      "asset_bench_fmu-001605.g",
+      "asset_bench_fmu-001605._D_whenCondition1"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "BouncingBall": "asset_bench_fmu-001605"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "semantic_only_no_bindings"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 0.751663786740875,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 0.751663786740875,
+      "final_cost": 0.751663786740875,
+      "selected_fmus": [
+        "asset_bench_fmu-001605"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 0.751663786740875,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "semantic_retrieval_only",
+    "structural_reasoning": false,
+    "selected_task_count": 1,
+    "failure_type": ""
+  }
+}

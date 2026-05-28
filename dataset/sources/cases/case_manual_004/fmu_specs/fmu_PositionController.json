@@ -1,0 +1,27 @@
+{
+  "name": "PositionController",
+  "description": "Hydraulic axis position controller (PI + velocity damping + saturation & anti-windup).",
+  "inputs": [
+    {"name": "x_ref_m", "type": "Real", "unit": "m", "description": "Position reference"},
+    {"name": "x_meas_m", "type": "Real", "unit": "m", "description": "Measured position"},
+    {"name": "v_meas_mps", "type": "Real", "unit": "m/s", "description": "Measured velocity"},
+    {"name": "enable", "type": "Boolean", "unit": "-", "description": "Enable closed-loop control"}
+  ],
+  "outputs": [
+    {"name": "valve_cmd", "type": "Real", "unit": "-1..1", "description": "Normalized valve command to spool actuator"},
+    {"name": "sat_flag", "type": "Boolean", "unit": "-", "description": "True when command is saturated (for diagnostics)"}
+  ],
+  "parameters": [
+    {"name": "Kp", "type": "Real", "default": 18.0, "unit": "1/s", "description": "Proportional gain in normalized valve command per meter"},
+    {"name": "Ki", "type": "Real", "default": 35.0, "unit": "1/s^2", "description": "Integral gain"},
+    {"name": "Kv", "type": "Real", "default": 3.0, "unit": "s/m", "description": "Velocity feedback gain (damping)"},
+    {"name": "u_min", "type": "Real", "default": -1.0, "unit": "-", "description": "Minimum command"},
+    {"name": "u_max", "type": "Real", "default": 1.0, "unit": "-", "description": "Maximum command"},
+    {"name": "integrator_limit", "type": "Real", "default": 0.5, "unit": "-", "description": "Clamp for integrator state to prevent runaway"},
+    {"name": "aw_gain", "type": "Real", "default": 8.0, "unit": "1/s", "description": "Back-calculation anti-windup gain"},
+    {"name": "deadband_m", "type": "Real", "default": 0.0002, "unit": "m", "description": "Small error deadband to reduce chatter"}
+  ],
+  "states": [
+    {"name": "i_state", "derivative": "di_dt", "description": "Integrator internal state"}
+  ]
+}

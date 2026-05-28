@@ -1,0 +1,92 @@
+{
+  "id": "REQ-BATT-THERM-001",
+  "title": "电池包热管理：负载阶跃下温度约束与泵命令物理边界",
+  "description": "在给定放电电流工况与环境温度变化下，热控制器驱动冷却回路，将电芯温度维持在目标附近且不超过安全上限；泵命令保持在 0..1 并避免过度振荡。",
+  "scenario": {
+    "t_start_s": 0,
+    "t_end_s": 900,
+    "inputs": {
+      "enable": true,
+      "temp_ref_C": 35.0,
+      "ambient_temp_C_profile": [
+        {"t_s": 0,   "value_C": 25.0},
+        {"t_s": 500, "value_C": 25.0},
+        {"t_s": 520, "value_C": 32.0},
+        {"t_s": 900, "value_C": 32.0}
+      ],
+      "i_load_A_profile": [
+        {"t_s": 0,   "value_A": 40.0},
+        {"t_s": 200, "value_A": 40.0},
+        {"t_s": 220, "value_A": 120.0},
+        {"t_s": 420, "value_A": 120.0},
+        {"t_s": 440, "value_A": 70.0},
+        {"t_s": 650, "value_A": 70.0},
+        {"t_s": 670, "value_A": 140.0},
+        {"t_s": 900, "value_A": 140.0}
+      ]
+    },
+    "initial_conditions": {
+      "soc": 0.85,
+      "temp_cell_C": 30.0,
+      "coolant_temp_C": 28.0,
+      "integrator": 0.0,
+      "pump_state": 0.2
+    }
+  },
+  "acceptance_criteria": [
+    {
+      "metric": "max(temp_cell_C)_over_all",
+      "operator": "<=",
+      "value": 45.0,
+      "unit": "C",
+      "notes": "电芯安全温度上限。"
+    },
+    {
+      "metric": "max(abs(temp_cell_C - temp_ref_C))_after_t=250s",
+      "operator": "<=",
+      "value": 6.0,
+      "unit": "C",
+      "notes": "负载阶跃后允许一定误差，但应收敛到目标附近。"
+    },
+    {
+      "metric": "within_range(pump_cmd)",
+      "operator": "in",
+      "value": [0.0, 1.0],
+      "unit": "-"
+    },
+    {
+      "metric": "max(abs(d(pump_cmd)/dt))",
+      "operator": "<=",
+      "value": 1.0,
+      "unit": "1/s",
+      "notes": "泵命令变化速率限制（反映执行器惯性/保护）。"
+    },
+    {
+      "metric": "within_range(soc)",
+      "operator": "in",
+      "value": [0.0, 1.0],
+      "unit": "-"
+    },
+    {
+      "metric": "within_range(v_term_V)",
+      "operator": "in",
+      "value": [250.0, 430.0],
+      "unit": "V",
+      "notes": "假设 96s 电芯串联的典型电压范围（含裕度），用于排除数值爆炸。"
+    }
+  ],
+  "signals_of_interest": [
+    "enable",
+    "temp_ref_C",
+    "ambient_temp_C",
+    "i_load_A",
+    "pump_cmd",
+    "sat_flag",
+    "coolant_temp_C",
+    "heat_removed_W",
+    "soc",
+    "temp_cell_C",
+    "heat_gen_W",
+    "v_term_V"
+  ]
+}

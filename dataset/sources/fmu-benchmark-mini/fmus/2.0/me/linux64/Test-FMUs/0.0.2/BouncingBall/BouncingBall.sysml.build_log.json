@@ -1,0 +1,77 @@
+{
+  "version": "0.1.0",
+  "started_at": "2025-12-12T12:58:48+00:00",
+  "semantic_path": "/root/mbse_val/fmu-benchmark-mini/fmus/2.0/me/linux64/Test-FMUs/0.0.2/BouncingBall/BouncingBall.semantic.json",
+  "sysml_path": "/root/mbse_val/fmu-benchmark-mini/fmus/2.0/me/linux64/Test-FMUs/0.0.2/BouncingBall/BouncingBall.sysml",
+  "max_rounds": 1,
+  "llm_mode": "template",
+  "status": "success",
+  "attempts": [
+    {
+      "round": 1,
+      "kind": "generate",
+      "timestamp": "2025-12-12T13:00:40+00:00",
+      "grammar_query": "template sysml package part def port attribute",
+      "retrieved_chunks": [
+        {
+          "id": "02-block-definition.md#0",
+          "source": "/root/mbse_val/sysml_validation/grammar/02-block-definition.md",
+          "heading": null
+        },
+        {
+          "id": "01-package-diagram.md#0",
+          "source": "/root/mbse_val/sysml_validation/grammar/01-package-diagram.md",
+          "heading": null
+        },
+        {
+          "id": "07-relationships.md#0",
+          "source": "/root/mbse_val/sysml_validation/grammar/07-relationships.md",
+          "heading": null
+        },
+        {
+          "id": "README.md#0",
+          "source": "/root/mbse_val/sysml_validation/grammar/README.md",
+          "heading": null
+        },
+        {
+          "id": "04-state-machine.md#0",
+          "source": "/root/mbse_val/sysml_validation/grammar/04-state-machine.md",
+          "heading": null
+        },
+        {
+          "id": "03-action-diagram.md#0",
+          "source": "/root/mbse_val/sysml_validation/grammar/03-action-diagram.md",
+          "heading": null
+        }
+      ],
+      "grammar_context": "[02-block-definition.md#0]\n# SysML v2 Block Definition Diagram (BDD/IBD) Syntax\n\n块定义图和内部块图语法，用于定义系统结构。\n\n## 1. 部件定义 (Part Definition)\n\n### 基本部件定义\n```sysml\npart def PartName {\n    // 成员\n}\n```\n\n### 带特化的部件定义\n```sysml\npart def Car :> Vehicle {\n    // 继承 Vehicle 的特性\n}\n```\n\n### 抽象部件定义\n```sysml\nabstract part def AbstractComponent {\n    // 不能直接实例化\n}\n```\n\n### 变体部件定义\n```sysml\nvariation part def EngineVariant {\n    variant part gasEngine;\n    variant part electricMotor;\n}\n```\n\n## 2. 部件用法 (Part Usage)\n\n### 基本部件用法\n```sysml\npart myCar: Car;\n```\n\n### 带多重性\n```sysml\npart wheels: Wheel[4];           // 恰好4个\npart passengers: Person[0..5];   // 0到5个\npart cargo: Item[*];             // 任意数量\n```\n\n### 带默认值\n```sysml\npart engine: Engine = defaultEngine;\n```\n\n### 组合部件\n```sysml\npart def Vehicle {\n    part engine: Engine;         // 组合关系（强拥有）\n    ref part driver: Person;     // 引用关系（弱引用）\n}\n```\n\n## 3. 属性 (Attributes)\n\n### 属性定义\n```sysml\nattribute def Mass :> ScalarValues::Real {\n    doc /* 质量属性 */\n}\n\nattribute def Temperature :> ScalarValues::Real;\n```\n\n### 属性用法\n```sysml\npart def Vehicle {\n    attribute mass: Mass;\n    attribute length: Real;\n    attribute name: String;\n    attribute isActive: Boolean = true;\n}\n```\n\n### 重定义属性\n```sysml\npar\n\n---\n\n[01-package-diagram.md#0]\n# SysML v2 Package Diagram (PD) Syntax\n\n包图语法，用于组织和管理模型元素的命名空间。\n\n## 1. 包定义\n\n### 基本包\n```sysml\npackage PackageName {\n    // 成员定义\n}\n```\n\n### 标准库包\n```sysml\nstandard library package LibraryName {\n    // 库成员\n}\n```\n\n### 嵌套包\n```sysml\npackage Outer {\n    package Inner {\n        // 嵌套成员\n    }\n}\n```\n\n## 2. 包的文档\n\n```sysml\npackage MyPackage {\n    doc\n    /*\n     * 包的描述文档\n     * 多行说明\n     */\n\n    // 成员定义\n}\n```\n\n## 3. 导入语句\n\n### 命名空间导入\n```sysml\npackage MyPackage {\n    import OtherPackage::*;              // 导入所有公开成员\n    import OtherPackage::**;             // 递归导入（包含子包）\n}\n```\n\n### 成员导入\n```sysml\npackage MyPackage {\n    import OtherPackage::SpecificElement; // 导入特定元素\n    import Pkg1::Element1, Pkg2::Element2; // 多元素导入\n}\n```\n\n### 可见性修饰导入\n```sysml\npackage MyPackage {\n    private import InternalLib::*;       // 私有导入，不对外暴露\n    public import PublicLib::*;          // 公开导入\n    protected import ProtectedLib::*;    // 受保护导入\n}\n```\n\n### 导入全部（包括私有）\n```sysml\npackage MyPackage {\n    import all FullAccess::*;            // 导入所有成员，包括私有\n}\n```\n\n## 4. 别名\n\n```sysml\npackage MyPackage {\n    alias Car for Vehicles::Automobile;\n    alias SI for ISQ::SI;\n}\n```\n\n## 5. 包成员类型\n\n包可以包含以下类型的成员：\n\n### 定义成员\n```sysml\npackage SystemMod\n\n---\n\n[07-relationships.md#0]\n# SysML v2 Relationship Operators\n\n关系操作符语法，用于定义元素之间的关系。\n\n## 1. 关系操作符总览\n\n| 操作符 | 关键字形式 | 关系类型 | 描述 |\n|--------|-----------|---------|------|\n| `:` | `defined by` | FeatureTyping | 类型声明 |\n| `:>` | `specializes` | Subclassification/Subsetting | 特化/子集 |\n| `:>>` | `redefines` | Redefinition | 重定义 |\n| `::>` | `references` | ReferenceSubsetting | 引用子集 |\n| `=>` | `crosses` | CrossSubsetting | 交叉子集 |\n| `~` | `conjugates` | Conjugation | 共轭 |\n| `=` | - | Binding | 绑定/赋值 |\n\n## 2. 类型声明 (`:` / `defined by`)\n\n声明元素的类型。\n\n### 语法\n```sysml\nelement: TypeName\nelement defined by TypeName\n```\n\n### 示例\n```sysml\n// 部件类型声明\npart vehicle: Vehicle;\npart engine: GasolineEngine;\n\n// 属性类型声明\nattribute mass: Real;\nattribute name: String;\n\n// 端口类型声明\nport dataPort: DataPort;\n\n// 多类型声明\npart component: TypeA, TypeB;  // 同时是 TypeA 和 TypeB 类型\n```\n\n### 语义\n- 元素成为指定类型的实例\n- 继承类型的所有特性\n- 可以声明多个类型（多重类型）\n\n## 3. 特化 (`:>` / `specializes`)\n\n定义泛化/特化关系。\n\n### 语法\n```sysml\n// 定义特化\ndef ChildDef :> ParentDef { }\n\n// 用法特化\nusage child :> parent;\n\n// 关键字形式\ndef Chil",
+      "semantic_summary": "{\n  \"model\": \"BouncingBall\",\n  \"inputs\": [],\n  \"outputs\": [\n    \"h, type=Real, causality=output, variability=continuous, desc=Position of the ball\",\n    \"v, type=Real, causality=output, variability=continuous, desc=Velocity of the ball\"\n  ],\n  \"parameters\": [\n    \"g, type=Real, causality=parameter, variability=fixed, desc=Gravity acting on the ball\",\n    \"e, type=Real, causality=parameter, variability=tunable, desc=Coefficient of restitution\"\n  ],\n  \"features\": [\n    \"h\",\n    \"v\"\n  ],\n  \"scenarios\": [\n    {\n      \"kind\": \"step\",\n      \"start_time\": 0.0,\n      \"stop_time\": 3.0,\n      \"step_size\": 0.001,\n      \"seed\": 0\n    },\n    {\n      \"kind\": \"ramp\",\n      \"start_time\": 0.0,\n      \"stop_time\": 3.0,\n      \"step_size\": 0.001,\n      \"seed\": 0\n    },\n    {\n      \"kind\": \"sine\",\n      \"start_time\": 0.0,\n      \"stop_time\": 3.0,\n      \"step_size\": 0.001,\n      \"seed\": 0\n    }\n  ],\n  \"narrative\": \"Generic excitation on representative inputs (step/ramp/sine).\"\n}",
+      "prompt": "",
+      "llm_response_raw": "",
+      "sysml_extracted": "package BouncingBall {\n  // features: h, v\n  // scenarios: [{'kind': 'step', 'start_time': 0.0, 'stop_time': 3.0, 'step_size': 0.001, 'seed': 0}, {'kind': 'ramp', 'start_time': 0.0, 'stop_time': 3.0, 'step_size': 0.001, 'seed': 0}, {'kind': 'sine', 'start_time': 0.0, 'stop_time': 3.0, 'step_size': 0.001, 'seed': 0}]\n  part def BouncingBall {\n    out port h;\n    out port v;\n    attribute g;\n    attribute e;\n  }\n}\n",
+      "validation": {
+        "ok": true,
+        "errors": "",
+        "details": {
+          "valid": true,
+          "code": "package BouncingBall {\n  // features: h, v\n  // scenarios: [{'kind': 'step', 'start_time': 0.0, 'stop_time': 3.0, 'step_size': 0.001, 'seed': 0}, {'kind': 'ramp', 'start_time': 0.0, 'stop_time': 3.0, 'step_size': 0.001, 'seed': 0}, {'kind': 'sine', 'start_time': 0.0, 'stop_time': 3.0, 'step_size': 0.001, 'seed': 0}]\n  part def BouncingBall {\n    out port h;\n    out port v;\n    attribute g;\n    attribute e;\n  }\n}\n",
+          "syntaxErrors": [],
+          "semanticErrors": [],
+          "warnings": [],
+          "parseInfo": {
+            "elementCount": 2,
+            "rootElement": "BouncingBall",
+            "hasDefinitions": false,
+            "hasUsages": true
+          },
+          "suggestions": [
+            "代码验证通过!"
+          ]
+        },
+        "exception": null
+      }
+    }
+  ],
+  "rounds_used": 1,
+  "finished_at": "2025-12-12T13:00:40+00:00"
+}

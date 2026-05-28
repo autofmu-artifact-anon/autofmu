@@ -1,0 +1,149 @@
+{
+  "adapters": [],
+  "case_id": "case_manual_002",
+  "connections": [
+    {
+      "source": "asset_case_case_manual_002__SwingUpBalanceController.force_cmd_N",
+      "target": "asset_case_case_manual_002__CartPolePlant.force_cmd_N"
+    },
+    {
+      "source": "asset_case_case_manual_002__CartPolePlant.x_m",
+      "target": "asset_case_case_manual_002__SwingUpBalanceController.x_m"
+    },
+    {
+      "source": "asset_case_case_manual_002__CartPolePlant.x_dot_mps",
+      "target": "asset_case_case_manual_002__SwingUpBalanceController.x_dot_mps"
+    },
+    {
+      "source": "asset_case_case_manual_002__CartPolePlant.theta_meas_rad",
+      "target": "asset_case_case_manual_002__PoleAngleEstimator.theta_meas_rad"
+    },
+    {
+      "source": "asset_case_case_manual_002__CartPolePlant.theta_dot_meas_rps",
+      "target": "asset_case_case_manual_002__PoleAngleEstimator.theta_dot_meas_rps"
+    },
+    {
+      "source": "asset_case_case_manual_002__PoleAngleEstimator.theta_hat_rad",
+      "target": "asset_case_case_manual_002__SwingUpBalanceController.theta_hat_rad"
+    },
+    {
+      "source": "asset_case_case_manual_002__PoleAngleEstimator.theta_dot_hat_rps",
+      "target": "asset_case_case_manual_002__SwingUpBalanceController.theta_dot_hat_rps"
+    }
+  ],
+  "execution_order": [
+    "asset_case_case_manual_002__SwingUpBalanceController",
+    "asset_case_case_manual_002__PoleAngleEstimator",
+    "asset_case_case_manual_002__CartPolePlant"
+  ],
+  "external_inputs": [
+    {
+      "default": 0.0,
+      "name": "x_ref_m",
+      "targets": [
+        "asset_case_case_manual_002__SwingUpBalanceController.x_ref_m"
+      ],
+      "unit": "m"
+    },
+    {
+      "default": true,
+      "name": "enable",
+      "targets": [
+        "asset_case_case_manual_002__SwingUpBalanceController.enable"
+      ],
+      "unit": "bool"
+    },
+    {
+      "default": false,
+      "name": "reset",
+      "targets": [
+        "asset_case_case_manual_002__PoleAngleEstimator.reset"
+      ],
+      "unit": "bool"
+    },
+    {
+      "default": 0.0,
+      "name": "disturbance_force_N",
+      "targets": [
+        "asset_case_case_manual_002__CartPolePlant.disturbance_force_N"
+      ],
+      "unit": "N"
+    }
+  ],
+  "loop_resolution": [],
+  "monitored_outputs": [
+    {
+      "name": "x_m",
+      "source": "asset_case_case_manual_002__CartPolePlant.x_m",
+      "unit": "m"
+    },
+    {
+      "name": "theta_rad",
+      "source": "asset_case_case_manual_002__CartPolePlant.theta_rad",
+      "unit": "rad"
+    },
+    {
+      "name": "theta_hat_rad",
+      "source": "asset_case_case_manual_002__PoleAngleEstimator.theta_hat_rad",
+      "unit": "rad"
+    },
+    {
+      "name": "bias_hat_rps",
+      "source": "asset_case_case_manual_002__PoleAngleEstimator.bias_hat_rps",
+      "unit": "rad/s"
+    },
+    {
+      "name": "force_cmd_N",
+      "source": "asset_case_case_manual_002__SwingUpBalanceController.force_cmd_N",
+      "unit": "N"
+    },
+    {
+      "name": "mode",
+      "source": "asset_case_case_manual_002__SwingUpBalanceController.mode",
+      "unit": "enum"
+    },
+    {
+      "name": "x_dot_mps",
+      "source": "asset_case_case_manual_002__CartPolePlant.x_dot_mps",
+      "unit": "m/s"
+    },
+    {
+      "name": "theta_dot_rps",
+      "source": "asset_case_case_manual_002__CartPolePlant.theta_dot_rps",
+      "unit": "rad/s"
+    },
+    {
+      "name": "theta_meas_rad",
+      "source": "asset_case_case_manual_002__CartPolePlant.theta_meas_rad",
+      "unit": "rad"
+    },
+    {
+      "name": "theta_dot_meas_rps",
+      "source": "asset_case_case_manual_002__CartPolePlant.theta_dot_meas_rps",
+      "unit": "rad/s"
+    },
+    {
+      "name": "theta_dot_hat_rps",
+      "source": "asset_case_case_manual_002__PoleAngleEstimator.theta_dot_hat_rps",
+      "unit": "rad/s"
+    }
+  ],
+  "notes": [
+    "Starting from theta=0 (hanging down), controller first performs energy-based swing-up (mode=0) and then switches to balance/LQR (mode=1) when |wrap(theta_hat-pi)| is small. With disturbance impulses, the controller keeps theta near pi and tracks x_ref_m changes, while force_cmd_N stays saturated within limits."
+  ],
+  "schedule": {
+    "co_simulation": {
+      "start_time": 0,
+      "step_size": 0.001,
+      "stop_time": 20
+    },
+    "co_simulation_type": "fixed_step",
+    "kind": "co_simulation"
+  },
+  "schema": "UNIFIED_SOLUTION_V1",
+  "selected_asset_ids": [
+    "asset_case_case_manual_002__CartPolePlant",
+    "asset_case_case_manual_002__PoleAngleEstimator",
+    "asset_case_case_manual_002__SwingUpBalanceController"
+  ]
+}

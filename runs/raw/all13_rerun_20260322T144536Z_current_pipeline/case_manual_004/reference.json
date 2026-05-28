@@ -1,0 +1,447 @@
+{
+  "case_id": "case_manual_004",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_case_case_manual_004__PositionController",
+        "asset_case_case_manual_004__SpoolValveActuator",
+        "asset_case_case_manual_004__HydraulicCylinderPlant"
+      ]
+    ],
+    "case_id": "case_manual_004",
+    "equivalence_class_id": "",
+    "equivalence_reason": "",
+    "oracle_mode": "exact_asset_set",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_manual_004",
+    "connections": [
+      {
+        "source": "asset_case_case_manual_004__PositionController.valve_cmd",
+        "target": "asset_case_case_manual_004__SpoolValveActuator.valve_cmd"
+      },
+      {
+        "source": "asset_case_case_manual_004__SpoolValveActuator.spool_u",
+        "target": "asset_case_case_manual_004__HydraulicCylinderPlant.spool_u"
+      },
+      {
+        "source": "asset_case_case_manual_004__HydraulicCylinderPlant.x_m",
+        "target": "asset_case_case_manual_004__PositionController.x_meas_m"
+      },
+      {
+        "source": "asset_case_case_manual_004__HydraulicCylinderPlant.v_mps",
+        "target": "asset_case_case_manual_004__PositionController.v_meas_mps"
+      }
+    ],
+    "execution_order": [
+      "controller",
+      "valve",
+      "plant"
+    ],
+    "extensions": {
+      "parameter_overrides": [
+        {
+          "target": "asset_case_case_manual_004__PositionController.Kp",
+          "value": 18.0
+        },
+        {
+          "target": "asset_case_case_manual_004__PositionController.Ki",
+          "value": 35.0
+        },
+        {
+          "target": "asset_case_case_manual_004__PositionController.Kv",
+          "value": 3.0
+        },
+        {
+          "target": "asset_case_case_manual_004__PositionController.u_min",
+          "value": -1.0
+        },
+        {
+          "target": "asset_case_case_manual_004__PositionController.u_max",
+          "value": 1.0
+        },
+        {
+          "target": "asset_case_case_manual_004__PositionController.integrator_limit",
+          "value": 0.5
+        },
+        {
+          "target": "asset_case_case_manual_004__PositionController.aw_gain",
+          "value": 8.0
+        },
+        {
+          "target": "asset_case_case_manual_004__PositionController.deadband_m",
+          "value": 0.0002
+        },
+        {
+          "target": "asset_case_case_manual_004__SpoolValveActuator.tau_s",
+          "value": 0.03
+        },
+        {
+          "target": "asset_case_case_manual_004__SpoolValveActuator.deadzone",
+          "value": 0.05
+        },
+        {
+          "target": "asset_case_case_manual_004__SpoolValveActuator.rate_limit_per_s",
+          "value": 25.0
+        },
+        {
+          "target": "asset_case_case_manual_004__SpoolValveActuator.u_min",
+          "value": -1.0
+        },
+        {
+          "target": "asset_case_case_manual_004__SpoolValveActuator.u_max",
+          "value": 1.0
+        },
+        {
+          "target": "asset_case_case_manual_004__HydraulicCylinderPlant.stroke_m",
+          "value": 0.1
+        },
+        {
+          "target": "asset_case_case_manual_004__HydraulicCylinderPlant.m_kg",
+          "value": 12.0
+        },
+        {
+          "target": "asset_case_case_manual_004__HydraulicCylinderPlant.A_A_m2",
+          "value": 0.0012
+        },
+        {
+          "target": "asset_case_case_manual_004__HydraulicCylinderPlant.A_B_m2",
+          "value": 0.001
+        },
+        {
+          "target": "asset_case_case_manual_004__HydraulicCylinderPlant.p_supply_Pa",
+          "value": 20000000.0
+        },
+        {
+          "target": "asset_case_case_manual_004__HydraulicCylinderPlant.p_tank_Pa",
+          "value": 200000.0
+        },
+        {
+          "target": "asset_case_case_manual_004__HydraulicCylinderPlant.F_coulomb_N",
+          "value": 250.0
+        },
+        {
+          "target": "asset_case_case_manual_004__HydraulicCylinderPlant.b_visc_Nspm",
+          "value": 900.0
+        }
+      ]
+    },
+    "external_inputs": [
+      {
+        "default": null,
+        "name": "x_ref_m",
+        "targets": [
+          "controller.x_ref_m"
+        ],
+        "unit": null
+      },
+      {
+        "default": null,
+        "name": "enable",
+        "targets": [
+          "controller.enable"
+        ],
+        "unit": null
+      },
+      {
+        "default": null,
+        "name": "load_force_N",
+        "targets": [
+          "plant.load_force_N"
+        ],
+        "unit": null
+      }
+    ],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "valve_cmd",
+        "source": "asset_case_case_manual_004__PositionController.valve_cmd",
+        "unit": "-1..1"
+      },
+      {
+        "name": "sat_flag",
+        "source": "asset_case_case_manual_004__PositionController.sat_flag",
+        "unit": "-"
+      },
+      {
+        "name": "spool_u",
+        "source": "asset_case_case_manual_004__SpoolValveActuator.spool_u",
+        "unit": "-1..1"
+      },
+      {
+        "name": "spool_state",
+        "source": "asset_case_case_manual_004__SpoolValveActuator.spool_state",
+        "unit": null
+      },
+      {
+        "name": "x_m",
+        "source": "asset_case_case_manual_004__HydraulicCylinderPlant.x_m",
+        "unit": "m"
+      },
+      {
+        "name": "v_mps",
+        "source": "asset_case_case_manual_004__HydraulicCylinderPlant.v_mps",
+        "unit": "m/s"
+      },
+      {
+        "name": "pA_Pa",
+        "source": "asset_case_case_manual_004__HydraulicCylinderPlant.pA_Pa",
+        "unit": "Pa"
+      },
+      {
+        "name": "pB_Pa",
+        "source": "asset_case_case_manual_004__HydraulicCylinderPlant.pB_Pa",
+        "unit": "Pa"
+      },
+      {
+        "name": "rod_force_N",
+        "source": "asset_case_case_manual_004__HydraulicCylinderPlant.rod_force_N",
+        "unit": "N"
+      }
+    ],
+    "notes": [
+      "With enable=true, the controller tracks x_ref_m using a PI structure driving a spool valve. The valve actuator introduces deadzone and rate limits, while the cylinder plant exhibits nonlinear orifice flow and pressure dynamics. Under a step increase in load_force_N, the loop maintains position with limited transient error and valve_cmd saturates but recovers (anti-windup)."
+    ],
+    "schedule": {
+      "co_simulation": {
+        "end_time_s": 5,
+        "output_interval_s": 0.01,
+        "start_time_s": 0,
+        "step_size_s": 0.001
+      },
+      "co_simulation_type": "fixed_step",
+      "kind": "co_simulation"
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_case_case_manual_004__PositionController",
+      "asset_case_case_manual_004__SpoolValveActuator",
+      "asset_case_case_manual_004__HydraulicCylinderPlant"
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_manual_004",
+    "criteria": [
+      {
+        "metric": "within_range(x_m)",
+        "notes": "缸位移必须保持在当前场景对应的有效包络内。",
+        "operator": "in",
+        "signals": [
+          "x_m"
+        ],
+        "unit": "m",
+        "value": [
+          0.0,
+          0.13
+        ]
+      },
+      {
+        "metric": "within_range(valve_cmd)",
+        "notes": "阀命令需保持在饱和器定义的范围内。",
+        "operator": "in",
+        "signals": [
+          "valve_cmd"
+        ],
+        "unit": "-",
+        "value": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "metric": "within_range(spool_u)",
+        "notes": "阀芯位移应维持在执行器物理范围内。",
+        "operator": "in",
+        "signals": [
+          "spool_u"
+        ],
+        "unit": "-",
+        "value": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "metric": "within_range(pA_Pa)",
+        "notes": "A 腔压力需维持在模型有效压力边界内。",
+        "operator": "in",
+        "signals": [
+          "pA_Pa"
+        ],
+        "unit": "Pa",
+        "value": [
+          100000.0,
+          21000000.0
+        ]
+      },
+      {
+        "metric": "within_range(pB_Pa)",
+        "notes": "B 腔压力需维持在模型有效压力边界内。",
+        "operator": "in",
+        "signals": [
+          "pB_Pa"
+        ],
+        "unit": "Pa",
+        "value": [
+          100000.0,
+          21000000.0
+        ]
+      }
+    ],
+    "decision_rule": {
+      "criteria_source": "verification_requirement.criteria",
+      "kind": "acceptance_criteria",
+      "requires_ground_truth": true
+    },
+    "derivation_basis": {
+      "acceptance_criteria_count": 5,
+      "signals_of_interest": [
+        "x_m",
+        "valve_cmd",
+        "spool_u",
+        "pA_Pa",
+        "pB_Pa"
+      ],
+      "source_root": "sources/cases/case_manual_004"
+    },
+    "judgement_policy": "acceptance_criteria_from_requirement",
+    "scenario_window": {
+      "start_time": 0,
+      "stop_time": 5
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "pA_Pa": [
+        "pA_Pa",
+        "asset_case_case_manual_004__HydraulicCylinderPlant.pA_Pa"
+      ],
+      "pB_Pa": [
+        "pB_Pa",
+        "asset_case_case_manual_004__HydraulicCylinderPlant.pB_Pa"
+      ],
+      "rod_force_N": [
+        "rod_force_N",
+        "asset_case_case_manual_004__HydraulicCylinderPlant.rod_force_N"
+      ],
+      "sat_flag": [
+        "sat_flag",
+        "asset_case_case_manual_004__PositionController.sat_flag"
+      ],
+      "spool_state": [
+        "spool_state",
+        "asset_case_case_manual_004__SpoolValveActuator.spool_state"
+      ],
+      "spool_u": [
+        "spool_u",
+        "asset_case_case_manual_004__SpoolValveActuator.spool_u"
+      ],
+      "v_mps": [
+        "v_mps",
+        "asset_case_case_manual_004__HydraulicCylinderPlant.v_mps"
+      ],
+      "valve_cmd": [
+        "valve_cmd",
+        "asset_case_case_manual_004__PositionController.valve_cmd"
+      ],
+      "x_m": [
+        "x_m",
+        "asset_case_case_manual_004__HydraulicCylinderPlant.x_m"
+      ]
+    },
+    "signals": [],
+    "text": "电液伺服缸有界响应检查. 在 0s 到 5s 的阀控场景下，位移、阀命令、阀芯位移与腔压都应保持在物理可接受范围内。Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+    "time_column_aliases": [],
+    "title": "电液伺服缸有界响应检查 Verification Requirement",
+    "tolerances": {}
+  },
+  "verification_result": {
+    "case_id": "case_manual_004",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "source_kind": "offline_cosimulation"
+    },
+    "missing_requirements": [],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "Ground-truth trajectory generated by offline co-simulation of the constituent FMU models using the canonical orchestration (solution.json).",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_manual_004",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "ground_truth_trajectory.csv",
+    "input_relpath": "",
+    "reference_generation_method": "offline_cosimulation",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "pA_Pa": [
+        "pA_Pa"
+      ],
+      "pB_Pa": [
+        "pB_Pa"
+      ],
+      "spool_u": [
+        "spool_u"
+      ],
+      "v_mps": [
+        "v_mps"
+      ],
+      "valve_cmd": [
+        "valve_cmd"
+      ],
+      "x_m": [
+        "x_m"
+      ]
+    },
+    "signal_columns": [],
+    "source_kind": "offline_cosimulation",
+    "stage_segments": [],
+    "supports_numerical_fidelity": false,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "dataset/cases/case_manual_004/ground_truth_trajectory.csv",
+  "input_trajectory_path": null,
+  "declared_scenario_window": {
+    "start_time": 0,
+    "stop_time": 5
+  },
+  "declared_initial_conditions": {
+    "integrator": 0.0,
+    "pA_Pa": 10000000.0,
+    "pB_Pa": 5000000.0,
+    "spool_state": 0.0,
+    "v_mps": 0.0,
+    "x_m": 0.05
+  },
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": false,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "manual_multi_fmu_case",
+    "expected_behavior": "With enable=true, the controller tracks x_ref_m using a PI structure driving a spool valve. The valve actuator introduces deadzone and rate limits, while the cylinder plant exhibits nonlinear orifice flow and pressure dynamics. Under a step increase in load_force_N, the loop maintains position with limited transient error and valve_cmd saturates but recovers (anti-windup).",
+    "title": "电液伺服缸位置跟踪与抗负载扰动",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": true,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": false,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

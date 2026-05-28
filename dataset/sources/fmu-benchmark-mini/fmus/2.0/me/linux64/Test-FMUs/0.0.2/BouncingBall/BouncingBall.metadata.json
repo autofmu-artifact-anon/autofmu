@@ -1,0 +1,123 @@
+{
+  "dataset_id": "fmu-001746",
+  "source_repo": "fmi-cross-check-master",
+  "source_path": "fmus/2.0/me/c-code/Test-FMUs/0.0.2/BouncingBall/BouncingBall.fmu",
+  "source_commit": "",
+  "fmi": {
+    "fmiVersion": "2.0",
+    "fmiTypes": [
+      "ModelExchange",
+      "CoSimulation"
+    ],
+    "modelName": "BouncingBall",
+    "guid": "{8c4e810f-3df3-4a00-8276-176fa3c9f003}",
+    "description": "This model calculates the trajectory, over time, of a ball dropped from a height of 1 m.",
+    "author": "",
+    "generationTool": "",
+    "generationDateAndTime": "",
+    "variableNamingConvention": "flat",
+    "numberOfEventIndicators": 1,
+    "defaultExperiment": {
+      "startTime": 0.0,
+      "stopTime": 3.0,
+      "stepSize": 0.001
+    }
+  },
+  "implementation": {
+    "platforms": [
+      "win64",
+      "darwin64",
+      "linux64",
+      "c-code"
+    ],
+    "modelExchange": {
+      "modelIdentifier": "BouncingBall"
+    },
+    "coSimulation": {
+      "modelIdentifier": "BouncingBall",
+      "canHandleVariableCommunicationStepSize": true
+    }
+  },
+  "variables": [
+    {
+      "name": "h",
+      "valueReference": 0,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Position of the ball",
+      "initial": "exact",
+      "start": 1.0
+    },
+    {
+      "name": "v",
+      "valueReference": 1,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Velocity of the ball",
+      "initial": "exact",
+      "start": 0.0,
+      "derivative": 1,
+      "reinit": true
+    },
+    {
+      "name": "g",
+      "valueReference": 2,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Gravity acting on the ball",
+      "initial": "exact",
+      "start": -9.81,
+      "derivative": 2
+    },
+    {
+      "name": "e",
+      "valueReference": 3,
+      "causality": "parameter",
+      "variability": "tunable",
+      "type": "Real",
+      "description": "Coefficient of restitution",
+      "initial": "exact",
+      "start": 0.7,
+      "min": 0.5,
+      "max": 1.0
+    },
+    {
+      "name": "v_min",
+      "valueReference": 4,
+      "causality": "local",
+      "variability": "constant",
+      "type": "Real",
+      "description": "Velocity below which the ball stops bouncing",
+      "start": 0.1
+    }
+  ],
+  "interface": {
+    "outputs": [
+      "h",
+      "v"
+    ],
+    "parameters": [
+      "g",
+      "e"
+    ],
+    "locals": [
+      "v_min"
+    ],
+    "states": [
+      "v",
+      "g"
+    ]
+  },
+  "test": {
+    "hasReferenceInput": false,
+    "hasReferenceOutput": true,
+    "referenceOutputFile": "BouncingBall_ref.csv",
+    "simulationOptionsFile": "BouncingBall_simopt.json"
+  },
+  "validation": {
+    "fmiCompliance": "not_checked"
+  }
+}

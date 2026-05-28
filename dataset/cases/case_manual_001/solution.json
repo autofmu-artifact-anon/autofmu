@@ -1,0 +1,142 @@
+{
+  "adapters": [],
+  "case_id": "case_manual_001",
+  "connections": [
+    {
+      "source": "asset_case_case_manual_001__ThermalController.current_A",
+      "target": "asset_case_case_manual_001__BatteryPackElectroThermal.current_A"
+    },
+    {
+      "source": "asset_case_case_manual_001__ThermalController.pump_cmd",
+      "target": "asset_case_case_manual_001__CoolingLoop.pump_cmd"
+    },
+    {
+      "source": "asset_case_case_manual_001__ThermalController.fan_cmd",
+      "target": "asset_case_case_manual_001__CoolingLoop.fan_cmd"
+    },
+    {
+      "source": "asset_case_case_manual_001__BatteryPackElectroThermal.T_surface_C",
+      "target": "asset_case_case_manual_001__CoolingLoop.T_batt_surface_C"
+    },
+    {
+      "source": "asset_case_case_manual_001__BatteryPackElectroThermal.heat_W",
+      "target": "asset_case_case_manual_001__CoolingLoop.heat_load_W"
+    },
+    {
+      "source": "asset_case_case_manual_001__CoolingLoop.coolant_in_temp_C",
+      "target": "asset_case_case_manual_001__BatteryPackElectroThermal.coolant_in_temp_C"
+    },
+    {
+      "source": "asset_case_case_manual_001__CoolingLoop.coolant_flow_kgps",
+      "target": "asset_case_case_manual_001__BatteryPackElectroThermal.coolant_flow_kgps"
+    },
+    {
+      "source": "asset_case_case_manual_001__BatteryPackElectroThermal.T_core_C",
+      "target": "asset_case_case_manual_001__ThermalController.T_core_C"
+    },
+    {
+      "source": "asset_case_case_manual_001__BatteryPackElectroThermal.soc",
+      "target": "asset_case_case_manual_001__ThermalController.soc"
+    },
+    {
+      "source": "asset_case_case_manual_001__BatteryPackElectroThermal.voltage_V",
+      "target": "asset_case_case_manual_001__ThermalController.voltage_V"
+    }
+  ],
+  "execution_order": [
+    "asset_case_case_manual_001__ThermalController",
+    "asset_case_case_manual_001__CoolingLoop",
+    "asset_case_case_manual_001__BatteryPackElectroThermal"
+  ],
+  "external_inputs": [
+    {
+      "default": 0.0,
+      "name": "driver_power_request_W",
+      "targets": [
+        "asset_case_case_manual_001__ThermalController.driver_power_request_W"
+      ],
+      "unit": "W"
+    },
+    {
+      "default": 25.0,
+      "name": "ambient_temp_C",
+      "targets": [
+        "asset_case_case_manual_001__BatteryPackElectroThermal.ambient_temp_C",
+        "asset_case_case_manual_001__CoolingLoop.ambient_temp_C",
+        "asset_case_case_manual_001__ThermalController.ambient_temp_C"
+      ],
+      "unit": "degC"
+    }
+  ],
+  "loop_resolution": [],
+  "monitored_outputs": [
+    {
+      "name": "soc",
+      "source": "asset_case_case_manual_001__BatteryPackElectroThermal.soc",
+      "unit": "1"
+    },
+    {
+      "name": "T_core_C",
+      "source": "asset_case_case_manual_001__BatteryPackElectroThermal.T_core_C",
+      "unit": "degC"
+    },
+    {
+      "name": "voltage_V",
+      "source": "asset_case_case_manual_001__BatteryPackElectroThermal.voltage_V",
+      "unit": "V"
+    },
+    {
+      "name": "current_A",
+      "source": "asset_case_case_manual_001__ThermalController.current_A",
+      "unit": "A"
+    },
+    {
+      "name": "pump_cmd",
+      "source": "asset_case_case_manual_001__ThermalController.pump_cmd",
+      "unit": "0..1"
+    },
+    {
+      "name": "fan_cmd",
+      "source": "asset_case_case_manual_001__ThermalController.fan_cmd",
+      "unit": "0..1"
+    },
+    {
+      "name": "mode",
+      "source": "asset_case_case_manual_001__ThermalController.mode",
+      "unit": "enum"
+    },
+    {
+      "name": "coolant_in_temp_C",
+      "source": "asset_case_case_manual_001__CoolingLoop.coolant_in_temp_C",
+      "unit": "degC"
+    },
+    {
+      "name": "coolant_flow_kgps",
+      "source": "asset_case_case_manual_001__CoolingLoop.coolant_flow_kgps",
+      "unit": "kg/s"
+    },
+    {
+      "name": "T_surface_C",
+      "source": "asset_case_case_manual_001__BatteryPackElectroThermal.T_surface_C",
+      "unit": "degC"
+    }
+  ],
+  "notes": [
+    "When ambient_temp_C=35C and driver_power_request_W steps up, controller increases pump_cmd/fan_cmd and may derate current_A to keep T_core_C <= 55C. SOC decreases monotonically during sustained discharge; voltage stays within [280, 420] V."
+  ],
+  "schedule": {
+    "co_simulation": {
+      "start_time": 0,
+      "step_size": 0.1,
+      "stop_time": 3600
+    },
+    "co_simulation_type": "fixed_step",
+    "kind": "co_simulation"
+  },
+  "schema": "UNIFIED_SOLUTION_V1",
+  "selected_asset_ids": [
+    "asset_case_case_manual_001__BatteryPackElectroThermal",
+    "asset_case_case_manual_001__CoolingLoop",
+    "asset_case_case_manual_001__ThermalController"
+  ]
+}

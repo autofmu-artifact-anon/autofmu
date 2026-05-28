@@ -1,0 +1,34 @@
+{
+  "correct_fmus": [
+    "fmu_CartPolePlant",
+    "fmu_PoleAngleEstimator",
+    "fmu_SwingUpBalanceController"
+  ],
+  "correct_connections": [
+    {"from": "fmu_SwingUpBalanceController.force_cmd_N", "to": "fmu_CartPolePlant.force_cmd_N"},
+
+    {"from": "fmu_CartPolePlant.x_m", "to": "fmu_SwingUpBalanceController.x_m"},
+    {"from": "fmu_CartPolePlant.x_dot_mps", "to": "fmu_SwingUpBalanceController.x_dot_mps"},
+
+    {"from": "fmu_CartPolePlant.theta_meas_rad", "to": "fmu_PoleAngleEstimator.theta_meas_rad"},
+    {"from": "fmu_CartPolePlant.theta_dot_meas_rps", "to": "fmu_PoleAngleEstimator.theta_dot_meas_rps"},
+
+    {"from": "fmu_PoleAngleEstimator.theta_hat_rad", "to": "fmu_SwingUpBalanceController.theta_hat_rad"},
+    {"from": "fmu_PoleAngleEstimator.theta_dot_hat_rps", "to": "fmu_SwingUpBalanceController.theta_dot_hat_rps"}
+  ],
+  "exogenous_inputs": {
+    "x_ref_m": [
+      "fmu_SwingUpBalanceController.x_ref_m"
+    ],
+    "enable": [
+      "fmu_SwingUpBalanceController.enable"
+    ],
+    "reset": [
+      "fmu_PoleAngleEstimator.reset"
+    ],
+    "disturbance_force_N": [
+      "fmu_CartPolePlant.disturbance_force_N"
+    ]
+  },
+  "expected_behavior": "Starting from theta=0 (hanging down), controller first performs energy-based swing-up (mode=0) and then switches to balance/LQR (mode=1) when |wrap(theta_hat-pi)| is small. With disturbance impulses, the controller keeps theta near pi and tracks x_ref_m changes, while force_cmd_N stays saturated within limits."
+}

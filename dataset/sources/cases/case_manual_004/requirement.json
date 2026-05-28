@@ -1,0 +1,93 @@
+{
+  "id": "REQ-HYD-SERVO-001",
+  "title": "电液伺服缸位置跟踪与抗负载扰动",
+  "description": "液压缸在阀控条件下跟踪给定位置参考，并在负载力阶跃扰动下保持稳态误差小、压力与阀命令在物理范围内。",
+  "scenario": {
+    "t_start_s": 0,
+    "t_end_s": 12,
+    "inputs": {
+      "enable": true,
+      "x_ref_m_profile": [
+        {"t_s": 0.0, "value_m": 0.00},
+        {"t_s": 1.0, "value_m": 0.02},
+        {"t_s": 5.0, "value_m": 0.06},
+        {"t_s": 9.0, "value_m": 0.03}
+      ],
+      "load_force_N_profile": [
+        {"t_s": 0.0, "value_N": 0.0},
+        {"t_s": 6.0, "value_N": 0.0},
+        {"t_s": 6.2, "value_N": 800.0},
+        {"t_s": 8.5, "value_N": 800.0},
+        {"t_s": 8.7, "value_N": 200.0}
+      ]
+    },
+    "initial_conditions": {
+      "x_m": 0.00,
+      "v_mps": 0.00,
+      "pA_Pa": 200000.0,
+      "pB_Pa": 200000.0,
+      "integrator": 0.0
+    }
+  },
+  "acceptance_criteria": [
+    {
+      "metric": "max(abs(x_m - x_ref_m))_after_t=2s",
+      "operator": "<=",
+      "value": 0.004,
+      "unit": "m",
+      "notes": "基本跟踪误差要求（无扰动阶段）。"
+    },
+    {
+      "metric": "max(abs(x_m - x_ref_m))_during_t=[6.2s,8.7s]",
+      "operator": "<=",
+      "value": 0.010,
+      "unit": "m",
+      "notes": "负载力阶跃扰动期间允许更大瞬态误差。"
+    },
+    {
+      "metric": "within_range(valve_cmd)",
+      "operator": "in",
+      "value": [-1.0, 1.0],
+      "unit": "-"
+    },
+    {
+      "metric": "within_range(spool_u)",
+      "operator": "in",
+      "value": [-1.0, 1.0],
+      "unit": "-"
+    },
+    {
+      "metric": "within_range(pA_Pa)",
+      "operator": "in",
+      "value": [100000.0, 22000000.0],
+      "unit": "Pa",
+      "notes": "压力应在回油~供压范围内（含少量数值裕度）。"
+    },
+    {
+      "metric": "within_range(pB_Pa)",
+      "operator": "in",
+      "value": [100000.0, 22000000.0],
+      "unit": "Pa"
+    },
+    {
+      "metric": "within_range(x_m)",
+      "operator": "in",
+      "value": [0.0, 0.10],
+      "unit": "m",
+      "notes": "缸行程 0~0.10m 软限位。"
+    }
+  ],
+  "signals_of_interest": [
+    "enable",
+    "x_ref_m",
+    "x_m",
+    "v_mps",
+    "valve_cmd",
+    "spool_u",
+    "sat_flag",
+    "pA_Pa",
+    "pB_Pa",
+    "rod_force_N",
+    "load_force_N"
+  ]
+}

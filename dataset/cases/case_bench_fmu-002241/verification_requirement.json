@@ -1,0 +1,63 @@
+{
+  "case_id": "case_bench_fmu-002241",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "operator": "<=",
+      "signals": [
+        "LoadDiskRev",
+        "MotorDiskRev"
+      ],
+      "value": 0.1
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "signals": [
+      "LoadDiskRev",
+      "MotorDiskRev"
+    ],
+    "time_column": "time",
+    "tolerance": 0.1
+  },
+  "derivation_basis": {
+    "ground_truth_source": "TorsionBar_ref.csv",
+    "input_source": "",
+    "signals": [
+      "LoadDiskRev",
+      "MotorDiskRev"
+    ],
+    "source_root": "sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/20sim/4.6.4.8004/TorsionBar",
+    "source_type": "benchmark_single_fmu_case"
+  },
+  "judgement_policy": "trajectory_match",
+  "scenario_window": {
+    "start_time": 0,
+    "step_size": 0.1,
+    "stop_time": 12.5663706143592
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "LoadDiskRev": [
+      "LoadDiskRev"
+    ],
+    "MotorDiskRev": [
+      "MotorDiskRev"
+    ]
+  },
+  "signals": [
+    "LoadDiskRev",
+    "MotorDiskRev"
+  ],
+  "text": "Run the benchmark FMU TorsionBar under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs LoadDiskRev, MotorDiskRev.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Verify benchmark FMU TorsionBar",
+  "tolerances": {
+    "trajectory_match": 0.1
+  }
+}

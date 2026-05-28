@@ -1,0 +1,130 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_manual_005",
+  "selected_asset_ids": [
+    "asset_case_case_manual_005__BatteryPackPlant",
+    "asset_case_case_manual_005__CoolantLoopPlant",
+    "asset_case_case_manual_005__ThermalController"
+  ],
+  "connections": [],
+  "external_inputs": [
+    {
+      "name": "ambient_temp_C",
+      "targets": [
+        "asset_case_case_manual_005__CoolantLoopPlant.ambient_temp_C"
+      ],
+      "default": null
+    },
+    {
+      "name": "enable",
+      "targets": [
+        "asset_case_case_manual_005__ThermalController.enable"
+      ],
+      "default": null
+    },
+    {
+      "name": "i_load_A",
+      "targets": [
+        "asset_case_case_manual_005__BatteryPackPlant.i_load_A"
+      ],
+      "default": null
+    },
+    {
+      "name": "temp_ref_C",
+      "targets": [
+        "asset_case_case_manual_005__ThermalController.temp_ref_C"
+      ],
+      "default": null
+    }
+  ],
+  "initial_conditions": [
+    {
+      "name": "coolant_temp_C",
+      "targets": [
+        "asset_case_case_manual_005__CoolantLoopPlant.coolant_temp_C"
+      ]
+    },
+    {
+      "name": "integrator",
+      "targets": []
+    },
+    {
+      "name": "pump_state",
+      "targets": []
+    },
+    {
+      "name": "soc",
+      "targets": [
+        "asset_case_case_manual_005__BatteryPackPlant.soc"
+      ]
+    },
+    {
+      "name": "temp_cell_C",
+      "targets": [
+        "asset_case_case_manual_005__BatteryPackPlant.temp_cell_C"
+      ]
+    },
+    {
+      "name": "u_cmd_state",
+      "targets": []
+    }
+  ],
+  "monitored_outputs": [
+    {
+      "name": "temp_cell_C",
+      "source": "asset_case_case_manual_005__BatteryPackPlant.temp_cell_C"
+    },
+    {
+      "name": "pump_cmd",
+      "source": "asset_case_case_manual_005__ThermalController.pump_cmd"
+    },
+    {
+      "name": "soc",
+      "source": "asset_case_case_manual_005__BatteryPackPlant.soc"
+    },
+    {
+      "name": "v_term_V",
+      "source": "asset_case_case_manual_005__BatteryPackPlant.v_term_V"
+    }
+  ],
+  "schedule": {
+    "kind": "fixed_step",
+    "start_time": 0.0,
+    "stop_time": 900.0,
+    "duration": 900.0,
+    "step_size": 0.01,
+    "execution_order": [
+      "asset_case_case_manual_005__BatteryPackPlant",
+      "asset_case_case_manual_005__CoolantLoopPlant",
+      "asset_case_case_manual_005__ThermalController"
+    ],
+    "node_order": [
+      "asset_case_case_manual_005__BatteryPackPlant",
+      "asset_case_case_manual_005__CoolantLoopPlant",
+      "asset_case_case_manual_005__ThermalController"
+    ],
+    "warnings": [
+      "weak_stage3_fallback"
+    ],
+    "per_node_period": {
+      "asset_case_case_manual_005__BatteryPackPlant": 0.01,
+      "asset_case_case_manual_005__CoolantLoopPlant": 0.01,
+      "asset_case_case_manual_005__ThermalController": 0.01
+    }
+  },
+  "execution_order": [
+    "asset_case_case_manual_005__BatteryPackPlant",
+    "asset_case_case_manual_005__CoolantLoopPlant",
+    "asset_case_case_manual_005__ThermalController"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=3",
+    "task_goal=Generate the final UNIFIED_SOLUTION_V1 orchestration payload fields for 3 FMUs in BatteryPackThermalManagementClosedLoop without using adapters or loop wrappers.",
+    "connection_count=0",
+    "fallback_mode=weak_fixed_step",
+    "stage3_variant=llm_generated_script"
+  ],
+  "extensions": {}
+}

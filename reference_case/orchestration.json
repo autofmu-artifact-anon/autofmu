@@ -1,0 +1,273 @@
+{
+  "case_id": "case_ship_propulsion",
+  "selected_asset_ids": [
+    "asset_ship_propulsion__controller",
+    "asset_ship_propulsion__ce_wrapper",
+    "asset_ship_propulsion__engine_model",
+    "asset_ship_propulsion__gearbox",
+    "asset_ship_propulsion__shaft_line_model",
+    "asset_ship_propulsion__propeller_design",
+    "asset_ship_propulsion__fuel_consumption_model",
+    "asset_ship_propulsion__hull_load_estimator",
+    "asset_ship_propulsion__cavitation_proxy",
+    "asset_ship_propulsion__exhaust_thermal_monitor"
+  ],
+  "execution_order": [
+    "asset_ship_propulsion__controller",
+    "asset_ship_propulsion__ce_wrapper",
+    "asset_ship_propulsion__engine_model",
+    "asset_ship_propulsion__gearbox",
+    "asset_ship_propulsion__shaft_line_model",
+    "asset_ship_propulsion__propeller_design",
+    "asset_ship_propulsion__fuel_consumption_model",
+    "asset_ship_propulsion__hull_load_estimator",
+    "asset_ship_propulsion__cavitation_proxy",
+    "asset_ship_propulsion__exhaust_thermal_monitor"
+  ],
+  "connections": [
+    {
+      "source": "env.cruise_speed",
+      "target": "asset_ship_propulsion__controller.cruise_speed",
+      "kind": "external_input"
+    },
+    {
+      "source": "env.sea_state",
+      "target": "asset_ship_propulsion__controller.sea_state",
+      "kind": "external_input"
+    },
+    {
+      "source": "asset_ship_propulsion__controller.control_signal",
+      "target": "asset_ship_propulsion__ce_wrapper.control_signal"
+    },
+    {
+      "source": "asset_ship_propulsion__ce_wrapper.RPM_command",
+      "target": "asset_ship_propulsion__engine_model.RPM_command"
+    },
+    {
+      "source": "asset_ship_propulsion__engine_model.K_T",
+      "target": "asset_ship_propulsion__controller.K_T",
+      "note": "SCC1 feedback"
+    },
+    {
+      "source": "asset_ship_propulsion__engine_model.RPM",
+      "target": "asset_ship_propulsion__controller.RPM",
+      "note": "SCC1 feedback"
+    },
+    {
+      "source": "asset_ship_propulsion__controller.torque_c",
+      "target": "asset_ship_propulsion__propeller_design.torque_c"
+    },
+    {
+      "source": "asset_ship_propulsion__engine_model.engine_RPM",
+      "target": "asset_ship_propulsion__gearbox.engine_RPM"
+    },
+    {
+      "source": "asset_ship_propulsion__gearbox.shaft_RPM",
+      "target": "asset_ship_propulsion__shaft_line_model.shaft_RPM_in"
+    },
+    {
+      "source": "asset_ship_propulsion__shaft_line_model.shaft_RPM_out",
+      "target": "asset_ship_propulsion__propeller_design.shaft_RPM"
+    },
+    {
+      "source": "asset_ship_propulsion__propeller_design.resistance_torque",
+      "target": "asset_ship_propulsion__shaft_line_model.resistance_torque",
+      "note": "SCC2 feedback"
+    },
+    {
+      "source": "asset_ship_propulsion__engine_model.engine_state_vector",
+      "target": "projection_wrapper.engine_state_vector",
+      "kind": "adapter_in"
+    },
+    {
+      "source": "projection_wrapper.engine_power",
+      "target": "asset_ship_propulsion__fuel_consumption_model.engine_power",
+      "kind": "adapter_out"
+    },
+    {
+      "source": "projection_wrapper.engine_RPM",
+      "target": "asset_ship_propulsion__fuel_consumption_model.engine_RPM",
+      "kind": "adapter_out"
+    },
+    {
+      "source": "asset_ship_propulsion__fuel_consumption_model.fuel_flow_rate",
+      "target": "unit_wrapper.fuel_flow_rate_kgh",
+      "kind": "adapter_in"
+    },
+    {
+      "source": "unit_wrapper.fuel_flow_rate_gs",
+      "target": "asset_ship_propulsion__exhaust_thermal_monitor.fuel_flow_rate",
+      "kind": "adapter_out"
+    },
+    {
+      "source": "asset_ship_propulsion__propeller_design.Thrust",
+      "target": "asset_ship_propulsion__hull_load_estimator.Thrust"
+    },
+    {
+      "source": "asset_ship_propulsion__propeller_design.Thrust",
+      "target": "asset_ship_propulsion__cavitation_proxy.Thrust"
+    },
+    {
+      "source": "asset_ship_propulsion__engine_model.RPM",
+      "target": "asset_ship_propulsion__cavitation_proxy.RPM"
+    },
+    {
+      "source": "env.sea_state",
+      "target": "asset_ship_propulsion__hull_load_estimator.sea_state",
+      "kind": "external_input"
+    },
+    {
+      "source": "env.sea_state",
+      "target": "asset_ship_propulsion__exhaust_thermal_monitor.sea_state",
+      "kind": "external_input"
+    },
+    {
+      "source": "env.sea_state",
+      "target": "asset_ship_propulsion__cavitation_proxy.sea_state",
+      "kind": "external_input"
+    }
+  ],
+  "adapters": [
+    {
+      "adapter_id": "projection_wrapper",
+      "kind": "dimensionality_conflict",
+      "description": "Projects 2 of 4 components from engine_state_vector to engine_power and engine_RPM",
+      "transform": {
+        "transform_kind": "subspace_projection",
+        "source_dimensions": 4,
+        "target_dimensions": 2,
+        "indices": [0, 2],
+        "mapping": {
+          "engine_state_vector[0]": "engine_power",
+          "engine_state_vector[2]": "engine_RPM"
+        }
+      }
+    },
+    {
+      "adapter_id": "unit_wrapper",
+      "kind": "semantic_unit_missing",
+      "description": "Converts fuel_flow_rate from kg/h to g/s (factor 1000/3600)",
+      "transform": {
+        "transform_kind": "unit_transform",
+        "scale": 0.27778,
+        "offset": 0.0,
+        "source_unit": "kg/h",
+        "target_unit": "g/s"
+      }
+    }
+  ],
+  "schedule": {
+    "kind": "co_simulation",
+    "start_time": 0,
+    "stop_time": 300,
+    "step_size": 0.005,
+    "base_tick": 0.005,
+    "total_ticks": 60000,
+    "per_node_period": {
+      "asset_ship_propulsion__controller": 0.005,
+      "asset_ship_propulsion__ce_wrapper": 0.005,
+      "asset_ship_propulsion__engine_model": 0.5,
+      "asset_ship_propulsion__gearbox": 0.05,
+      "asset_ship_propulsion__shaft_line_model": 0.05,
+      "asset_ship_propulsion__propeller_design": 0.1,
+      "asset_ship_propulsion__fuel_consumption_model": 1.0,
+      "asset_ship_propulsion__hull_load_estimator": 1.0,
+      "asset_ship_propulsion__cavitation_proxy": 0.5,
+      "asset_ship_propulsion__exhaust_thermal_monitor": 2.0
+    },
+    "loop_wrappers": [
+      {
+        "loop_id": "SCC1",
+        "description": "Controller / CE Wrapper / Engine feedback loop via K_T and RPM",
+        "node_order": [
+          "asset_ship_propulsion__controller",
+          "asset_ship_propulsion__ce_wrapper",
+          "asset_ship_propulsion__engine_model"
+        ],
+        "convergence_signals": [
+          "asset_ship_propulsion__engine_model.K_T -> asset_ship_propulsion__controller.K_T",
+          "asset_ship_propulsion__engine_model.RPM -> asset_ship_propulsion__controller.RPM"
+        ],
+        "communication_period": 0.5,
+        "max_iters": 20,
+        "tol": 1e-6,
+        "runtime_policy": {
+          "scheme": "gauss_seidel",
+          "convergence_norm": "l_inf",
+          "initial_guess": "last_converged"
+        }
+      },
+      {
+        "loop_id": "SCC2",
+        "description": "Gearbox / Shaft Line / Propeller feedback loop via shaft RPM and resistance torque",
+        "node_order": [
+          "asset_ship_propulsion__gearbox",
+          "asset_ship_propulsion__shaft_line_model",
+          "asset_ship_propulsion__propeller_design"
+        ],
+        "convergence_signals": [
+          "asset_ship_propulsion__propeller_design.resistance_torque -> asset_ship_propulsion__shaft_line_model.resistance_torque"
+        ],
+        "communication_period": 0.05,
+        "max_iters": 20,
+        "tol": 1e-6,
+        "runtime_policy": {
+          "scheme": "gauss_seidel",
+          "convergence_norm": "l_inf",
+          "initial_guess": "last_converged"
+        }
+      }
+    ],
+    "cross_rate_interpolation": "zero_order_hold"
+  },
+  "monitored_outputs": [
+    {"name": "K_T", "source": "asset_ship_propulsion__engine_model.K_T"},
+    {"name": "RPM", "source": "asset_ship_propulsion__engine_model.RPM"},
+    {"name": "Thrust", "source": "asset_ship_propulsion__propeller_design.Thrust"},
+    {"name": "cavitation_margin", "source": "asset_ship_propulsion__cavitation_proxy.cavitation_margin"},
+    {"name": "resistance_margin", "source": "asset_ship_propulsion__hull_load_estimator.resistance_margin"},
+    {"name": "shaft_torsional_stress", "source": "asset_ship_propulsion__shaft_line_model.shaft_torsional_stress"},
+    {"name": "thermal_margin", "source": "asset_ship_propulsion__exhaust_thermal_monitor.thermal_margin"},
+    {"name": "SFOC", "source": "asset_ship_propulsion__fuel_consumption_model.SFOC"}
+  ],
+  "external_inputs": [
+    {
+      "name": "cruise_speed",
+      "targets": [
+        "asset_ship_propulsion__controller.cruise_speed"
+      ]
+    },
+    {
+      "name": "sea_state",
+      "targets": [
+        "asset_ship_propulsion__controller.sea_state",
+        "asset_ship_propulsion__hull_load_estimator.sea_state",
+        "asset_ship_propulsion__exhaust_thermal_monitor.sea_state",
+        "asset_ship_propulsion__cavitation_proxy.sea_state"
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "stage1",
+      "selected_asset_ids": [
+        "asset_ship_propulsion__controller",
+        "asset_ship_propulsion__ce_wrapper",
+        "asset_ship_propulsion__engine_model",
+        "asset_ship_propulsion__gearbox",
+        "asset_ship_propulsion__shaft_line_model",
+        "asset_ship_propulsion__propeller_design",
+        "asset_ship_propulsion__fuel_consumption_model",
+        "asset_ship_propulsion__hull_load_estimator",
+        "asset_ship_propulsion__cavitation_proxy",
+        "asset_ship_propulsion__exhaust_thermal_monitor"
+      ],
+      "schedule": {
+        "kind": "co_simulation",
+        "start_time": 0,
+        "stop_time": 300,
+        "step_size": 0.005
+      }
+    }
+  ]
+}

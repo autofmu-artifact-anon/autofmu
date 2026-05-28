@@ -1,0 +1,71 @@
+{
+  "correct_connections": [
+    {
+      "from": "asset_dtaas_three_tank__tank1.outPort",
+      "to": "asset_dtaas_three_tank__tank2.inPort"
+    },
+    {
+      "from": "asset_dtaas_three_tank__tank2.outPort",
+      "to": "asset_dtaas_three_tank__tank3.inPort"
+    }
+  ],
+  "correct_fmus": [
+    "fmu_tank1",
+    "fmu_tank2",
+    "fmu_tank3"
+  ],
+  "expected_behavior": "The three tank instances propagate flow from tank1 to tank3 while logging level, in/out flow, leak, and derivative signals over the configured time window.",
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_three_tank__tank2.level",
+        "value": 10
+      },
+      {
+        "target": "asset_dtaas_three_tank__tank1.level",
+        "value": 2
+      },
+      {
+        "target": "asset_dtaas_three_tank__tank3.level",
+        "value": 35
+      }
+    ],
+    "raw_config_relpaths": [
+      "raw/digital_twins/three-tank/README.md",
+      "raw/digital_twins/three-tank/multimodel.json",
+      "raw/digital_twins/three-tank/coe.json",
+      "raw/digital_twins/three-tank/tank1.conf",
+      "raw/digital_twins/three-tank/tank2.conf",
+      "raw/digital_twins/three-tank/tank3.conf"
+    ]
+  },
+  "stages": [
+    {
+      "connections": [
+        {
+          "source": "asset_dtaas_three_tank__tank1.outPort",
+          "target": "asset_dtaas_three_tank__tank2.inPort"
+        },
+        {
+          "source": "asset_dtaas_three_tank__tank2.outPort",
+          "target": "asset_dtaas_three_tank__tank3.inPort"
+        }
+      ],
+      "schedule": {
+        "co_simulation_type": "fixed-step",
+        "kind": "co_simulation",
+        "live_log_interval": 0,
+        "report_progress": false,
+        "start_time": 0,
+        "step_size": 0.5,
+        "stop_time": 10
+      },
+      "selected_asset_ids": [
+        "asset_dtaas_three_tank__tank1",
+        "asset_dtaas_three_tank__tank2",
+        "asset_dtaas_three_tank__tank3"
+      ],
+      "stage_id": "stage1"
+    }
+  ]
+}

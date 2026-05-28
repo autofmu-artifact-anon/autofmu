@@ -1,0 +1,3743 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_monolithic",
+        "objective": "Run the benchmark FMU ControlledTemperature under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory f",
+        "required_signals": [],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "output"
+        ],
+        "grounded_component_types": [
+          "OutputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {
+          "components": [
+            "output"
+          ],
+          "ports": [],
+          "signals": [],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 0,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      }
+    ],
+    "rationale": "rule-generated holistic raw task set",
+    "score": 0.6100000000000001,
+    "p_value": 0.5238095238095238,
+    "task_set_id": "taskset_1",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.5238095238095238,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.3899999999999999,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 1.0,
+      "criteria_coverage": 0.0,
+      "constraint_completeness": 0.0,
+      "regime_coverage": 0.0,
+      "topology_alignment": 1.0,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.0,
+      "final_score": 0.6100000000000001
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "required_chain_count": 0,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.5238095238095238,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.3899999999999999,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_monolithic",
+      "task_index": 0,
+      "fmu_uid": "asset_bench_fmu-002322",
+      "score": 6.592493097149054,
+      "cost": -5.592493097149054,
+      "hard_ok": true,
+      "semantic_cost": -5.592493097149054,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "transport_top_mass=1.000000"
+      ],
+      "grounded_components": [
+        "output"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_bench_fmu-002322",
+      "name": "ControlledTemperature",
+      "description": "Model ControlledTemperature",
+      "path": "dataset/assets/asset_bench_fmu-002322/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "CoSimulation"
+      ],
+      "ports": [
+        {
+          "name": "internalTime",
+          "causality": "independent",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "s",
+          "description": "internal time",
+          "dimensions": []
+        },
+        {
+          "name": "TAmb",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "K",
+          "description": "TAmb",
+          "dimensions": []
+        },
+        {
+          "name": "TDif",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "K",
+          "description": "TDif",
+          "dimensions": []
+        },
+        {
+          "name": "outputs[1]",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "onOffController.reference",
+          "dimensions": []
+        },
+        {
+          "name": "outputs[2]",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "degC",
+          "description": "TempInput.value",
+          "dimensions": []
+        },
+        {
+          "name": "heatCapacitor.T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "heatCapacitor.T",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.heatPort.Q_flow",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "heatingResistor.heatPort.Q_flow",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.p.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "idealSwitch.p.i",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.s",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "idealSwitch.s",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "idealSwitch.v",
+          "dimensions": []
+        },
+        {
+          "name": "onOffController.y",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "onOffController.y",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_9",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "_msim_terminate",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_10",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "msim_RVAR1",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_11",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "msim_RVAR2",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_12",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "msim_RVAR3",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_13",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "msim_RVAR4",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_14",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "msim_RVAR5",
+          "dimensions": []
+        },
+        {
+          "name": "heatCapacitor.T.der",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "der(heatCapacitor.T)",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_18",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_19",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_20",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_21",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_22",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_23",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_24",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_25",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_26",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_27",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_28",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_29",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_30",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_31",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_32",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_33",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_34",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_35",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "ControlledTemperature_r_36",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable",
+          "dimensions": []
+        },
+        {
+          "name": "minsamplestep",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "s",
+          "description": "Minimum time step between samples in binary data file",
+          "dimensions": []
+        },
+        {
+          "name": "binfilename",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "String",
+          "unit": "",
+          "description": "Name of binary data file",
+          "dimensions": []
+        }
+      ],
+      "inputs": [],
+      "outputs": [
+        "outputs[1]",
+        "outputs[2]"
+      ],
+      "tags": [
+        "MapleSim",
+        "linux64"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_bench_fmu-002322",
+        "asset_json": {
+          "asset_id": "asset_bench_fmu-002322",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_bench_fmu-002322"
+          ],
+          "default_experiment": {
+            "startTime": 0.0,
+            "stepSize": 0.001,
+            "stopTime": 10,
+            "tolerance": 0
+          },
+          "description": "Model ControlledTemperature",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "ControlledTemperature",
+          "outputs": [
+            "outputs[1]",
+            "outputs[2]"
+          ],
+          "ports": [
+            {
+              "causality": "independent",
+              "description": "internal time",
+              "name": "internalTime",
+              "type": "Real",
+              "unit": "s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "TAmb",
+              "name": "TAmb",
+              "type": "Real",
+              "unit": "K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "TDif",
+              "name": "TDif",
+              "type": "Real",
+              "unit": "K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "output",
+              "description": "onOffController.reference",
+              "name": "outputs[1]",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "TempInput.value",
+              "name": "outputs[2]",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "heatCapacitor.T",
+              "name": "heatCapacitor.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "heatingResistor.heatPort.Q_flow",
+              "name": "heatingResistor.heatPort.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "idealSwitch.p.i",
+              "name": "idealSwitch.p.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "idealSwitch.s",
+              "name": "idealSwitch.s",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "idealSwitch.v",
+              "name": "idealSwitch.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "onOffController.y",
+              "name": "onOffController.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "_msim_terminate",
+              "name": "ControlledTemperature_r_9",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "msim_RVAR1",
+              "name": "ControlledTemperature_r_10",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "msim_RVAR2",
+              "name": "ControlledTemperature_r_11",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "msim_RVAR3",
+              "name": "ControlledTemperature_r_12",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "msim_RVAR4",
+              "name": "ControlledTemperature_r_13",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "msim_RVAR5",
+              "name": "ControlledTemperature_r_14",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "der(heatCapacitor.T)",
+              "name": "heatCapacitor.T.der",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_18",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_19",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_20",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_21",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_22",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_23",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_24",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_25",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_26",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_27",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_28",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_29",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_30",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_31",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_32",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_33",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_34",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_35",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_36",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "Minimum time step between samples in binary data file",
+              "name": "minsamplestep",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Name of binary data file",
+              "name": "binfilename",
+              "type": "String",
+              "unit": "",
+              "variability": "fixed"
+            }
+          ],
+          "provenance": {
+            "path_to_fmu": "fmus/2.0/cs/linux64/MapleSim/2016.2/ControlledTemperature/ControlledTemperature.fmu",
+            "path_to_metadata": "fmus/2.0/cs/linux64/MapleSim/2016.2/ControlledTemperature/ControlledTemperature.metadata.json",
+            "source_path": "fmus/2.0/cs/linux64/MapleSim/2016.2/ControlledTemperature/ControlledTemperature.fmu",
+            "source_repo": "fmi-cross-check-master"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "fmu-002322",
+          "source_type": "benchmark_single_fmu",
+          "tags": [
+            "MapleSim",
+            "linux64"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_bench_fmu-002322",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "dataset_id": "fmu-002322",
+          "default_experiment": {
+            "startTime": 0.0,
+            "stepSize": 0.001,
+            "stopTime": 10,
+            "tolerance": 0
+          },
+          "description": "Model ControlledTemperature",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [],
+          "name": "ControlledTemperature",
+          "outputs": [
+            "outputs[1]",
+            "outputs[2]"
+          ],
+          "ports": [
+            {
+              "causality": "independent",
+              "description": "internal time",
+              "name": "internalTime",
+              "type": "Real",
+              "unit": "s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "TAmb",
+              "name": "TAmb",
+              "type": "Real",
+              "unit": "K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "TDif",
+              "name": "TDif",
+              "type": "Real",
+              "unit": "K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "output",
+              "description": "onOffController.reference",
+              "name": "outputs[1]",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "TempInput.value",
+              "name": "outputs[2]",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "heatCapacitor.T",
+              "name": "heatCapacitor.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "heatingResistor.heatPort.Q_flow",
+              "name": "heatingResistor.heatPort.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "idealSwitch.p.i",
+              "name": "idealSwitch.p.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "idealSwitch.s",
+              "name": "idealSwitch.s",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "idealSwitch.v",
+              "name": "idealSwitch.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "onOffController.y",
+              "name": "onOffController.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "_msim_terminate",
+              "name": "ControlledTemperature_r_9",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "msim_RVAR1",
+              "name": "ControlledTemperature_r_10",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "msim_RVAR2",
+              "name": "ControlledTemperature_r_11",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "msim_RVAR3",
+              "name": "ControlledTemperature_r_12",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "msim_RVAR4",
+              "name": "ControlledTemperature_r_13",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "msim_RVAR5",
+              "name": "ControlledTemperature_r_14",
+              "type": "Real",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "der(heatCapacitor.T)",
+              "name": "heatCapacitor.T.der",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_18",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_19",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_20",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_21",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_22",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_23",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_24",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_25",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_26",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_27",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_28",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_29",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_30",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_31",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_32",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_33",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_34",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_35",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "internal variable",
+              "name": "ControlledTemperature_r_36",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "Minimum time step between samples in binary data file",
+              "name": "minsamplestep",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Name of binary data file",
+              "name": "binfilename",
+              "type": "String",
+              "unit": "",
+              "variability": "fixed"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0.0,
+          "stepSize": 0.001,
+          "stopTime": 10,
+          "tolerance": 0
+        },
+        "source_type": "benchmark_single_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_bench_fmu-002322"
+    ],
+    "port_nodes": [
+      "asset_bench_fmu-002322.internalTime",
+      "asset_bench_fmu-002322.TAmb",
+      "asset_bench_fmu-002322.TDif",
+      "asset_bench_fmu-002322.outputs[1]",
+      "asset_bench_fmu-002322.outputs[2]",
+      "asset_bench_fmu-002322.heatCapacitor.T",
+      "asset_bench_fmu-002322.heatingResistor.heatPort.Q_flow",
+      "asset_bench_fmu-002322.idealSwitch.p.i",
+      "asset_bench_fmu-002322.idealSwitch.s",
+      "asset_bench_fmu-002322.idealSwitch.v",
+      "asset_bench_fmu-002322.onOffController.y",
+      "asset_bench_fmu-002322.ControlledTemperature_r_9",
+      "asset_bench_fmu-002322.ControlledTemperature_r_10",
+      "asset_bench_fmu-002322.ControlledTemperature_r_11",
+      "asset_bench_fmu-002322.ControlledTemperature_r_12",
+      "asset_bench_fmu-002322.ControlledTemperature_r_13",
+      "asset_bench_fmu-002322.ControlledTemperature_r_14",
+      "asset_bench_fmu-002322.heatCapacitor.T.der",
+      "asset_bench_fmu-002322.ControlledTemperature_r_18",
+      "asset_bench_fmu-002322.ControlledTemperature_r_19",
+      "asset_bench_fmu-002322.ControlledTemperature_r_20",
+      "asset_bench_fmu-002322.ControlledTemperature_r_21",
+      "asset_bench_fmu-002322.ControlledTemperature_r_22",
+      "asset_bench_fmu-002322.ControlledTemperature_r_23",
+      "asset_bench_fmu-002322.ControlledTemperature_r_24",
+      "asset_bench_fmu-002322.ControlledTemperature_r_25",
+      "asset_bench_fmu-002322.ControlledTemperature_r_26",
+      "asset_bench_fmu-002322.ControlledTemperature_r_27",
+      "asset_bench_fmu-002322.ControlledTemperature_r_28",
+      "asset_bench_fmu-002322.ControlledTemperature_r_29",
+      "asset_bench_fmu-002322.ControlledTemperature_r_30",
+      "asset_bench_fmu-002322.ControlledTemperature_r_31",
+      "asset_bench_fmu-002322.ControlledTemperature_r_32",
+      "asset_bench_fmu-002322.ControlledTemperature_r_33",
+      "asset_bench_fmu-002322.ControlledTemperature_r_34",
+      "asset_bench_fmu-002322.ControlledTemperature_r_35",
+      "asset_bench_fmu-002322.ControlledTemperature_r_36",
+      "asset_bench_fmu-002322.minsamplestep",
+      "asset_bench_fmu-002322.binfilename"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "output": "asset_bench_fmu-002322"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "status": "ok",
+      "note": "no_required_signal_chains",
+      "routing_failure_count": 0
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "assignment": [
+        {
+          "task_id": "task_monolithic",
+          "task_index": 0,
+          "fmu_uid": "asset_bench_fmu-002322",
+          "semantic_cost": -5.592493097149054,
+          "transport_mass": 1.0
+        }
+      ],
+      "closure_failure": null,
+      "failure_type": "",
+      "failure_class": "",
+      "revision_eligible": false
+    }
+  ],
+  "final_cost": -5.592493097149054,
+  "transport_plans": [
+    {
+      "revision": 0,
+      "objective": -5.592493097149054,
+      "cost_matrix": [
+        [
+          -0.6718974532352604,
+          -0.6196561388575849,
+          -0.6449164707041798,
+          -0.6400734842065395,
+          -0.7287688508344808,
+          -0.6340283708321995,
+          -0.6210405027788518,
+          -0.6173036782106798,
+          -0.6327886267419999,
+          -0.6268485372082429,
+          -0.6720533153141683,
+          -0.6196925596287064,
+          -0.6452970624536144,
+          -0.6406445642148145,
+          -1.0359835441392344,
+          -0.6050688060711308,
+          -0.6024159768314262,
+          -1.0359835441392344,
+          -0.6050688060711308,
+          -0.6024159768314262,
+          -1.095100313436161,
+          -0.6020394272157708,
+          -0.6012987397518902,
+          -1.095100313436161,
+          -0.6020394272157708,
+          -0.6012987397518902,
+          -1.093729744261329,
+          -0.6022907411053988,
+          -0.6012987397518902,
+          -1.0445752275707727,
+          -1.0967614567990385,
+          -0.6025432622292382,
+          -0.6021260838454635,
+          -1.0924929074994911,
+          -0.6021458095860888,
+          -0.6012648955312714,
+          -1.0949805887635011,
+          -0.6021395109085342,
+          -0.6012648955312714,
+          -0.6052342161527106,
+          -0.6024807936440378,
+          -0.6053104573525757,
+          -0.6045945306091914,
+          -0.601326658054619,
+          -0.6109083923842799,
+          -0.6055325545010518,
+          -0.6055021287098115,
+          -0.6121865136895205,
+          -0.6219499545298581,
+          -0.6719588861263136,
+          -0.6196704981704093,
+          -0.6450656265497013,
+          -0.6402961287313714,
+          -0.6719145666923666,
+          -0.6196601394899494,
+          -0.6449579107279639,
+          -0.640135192665975,
+          -0.6238426379411742,
+          -0.6718974532352604,
+          -0.6196561388575849,
+          -0.6449164707041798,
+          -0.6400734842065395,
+          -0.6238424211609019,
+          -0.6238427058359743,
+          -0.6208675074880821,
+          -0.6172818283424774,
+          -0.6325880584539468,
+          -0.6264918499405606,
+          -0.67195018377849,
+          -0.6196684644095095,
+          -0.6450444306467046,
+          -0.6406492420732852,
+          -1.0359843531938688,
+          -0.6077181164469695,
+          -0.6024159780448027,
+          -1.0359843531938688,
+          -0.6077181164469695,
+          -0.6024159780448027,
+          -1.0951005025756575,
+          -0.6023185388550444,
+          -0.6012987401413551,
+          -1.0951005025756575,
+          -0.6023185388550444,
+          -0.6012987401413551,
+          -1.0937300051921954,
+          -0.6022907412802911,
+          -0.6012987401413551,
+          -1.0445753019098236,
+          -1.09676164498515,
+          -0.6028956013914165,
+          -0.6021260844265545,
+          -5.592493097149054,
+          -0.60245061702011,
+          -0.6012648958910752,
+          -1.0949807750221068,
+          -0.6024417567732444,
+          -0.6012648958910752,
+          -0.6238429042433347,
+          -0.604732410911484,
+          -0.6024421331683515,
+          -0.6046340856368203,
+          -0.6039320122667713,
+          -0.6012466131018666,
+          -0.6098967971363315,
+          -0.6004902914358703,
+          -0.6142861804877375,
+          -0.6006126826419147,
+          -0.6010908220334235,
+          -0.6055557935372088,
+          -0.6055025019748517,
+          -0.6122565332396931,
+          -0.6219503266165419,
+          -0.6719145666923666,
+          -0.6196601394899494,
+          -0.6449579107279639,
+          -0.640135192665975,
+          -0.6238426379411742,
+          -0.6718974532352604,
+          -0.6196561388575849,
+          -0.6449164707041798,
+          -0.6400734842065395,
+          -0.6268585671771741,
+          -0.6268585671771741,
+          -0.6268586874313465,
+          -0.6268586874313465,
+          -0.6268588671111389,
+          -0.6268588671111389,
+          -0.6268585671771741,
+          -0.6268585671771741,
+          -0.6268586874313465,
+          -0.6268586874313465,
+          -0.6268585671771741,
+          -0.6268585671771741,
+          -0.6268586874313465,
+          -0.6268586874313465,
+          -0.6268587032136502,
+          -0.6268587032136502,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "transport_matrix": [
+        [
+          1.820745659978452e-43,
+          6.404525987077236e-44,
+          1.0614399926441423e-43,
+          9.634513743661679e-44,
+          5.678425947748879e-43,
+          8.537340696039329e-44,
+          6.584327502620442e-44,
+          6.110176824657342e-44,
+          8.328261105916434e-44,
+          7.395360860837372e-44,
+          1.8264302195224962e-43,
+          6.409192842077893e-44,
+          1.0695503268219016e-43,
+          9.745186132190593e-44,
+          2.6464329047964004e-40,
+          4.783910317733965e-44,
+          4.536708210883724e-44,
+          2.6464329047964004e-40,
+          4.783910317733965e-44,
+          4.536708210883724e-44,
+          8.632619951336988e-40,
+          4.502670625490109e-44,
+          4.436460810356876e-44,
+          8.632619951336988e-40,
+          4.502670625490109e-44,
+          4.436460810356876e-44,
+          8.399201669666428e-40,
+          4.525359270813117e-44,
+          4.436460810356876e-44,
+          3.1425869438512593e-40,
+          8.924237704536247e-40,
+          4.548272057914942e-44,
+          4.51048111706424e-44,
+          8.19398154423115e-40,
+          4.512260919732589e-44,
+          4.433458855291163e-44,
+          8.611973927628434e-40,
+          4.511692530002862e-44,
+          4.433458855291163e-44,
+          4.79976266457475e-44,
+          4.5425931237921e-44,
+          4.807087040640084e-44,
+          4.738747029242332e-44,
+          4.4389386711881497e-44,
+          5.376566623818355e-44,
+          4.828487341394693e-44,
+          4.825550024230196e-44,
+          5.515776400323508e-44,
+          6.70518588274671e-44,
+          1.8229841082356262e-43,
+          6.406365543055077e-44,
+          1.0646111198054982e-43,
+          9.677510837980539e-44,
+          1.8213689516941937e-43,
+          6.40503845065769e-44,
+          1.0623200792726896e-43,
+          9.646411704210206e-44,
+          6.963866889109189e-44,
+          1.820745659978452e-43,
+          6.404525987077236e-44,
+          1.0614399926441423e-43,
+          9.634513743661679e-44,
+          6.963836696595479e-44,
+          6.963876345322678e-44,
+          6.561585714512882e-44,
+          6.107507276826266e-44,
+          8.294920320217458e-44,
+          7.342791969138352e-44,
+          1.822666851009542e-43,
+          6.406104968039517e-44,
+          1.0641599075702676e-43,
+          9.74609790687147e-44,
+          2.6464757273189865e-40,
+          5.044227285710999e-44,
+          4.536708320978452e-44,
+          2.6464757273189865e-40,
+          5.044227285710999e-44,
+          4.536708320978452e-44,
+          8.632652606786467e-40,
+          4.527875866386593e-44,
+          4.436460844913847e-44,
+          8.632652606786467e-40,
+          4.527875866386593e-44,
+          4.436460844913847e-44,
+          8.39924550200021e-40,
+          4.525359286642125e-44,
+          4.436460844913847e-44,
+          3.1425916161933434e-40,
+          8.924271292951321e-40,
+          4.580435938088649e-44,
+          4.510481169484183e-44,
+          1.0,
+          4.539852348461712e-44,
+          4.4334588871946805e-44,
+          8.61200600877337e-40,
+          4.53904793548596e-44,
+          4.4334588871946805e-44,
+          6.963903979063908e-44,
+          4.751832660916066e-44,
+          4.539082105123247e-44,
+          4.742497337875706e-44,
+          4.676371057577918e-44,
+          4.4318380636584664e-44,
+          5.268881450184714e-44,
+          4.365304636047665e-44,
+          5.752334420031768e-44,
+          4.376003222818184e-44,
+          4.418050738491955e-44,
+          4.830732050841307e-44,
+          4.825586048547104e-44,
+          5.523506054977808e-44,
+          6.705235781139935e-44,
+          1.8213689516941937e-43,
+          6.40503845065769e-44,
+          1.0623200792726896e-43,
+          9.646411704210206e-44,
+          6.963866889109189e-44,
+          1.820745659978452e-43,
+          6.404525987077236e-44,
+          1.0614399926441423e-43,
+          9.634513743661679e-44,
+          7.396844514435715e-44,
+          7.396844514435715e-44,
+          7.39686230448543e-44,
+          7.39686230448543e-44,
+          7.396888885866866e-44,
+          7.396888885866866e-44,
+          7.396844514435715e-44,
+          7.396844514435715e-44,
+          7.39686230448543e-44,
+          7.39686230448543e-44,
+          7.396844514435715e-44,
+          7.396844514435715e-44,
+          7.39686230448543e-44,
+          7.39686230448543e-44,
+          7.396864639276362e-44,
+          7.396864639276362e-44,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "iterations": 2,
+      "converged": true,
+      "epsilon": 0.05
+    }
+  ],
+  "mask_history": [
+    {
+      "revision": 0,
+      "finite_pairs": 137,
+      "blocked_pairs": 44,
+      "mask_matrix": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "mask_explanations": [
+        [
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          }
+        ]
+      ],
+      "applied_exclusion_pair": null,
+      "exclusion_reason": null
+    }
+  ],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": -5.576084014902109,
+      "final_cost": -5.576084014902109,
+      "selected_fmus": [
+        "asset_bench_fmu-002322"
+      ],
+      "discrepancy_count": 0
+    },
+    {
+      "task_set_id": "taskset_1",
+      "status": "ok",
+      "selected_task_set_cost": -5.592493097149054,
+      "final_cost": -5.592493097149054,
+      "selected_fmus": [
+        "asset_bench_fmu-002322"
+      ],
+      "discrepancy_count": 0
+    }
+  ],
+  "selected_task_set_cost": -5.592493097149054,
+  "diagnostics": {
+    "status": "ok",
+    "revisions": 1,
+    "objective_kind": "fused_transport"
+  }
+}

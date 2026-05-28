@@ -1,0 +1,802 @@
+{
+  "dataset_id": "fmu-001523",
+  "source_repo": "fmi-cross-check-master",
+  "source_path": "fmus/2.0/me/linux64/SystemModeler/5.0/ControlledTemperature/ControlledTemperature.fmu",
+  "source_commit": "",
+  "fmi": {
+    "fmiVersion": "2.0",
+    "fmiTypes": [
+      "ModelExchange"
+    ],
+    "modelName": "FMICrossCheck.ControlledTemperature",
+    "guid": "{573783f2-2a55-4ce7-a9e8-5bdbeba0e901}",
+    "description": "",
+    "author": "",
+    "generationTool": "Wolfram SystemModeler 5.0.0.10",
+    "generationDateAndTime": "",
+    "variableNamingConvention": "structured",
+    "numberOfEventIndicators": 2,
+    "defaultExperiment": {
+      "startTime": 0.0,
+      "stopTime": 10.0,
+      "stepSize": 0.002
+    }
+  },
+  "implementation": {
+    "platforms": [
+      "linux64"
+    ],
+    "modelExchange": {
+      "modelIdentifier": "FMICrossCheck_ControlledTemperature",
+      "canBeInstantiatedOnlyOncePerProcess": true,
+      "canNotUseMemoryManagementFunctions": true
+    }
+  },
+  "variables": [
+    {
+      "name": "heatCapacitor.T",
+      "valueReference": 0,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Temperature of element",
+      "initial": "calculated",
+      "reinit": false
+    },
+    {
+      "name": "der(heatCapacitor.T)",
+      "valueReference": 1,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Derivative of T",
+      "initial": "calculated",
+      "unit": "K/s",
+      "derivative": 1
+    },
+    {
+      "name": "TRes",
+      "valueReference": 2,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Resulting Temperature",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatCapacitor.der_T",
+      "valueReference": 3,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Time derivative of temperature (= der(T))",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatCapacitor.port.Q_flow",
+      "valueReference": 4,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Heat flow rate (positive if flowing from outside into the component)",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.v",
+      "valueReference": 5,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Voltage drop between the two pins (= p.v - n.v)",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.i",
+      "valueReference": 6,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Current flowing from pin p to pin n",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.LossPower",
+      "valueReference": 7,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Loss power leaving component via heatPort",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.R",
+      "valueReference": 8,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Resistance = R_ref*(1 + alpha*(T_heatPort - T_ref))",
+      "initial": "calculated"
+    },
+    {
+      "name": "temperatureSensor.T",
+      "valueReference": 9,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Absolute temperature in degree Celsius as output signal",
+      "initial": "calculated",
+      "unit": "degC"
+    },
+    {
+      "name": "thermalConductor.Q_flow",
+      "valueReference": 10,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Heat flow rate from port_a -> port_b",
+      "initial": "calculated"
+    },
+    {
+      "name": "thermalConductor.dT",
+      "valueReference": 11,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "port_a.T - port_b.T",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.v",
+      "valueReference": 13,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Voltage drop between the two pins (= p.v - n.v)",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.LossPower",
+      "valueReference": 14,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Loss power leaving component via heatPort",
+      "initial": "calculated"
+    },
+    {
+      "name": "ramp.y",
+      "valueReference": 18,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Connector of Real output signal",
+      "initial": "calculated"
+    },
+    {
+      "name": "onOffController.y",
+      "valueReference": 19,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Boolean",
+      "description": "Connector of Real output signal used as actuator signal",
+      "initial": "calculated"
+    },
+    {
+      "name": "TAmb",
+      "valueReference": 53,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Ambient Temperature",
+      "initial": "exact",
+      "start": 293.15
+    },
+    {
+      "name": "TDif",
+      "valueReference": 54,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Error in Temperature",
+      "initial": "exact",
+      "start": 2.0
+    },
+    {
+      "name": "constantVoltage.V",
+      "valueReference": 55,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Value of constant voltage",
+      "initial": "exact",
+      "start": 10.0
+    },
+    {
+      "name": "heatCapacitor.C",
+      "valueReference": 56,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Heat capacity of element (= cp*m)",
+      "initial": "exact",
+      "start": 1.0
+    },
+    {
+      "name": "heatingResistor.useHeatPort",
+      "valueReference": 57,
+      "causality": "local",
+      "variability": "fixed",
+      "type": "Boolean",
+      "description": "=true, if heatPort is enabled",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.R_ref",
+      "valueReference": 58,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Resistance at temperature T_ref",
+      "initial": "exact",
+      "start": 10.0
+    },
+    {
+      "name": "heatingResistor.T_ref",
+      "valueReference": 59,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Reference temperature",
+      "initial": "exact",
+      "start": 293.15
+    },
+    {
+      "name": "heatingResistor.alpha",
+      "valueReference": 60,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Temperature coefficient of resistance (R = R_ref*(1 + alpha*(heatPort.T - T_ref))",
+      "initial": "exact",
+      "start": 0.00392156862745098
+    },
+    {
+      "name": "heatingResistor.T",
+      "valueReference": 61,
+      "causality": "calculatedParameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Fixed device temperature if useHeatPort = false",
+      "initial": "calculated"
+    },
+    {
+      "name": "fixedTemperature.T",
+      "valueReference": 62,
+      "causality": "calculatedParameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Fixed temperature at port",
+      "initial": "calculated"
+    },
+    {
+      "name": "thermalConductor.G",
+      "valueReference": 63,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Constant thermal conductance of material",
+      "initial": "exact",
+      "start": 0.1
+    },
+    {
+      "name": "idealSwitch.Ron",
+      "valueReference": 64,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Closed switch resistance",
+      "initial": "exact",
+      "start": 1e-05,
+      "min": 0.0
+    },
+    {
+      "name": "idealSwitch.Goff",
+      "valueReference": 65,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Opened switch conductance",
+      "initial": "exact",
+      "start": 1e-05,
+      "min": 0.0
+    },
+    {
+      "name": "idealSwitch.useHeatPort",
+      "valueReference": 66,
+      "causality": "local",
+      "variability": "fixed",
+      "type": "Boolean",
+      "description": "=true, if heatPort is enabled",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.T",
+      "valueReference": 67,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Fixed device temperature if useHeatPort = false",
+      "initial": "exact",
+      "start": 293.15
+    },
+    {
+      "name": "ramp.height",
+      "valueReference": 68,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Height of ramps",
+      "initial": "exact",
+      "start": 25.0
+    },
+    {
+      "name": "ramp.duration",
+      "valueReference": 69,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Duration of ramp (= 0.0 gives a Step)",
+      "initial": "exact",
+      "start": 6.0,
+      "min": 0.0
+    },
+    {
+      "name": "ramp.offset",
+      "valueReference": 70,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Offset of output signal",
+      "initial": "exact",
+      "start": 25.0
+    },
+    {
+      "name": "ramp.startTime",
+      "valueReference": 71,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Output = offset for time < startTime",
+      "initial": "exact",
+      "start": 2.0
+    },
+    {
+      "name": "onOffController.bandwidth",
+      "valueReference": 72,
+      "causality": "calculatedParameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Bandwidth around reference signal",
+      "initial": "calculated"
+    },
+    {
+      "name": "onOffController.pre_y_start",
+      "valueReference": 73,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Boolean",
+      "description": "Value of pre(y) at initial time",
+      "initial": "exact",
+      "start": false
+    },
+    {
+      "name": "logicalNot.y",
+      "valueReference": 20,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Boolean",
+      "description": "Connector of Boolean output signal",
+      "initial": "calculated"
+    },
+    {
+      "name": "logicalNot.u",
+      "valueReference": 21,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Boolean",
+      "description": "Connector of Boolean input signal",
+      "initial": "calculated"
+    },
+    {
+      "name": "onOffController.u",
+      "valueReference": 22,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Connector of Real input signal used as measurement signal",
+      "initial": "calculated"
+    },
+    {
+      "name": "onOffController.reference",
+      "valueReference": 23,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Connector of Real input signal used as reference signal",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.control",
+      "valueReference": 24,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Boolean",
+      "description": "true => switch open, false => p--n connected",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.n.i",
+      "valueReference": 25,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Current flowing into the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.n.v",
+      "valueReference": 26,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Potential at the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.p.i",
+      "valueReference": 27,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Current flowing into the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.p.v",
+      "valueReference": 28,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Potential at the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.i",
+      "valueReference": 29,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Current flowing from pin p to pin n",
+      "initial": "calculated"
+    },
+    {
+      "name": "thermalConductor.port_b.Q_flow",
+      "valueReference": 30,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Heat flow rate (positive if flowing from outside into the component)",
+      "initial": "calculated"
+    },
+    {
+      "name": "thermalConductor.port_a.Q_flow",
+      "valueReference": 31,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Heat flow rate (positive if flowing from outside into the component)",
+      "initial": "calculated"
+    },
+    {
+      "name": "thermalConductor.port_a.T",
+      "valueReference": 32,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Port temperature",
+      "initial": "calculated"
+    },
+    {
+      "name": "temperatureSensor.port.Q_flow",
+      "valueReference": 33,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Heat flow rate (positive if flowing from outside into the component)",
+      "initial": "calculated"
+    },
+    {
+      "name": "temperatureSensor.port.T",
+      "valueReference": 34,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Port temperature",
+      "initial": "calculated"
+    },
+    {
+      "name": "fixedTemperature.port.Q_flow",
+      "valueReference": 35,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Heat flow rate (positive if flowing from outside into the component)",
+      "initial": "calculated"
+    },
+    {
+      "name": "fixedTemperature.port.T",
+      "valueReference": 36,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Port temperature",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.heatPort.Q_flow",
+      "valueReference": 37,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Heat flow rate (positive if flowing from outside into the component)",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.heatPort.T",
+      "valueReference": 38,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Port temperature",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.T_heatPort",
+      "valueReference": 39,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Temperature of heatPort",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.n.i",
+      "valueReference": 40,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Current flowing into the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.n.v",
+      "valueReference": 41,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Potential at the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.p.i",
+      "valueReference": 42,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Current flowing into the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatingResistor.p.v",
+      "valueReference": 43,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Potential at the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "heatCapacitor.port.T",
+      "valueReference": 44,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Port temperature",
+      "initial": "calculated"
+    },
+    {
+      "name": "constantVoltage.n.i",
+      "valueReference": 45,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Current flowing into the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "constantVoltage.n.v",
+      "valueReference": 46,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Potential at the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "constantVoltage.p.i",
+      "valueReference": 47,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Current flowing into the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "constantVoltage.p.v",
+      "valueReference": 48,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Potential at the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "constantVoltage.i",
+      "valueReference": 49,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Current flowing from pin p to pin n",
+      "initial": "calculated"
+    },
+    {
+      "name": "constantVoltage.v",
+      "valueReference": 50,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Voltage drop between the two pins (= p.v - n.v)",
+      "initial": "calculated"
+    },
+    {
+      "name": "ground.p.i",
+      "valueReference": 51,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Current flowing into the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "ground.p.v",
+      "valueReference": 52,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Potential at the pin",
+      "initial": "calculated"
+    },
+    {
+      "name": "idealSwitch.T_heatPort",
+      "valueReference": 15,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Temperature of heatPort",
+      "initial": "calculated"
+    },
+    {
+      "name": "thermalConductor.port_b.T",
+      "valueReference": 12,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "Port temperature",
+      "initial": "calculated"
+    }
+  ],
+  "interface": {
+    "outputs": [
+      "TRes"
+    ],
+    "parameters": [
+      "TAmb",
+      "TDif",
+      "constantVoltage.V",
+      "heatCapacitor.C",
+      "heatingResistor.R_ref",
+      "heatingResistor.T_ref",
+      "heatingResistor.alpha",
+      "thermalConductor.G",
+      "idealSwitch.Ron",
+      "idealSwitch.Goff",
+      "idealSwitch.T",
+      "ramp.height",
+      "ramp.duration",
+      "ramp.offset",
+      "ramp.startTime",
+      "onOffController.pre_y_start"
+    ],
+    "calculatedParameters": [
+      "heatingResistor.T",
+      "fixedTemperature.T",
+      "onOffController.bandwidth"
+    ],
+    "locals": [
+      "heatCapacitor.T",
+      "der(heatCapacitor.T)",
+      "heatCapacitor.der_T",
+      "heatCapacitor.port.Q_flow",
+      "heatingResistor.v",
+      "heatingResistor.i",
+      "heatingResistor.LossPower",
+      "heatingResistor.R",
+      "temperatureSensor.T",
+      "thermalConductor.Q_flow",
+      "thermalConductor.dT",
+      "idealSwitch.v",
+      "idealSwitch.LossPower",
+      "ramp.y",
+      "onOffController.y",
+      "heatingResistor.useHeatPort",
+      "idealSwitch.useHeatPort",
+      "logicalNot.y",
+      "logicalNot.u",
+      "onOffController.u",
+      "onOffController.reference",
+      "idealSwitch.control",
+      "idealSwitch.n.i",
+      "idealSwitch.n.v",
+      "idealSwitch.p.i",
+      "idealSwitch.p.v",
+      "idealSwitch.i",
+      "thermalConductor.port_b.Q_flow",
+      "thermalConductor.port_a.Q_flow",
+      "thermalConductor.port_a.T",
+      "temperatureSensor.port.Q_flow",
+      "temperatureSensor.port.T",
+      "fixedTemperature.port.Q_flow",
+      "fixedTemperature.port.T",
+      "heatingResistor.heatPort.Q_flow",
+      "heatingResistor.heatPort.T",
+      "heatingResistor.T_heatPort",
+      "heatingResistor.n.i",
+      "heatingResistor.n.v",
+      "heatingResistor.p.i",
+      "heatingResistor.p.v",
+      "heatCapacitor.port.T",
+      "constantVoltage.n.i",
+      "constantVoltage.n.v",
+      "constantVoltage.p.i",
+      "constantVoltage.p.v",
+      "constantVoltage.i",
+      "constantVoltage.v",
+      "ground.p.i",
+      "ground.p.v",
+      "idealSwitch.T_heatPort",
+      "thermalConductor.port_b.T"
+    ],
+    "states": [
+      "der(heatCapacitor.T)"
+    ]
+  },
+  "test": {
+    "hasReferenceInput": false,
+    "hasReferenceOutput": true,
+    "referenceOutputFile": "FMICrossCheck.ControlledTemperature_ref.csv",
+    "simulationOptionsFile": "FMICrossCheck.ControlledTemperature_simopt.json"
+  },
+  "validation": {
+    "fmiCompliance": "not_checked"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "ThermalController",
+  "description": "Supervisory thermal controller for battery pack. Tracks driver power request but derates based on SOC, voltage, and core temperature. Commands battery current, pump and fan. Includes integral action and hysteresis mode switching.",
+  "inputs": [
+    {"name": "T_core_C", "type": "Real", "unit": "degC", "description": "Battery core temperature."},
+    {"name": "soc", "type": "Real", "unit": "1", "description": "Battery SOC."},
+    {"name": "voltage_V", "type": "Real", "unit": "V", "description": "Battery terminal voltage."},
+    {"name": "driver_power_request_W", "type": "Real", "unit": "W", "description": "Requested traction electrical power from driver (positive demand)."},
+    {"name": "ambient_temp_C", "type": "Real", "unit": "degC", "description": "Ambient temperature (used for feedforward cooling)."}
+  ],
+  "outputs": [
+    {"name": "current_A", "type": "Real", "unit": "A", "description": "Battery current command. Positive discharge."},
+    {"name": "pump_cmd", "type": "Real", "unit": "0..1", "description": "Pump command."},
+    {"name": "fan_cmd", "type": "Real", "unit": "0..1", "description": "Fan command."},
+    {"name": "mode", "type": "Integer", "unit": "enum", "description": "Supervisory mode: 0=NORMAL, 1=DERATE, 2=SHUTDOWN."}
+  ],
+  "parameters": [
+    {"name": "T_set_C", "type": "Real", "default": 45.0, "unit": "degC", "description": "Desired core temperature target."},
+    {"name": "T_derate_on_C", "type": "Real", "default": 50.0, "unit": "degC", "description": "Temperature threshold to enter DERATE."},
+    {"name": "T_derate_off_C", "type": "Real", "default": 47.0, "unit": "degC", "description": "Temperature threshold to exit DERATE (hysteresis)."},
+    {"name": "T_shutdown_on_C", "type": "Real", "default": 58.0, "unit": "degC", "description": "Temperature threshold to enter SHUTDOWN."},
+    {"name": "T_shutdown_off_C", "type": "Real", "default": 52.0, "unit": "degC", "description": "Temperature threshold to exit SHUTDOWN (hysteresis)."},
+
+    {"name": "I_max_A", "type": "Real", "default": 350.0, "unit": "A", "description": "Maximum discharge current command."},
+    {"name": "I_min_A", "type": "Real", "default": 0.0, "unit": "A", "description": "Minimum discharge current command (no regen in this scenario)."},
+
+    {"name": "soc_min", "type": "Real", "default": 0.2, "unit": "1", "description": "SOC lower limit for allowing power."},
+    {"name": "V_min_V", "type": "Real", "default": 280.0, "unit": "V", "description": "Voltage lower limit for allowing power."},
+
+    {"name": "kP_current", "type": "Real", "default": 0.9, "unit": "A/W", "description": "Proportional gain mapping requested power to current via I=P/V * kP_current."},
+
+    {"name": "kP_cool", "type": "Real", "default": 0.06, "unit": "1/degC", "description": "Proportional cooling gain."},
+    {"name": "kI_cool", "type": "Real", "default": 0.0015, "unit": "1/(degC*s)", "description": "Integral cooling gain."},
+    {"name": "int_clamp", "type": "Real", "default": 0.6, "unit": "1", "description": "Clamp for integral term magnitude."},
+
+    {"name": "ambient_ff_gain", "type": "Real", "default": 0.01, "unit": "1/degC", "description": "Ambient temperature feedforward for cooling (more cooling at high ambient)."}
+  ],
+  "states": [
+    {"name": "integral_err", "derivative": "d_integral_err_dt"},
+    {"name": "mode_state", "derivative": "discrete"}
+  ]
+}

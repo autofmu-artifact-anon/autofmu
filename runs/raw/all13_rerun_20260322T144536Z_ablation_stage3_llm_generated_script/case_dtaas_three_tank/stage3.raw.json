@@ -1,0 +1,855 @@
+{
+  "graph_augmented": {
+    "nodes": [
+      "asset_dtaas_three_tank__tank1",
+      "asset_dtaas_three_tank__tank3"
+    ],
+    "port_nodes": [
+      "asset_dtaas_three_tank__tank1.level",
+      "asset_dtaas_three_tank__tank1.der(level)",
+      "asset_dtaas_three_tank__tank1.inPort",
+      "asset_dtaas_three_tank__tank1.leak",
+      "asset_dtaas_three_tank__tank1.outPort",
+      "asset_dtaas_three_tank__tank3.level",
+      "asset_dtaas_three_tank__tank3.der(level)",
+      "asset_dtaas_three_tank__tank3.inPort",
+      "asset_dtaas_three_tank__tank3.leak",
+      "asset_dtaas_three_tank__tank3.outPort"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "tank1": "asset_dtaas_three_tank__tank1",
+      "tank2": "asset_dtaas_three_tank__tank1",
+      "tank3": "asset_dtaas_three_tank__tank3"
+    },
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "tank1",
+        "target_component": "tank2",
+        "signals": [
+          "outport",
+          "inport"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "tank1",
+            "source_signal": "outport",
+            "target_component": "tank2",
+            "target_signal": "inport",
+            "must_route": true,
+            "semantic_intent": "tank1.outport -> tank2.inport",
+            "adjacency_evidence": {
+              "source_component": "tank1",
+              "target_component": "tank2"
+            }
+          }
+        ],
+        "semantic_intent": "tank1.outport -> tank2.inport",
+        "details": {
+          "source_signal": "outport",
+          "target_signal": "inport"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "tank2",
+        "target_component": "tank3",
+        "signals": [
+          "outport",
+          "inport"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "tank2",
+            "source_signal": "outport",
+            "target_component": "tank3",
+            "target_signal": "inport",
+            "must_route": true,
+            "semantic_intent": "tank2.outport -> tank3.inport",
+            "adjacency_evidence": {
+              "source_component": "tank2",
+              "target_component": "tank3"
+            }
+          }
+        ],
+        "semantic_intent": "tank2.outport -> tank3.inport",
+        "details": {
+          "source_signal": "outport",
+          "target_signal": "inport"
+        }
+      }
+    ],
+    "binding_candidates": [
+      {
+        "chain_id": "chain_0",
+        "segment_id": "chain_0_seg_0",
+        "semantic_intent": "tank1.outport -> tank2.inport",
+        "source_component": "tank1",
+        "target_component": "tank2",
+        "route_blocker_histogram": {},
+        "candidates": []
+      },
+      {
+        "chain_id": "chain_1",
+        "segment_id": "chain_1_seg_0",
+        "semantic_intent": "tank2.outport -> tank3.inport",
+        "source_component": "tank2",
+        "target_component": "tank3",
+        "source_fmu": "asset_dtaas_three_tank__tank1",
+        "target_fmu": "asset_dtaas_three_tank__tank3",
+        "candidates": [
+          {
+            "source_signal": "outPort",
+            "target_signal": "inPort",
+            "score": 0.92,
+            "score_breakdown": {
+              "source_name": 1.0,
+              "target_name": 1.0,
+              "intent": 0.0,
+              "unit_match": 1.0,
+              "type_match": 1.0,
+              "total": 0.92
+            },
+            "preserves_signal_path": true,
+            "routeable": true,
+            "route_status": "routeable_exact",
+            "route_decision": "bind_direct",
+            "route_blockers": [],
+            "hard_failure_kind": null,
+            "discrepancy_kind": null,
+            "deferred_discrepancy": false,
+            "deferred_discrepancy_kind": null,
+            "discrepancy_axes": [],
+            "preservation_evidence": {
+              "preserves": true,
+              "decision": "preserve",
+              "causality_ok": true,
+              "topology_ok": true,
+              "source_name_score": 1.0,
+              "target_name_score": 1.0,
+              "intent_score": 0.0,
+              "source_token_overlap": [],
+              "target_token_overlap": [],
+              "exact_source_match": true,
+              "exact_target_match": true,
+              "reasons": [
+                "exact_source_signal_match",
+                "exact_target_signal_match"
+              ]
+            }
+          },
+          {
+            "source_signal": "leak",
+            "target_signal": "inPort",
+            "score": 0.49999999999999994,
+            "score_breakdown": {
+              "source_name": 0.0,
+              "target_name": 1.0,
+              "intent": 0.0,
+              "unit_match": 1.0,
+              "type_match": 1.0,
+              "total": 0.49999999999999994
+            },
+            "preserves_signal_path": true,
+            "routeable": true,
+            "route_status": "routeable_exact",
+            "route_decision": "bind_direct",
+            "route_blockers": [],
+            "hard_failure_kind": null,
+            "discrepancy_kind": null,
+            "deferred_discrepancy": false,
+            "deferred_discrepancy_kind": null,
+            "discrepancy_axes": [],
+            "preservation_evidence": {
+              "preserves": true,
+              "decision": "preserve",
+              "causality_ok": true,
+              "topology_ok": true,
+              "source_name_score": 0.0,
+              "target_name_score": 1.0,
+              "intent_score": 0.0,
+              "source_token_overlap": [],
+              "target_token_overlap": [],
+              "exact_source_match": false,
+              "exact_target_match": true,
+              "reasons": [
+                "exact_target_signal_match"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "status": "ok",
+      "binding_count": 1,
+      "chain_count": 2,
+      "routing_failure_count": 0,
+      "discrepancy_count": 0,
+      "stage3_variant": "llm_generated_script",
+      "generation_source": "deterministic_fallback",
+      "fallback_used": true,
+      "adapter_generation": false,
+      "loop_wrapper_generation": false
+    }
+  },
+  "adapters": [],
+  "schedule": {
+    "kind": "fixed_step",
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "duration": 10.0,
+    "step_size": 0.5,
+    "execution_order": [
+      "asset_dtaas_three_tank__tank1",
+      "asset_dtaas_three_tank__tank3"
+    ],
+    "node_order": [
+      "asset_dtaas_three_tank__tank1",
+      "asset_dtaas_three_tank__tank3"
+    ],
+    "warnings": [
+      "weak_stage3_fallback"
+    ],
+    "per_node_period": {
+      "asset_dtaas_three_tank__tank1": 0.5,
+      "asset_dtaas_three_tank__tank3": 0.5
+    },
+    "stage3_variant": "llm_generated_script",
+    "generation_source": "deterministic_fallback",
+    "fallback_used": true
+  },
+  "loop_resolution": [],
+  "simulation_config": {
+    "step_size": 0.5,
+    "duration": 10.0,
+    "fmus": [
+      {
+        "uid": "asset_dtaas_three_tank__tank1",
+        "name": "tank1",
+        "description": "tank1 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+        "path": "dataset/assets/asset_dtaas_three_tank__tank1/model.fmu",
+        "fmi_version": "2.0",
+        "fmi_types": [
+          "CoSimulation",
+          "ModelExchange"
+        ],
+        "ports": [
+          {
+            "name": "level",
+            "causality": "local",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "der(level)",
+            "causality": "local",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "inPort",
+            "causality": "input",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "leak",
+            "causality": "output",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "outPort",
+            "causality": "output",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          }
+        ],
+        "inputs": [
+          "inPort"
+        ],
+        "outputs": [
+          "leak",
+          "outPort"
+        ],
+        "tags": [
+          "three_tank",
+          "multi_instance",
+          "twin_manager"
+        ],
+        "capabilities": {
+          "needs_execution_tool": false,
+          "can_handle_variable_communication_step_size": true,
+          "can_interpolate_inputs": false,
+          "can_run_asynchronously": false,
+          "can_be_instantiated_only_once_per_process": false,
+          "provides_directional_derivatives": false,
+          "fixed_internal_step_size": null
+        },
+        "meta": {
+          "asset_dir": "dataset/assets/asset_dtaas_three_tank__tank1",
+          "asset_json": {
+            "asset_id": "asset_dtaas_three_tank__tank1",
+            "backend_kind": "native_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": false,
+              "provides_directional_derivatives": false
+            },
+            "case_origin": [
+              "case_dtaas_three_tank"
+            ],
+            "default_experiment": {
+              "startTime": 0.0,
+              "stopTime": 1.0,
+              "tolerance": 1e-06
+            },
+            "description": "tank1 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+            "description_relpath": "description.md",
+            "fmi_types": [
+              "CoSimulation",
+              "ModelExchange"
+            ],
+            "fmi_version": "2.0",
+            "fmu_relpath": "model.fmu",
+            "ground_truth_only": false,
+            "inputs": [
+              "inPort"
+            ],
+            "library_visible": true,
+            "metadata_relpath": "metadata.json",
+            "name": "tank1",
+            "outputs": [
+              "leak",
+              "outPort"
+            ],
+            "ports": [
+              {
+                "causality": "local",
+                "description": "",
+                "name": "level",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "local",
+                "description": "",
+                "name": "der(level)",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "inPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "leak",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "outPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              }
+            ],
+            "provenance": {
+              "base_model_name": "Linear",
+              "example_path": "digital_twins/three-tank",
+              "example_slug": "three_tank",
+              "generated": false,
+              "workspace_path": "models/three-tank/Linear.fmu"
+            },
+            "schema": "UNIFIED_ASSET_V1",
+            "source_id": "case_dtaas_three_tank::tank1",
+            "source_type": "dtaas_example_fmu",
+            "tags": [
+              "three_tank",
+              "multi_instance",
+              "twin_manager"
+            ]
+          },
+          "metadata_json": {
+            "asset_id": "asset_dtaas_three_tank__tank1",
+            "backend_kind": "native_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": false,
+              "provides_directional_derivatives": false
+            },
+            "default_experiment": {
+              "startTime": 0.0,
+              "stopTime": 1.0,
+              "tolerance": 1e-06
+            },
+            "description": "tank1 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+            "fmi_types": [
+              "CoSimulation",
+              "ModelExchange"
+            ],
+            "fmi_version": "2.0",
+            "inputs": [
+              "inPort"
+            ],
+            "name": "tank1",
+            "outputs": [
+              "leak",
+              "outPort"
+            ],
+            "ports": [
+              {
+                "causality": "local",
+                "description": "",
+                "name": "level",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "local",
+                "description": "",
+                "name": "der(level)",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "inPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "leak",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "outPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              }
+            ],
+            "schema": "UNIFIED_FMU_METADATA_V1"
+          },
+          "default_experiment": {
+            "startTime": 0.0,
+            "stopTime": 1.0,
+            "tolerance": 1e-06
+          },
+          "source_type": "dtaas_example_fmu"
+        }
+      },
+      {
+        "uid": "asset_dtaas_three_tank__tank3",
+        "name": "tank3",
+        "description": "tank3 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+        "path": "dataset/assets/asset_dtaas_three_tank__tank3/model.fmu",
+        "fmi_version": "2.0",
+        "fmi_types": [
+          "CoSimulation",
+          "ModelExchange"
+        ],
+        "ports": [
+          {
+            "name": "level",
+            "causality": "local",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "der(level)",
+            "causality": "local",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "inPort",
+            "causality": "input",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "leak",
+            "causality": "output",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "outPort",
+            "causality": "output",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          }
+        ],
+        "inputs": [
+          "inPort"
+        ],
+        "outputs": [
+          "leak",
+          "outPort"
+        ],
+        "tags": [
+          "three_tank",
+          "multi_instance",
+          "twin_manager"
+        ],
+        "capabilities": {
+          "needs_execution_tool": false,
+          "can_handle_variable_communication_step_size": true,
+          "can_interpolate_inputs": false,
+          "can_run_asynchronously": false,
+          "can_be_instantiated_only_once_per_process": false,
+          "provides_directional_derivatives": false,
+          "fixed_internal_step_size": null
+        },
+        "meta": {
+          "asset_dir": "dataset/assets/asset_dtaas_three_tank__tank3",
+          "asset_json": {
+            "asset_id": "asset_dtaas_three_tank__tank3",
+            "backend_kind": "native_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": false,
+              "provides_directional_derivatives": false
+            },
+            "case_origin": [
+              "case_dtaas_three_tank"
+            ],
+            "default_experiment": {
+              "startTime": 0.0,
+              "stopTime": 1.0,
+              "tolerance": 1e-06
+            },
+            "description": "tank3 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+            "description_relpath": "description.md",
+            "fmi_types": [
+              "CoSimulation",
+              "ModelExchange"
+            ],
+            "fmi_version": "2.0",
+            "fmu_relpath": "model.fmu",
+            "ground_truth_only": false,
+            "inputs": [
+              "inPort"
+            ],
+            "library_visible": true,
+            "metadata_relpath": "metadata.json",
+            "name": "tank3",
+            "outputs": [
+              "leak",
+              "outPort"
+            ],
+            "ports": [
+              {
+                "causality": "local",
+                "description": "",
+                "name": "level",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "local",
+                "description": "",
+                "name": "der(level)",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "inPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "leak",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "outPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              }
+            ],
+            "provenance": {
+              "base_model_name": "Linear",
+              "example_path": "digital_twins/three-tank",
+              "example_slug": "three_tank",
+              "generated": false,
+              "workspace_path": "models/three-tank/Linear.fmu"
+            },
+            "schema": "UNIFIED_ASSET_V1",
+            "source_id": "case_dtaas_three_tank::tank3",
+            "source_type": "dtaas_example_fmu",
+            "tags": [
+              "three_tank",
+              "multi_instance",
+              "twin_manager"
+            ]
+          },
+          "metadata_json": {
+            "asset_id": "asset_dtaas_three_tank__tank3",
+            "backend_kind": "native_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": false,
+              "provides_directional_derivatives": false
+            },
+            "default_experiment": {
+              "startTime": 0.0,
+              "stopTime": 1.0,
+              "tolerance": 1e-06
+            },
+            "description": "tank3 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+            "fmi_types": [
+              "CoSimulation",
+              "ModelExchange"
+            ],
+            "fmi_version": "2.0",
+            "inputs": [
+              "inPort"
+            ],
+            "name": "tank3",
+            "outputs": [
+              "leak",
+              "outPort"
+            ],
+            "ports": [
+              {
+                "causality": "local",
+                "description": "",
+                "name": "level",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "local",
+                "description": "",
+                "name": "der(level)",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "inPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "leak",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "outPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              }
+            ],
+            "schema": "UNIFIED_FMU_METADATA_V1"
+          },
+          "default_experiment": {
+            "startTime": 0.0,
+            "stopTime": 1.0,
+            "tolerance": 1e-06
+          },
+          "source_type": "dtaas_example_fmu"
+        }
+      }
+    ],
+    "connections": [],
+    "scheduler": {
+      "kind": "fixed_step",
+      "start_time": 0.0,
+      "stop_time": 10.0,
+      "duration": 10.0,
+      "step_size": 0.5,
+      "execution_order": [
+        "asset_dtaas_three_tank__tank1",
+        "asset_dtaas_three_tank__tank3"
+      ],
+      "node_order": [
+        "asset_dtaas_three_tank__tank1",
+        "asset_dtaas_three_tank__tank3"
+      ],
+      "warnings": [
+        "weak_stage3_fallback"
+      ],
+      "per_node_period": {
+        "asset_dtaas_three_tank__tank1": 0.5,
+        "asset_dtaas_three_tank__tank3": 0.5
+      }
+    },
+    "meta": {
+      "method_name": "ablation_stage3_llm_generated_script",
+      "workspace_root": "./baseline/workspaces/ablation_stage3_llm_generated_script",
+      "selected_task_set_id": "taskset_1",
+      "selected_asset_ids": [
+        "asset_dtaas_three_tank__tank1",
+        "asset_dtaas_three_tank__tank3"
+      ],
+      "adapters": [],
+      "loop_resolution": [],
+      "script_generation_source": "deterministic_fallback",
+      "fallback_used": true,
+      "final_solution_payload": {
+        "selected_asset_ids": [
+          "asset_dtaas_three_tank__tank1",
+          "asset_dtaas_three_tank__tank3"
+        ],
+        "connections": [],
+        "schedule": {
+          "kind": "fixed_step",
+          "start_time": 0.0,
+          "stop_time": 10.0,
+          "duration": 10.0,
+          "step_size": 0.5,
+          "execution_order": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "node_order": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "warnings": [
+            "weak_stage3_fallback"
+          ],
+          "per_node_period": {
+            "asset_dtaas_three_tank__tank1": 0.5,
+            "asset_dtaas_three_tank__tank3": 0.5
+          }
+        },
+        "execution_order": [
+          "asset_dtaas_three_tank__tank1",
+          "asset_dtaas_three_tank__tank3"
+        ],
+        "adapters": [],
+        "loop_resolution": [],
+        "extensions": {},
+        "notes": [
+          "task_goal=Generate the final UNIFIED_SOLUTION_V1 orchestration payload fields for 2 FMUs in SystemThreeTank without using adapters or loop wrappers.",
+          "selected_fmu_count=2",
+          "connection_count=0",
+          "fallback_mode=weak_fixed_step",
+          "stage3_variant=llm_generated_script"
+        ]
+      },
+      "script_notes": [
+        "task_goal=Generate the final UNIFIED_SOLUTION_V1 orchestration payload fields for 2 FMUs in SystemThreeTank without using adapters or loop wrappers.",
+        "selected_fmu_count=2",
+        "connection_count=0",
+        "fallback_mode=weak_fixed_step",
+        "stage3_variant=llm_generated_script"
+      ]
+    }
+  },
+  "diagnostics": {
+    "stage3_variant": "llm_generated_script",
+    "generation_source": "deterministic_fallback",
+    "fallback_used": true,
+    "validation_issues": []
+  }
+}

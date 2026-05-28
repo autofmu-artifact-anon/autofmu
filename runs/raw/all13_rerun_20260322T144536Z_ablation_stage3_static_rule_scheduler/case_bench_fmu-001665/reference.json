@@ -1,0 +1,210 @@
+{
+  "case_id": "case_bench_fmu-001665",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_bench_fmu-001288"
+      ],
+      [
+        "asset_bench_fmu-001541"
+      ],
+      [
+        "asset_bench_fmu-001563"
+      ],
+      [
+        "asset_bench_fmu-001665"
+      ],
+      [
+        "asset_bench_fmu-001754"
+      ],
+      [
+        "asset_bench_fmu-001938"
+      ],
+      [
+        "asset_bench_fmu-002274"
+      ],
+      [
+        "asset_bench_fmu-002296"
+      ],
+      [
+        "asset_bench_fmu-002418"
+      ],
+      [
+        "asset_bench_fmu-002558"
+      ]
+    ],
+    "case_id": "case_bench_fmu-001665",
+    "equivalence_class_id": "bench_eq_f8722fda3983",
+    "equivalence_reason": "benchmark requirement text does not distinguish identical model/interface variants",
+    "oracle_mode": "equivalence_class",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_bench_fmu-001665",
+    "connections": [],
+    "execution_order": [
+      "asset_bench_fmu-001665"
+    ],
+    "external_inputs": [],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "x0",
+        "source": "asset_bench_fmu-001665.x0"
+      },
+      {
+        "name": "x1",
+        "source": "asset_bench_fmu-001665.x1"
+      }
+    ],
+    "notes": [
+      "Auto-generated single-FMU benchmark solution."
+    ],
+    "schedule": {
+      "kind": "single_fmu",
+      "start_time": 0,
+      "step_size": 0,
+      "stop_time": 20
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_bench_fmu-001665"
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_bench_fmu-001665",
+    "criteria": [
+      {
+        "metric": "trajectory_match",
+        "operator": "<=",
+        "signals": [
+          "x0",
+          "x1"
+        ],
+        "value": 1e-05
+      }
+    ],
+    "decision_rule": {
+      "kind": "trajectory_tolerance",
+      "signals": [
+        "x0",
+        "x1"
+      ],
+      "time_column": "time",
+      "tolerance": 1e-05
+    },
+    "derivation_basis": {
+      "ground_truth_source": "Van der Pol oscillator_ref.csv",
+      "input_source": "",
+      "signals": [
+        "x0",
+        "x1"
+      ],
+      "source_root": "sources/fmu-benchmark-mini/fmus/2.0/me/linux64/Test-FMUs/0.0.2/Van der Pol oscillator",
+      "source_type": "benchmark_single_fmu_case"
+    },
+    "judgement_policy": "trajectory_match",
+    "scenario_window": {
+      "start_time": 0,
+      "step_size": 0,
+      "stop_time": 20
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "x0": [
+        "x0"
+      ],
+      "x1": [
+        "x1"
+      ]
+    },
+    "signals": [
+      "x0",
+      "x1"
+    ],
+    "text": "Run the benchmark FMU Van der Pol oscillator under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs x0, x1.",
+    "time_column_aliases": [
+      "time",
+      "TIME",
+      "Time",
+      "t"
+    ],
+    "title": "Verify benchmark FMU Van der Pol oscillator",
+    "tolerances": {
+      "trajectory_match": 1e-05
+    }
+  },
+  "verification_result": {
+    "case_id": "case_bench_fmu-001665",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "source_kind": "benchmark_ref_csv"
+    },
+    "missing_requirements": [],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "The normalized benchmark case ships with an archived reference trajectory from the source dataset; that trajectory is treated as the ground-truth verification outcome for the reference model.",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_bench_fmu-001665",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "ground_truth_trajectory.csv",
+    "input_relpath": "",
+    "reference_generation_method": "benchmark_ref_csv",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "x0": [
+        "x0"
+      ],
+      "x1": [
+        "x1"
+      ]
+    },
+    "signal_columns": [
+      "x0",
+      "x1"
+    ],
+    "source_kind": "benchmark_ref_csv",
+    "stage_segments": [],
+    "supports_numerical_fidelity": true,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "dataset/sources/fmu-benchmark-mini/fmus/2.0/me/linux64/Test-FMUs/0.0.2/Van der Pol oscillator/Van der Pol oscillator_ref.csv",
+  "input_trajectory_path": null,
+  "declared_scenario_window": {
+    "start_time": 0,
+    "stop_time": 20,
+    "step_size": 0
+  },
+  "declared_initial_conditions": {},
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": true,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "benchmark_single_fmu_case",
+    "expected_behavior": "Ground-truth trajectory available via benchmark_ref_csv.",
+    "title": "Van der Pol oscillator",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": true,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": true,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

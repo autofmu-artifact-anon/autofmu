@@ -1,0 +1,395 @@
+{
+  "version": "0.1.0",
+  "timestamp": "2025-12-12T10:31:55Z",
+  "file": "/root/mbse_val/fmu-benchmark-mini/fmus/2.0/me/linux64/Test-FMUs/0.0.2/BouncingBall/BouncingBall.fmu",
+  "metadata_summary": {
+    "fmi": {
+      "fmiVersion": "2.0",
+      "fmiTypes": [
+        "ModelExchange",
+        "CoSimulation"
+      ],
+      "modelName": "BouncingBall",
+      "guid": "{8c4e810f-3df3-4a00-8276-176fa3c9f003}",
+      "description": "This model calculates the trajectory, over time, of a ball dropped from a height of 1 m.",
+      "author": "",
+      "generationTool": "",
+      "generationDateAndTime": "",
+      "variableNamingConvention": "flat",
+      "numberOfEventIndicators": 1,
+      "defaultExperiment": {
+        "startTime": 0.0,
+        "stopTime": 3.0,
+        "stepSize": 0.001
+      }
+    },
+    "implementation": {
+      "platforms": [
+        "win64",
+        "darwin64",
+        "linux64",
+        "c-code"
+      ],
+      "modelExchange": {
+        "modelIdentifier": "BouncingBall"
+      },
+      "coSimulation": {
+        "modelIdentifier": "BouncingBall",
+        "canHandleVariableCommunicationStepSize": true
+      }
+    }
+  },
+  "variables": {
+    "all": [
+      {
+        "name": "h",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 1.0,
+        "description": "Position of the ball",
+        "writable": false
+      },
+      {
+        "name": "v",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 0.0,
+        "description": "Velocity of the ball",
+        "writable": false
+      },
+      {
+        "name": "g",
+        "causality": "parameter",
+        "variability": "fixed",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": -9.81,
+        "description": "Gravity acting on the ball",
+        "writable": true
+      },
+      {
+        "name": "e",
+        "causality": "parameter",
+        "variability": "tunable",
+        "type": "Real",
+        "unit": null,
+        "min": 0.5,
+        "max": 1.0,
+        "nominal": null,
+        "start": 0.7,
+        "description": "Coefficient of restitution",
+        "writable": true
+      },
+      {
+        "name": "v_min",
+        "causality": "local",
+        "variability": "constant",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 0.1,
+        "description": "Velocity below which the ball stops bouncing",
+        "writable": false
+      }
+    ],
+    "inputs": [],
+    "outputs_observed": [
+      {
+        "name": "h",
+        "valueReference": 0,
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "description": "Position of the ball",
+        "initial": "exact",
+        "start": 1.0
+      },
+      {
+        "name": "v",
+        "valueReference": 1,
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "description": "Velocity of the ball",
+        "initial": "exact",
+        "start": 0.0,
+        "derivative": 1,
+        "reinit": true
+      }
+    ]
+  },
+  "probe_config": {
+    "start_time": 0.0,
+    "stop_time": 3.0,
+    "step_size": 0.001,
+    "scenarios": [
+      {
+        "kind": "step",
+        "start_time": 0.0,
+        "stop_time": 3.0,
+        "step_size": 0.001,
+        "seed": 0
+      },
+      {
+        "kind": "ramp",
+        "start_time": 0.0,
+        "stop_time": 3.0,
+        "step_size": 0.001,
+        "seed": 0
+      },
+      {
+        "kind": "sine",
+        "start_time": 0.0,
+        "stop_time": 3.0,
+        "step_size": 0.001,
+        "seed": 0
+      }
+    ],
+    "selected_inputs": [],
+    "selected_outputs": [
+      "h",
+      "v"
+    ],
+    "narrative": "Generic excitation on representative inputs (step/ramp/sine)."
+  },
+  "features": {
+    "h": {
+      "variable_meta": {
+        "name": "h",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 1.0
+      },
+      "basic_stats": {
+        "mean": 0.2082131575529596,
+        "variance": 0.07067174822938488,
+        "std": 0.26584158483838616,
+        "min": 0.0,
+        "max": 1.0,
+        "peak_to_peak": 1.0,
+        "first": 1.0,
+        "last": 0.0
+      },
+      "steady_state": 0.0,
+      "step_metrics": {
+        "baseline": 0.8543182300000003,
+        "final": 0.0,
+        "amplitude": -0.8543182300000003,
+        "rise_time": 0.215,
+        "overshoot_ratio": -0.0,
+        "settling_time": 2.21,
+        "steady_slope": -0.00616755048382768
+      },
+      "spectral_metrics": {
+        "dominant_frequency_hz": 3.9062499999999964,
+        "dominant_power_ratio": 0.8926071303769588,
+        "spectral_centroid_hz": 4.389725614508338,
+        "spectral_bandwidth_hz": 1.6251481792080016,
+        "low_freq_energy_ratio": 0.8926071303769588
+      },
+      "lag_phase": {},
+      "stability_flags": {
+        "diverged": false,
+        "saturated": false,
+        "jump_count": 0
+      },
+      "behavior_labels": [
+        "oscillatory"
+      ],
+      "ramp_basic_stats": {
+        "mean": 0.2082131575529596,
+        "variance": 0.07067174822938488,
+        "std": 0.26584158483838616,
+        "min": 0.0,
+        "max": 1.0,
+        "peak_to_peak": 1.0,
+        "first": 1.0,
+        "last": 0.0
+      }
+    },
+    "v": {
+      "variable_meta": {
+        "name": "v",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 0.0
+      },
+      "basic_stats": {
+        "mean": -0.3369952295288294,
+        "variance": 1.9365251224378184,
+        "std": 1.3915908602882596,
+        "min": -4.434119999999978,
+        "max": 3.110750999999984,
+        "peak_to_peak": 7.5448709999999615,
+        "first": 0.0,
+        "last": 0.0
+      },
+      "steady_state": 0.0,
+      "step_metrics": {
+        "baseline": -1.4665950000000025,
+        "final": 0.0,
+        "amplitude": 1.4665950000000025,
+        "rise_time": 0.0,
+        "overshoot_ratio": 2.1210702341136978,
+        "settling_time": 2.604,
+        "steady_slope": 0.11689462326012441
+      },
+      "spectral_metrics": {
+        "dominant_frequency_hz": 3.9062499999999964,
+        "dominant_power_ratio": 0.5756426967520766,
+        "spectral_centroid_hz": 14.066942694481572,
+        "spectral_bandwidth_hz": 37.15663204653268,
+        "low_freq_energy_ratio": 0.8283818084149345
+      },
+      "lag_phase": {},
+      "stability_flags": {
+        "diverged": false,
+        "saturated": false,
+        "jump_count": 6
+      },
+      "behavior_labels": [
+        "oscillatory"
+      ],
+      "ramp_basic_stats": {
+        "mean": -0.3369952295288294,
+        "variance": 1.9365251224378184,
+        "std": 1.3915908602882596,
+        "min": -4.434119999999978,
+        "max": 3.110750999999984,
+        "peak_to_peak": 7.5448709999999615,
+        "first": 0.0,
+        "last": 0.0
+      }
+    }
+  },
+  "fmu_profile": {
+    "num_inputs": 0,
+    "num_outputs_observed": 2,
+    "outputs_source": "outputs",
+    "continuous_ratio": 0.4,
+    "recommended_step_size_range": [
+      0.0064000000000000055,
+      0.025600000000000022
+    ],
+    "typical_dynamic_labels": [
+      "oscillatory"
+    ]
+  },
+  "llm_guidance": {
+    "prompt": {
+      "task": "Propose a reasonable reproducible usage scenario for probing FMU behavior.",
+      "constraints": [
+        "Return JSON only.",
+        "Select up to 3 representative inputs and up to 5 representative outputs by exact name.",
+        "Scenario must include step, ramp, sine excitations.",
+        "Do not invent variables not in the list."
+      ],
+      "model_info": {
+        "fmiVersion": "2.0",
+        "fmiTypes": [
+          "ModelExchange",
+          "CoSimulation"
+        ],
+        "modelName": "BouncingBall",
+        "guid": "{8c4e810f-3df3-4a00-8276-176fa3c9f003}",
+        "description": "This model calculates the trajectory, over time, of a ball dropped from a height of 1 m.",
+        "author": "",
+        "generationTool": "",
+        "generationDateAndTime": "",
+        "variableNamingConvention": "flat",
+        "numberOfEventIndicators": 1,
+        "defaultExperiment": {
+          "startTime": 0.0,
+          "stopTime": 3.0,
+          "stepSize": 0.001
+        }
+      },
+      "variables": [
+        {
+          "name": "h",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Position of the ball"
+        },
+        {
+          "name": "v",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Velocity of the ball"
+        },
+        {
+          "name": "g",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Gravity acting on the ball"
+        },
+        {
+          "name": "e",
+          "causality": "parameter",
+          "variability": "tunable",
+          "type": "Real",
+          "unit": "",
+          "description": "Coefficient of restitution"
+        },
+        {
+          "name": "v_min",
+          "causality": "local",
+          "variability": "constant",
+          "type": "Real",
+          "unit": "",
+          "description": "Velocity below which the ball stops bouncing"
+        }
+      ],
+      "output_schema": {
+        "inputs": [
+          "..."
+        ],
+        "outputs": [
+          "..."
+        ],
+        "narrative": "short scenario description"
+      }
+    },
+    "raw_response": "```json\n{\n  \"inputs\": [\n    {\n      \"name\": \"g\",\n      \"type\": \"Real\",\n      \"value\": 9.81,\n      \"description\": \"Gravity acting on the ball\"\n    },\n    {\n      \"name\": \"e\",\n      \"type\": \"Real\",\n      \"value\": 0.8,\n      \"description\": \"Coefficient of restitution\"\n    },\n    {\n      \"name\": \"v_min\",\n      \"type\": \"Real\",\n      \"value\": 0.01,\n      \"description\": \"Velocity below which the ball stops bouncing\"\n    }\n  ],\n  \"outputs\": [\n    {\n      \"name\": \"h\",\n      \"type\": \"Real\",\n      \"description\": \"Position of the ball\"\n    },\n    {\n      \"name\": \"v\",\n      \"type\": \"Real\",\n      \"description\": \"Velocity of the ball\"\n    }\n  ],\n  \"narrative\": \"This scenario simulates the behavior of a ball dropped from a height of 1 meter with a series of step, ramp, and sine excitations applied to the coefficient of restitution (e). The inputs used are gravity (g), coefficient of restitution (e), and a velocity threshold (v_min) below which the ball stops bouncing. The simulation will track the position (h) and velocity (v) of the ball over time as it bounces and eventually stops due to low velocity. The model runs over 3 seconds to observe the ball's behavior with various excitations.\"\n}\n```"
+  },
+  "log_summary": {
+    "scenario_status": {
+      "step": "ok",
+      "ramp": "ok",
+      "sine": "ok"
+    },
+    "scenario_errors": {},
+    "elapsed_sec": 11.965919971466064
+  }
+}

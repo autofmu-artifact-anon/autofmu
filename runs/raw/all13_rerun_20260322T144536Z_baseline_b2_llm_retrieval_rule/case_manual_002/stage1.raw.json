@@ -1,0 +1,115 @@
+[
+  {
+    "tasks": [
+      {
+        "task_id": "task_llm_fallback_0",
+        "objective": "Cart-pole case normalized to reference-consistent acceptance criteria. Scenario time window 0s to 20s; inputs: disturbance_force_N_profile, enable, reset, x_ref_m_profile; initial conditions: theta...",
+        "required_signals": [
+          "x_m",
+          "x_dot_mps",
+          "theta_hat_rad",
+          "x_ref_m",
+          "enable",
+          "force_cmd_N",
+          "mode"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "at t",
+            "operator": "=",
+            "value": 20.0,
+            "unit": "s",
+            "notes": ""
+          },
+          {
+            "metric": "",
+            "operator": "<=",
+            "value": 0.01,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "at t",
+            "operator": "=",
+            "value": 20.0,
+            "unit": "s",
+            "notes": ""
+          },
+          {
+            "metric": "",
+            "operator": "<=",
+            "value": 0.15,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "at t",
+            "operator": "=",
+            "value": 20.0,
+            "unit": "s",
+            "notes": ""
+          },
+          {
+            "metric": "",
+            "operator": "<=",
+            "value": "2.0.",
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": 20.0,
+          "end_time": null,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": ""
+        },
+        "grounded_components": [
+          "controller"
+        ],
+        "grounded_component_types": [
+          "HybridController"
+        ],
+        "grounded_ports": [
+          "x_m",
+          "x_dot_mps",
+          "theta_hat_rad",
+          "x_ref_m",
+          "enable",
+          "force_cmd_N",
+          "mode"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_fallback_raw",
+          "generation_family": "llm",
+          "llm_fallback": true
+        }
+      }
+    ],
+    "rationale": "top1_llm fallback raw task set",
+    "score": 1.0,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "llm_fallback_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.15,
+      "final_score": 1.0
+    },
+    "meta": {
+      "generation_source": "llm_fallback_raw",
+      "generation_family": "llm",
+      "llm_fallback": true,
+      "fallback_component": "controller",
+      "grounding_valid": true
+    }
+  }
+]

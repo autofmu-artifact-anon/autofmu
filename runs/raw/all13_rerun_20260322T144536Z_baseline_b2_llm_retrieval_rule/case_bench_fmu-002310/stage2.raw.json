@@ -1,0 +1,769 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_0",
+        "objective": "Execute the Rectifier FMU under default experiment conditions and verify that generated output trajectories match archived ground-truth data for all monitored outputs",
+        "required_signals": [
+          "output"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "RMSE",
+            "operator": "<=",
+            "value": 0.001,
+            "unit": "normalized",
+            "notes": ""
+          },
+          {
+            "metric": "max_absolute_error",
+            "operator": "<=",
+            "value": 0.01,
+            "unit": "normalized",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": null,
+          "end_time": null,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": "Default experiment configuration as defined in the Rectifier FMU"
+        },
+        "grounded_components": [
+          "output"
+        ],
+        "grounded_component_types": [
+          "OutputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_raw",
+          "generation_family": "llm"
+        }
+      }
+    ],
+    "rationale": "top1_llm single candidate from LLM",
+    "score": 0.65,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "llm_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 0.0,
+      "criteria_bonus": 0.15,
+      "final_score": 0.65
+    },
+    "meta": {
+      "generation_source": "llm_raw",
+      "generation_family": "llm",
+      "grounding_valid": true
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_0",
+      "task_index": 0,
+      "fmu_uid": "asset_dtaas_incubator_nurv_monitor_validation__src",
+      "score": 0.10235595095331607,
+      "cost": 0.8976440490466839,
+      "hard_ok": true,
+      "semantic_cost": 0.8976440490466839,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "output"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_dtaas_incubator_nurv_monitor_validation__src",
+      "name": "src",
+      "description": "src instance of Source in Incubator Digital Twin Validation with NuRV Monitor. Monitor-validation co-simulation for incubator anomaly detection and energy saver behavior.",
+      "path": "dataset/assets/asset_dtaas_incubator_nurv_monitor_validation__src/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "CoSimulation",
+        "ModelExchange"
+      ],
+      "ports": [
+        {
+          "name": "error_threshold",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "sensor_data",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "ramp.y",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Connector of Real output signal",
+          "dimensions": []
+        },
+        {
+          "name": "kalman_input",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "const.k",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Constant output value",
+          "dimensions": []
+        },
+        {
+          "name": "const.y",
+          "causality": "calculatedParameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Connector of Real output signal",
+          "dimensions": []
+        },
+        {
+          "name": "ramp.duration",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "s",
+          "description": "Duration of ramp (= 0.0 gives a Step)",
+          "dimensions": []
+        },
+        {
+          "name": "ramp.height",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Height of ramps",
+          "dimensions": []
+        },
+        {
+          "name": "ramp.offset",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Offset of output signal y",
+          "dimensions": []
+        },
+        {
+          "name": "ramp.startTime",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "s",
+          "description": "Output y = offset for time < startTime",
+          "dimensions": []
+        },
+        {
+          "name": "sine.amplitude",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Amplitude of sine wave",
+          "dimensions": []
+        },
+        {
+          "name": "sine.f",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "Hz",
+          "description": "Frequency of sine wave",
+          "dimensions": []
+        },
+        {
+          "name": "sine.offset",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Offset of output signal y",
+          "dimensions": []
+        },
+        {
+          "name": "sine.phase",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "rad",
+          "description": "Phase of sine wave",
+          "dimensions": []
+        },
+        {
+          "name": "sine.startTime",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "s",
+          "description": "Output y = offset for time < startTime",
+          "dimensions": []
+        },
+        {
+          "name": "product.u1",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Connector of Real input signal 1",
+          "dimensions": []
+        },
+        {
+          "name": "product.u2",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Connector of Real input signal 2",
+          "dimensions": []
+        },
+        {
+          "name": "product.y",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Connector of Real output signal",
+          "dimensions": []
+        },
+        {
+          "name": "sine.y",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Connector of Real output signal",
+          "dimensions": []
+        }
+      ],
+      "inputs": [],
+      "outputs": [
+        "error_threshold",
+        "sensor_data",
+        "kalman_input"
+      ],
+      "tags": [
+        "incubator_nurv_monitor_validation",
+        "monitor",
+        "generated_fmu"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": true,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_dtaas_incubator_nurv_monitor_validation__src",
+        "asset_json": {
+          "asset_id": "asset_dtaas_incubator_nurv_monitor_validation__src",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": true,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_dtaas_incubator_nurv_monitor_validation"
+          ],
+          "default_experiment": {
+            "startTime": 0.0,
+            "stopTime": 1.0,
+            "tolerance": 1e-06
+          },
+          "description": "src instance of Source in Incubator Digital Twin Validation with NuRV Monitor. Monitor-validation co-simulation for incubator anomaly detection and energy saver behavior.",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "CoSimulation",
+            "ModelExchange"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "src",
+          "outputs": [
+            "error_threshold",
+            "sensor_data",
+            "kalman_input"
+          ],
+          "ports": [
+            {
+              "causality": "output",
+              "description": "",
+              "name": "error_threshold",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "",
+              "name": "sensor_data",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real output signal",
+              "name": "ramp.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "",
+              "name": "kalman_input",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "Constant output value",
+              "name": "const.k",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "calculatedParameter",
+              "description": "Connector of Real output signal",
+              "name": "const.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Duration of ramp (= 0.0 gives a Step)",
+              "name": "ramp.duration",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Height of ramps",
+              "name": "ramp.height",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Offset of output signal y",
+              "name": "ramp.offset",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Output y = offset for time < startTime",
+              "name": "ramp.startTime",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Amplitude of sine wave",
+              "name": "sine.amplitude",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Frequency of sine wave",
+              "name": "sine.f",
+              "type": "Real",
+              "unit": "Hz",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Offset of output signal y",
+              "name": "sine.offset",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Phase of sine wave",
+              "name": "sine.phase",
+              "type": "Real",
+              "unit": "rad",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Output y = offset for time < startTime",
+              "name": "sine.startTime",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real input signal 1",
+              "name": "product.u1",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real input signal 2",
+              "name": "product.u2",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real output signal",
+              "name": "product.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real output signal",
+              "name": "sine.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            }
+          ],
+          "provenance": {
+            "base_model_name": "Source",
+            "example_path": "digital_twins/incubator-NuRV-monitor-validation",
+            "example_slug": "incubator_nurv_monitor_validation",
+            "generated": false,
+            "workspace_path": "models/Source.fmu"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "case_dtaas_incubator_nurv_monitor_validation::src",
+          "source_type": "dtaas_example_fmu",
+          "tags": [
+            "incubator_nurv_monitor_validation",
+            "monitor",
+            "generated_fmu"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_dtaas_incubator_nurv_monitor_validation__src",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": true,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "default_experiment": {
+            "startTime": 0.0,
+            "stopTime": 1.0,
+            "tolerance": 1e-06
+          },
+          "description": "src instance of Source in Incubator Digital Twin Validation with NuRV Monitor. Monitor-validation co-simulation for incubator anomaly detection and energy saver behavior.",
+          "fmi_types": [
+            "CoSimulation",
+            "ModelExchange"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [],
+          "name": "src",
+          "outputs": [
+            "error_threshold",
+            "sensor_data",
+            "kalman_input"
+          ],
+          "ports": [
+            {
+              "causality": "output",
+              "description": "",
+              "name": "error_threshold",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "",
+              "name": "sensor_data",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real output signal",
+              "name": "ramp.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "",
+              "name": "kalman_input",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "Constant output value",
+              "name": "const.k",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "calculatedParameter",
+              "description": "Connector of Real output signal",
+              "name": "const.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Duration of ramp (= 0.0 gives a Step)",
+              "name": "ramp.duration",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Height of ramps",
+              "name": "ramp.height",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Offset of output signal y",
+              "name": "ramp.offset",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Output y = offset for time < startTime",
+              "name": "ramp.startTime",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Amplitude of sine wave",
+              "name": "sine.amplitude",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Frequency of sine wave",
+              "name": "sine.f",
+              "type": "Real",
+              "unit": "Hz",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Offset of output signal y",
+              "name": "sine.offset",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Phase of sine wave",
+              "name": "sine.phase",
+              "type": "Real",
+              "unit": "rad",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Output y = offset for time < startTime",
+              "name": "sine.startTime",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real input signal 1",
+              "name": "product.u1",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real input signal 2",
+              "name": "product.u2",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real output signal",
+              "name": "product.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real output signal",
+              "name": "sine.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0.0,
+          "stopTime": 1.0,
+          "tolerance": 1e-06
+        },
+        "source_type": "dtaas_example_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_dtaas_incubator_nurv_monitor_validation__src"
+    ],
+    "port_nodes": [
+      "asset_dtaas_incubator_nurv_monitor_validation__src.error_threshold",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.sensor_data",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.ramp.y",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.kalman_input",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.const.k",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.const.y",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.ramp.duration",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.ramp.height",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.ramp.offset",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.ramp.startTime",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.sine.amplitude",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.sine.f",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.sine.offset",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.sine.phase",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.sine.startTime",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.product.u1",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.product.u2",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.product.y",
+      "asset_dtaas_incubator_nurv_monitor_validation__src.sine.y"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "output": "asset_dtaas_incubator_nurv_monitor_validation__src"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "semantic_only_no_bindings"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 0.8976440490466839,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 0.8976440490466839,
+      "final_cost": 0.8976440490466839,
+      "selected_fmus": [
+        "asset_dtaas_incubator_nurv_monitor_validation__src"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 0.8976440490466839,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "semantic_retrieval_only",
+    "structural_reasoning": false,
+    "selected_task_count": 1,
+    "failure_type": ""
+  }
+}

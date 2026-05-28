@@ -1,0 +1,390 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_rule_mono_0",
+        "objective": "Verify system-wide: Water Tank Model Swap. Two-stage water-tank scenario with fault injection followed by dynamic controller swap.. Signals of interest: valve, level, leak Expected ground-truth behavior: Stage 1 execu...",
+        "required_signals": [
+          "level",
+          "valve",
+          "valvecontrol",
+          "level",
+          "valve",
+          "level",
+          "leak",
+          "valve",
+          "level",
+          "leak"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "grounded_component_types": [
+          "Tankcontroller",
+          "Singlewatertank",
+          "Unifmu",
+          "Unifmu"
+        ],
+        "grounded_ports": [
+          "level",
+          "valve",
+          "valvecontrol",
+          "level",
+          "valve",
+          "level",
+          "leak",
+          "valve",
+          "level",
+          "leak"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules"
+        }
+      }
+    ],
+    "rationale": "rule_template monolithic fallback task set",
+    "score": 0.85,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.0,
+      "final_score": 0.85
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "grounding_valid": true,
+      "selection_mode": "single_best_rule_template",
+      "candidate_count": 1
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_rule_mono_0",
+      "task_index": 0,
+      "fmu_uid": "asset_dtaas_water_tank_fi__x1",
+      "score": 2.45,
+      "cost": 2.05,
+      "hard_ok": true,
+      "semantic_cost": 2.05,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "graph_match_only",
+        "component_exact=x1",
+        "exact_signal_hits=14"
+      ],
+      "grounded_components": [
+        "x1",
+        "x2",
+        "x3",
+        "x4"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_dtaas_water_tank_fi__x1",
+      "name": "x1",
+      "description": "x1 instance of tankcontroller in Water Tank Fault Injection. Water-tank controller and plant co-simulation with Maestro fault injection extension.",
+      "path": "dataset/assets/asset_dtaas_water_tank_fi__x1/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "CoSimulation"
+      ],
+      "ports": [
+        {
+          "name": "maxlevel",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "the max tank level",
+          "dimensions": []
+        },
+        {
+          "name": "minlevel",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "the min tank level",
+          "dimensions": []
+        },
+        {
+          "name": "level",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "the tank level",
+          "dimensions": []
+        },
+        {
+          "name": "valve",
+          "causality": "output",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "the tank valve state",
+          "dimensions": []
+        }
+      ],
+      "inputs": [
+        "level"
+      ],
+      "outputs": [
+        "valve"
+      ],
+      "tags": [
+        "water_tank_fi",
+        "fault_injection"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_dtaas_water_tank_fi__x1",
+        "asset_json": {
+          "asset_id": "asset_dtaas_water_tank_fi__x1",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_dtaas_water_tank_fi"
+          ],
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 100
+          },
+          "description": "x1 instance of tankcontroller in Water Tank Fault Injection. Water-tank controller and plant co-simulation with Maestro fault injection extension.",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [
+            "level"
+          ],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "x1",
+          "outputs": [
+            "valve"
+          ],
+          "ports": [
+            {
+              "causality": "parameter",
+              "description": "the max tank level",
+              "name": "maxlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "the min tank level",
+              "name": "minlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "input",
+              "description": "the tank level",
+              "name": "level",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "the tank valve state",
+              "name": "valve",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            }
+          ],
+          "provenance": {
+            "base_model_name": "tankcontroller",
+            "example_path": "digital_twins/water_tank_FI",
+            "example_slug": "water_tank_fi",
+            "generated": false,
+            "workspace_path": "models/watertankcontroller-c.fmu"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "case_dtaas_water_tank_fi::x1",
+          "source_type": "dtaas_example_fmu",
+          "tags": [
+            "water_tank_fi",
+            "fault_injection"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_dtaas_water_tank_fi__x1",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 100
+          },
+          "description": "x1 instance of tankcontroller in Water Tank Fault Injection. Water-tank controller and plant co-simulation with Maestro fault injection extension.",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [
+            "level"
+          ],
+          "name": "x1",
+          "outputs": [
+            "valve"
+          ],
+          "ports": [
+            {
+              "causality": "parameter",
+              "description": "the max tank level",
+              "name": "maxlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "the min tank level",
+              "name": "minlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "input",
+              "description": "the tank level",
+              "name": "level",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "the tank valve state",
+              "name": "valve",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0,
+          "stepSize": 0.1,
+          "stopTime": 100
+        },
+        "source_type": "dtaas_example_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_dtaas_water_tank_fi__x1"
+    ],
+    "port_nodes": [
+      "asset_dtaas_water_tank_fi__x1.maxlevel",
+      "asset_dtaas_water_tank_fi__x1.minlevel",
+      "asset_dtaas_water_tank_fi__x1.level",
+      "asset_dtaas_water_tank_fi__x1.valve"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "x1": "asset_dtaas_water_tank_fi__x1",
+      "x2": "asset_dtaas_water_tank_fi__x1",
+      "x3": "asset_dtaas_water_tank_fi__x1",
+      "x4": "asset_dtaas_water_tank_fi__x1"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "simplified_name_match"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 2.05,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 2.05,
+      "final_cost": 2.05,
+      "selected_fmus": [
+        "asset_dtaas_water_tank_fi__x1"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 2.05,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "graph_match_only",
+    "structural_reasoning": true,
+    "semantic_retrieval": false,
+    "binding_count": 0,
+    "fallback_used": false,
+    "failure_type": ""
+  }
+}

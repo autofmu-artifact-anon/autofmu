@@ -1,0 +1,37 @@
+{
+  "name": "SwingUpBalanceController",
+  "description": "倒立摆混合控制器：能量整形摆起 + 倒立附近 LQR/PD 平衡 + 位置积分跟踪。含模式切换（整数状态）与积分器状态；输出力受限并具有抗积分饱和。",
+  "inputs": [
+    {"name": "x_m", "type": "Real", "unit": "m", "description": "小车位置"},
+    {"name": "x_dot_mps", "type": "Real", "unit": "m/s", "description": "小车速度"},
+    {"name": "theta_hat_rad", "type": "Real", "unit": "rad", "description": "估计杆角度"},
+    {"name": "theta_dot_hat_rps", "type": "Real", "unit": "rad/s", "description": "估计杆角速度"},
+    {"name": "x_ref_m", "type": "Real", "unit": "m", "description": "位置参考"},
+    {"name": "enable", "type": "Boolean", "unit": "bool", "description": "使能（false 时输出 0 并冻结积分器）"}
+  ],
+  "outputs": [
+    {"name": "force_cmd_N", "type": "Real", "unit": "N", "description": "力指令（经过内部饱和）"},
+    {"name": "mode", "type": "Integer", "unit": "enum", "description": "0=摆起(SwingUp), 1=平衡(Balance)"}
+  ],
+  "parameters": [
+    {"name": "F_max_N", "type": "Real", "default": 15.0, "unit": "N", "description": "控制输出饱和限制"},
+
+    {"name": "theta_balance_thresh_rad", "type": "Real", "default": 0.25, "unit": "rad", "description": "进入平衡模式的角度阈值（相对 pi）"},
+    {"name": "theta_fallback_thresh_rad", "type": "Real", "default": 0.5, "unit": "rad", "description": "退出平衡回到摆起的阈值（滞回）"},
+
+    {"name": "swingup_energy_gain", "type": "Real", "default": 20.0, "unit": "N", "description": "能量整形增益（摆起用）"},
+    {"name": "swingup_damping", "type": "Real", "default": 2.0, "unit": "N*s", "description": "摆起附加阻尼（抑制过激）"},
+
+    {"name": "balance_kx", "type": "Real", "default": 40.0, "unit": "N/m", "description": "平衡时位置反馈增益"},
+    {"name": "balance_kxd", "type": "Real", "default": 8.0, "unit": "N/(m/s)", "description": "平衡时速度反馈增益"},
+    {"name": "balance_kth", "type": "Real", "default": 120.0, "unit": "N/rad", "description": "平衡时角度反馈增益（相对 pi）"},
+    {"name": "balance_kthd", "type": "Real", "default": 15.0, "unit": "N/(rad/s)", "description": "平衡时角速度反馈增益"},
+
+    {"name": "x_int_ki", "type": "Real", "default": 8.0, "unit": "N/(m*s)", "description": "位置误差积分增益"},
+    {"name": "x_int_limit", "type": "Real", "default": 0.25, "unit": "m*s", "description": "积分器限幅（防 windup）"}
+  ],
+  "states": [
+    {"name": "x_err_int", "derivative": "dx_err_int_dt"},
+    {"name": "mode", "derivative": "d_mode_dt"}
+  ]
+}

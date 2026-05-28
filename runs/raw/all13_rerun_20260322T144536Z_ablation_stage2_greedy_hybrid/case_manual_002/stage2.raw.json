@@ -1,0 +1,1440 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_monolithic",
+        "objective": "Cart-pole case normalized to reference-consistent acceptance criteria. Scenario time window 0s to 20s; inputs: disturbance_force_N_profile, enable, reset, x_ref",
+        "required_signals": [
+          "force_cmd_N",
+          "x_m",
+          "mode"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(force_cmd_N)",
+            "operator": "within",
+            "value": [
+              -15.0,
+              15.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(x_m)",
+            "operator": "within",
+            "value": [
+              -0.8,
+              0.8
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(mode)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "0s",
+            "operator": "<=",
+            "value": 0.01,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "0s",
+            "operator": "<=",
+            "value": 0.15,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "0s",
+            "operator": "<=",
+            "value": 2.0,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "force_cmd_N",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.force_cmd_out.force_cmd_N",
+            "unit_hint": "",
+            "type_hint": "ForceSignal",
+            "role": "observed",
+            "source_text": "force_cmd_N",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.force_cmd_out.force_cmd_N"
+          },
+          {
+            "signal_name": "force_cmd_N",
+            "direction": "in",
+            "component_hint": "plant",
+            "port_hint": "plant.force_cmd_in.force_cmd_N",
+            "unit_hint": "",
+            "type_hint": "ForceSignal",
+            "role": "driven",
+            "source_text": "force_cmd_N",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.force_cmd_in.force_cmd_N"
+          },
+          {
+            "signal_name": "x_m",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.x_in.x_m",
+            "unit_hint": "",
+            "type_hint": "PositionSignal",
+            "role": "observed",
+            "source_text": "x_m",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.x_in.x_m"
+          },
+          {
+            "signal_name": "x_m",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.x_out.x_m",
+            "unit_hint": "",
+            "type_hint": "PositionSignal",
+            "role": "observed",
+            "source_text": "x_m",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.x_out.x_m"
+          },
+          {
+            "signal_name": "mode",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.mode_out.mode",
+            "unit_hint": "",
+            "type_hint": "ModeSignal",
+            "role": "observed",
+            "source_text": "mode",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.mode_out.mode"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(force_cmd_N)",
+            "operator": "within",
+            "value": [
+              -15.0,
+              15.0
+            ],
+            "unit": "",
+            "grounded_signal": "force_cmd_N",
+            "scope": "controller",
+            "source_text": "Cart-pole case normalized to reference-consistent acceptance criteria. Scenario time window 0s to 20s; inputs: disturbance_force_N_profile, enable, reset, x_ref_m_profile; initial conditions: theta_bias_rps, theta_dot_rps, theta_rad, x_dot_mps, x_m. Acceptance criteria: within_range(force_cmd_N) in [-15.0, 15.0]; within_range(x_m) in [-0.8, 0.8]; within_range(mode) in [0.0, 1.0]; abs(bias_hat_rps - -4.3109201386) at t=20.0s <= 0.01; abs(x_m - 0.52) at t=20.0s <= 0.15; abs(theta_hat_rad - theta_rad) at t=20.0s <= 2.0.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.force_cmd_out.force_cmd_N"
+          },
+          {
+            "metric": "within_range(x_m)",
+            "operator": "within",
+            "value": [
+              -0.8,
+              0.8
+            ],
+            "unit": "",
+            "grounded_signal": "force_cmd_N",
+            "scope": "controller",
+            "source_text": "Cart-pole case normalized to reference-consistent acceptance criteria. Scenario time window 0s to 20s; inputs: disturbance_force_N_profile, enable, reset, x_ref_m_profile; initial conditions: theta_bias_rps, theta_dot_rps, theta_rad, x_dot_mps, x_m. Acceptance criteria: within_range(force_cmd_N) in [-15.0, 15.0]; within_range(x_m) in [-0.8, 0.8]; within_range(mode) in [0.0, 1.0]; abs(bias_hat_rps - -4.3109201386) at t=20.0s <= 0.01; abs(x_m - 0.52) at t=20.0s <= 0.15; abs(theta_hat_rad - theta_rad) at t=20.0s <= 2.0.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.force_cmd_out.force_cmd_N"
+          },
+          {
+            "metric": "within_range(mode)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "force_cmd_N",
+            "scope": "controller",
+            "source_text": "Cart-pole case normalized to reference-consistent acceptance criteria. Scenario time window 0s to 20s; inputs: disturbance_force_N_profile, enable, reset, x_ref_m_profile; initial conditions: theta_bias_rps, theta_dot_rps, theta_rad, x_dot_mps, x_m. Acceptance criteria: within_range(force_cmd_N) in [-15.0, 15.0]; within_range(x_m) in [-0.8, 0.8]; within_range(mode) in [0.0, 1.0]; abs(bias_hat_rps - -4.3109201386) at t=20.0s <= 0.01; abs(x_m - 0.52) at t=20.0s <= 0.15; abs(theta_hat_rad - theta_rad) at t=20.0s <= 2.0.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.force_cmd_out.force_cmd_N"
+          },
+          {
+            "metric": "0s",
+            "operator": "<=",
+            "value": 0.01,
+            "unit": "",
+            "grounded_signal": "force_cmd_N",
+            "scope": "controller",
+            "source_text": "Cart-pole case normalized to reference-consistent acceptance criteria. Scenario time window 0s to 20s; inputs: disturbance_force_N_profile, enable, reset, x_ref_m_profile; initial conditions: theta_bias_rps, theta_dot_rps, theta_rad, x_dot_mps, x_m. Acceptance criteria: within_range(force_cmd_N) in [-15.0, 15.0]; within_range(x_m) in [-0.8, 0.8]; within_range(mode) in [0.0, 1.0]; abs(bias_hat_rps - -4.3109201386) at t=20.0s <= 0.01; abs(x_m - 0.52) at t=20.0s <= 0.15; abs(theta_hat_rad - theta_rad) at t=20.0s <= 2.0.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.force_cmd_out.force_cmd_N"
+          },
+          {
+            "metric": "0s",
+            "operator": "<=",
+            "value": 0.15,
+            "unit": "",
+            "grounded_signal": "force_cmd_N",
+            "scope": "controller",
+            "source_text": "Cart-pole case normalized to reference-consistent acceptance criteria. Scenario time window 0s to 20s; inputs: disturbance_force_N_profile, enable, reset, x_ref_m_profile; initial conditions: theta_bias_rps, theta_dot_rps, theta_rad, x_dot_mps, x_m. Acceptance criteria: within_range(force_cmd_N) in [-15.0, 15.0]; within_range(x_m) in [-0.8, 0.8]; within_range(mode) in [0.0, 1.0]; abs(bias_hat_rps - -4.3109201386) at t=20.0s <= 0.01; abs(x_m - 0.52) at t=20.0s <= 0.15; abs(theta_hat_rad - theta_rad) at t=20.0s <= 2.0.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.force_cmd_out.force_cmd_N"
+          },
+          {
+            "metric": "0s",
+            "operator": "<=",
+            "value": 2.0,
+            "unit": "",
+            "grounded_signal": "force_cmd_N",
+            "scope": "controller",
+            "source_text": "Cart-pole case normalized to reference-consistent acceptance criteria. Scenario time window 0s to 20s; inputs: disturbance_force_N_profile, enable, reset, x_ref_m_profile; initial conditions: theta_bias_rps, theta_dot_rps, theta_rad, x_dot_mps, x_m. Acceptance criteria: within_range(force_cmd_N) in [-15.0, 15.0]; within_range(x_m) in [-0.8, 0.8]; within_range(mode) in [0.0, 1.0]; abs(bias_hat_rps - -4.3109201386) at t=20.0s <= 0.01; abs(x_m - 0.52) at t=20.0s <= 0.15; abs(theta_hat_rad - theta_rad) at t=20.0s <= 2.0.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.force_cmd_out.force_cmd_N"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 20.0,
+          "inputs": {
+            "disturbance_force_N_profile": "provided",
+            "enable": "provided",
+            "reset": "provided",
+            "x_ref_m_profile": "provided"
+          },
+          "initial_conditions": {
+            "theta_bias_rps": "provided",
+            "theta_dot_rps": "provided",
+            "theta_rad": "provided",
+            "x_dot_mps": "provided",
+            "x_m": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "controller",
+          "plant"
+        ],
+        "grounded_component_types": [
+          "HybridController",
+          "CartPolePlant"
+        ],
+        "grounded_ports": [
+          "force_cmd_N",
+          "x_m",
+          "mode"
+        ],
+        "task_trace": {
+          "components": [
+            "controller",
+            "plant"
+          ],
+          "ports": [
+            "force_cmd_N",
+            "x_m",
+            "mode"
+          ],
+          "signals": [
+            "force_cmd_N",
+            "x_m",
+            "mode"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 3,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": [
+            "dropped_components_without_signal_support"
+          ]
+        }
+      }
+    ],
+    "rationale": "rule-generated holistic raw task set",
+    "score": 0.6196918767507003,
+    "p_value": 0.5238095238095238,
+    "task_set_id": "taskset_2",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "controller",
+        "target_component": "plant",
+        "signals": [
+          "force_cmd_N",
+          "force_cmd_N"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "controller",
+            "source_signal": "force_cmd_N",
+            "target_component": "plant",
+            "target_signal": "force_cmd_N",
+            "must_route": true,
+            "semantic_intent": "controller.force_cmd_N -> plant.force_cmd_N",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "plant"
+            }
+          }
+        ],
+        "semantic_intent": "controller.force_cmd_N -> plant.force_cmd_N",
+        "details": {
+          "source_signal": "force_cmd_N",
+          "target_signal": "force_cmd_N"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "plant",
+        "target_component": "controller",
+        "signals": [
+          "x_m",
+          "x_m"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "plant",
+            "source_signal": "x_m",
+            "target_component": "controller",
+            "target_signal": "x_m",
+            "must_route": true,
+            "semantic_intent": "plant.x_m -> controller.x_m",
+            "adjacency_evidence": {
+              "source_component": "plant",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "plant.x_m -> controller.x_m",
+        "details": {
+          "source_signal": "x_m",
+          "target_signal": "x_m"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "plant",
+        "target_component": "controller",
+        "signals": [
+          "x_dot_mps",
+          "x_dot_mps"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "plant",
+            "source_signal": "x_dot_mps",
+            "target_component": "controller",
+            "target_signal": "x_dot_mps",
+            "must_route": true,
+            "semantic_intent": "plant.x_dot_mps -> controller.x_dot_mps",
+            "adjacency_evidence": {
+              "source_component": "plant",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "plant.x_dot_mps -> controller.x_dot_mps",
+        "details": {
+          "source_signal": "x_dot_mps",
+          "target_signal": "x_dot_mps"
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.5238095238095238,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.38030812324929975,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 0.6666666666666666,
+      "signal_coverage": 0.2,
+      "criteria_coverage": 1.0,
+      "constraint_completeness": 1.0,
+      "regime_coverage": 1.0,
+      "topology_alignment": 0.14285714285714285,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.11764705882352941,
+      "final_score": 0.6196918767507003
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "required_chain_count": 3,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_monolithic:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.5238095238095238,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.38030812324929975,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_monolithic",
+      "task_index": 0,
+      "fmu_uid": "asset_case_case_manual_002__CartPolePlant",
+      "score": 0.7638043288430707,
+      "cost": 1.2361956711569293,
+      "hard_ok": true,
+      "semantic_cost": 0.7223913423138586,
+      "hard_mask_value": 1.75,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "greedy_hybrid",
+        "comp_partial=1",
+        "type_exact=1",
+        "sig_exact=4",
+        "sig_partial=2"
+      ],
+      "grounded_components": [
+        "controller",
+        "plant"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_case_case_manual_002__CartPolePlant",
+      "name": "CartPolePlant",
+      "description": "小车-倒立摆非线性动力学（含电机饱和、非线性摩擦、软限位与简化传感器）。角度定义：theta=0 为下垂，theta=pi 为倒立。",
+      "path": "dataset/assets/asset_case_case_manual_002__CartPolePlant/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "Co-Simulation"
+      ],
+      "ports": [
+        {
+          "name": "force_cmd_N",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "N",
+          "description": "电机期望输出水平力（将被内部饱和与一阶执行器动态处理）",
+          "dimensions": []
+        },
+        {
+          "name": "disturbance_force_N",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "N",
+          "description": "外部扰动力（脉冲推/拉，用于鲁棒性测试）",
+          "dimensions": []
+        },
+        {
+          "name": "x_m",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "m",
+          "description": "小车位置",
+          "dimensions": []
+        },
+        {
+          "name": "x_dot_mps",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "m/s",
+          "description": "小车速度",
+          "dimensions": []
+        },
+        {
+          "name": "theta_rad",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "rad",
+          "description": "杆角度（0下垂，pi倒立）",
+          "dimensions": []
+        },
+        {
+          "name": "theta_dot_rps",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "rad/s",
+          "description": "杆角速度",
+          "dimensions": []
+        },
+        {
+          "name": "theta_meas_rad",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "rad",
+          "description": "角度测量值（含噪声/量化/wrap）",
+          "dimensions": []
+        },
+        {
+          "name": "theta_dot_meas_rps",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "rad/s",
+          "description": "角速度测量值（含偏置与噪声）",
+          "dimensions": []
+        },
+        {
+          "name": "m_cart_kg",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "kg",
+          "description": "小车质量",
+          "dimensions": []
+        },
+        {
+          "name": "m_pole_kg",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "kg",
+          "description": "杆质量",
+          "dimensions": []
+        },
+        {
+          "name": "l_com_m",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "m",
+          "description": "转轴到杆质心距离",
+          "dimensions": []
+        },
+        {
+          "name": "I_pole_kgm2",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "kg*m^2",
+          "description": "杆绕质心转动惯量",
+          "dimensions": []
+        },
+        {
+          "name": "g_mps2",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "m/s^2",
+          "description": "重力加速度",
+          "dimensions": []
+        },
+        {
+          "name": "F_max_N",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "N",
+          "description": "电机最大输出力（饱和）",
+          "dimensions": []
+        },
+        {
+          "name": "actuator_tau_s",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "s",
+          "description": "执行器一阶滞后时间常数",
+          "dimensions": []
+        },
+        {
+          "name": "cart_fric_coulomb_N",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "N",
+          "description": "小车库仑摩擦等效力幅值",
+          "dimensions": []
+        },
+        {
+          "name": "cart_fric_visc_Ns_per_m",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "N*s/m",
+          "description": "小车粘性摩擦系数",
+          "dimensions": []
+        },
+        {
+          "name": "fric_smooth_v0_mps",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "m/s",
+          "description": "tanh 平滑摩擦的速度尺度",
+          "dimensions": []
+        },
+        {
+          "name": "x_limit_m",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "m",
+          "description": "轨道软限位（超出后施加非线性弹簧力）",
+          "dimensions": []
+        },
+        {
+          "name": "x_limit_k_N_per_m",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "N/m",
+          "description": "软限位等效弹簧刚度",
+          "dimensions": []
+        },
+        {
+          "name": "theta_meas_sigma_rad",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "rad",
+          "description": "角度测量噪声标准差",
+          "dimensions": []
+        },
+        {
+          "name": "theta_dot_bias_rps",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "rad/s",
+          "description": "角速度测量偏置（常值）",
+          "dimensions": []
+        },
+        {
+          "name": "theta_dot_meas_sigma_rps",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "rad/s",
+          "description": "角速度测量噪声标准差",
+          "dimensions": []
+        }
+      ],
+      "inputs": [
+        "force_cmd_N",
+        "disturbance_force_N"
+      ],
+      "outputs": [
+        "x_m",
+        "x_dot_mps",
+        "theta_rad",
+        "theta_dot_rps",
+        "theta_meas_rad",
+        "theta_dot_meas_rps"
+      ],
+      "tags": [
+        "case_manual_002",
+        "manual_case"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_case_case_manual_002__CartPolePlant",
+        "asset_json": {
+          "asset_id": "asset_case_case_manual_002__CartPolePlant",
+          "backend_kind": "python_source_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_manual_002"
+          ],
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.001,
+            "stopTime": 20
+          },
+          "description": "小车-倒立摆非线性动力学（含电机饱和、非线性摩擦、软限位与简化传感器）。角度定义：theta=0 为下垂，theta=pi 为倒立。",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "Co-Simulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [
+            "force_cmd_N",
+            "disturbance_force_N"
+          ],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "CartPolePlant",
+          "outputs": [
+            "x_m",
+            "x_dot_mps",
+            "theta_rad",
+            "theta_dot_rps",
+            "theta_meas_rad",
+            "theta_dot_meas_rps"
+          ],
+          "ports": [
+            {
+              "causality": "input",
+              "description": "电机期望输出水平力（将被内部饱和与一阶执行器动态处理）",
+              "name": "force_cmd_N",
+              "type": "Real",
+              "unit": "N",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "外部扰动力（脉冲推/拉，用于鲁棒性测试）",
+              "name": "disturbance_force_N",
+              "type": "Real",
+              "unit": "N",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "小车位置",
+              "name": "x_m",
+              "type": "Real",
+              "unit": "m",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "小车速度",
+              "name": "x_dot_mps",
+              "type": "Real",
+              "unit": "m/s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "杆角度（0下垂，pi倒立）",
+              "name": "theta_rad",
+              "type": "Real",
+              "unit": "rad",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "杆角速度",
+              "name": "theta_dot_rps",
+              "type": "Real",
+              "unit": "rad/s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "角度测量值（含噪声/量化/wrap）",
+              "name": "theta_meas_rad",
+              "type": "Real",
+              "unit": "rad",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "角速度测量值（含偏置与噪声）",
+              "name": "theta_dot_meas_rps",
+              "type": "Real",
+              "unit": "rad/s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "小车质量",
+              "name": "m_cart_kg",
+              "type": "Real",
+              "unit": "kg",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "杆质量",
+              "name": "m_pole_kg",
+              "type": "Real",
+              "unit": "kg",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "转轴到杆质心距离",
+              "name": "l_com_m",
+              "type": "Real",
+              "unit": "m",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "杆绕质心转动惯量",
+              "name": "I_pole_kgm2",
+              "type": "Real",
+              "unit": "kg*m^2",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "重力加速度",
+              "name": "g_mps2",
+              "type": "Real",
+              "unit": "m/s^2",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "电机最大输出力（饱和）",
+              "name": "F_max_N",
+              "type": "Real",
+              "unit": "N",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "执行器一阶滞后时间常数",
+              "name": "actuator_tau_s",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "小车库仑摩擦等效力幅值",
+              "name": "cart_fric_coulomb_N",
+              "type": "Real",
+              "unit": "N",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "小车粘性摩擦系数",
+              "name": "cart_fric_visc_Ns_per_m",
+              "type": "Real",
+              "unit": "N*s/m",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "tanh 平滑摩擦的速度尺度",
+              "name": "fric_smooth_v0_mps",
+              "type": "Real",
+              "unit": "m/s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "轨道软限位（超出后施加非线性弹簧力）",
+              "name": "x_limit_m",
+              "type": "Real",
+              "unit": "m",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "软限位等效弹簧刚度",
+              "name": "x_limit_k_N_per_m",
+              "type": "Real",
+              "unit": "N/m",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "角度测量噪声标准差",
+              "name": "theta_meas_sigma_rad",
+              "type": "Real",
+              "unit": "rad",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "角速度测量偏置（常值）",
+              "name": "theta_dot_bias_rps",
+              "type": "Real",
+              "unit": "rad/s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "角速度测量噪声标准差",
+              "name": "theta_dot_meas_sigma_rps",
+              "type": "Real",
+              "unit": "rad/s",
+              "variability": "fixed"
+            }
+          ],
+          "provenance": {
+            "case_id": "case_manual_002",
+            "legacy_fmu_list_entry": {
+              "description": "Nonlinear cart-pole dynamics with actuator saturation, friction, soft limits, and noisy sensors. Angle convention: theta=0 is hanging down, theta=pi is upright.",
+              "fmi_version": "2.0",
+              "inputs": [
+                {
+                  "description": "Motor force command",
+                  "name": "force_cmd_N",
+                  "unit": "N"
+                },
+                {
+                  "description": "External disturbance force",
+                  "name": "disturbance_force_N",
+                  "unit": "N"
+                }
+              ],
+              "name": "CartPolePlant",
+              "outputs": [
+                {
+                  "description": "Cart position",
+                  "name": "x_m",
+                  "unit": "m"
+                },
+                {
+                  "description": "Cart velocity",
+                  "name": "x_dot_mps",
+                  "unit": "m/s"
+                },
+                {
+                  "description": "Pole angle (0=down, pi=up)",
+                  "name": "theta_rad",
+                  "unit": "rad"
+                },
+                {
+                  "description": "Pole angular velocity",
+                  "name": "theta_dot_rps",
+                  "unit": "rad/s"
+                },
+                {
+                  "description": "Measured angle (with noise)",
+                  "name": "theta_meas_rad",
+                  "unit": "rad"
+                },
+                {
+                  "description": "Measured angular velocity (with bias+noise)",
+                  "name": "theta_dot_meas_rps",
+                  "unit": "rad/s"
+                }
+              ],
+              "path": "fmus/CartPolePlant.fmu",
+              "type": "Co-Simulation"
+            }
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "case_manual_002::CartPolePlant",
+          "source_type": "manual_case_fmu",
+          "tags": [
+            "case_manual_002",
+            "manual_case"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_case_case_manual_002__CartPolePlant",
+          "backend_kind": "python_source_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.001,
+            "stopTime": 20
+          },
+          "description": "小车-倒立摆非线性动力学（含电机饱和、非线性摩擦、软限位与简化传感器）。角度定义：theta=0 为下垂，theta=pi 为倒立。",
+          "fmi_types": [
+            "Co-Simulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [
+            "force_cmd_N",
+            "disturbance_force_N"
+          ],
+          "name": "CartPolePlant",
+          "outputs": [
+            "x_m",
+            "x_dot_mps",
+            "theta_rad",
+            "theta_dot_rps",
+            "theta_meas_rad",
+            "theta_dot_meas_rps"
+          ],
+          "ports": [
+            {
+              "causality": "input",
+              "description": "电机期望输出水平力（将被内部饱和与一阶执行器动态处理）",
+              "name": "force_cmd_N",
+              "type": "Real",
+              "unit": "N",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "外部扰动力（脉冲推/拉，用于鲁棒性测试）",
+              "name": "disturbance_force_N",
+              "type": "Real",
+              "unit": "N",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "小车位置",
+              "name": "x_m",
+              "type": "Real",
+              "unit": "m",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "小车速度",
+              "name": "x_dot_mps",
+              "type": "Real",
+              "unit": "m/s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "杆角度（0下垂，pi倒立）",
+              "name": "theta_rad",
+              "type": "Real",
+              "unit": "rad",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "杆角速度",
+              "name": "theta_dot_rps",
+              "type": "Real",
+              "unit": "rad/s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "角度测量值（含噪声/量化/wrap）",
+              "name": "theta_meas_rad",
+              "type": "Real",
+              "unit": "rad",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "角速度测量值（含偏置与噪声）",
+              "name": "theta_dot_meas_rps",
+              "type": "Real",
+              "unit": "rad/s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "小车质量",
+              "name": "m_cart_kg",
+              "type": "Real",
+              "unit": "kg",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "杆质量",
+              "name": "m_pole_kg",
+              "type": "Real",
+              "unit": "kg",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "转轴到杆质心距离",
+              "name": "l_com_m",
+              "type": "Real",
+              "unit": "m",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "杆绕质心转动惯量",
+              "name": "I_pole_kgm2",
+              "type": "Real",
+              "unit": "kg*m^2",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "重力加速度",
+              "name": "g_mps2",
+              "type": "Real",
+              "unit": "m/s^2",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "电机最大输出力（饱和）",
+              "name": "F_max_N",
+              "type": "Real",
+              "unit": "N",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "执行器一阶滞后时间常数",
+              "name": "actuator_tau_s",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "小车库仑摩擦等效力幅值",
+              "name": "cart_fric_coulomb_N",
+              "type": "Real",
+              "unit": "N",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "小车粘性摩擦系数",
+              "name": "cart_fric_visc_Ns_per_m",
+              "type": "Real",
+              "unit": "N*s/m",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "tanh 平滑摩擦的速度尺度",
+              "name": "fric_smooth_v0_mps",
+              "type": "Real",
+              "unit": "m/s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "轨道软限位（超出后施加非线性弹簧力）",
+              "name": "x_limit_m",
+              "type": "Real",
+              "unit": "m",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "软限位等效弹簧刚度",
+              "name": "x_limit_k_N_per_m",
+              "type": "Real",
+              "unit": "N/m",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "角度测量噪声标准差",
+              "name": "theta_meas_sigma_rad",
+              "type": "Real",
+              "unit": "rad",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "角速度测量偏置（常值）",
+              "name": "theta_dot_bias_rps",
+              "type": "Real",
+              "unit": "rad/s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "角速度测量噪声标准差",
+              "name": "theta_dot_meas_sigma_rps",
+              "type": "Real",
+              "unit": "rad/s",
+              "variability": "fixed"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0,
+          "stepSize": 0.001,
+          "stopTime": 20
+        },
+        "source_type": "manual_case_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_case_case_manual_002__CartPolePlant"
+    ],
+    "port_nodes": [
+      "asset_case_case_manual_002__CartPolePlant.force_cmd_N",
+      "asset_case_case_manual_002__CartPolePlant.disturbance_force_N",
+      "asset_case_case_manual_002__CartPolePlant.x_m",
+      "asset_case_case_manual_002__CartPolePlant.x_dot_mps",
+      "asset_case_case_manual_002__CartPolePlant.theta_rad",
+      "asset_case_case_manual_002__CartPolePlant.theta_dot_rps",
+      "asset_case_case_manual_002__CartPolePlant.theta_meas_rad",
+      "asset_case_case_manual_002__CartPolePlant.theta_dot_meas_rps",
+      "asset_case_case_manual_002__CartPolePlant.m_cart_kg",
+      "asset_case_case_manual_002__CartPolePlant.m_pole_kg",
+      "asset_case_case_manual_002__CartPolePlant.l_com_m",
+      "asset_case_case_manual_002__CartPolePlant.I_pole_kgm2",
+      "asset_case_case_manual_002__CartPolePlant.g_mps2",
+      "asset_case_case_manual_002__CartPolePlant.F_max_N",
+      "asset_case_case_manual_002__CartPolePlant.actuator_tau_s",
+      "asset_case_case_manual_002__CartPolePlant.cart_fric_coulomb_N",
+      "asset_case_case_manual_002__CartPolePlant.cart_fric_visc_Ns_per_m",
+      "asset_case_case_manual_002__CartPolePlant.fric_smooth_v0_mps",
+      "asset_case_case_manual_002__CartPolePlant.x_limit_m",
+      "asset_case_case_manual_002__CartPolePlant.x_limit_k_N_per_m",
+      "asset_case_case_manual_002__CartPolePlant.theta_meas_sigma_rad",
+      "asset_case_case_manual_002__CartPolePlant.theta_dot_bias_rps",
+      "asset_case_case_manual_002__CartPolePlant.theta_dot_meas_sigma_rps"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "controller": "asset_case_case_manual_002__CartPolePlant",
+      "plant": "asset_case_case_manual_002__CartPolePlant"
+    },
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "controller",
+        "target_component": "plant",
+        "signals": [
+          "force_cmd_N",
+          "force_cmd_N"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "controller",
+            "source_signal": "force_cmd_N",
+            "target_component": "plant",
+            "target_signal": "force_cmd_N",
+            "must_route": true,
+            "semantic_intent": "controller.force_cmd_N -> plant.force_cmd_N",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "plant"
+            }
+          }
+        ],
+        "semantic_intent": "controller.force_cmd_N -> plant.force_cmd_N",
+        "details": {
+          "source_signal": "force_cmd_N",
+          "target_signal": "force_cmd_N"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "plant",
+        "target_component": "controller",
+        "signals": [
+          "x_m",
+          "x_m"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "plant",
+            "source_signal": "x_m",
+            "target_component": "controller",
+            "target_signal": "x_m",
+            "must_route": true,
+            "semantic_intent": "plant.x_m -> controller.x_m",
+            "adjacency_evidence": {
+              "source_component": "plant",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "plant.x_m -> controller.x_m",
+        "details": {
+          "source_signal": "x_m",
+          "target_signal": "x_m"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "plant",
+        "target_component": "controller",
+        "signals": [
+          "x_dot_mps",
+          "x_dot_mps"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "plant",
+            "source_signal": "x_dot_mps",
+            "target_component": "controller",
+            "target_signal": "x_dot_mps",
+            "must_route": true,
+            "semantic_intent": "plant.x_dot_mps -> controller.x_dot_mps",
+            "adjacency_evidence": {
+              "source_component": "plant",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "plant.x_dot_mps -> controller.x_dot_mps",
+        "details": {
+          "source_signal": "x_dot_mps",
+          "target_signal": "x_dot_mps"
+        }
+      }
+    ],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "hybrid_name_semantic_match"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 1.2361956711569293,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_1",
+      "status": "ok",
+      "selected_task_set_cost": 8.875530433303991,
+      "final_cost": 8.875530433303991,
+      "selected_fmus": [
+        "asset_case_case_manual_002__CartPolePlant",
+        "asset_case_case_manual_002__PoleAngleEstimator"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    },
+    {
+      "task_set_id": "taskset_2",
+      "status": "ok",
+      "selected_task_set_cost": 1.2361956711569293,
+      "final_cost": 1.2361956711569293,
+      "selected_fmus": [
+        "asset_case_case_manual_002__CartPolePlant"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    },
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 1.2410706442047277,
+      "final_cost": 1.2410706442047277,
+      "selected_fmus": [
+        "asset_case_case_manual_002__CartPolePlant"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 1.2361956711569293,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "greedy_hybrid",
+    "repair_used": false,
+    "repair_attempted": false,
+    "repair_succeeded": false,
+    "failure_type": "",
+    "semantic_weight": 0.5,
+    "structural_weight": 0.5
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "schema": "EVALUATOR_CASE_METRICS_V2",
+  "retrieval": {
+    "top_k": 5,
+    "oracle_mode": "exact_asset_set",
+    "equivalence_class_id": "",
+    "acceptable_asset_set_count": 1,
+    "acceptable_asset_sets": [
+      [
+        "asset_case_case_manual_005__BatteryPackPlant",
+        "asset_case_case_manual_005__CoolantLoopPlant",
+        "asset_case_case_manual_005__ThermalController"
+      ]
+    ],
+    "top1_asset_ids": [
+      "asset_case_case_manual_005__BatteryPackPlant",
+      "asset_case_case_manual_005__CoolantLoopPlant",
+      "asset_case_case_manual_005__ThermalController"
+    ],
+    "candidate_asset_sets": [
+      [
+        "asset_case_case_manual_005__BatteryPackPlant",
+        "asset_case_case_manual_005__CoolantLoopPlant",
+        "asset_case_case_manual_005__ThermalController"
+      ],
+      [
+        "asset_case_case_manual_005__BatteryPackPlant",
+        "asset_case_case_manual_005__CoolantLoopPlant"
+      ]
+    ],
+    "top1_hit": true,
+    "topk_hit": true
+  },
+  "execution": {
+    "supported": true,
+    "success": true,
+    "backend": "mixed_cosim",
+    "execution_time_seconds": 42.7305876580067,
+    "generated_trajectory_path": "runs/raw/all13_rerun_20260322T144536Z_ablation_stage3_greedy_multirate/case_manual_005/generated_trajectory.csv",
+    "error": null,
+    "warnings": []
+  },
+  "numerical_fidelity": {
+    "supported": true,
+    "mae": null,
+    "rmse": null,
+    "nrmse": null,
+    "max_abs_error": null,
+    "aligned_sample_count": 0,
+    "signal_count": 0,
+    "signals": [],
+    "generated_time_column": "time",
+    "reference_time_column": "time",
+    "generated_signal_map": {},
+    "reference_signal_map": {},
+    "unresolved_generated_signals": [],
+    "unresolved_reference_signals": []
+  },
+  "decision": {
+    "supported": true,
+    "predicted_conclusion": "fail",
+    "reference_conclusion": "pass",
+    "passed": false,
+    "correct": false,
+    "evidence": {
+      "rule_kind": "acceptance_criteria",
+      "supported": true,
+      "conclusion": "fail",
+      "criterion_results": [
+        {
+          "metric": "max(temp_cell_C)_over_all",
+          "operator": "<=",
+          "expected": 45.0,
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        },
+        {
+          "metric": "max(abs(temp_cell_C - temp_ref_C))_after_t=250s",
+          "operator": "<=",
+          "expected": 8.5,
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        },
+        {
+          "metric": "within_range(pump_cmd)",
+          "operator": "in",
+          "expected": [
+            0.0,
+            1.0
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        },
+        {
+          "metric": "max(abs(d(pump_cmd)/dt))",
+          "operator": "<=",
+          "expected": 1.0,
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        },
+        {
+          "metric": "within_range(soc)",
+          "operator": "in",
+          "expected": [
+            0.0,
+            1.0
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        },
+        {
+          "metric": "within_range(v_term_V)",
+          "operator": "in",
+          "expected": [
+            160.0,
+            430.0
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        }
+      ],
+      "unsupported_criteria": [],
+      "time_coverage": {
+        "observed_start_time": 0.0,
+        "observed_stop_time": 1.0,
+        "declared_start_time": 0,
+        "declared_stop_time": 900,
+        "sample_count": 101
+      },
+      "initial_condition_results": [
+        {
+          "signal": "soc",
+          "expected": 0.85,
+          "observed": 0.85,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        },
+        {
+          "signal": "temp_cell_C",
+          "expected": 30.0,
+          "observed": 30.0,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        }
+      ],
+      "coverage_failures": [
+        "max(temp_cell_C)_over_all",
+        "max(abs(temp_cell_C - temp_ref_C))_after_t=250s",
+        "within_range(pump_cmd)",
+        "max(abs(d(pump_cmd)/dt))",
+        "within_range(soc)",
+        "within_range(v_term_V)"
+      ],
+      "decision_policy": "acceptance_criteria_pass"
+    }
+  }
+}

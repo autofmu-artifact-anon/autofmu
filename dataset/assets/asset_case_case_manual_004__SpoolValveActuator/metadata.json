@@ -1,0 +1,88 @@
+{
+  "asset_id": "asset_case_case_manual_004__SpoolValveActuator",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "default_experiment": {
+    "startTime": 0.0,
+    "stepSize": 0.01,
+    "stopTime": 1.0
+  },
+  "description": "Spool valve actuator with deadzone, first-order dynamics and rate limiting.",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "inputs": [
+    "valve_cmd"
+  ],
+  "name": "SpoolValveActuator",
+  "outputs": [
+    "spool_u"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "Normalized valve command",
+      "name": "valve_cmd",
+      "type": "Real",
+      "unit": "-1..1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Normalized spool opening (after dynamics)",
+      "name": "spool_u",
+      "type": "Real",
+      "unit": "-1..1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "First-order time constant",
+      "name": "tau_s",
+      "type": "Real",
+      "unit": "s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Command deadzone (|cmd| below this yields zero effective command)",
+      "name": "deadzone",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Maximum |d(spool_u)/dt|",
+      "name": "rate_limit_per_s",
+      "type": "Real",
+      "unit": "1/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Min spool",
+      "name": "u_min",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Max spool",
+      "name": "u_max",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    }
+  ],
+  "schema": "UNIFIED_FMU_METADATA_V1"
+}

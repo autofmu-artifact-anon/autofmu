@@ -1,0 +1,410 @@
+{
+  "case_id": "case_manual_002",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_case_case_manual_002__CartPolePlant",
+        "asset_case_case_manual_002__PoleAngleEstimator",
+        "asset_case_case_manual_002__SwingUpBalanceController"
+      ]
+    ],
+    "case_id": "case_manual_002",
+    "equivalence_class_id": "",
+    "equivalence_reason": "",
+    "oracle_mode": "exact_asset_set",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_manual_002",
+    "connections": [
+      {
+        "source": "asset_case_case_manual_002__SwingUpBalanceController.force_cmd_N",
+        "target": "asset_case_case_manual_002__CartPolePlant.force_cmd_N"
+      },
+      {
+        "source": "asset_case_case_manual_002__CartPolePlant.x_m",
+        "target": "asset_case_case_manual_002__SwingUpBalanceController.x_m"
+      },
+      {
+        "source": "asset_case_case_manual_002__CartPolePlant.x_dot_mps",
+        "target": "asset_case_case_manual_002__SwingUpBalanceController.x_dot_mps"
+      },
+      {
+        "source": "asset_case_case_manual_002__CartPolePlant.theta_meas_rad",
+        "target": "asset_case_case_manual_002__PoleAngleEstimator.theta_meas_rad"
+      },
+      {
+        "source": "asset_case_case_manual_002__CartPolePlant.theta_dot_meas_rps",
+        "target": "asset_case_case_manual_002__PoleAngleEstimator.theta_dot_meas_rps"
+      },
+      {
+        "source": "asset_case_case_manual_002__PoleAngleEstimator.theta_hat_rad",
+        "target": "asset_case_case_manual_002__SwingUpBalanceController.theta_hat_rad"
+      },
+      {
+        "source": "asset_case_case_manual_002__PoleAngleEstimator.theta_dot_hat_rps",
+        "target": "asset_case_case_manual_002__SwingUpBalanceController.theta_dot_hat_rps"
+      }
+    ],
+    "execution_order": [
+      "asset_case_case_manual_002__SwingUpBalanceController",
+      "asset_case_case_manual_002__PoleAngleEstimator",
+      "asset_case_case_manual_002__CartPolePlant"
+    ],
+    "external_inputs": [
+      {
+        "default": 0.0,
+        "name": "x_ref_m",
+        "targets": [
+          "asset_case_case_manual_002__SwingUpBalanceController.x_ref_m"
+        ],
+        "unit": "m"
+      },
+      {
+        "default": true,
+        "name": "enable",
+        "targets": [
+          "asset_case_case_manual_002__SwingUpBalanceController.enable"
+        ],
+        "unit": "bool"
+      },
+      {
+        "default": false,
+        "name": "reset",
+        "targets": [
+          "asset_case_case_manual_002__PoleAngleEstimator.reset"
+        ],
+        "unit": "bool"
+      },
+      {
+        "default": 0.0,
+        "name": "disturbance_force_N",
+        "targets": [
+          "asset_case_case_manual_002__CartPolePlant.disturbance_force_N"
+        ],
+        "unit": "N"
+      }
+    ],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "x_m",
+        "source": "asset_case_case_manual_002__CartPolePlant.x_m",
+        "unit": "m"
+      },
+      {
+        "name": "theta_rad",
+        "source": "asset_case_case_manual_002__CartPolePlant.theta_rad",
+        "unit": "rad"
+      },
+      {
+        "name": "theta_hat_rad",
+        "source": "asset_case_case_manual_002__PoleAngleEstimator.theta_hat_rad",
+        "unit": "rad"
+      },
+      {
+        "name": "bias_hat_rps",
+        "source": "asset_case_case_manual_002__PoleAngleEstimator.bias_hat_rps",
+        "unit": "rad/s"
+      },
+      {
+        "name": "force_cmd_N",
+        "source": "asset_case_case_manual_002__SwingUpBalanceController.force_cmd_N",
+        "unit": "N"
+      },
+      {
+        "name": "mode",
+        "source": "asset_case_case_manual_002__SwingUpBalanceController.mode",
+        "unit": "enum"
+      },
+      {
+        "name": "x_dot_mps",
+        "source": "asset_case_case_manual_002__CartPolePlant.x_dot_mps",
+        "unit": "m/s"
+      },
+      {
+        "name": "theta_dot_rps",
+        "source": "asset_case_case_manual_002__CartPolePlant.theta_dot_rps",
+        "unit": "rad/s"
+      },
+      {
+        "name": "theta_meas_rad",
+        "source": "asset_case_case_manual_002__CartPolePlant.theta_meas_rad",
+        "unit": "rad"
+      },
+      {
+        "name": "theta_dot_meas_rps",
+        "source": "asset_case_case_manual_002__CartPolePlant.theta_dot_meas_rps",
+        "unit": "rad/s"
+      },
+      {
+        "name": "theta_dot_hat_rps",
+        "source": "asset_case_case_manual_002__PoleAngleEstimator.theta_dot_hat_rps",
+        "unit": "rad/s"
+      }
+    ],
+    "notes": [
+      "Starting from theta=0 (hanging down), controller first performs energy-based swing-up (mode=0) and then switches to balance/LQR (mode=1) when |wrap(theta_hat-pi)| is small. With disturbance impulses, the controller keeps theta near pi and tracks x_ref_m changes, while force_cmd_N stays saturated within limits."
+    ],
+    "schedule": {
+      "co_simulation": {
+        "start_time": 0,
+        "step_size": 0.001,
+        "stop_time": 20
+      },
+      "co_simulation_type": "fixed_step",
+      "kind": "co_simulation"
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_case_case_manual_002__CartPolePlant",
+      "asset_case_case_manual_002__PoleAngleEstimator",
+      "asset_case_case_manual_002__SwingUpBalanceController"
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_manual_002",
+    "criteria": [
+      {
+        "metric": "within_range(force_cmd_N)",
+        "notes": "控制力命令保持在执行器饱和边界内。",
+        "operator": "in",
+        "unit": "N",
+        "value": [
+          -15.0,
+          15.0
+        ]
+      },
+      {
+        "metric": "within_range(x_m)",
+        "notes": "小车位置保持在参考轨迹实际覆盖的可达包络内。",
+        "operator": "in",
+        "unit": "m",
+        "value": [
+          -0.8,
+          0.8
+        ]
+      },
+      {
+        "metric": "within_range(mode)",
+        "notes": "模式信号维持在离散控制逻辑定义域内。",
+        "operator": "in",
+        "value": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "metric": "abs(bias_hat_rps - -4.3109201386) at t=20.0s",
+        "notes": "末态偏置估计应与参考轨迹一致。",
+        "operator": "<=",
+        "unit": "rad/s",
+        "value": 0.01
+      },
+      {
+        "metric": "abs(x_m - 0.52) at t=20.0s",
+        "notes": "末态小车位置应落在参考末值附近。",
+        "operator": "<=",
+        "unit": "m",
+        "value": 0.15
+      },
+      {
+        "metric": "abs(theta_hat_rad - theta_rad) at t=20.0s",
+        "notes": "估计角与真实角在末态保持同量级一致性。",
+        "operator": "<=",
+        "unit": "rad",
+        "value": 2.0
+      }
+    ],
+    "decision_rule": {
+      "criteria_source": "verification_requirement.criteria",
+      "kind": "acceptance_criteria",
+      "requires_ground_truth": true
+    },
+    "derivation_basis": {
+      "acceptance_criteria_count": 5,
+      "normalization_note": "Archived reference trajectory does not converge to an upright hold after 8s; acceptance criteria are anchored to the normalized reference envelope and terminal consistency instead of an invalid swing-up-to-balance narrative.",
+      "signals_of_interest": [
+        "x_ref_m",
+        "x_m",
+        "x_dot_mps",
+        "theta_rad",
+        "theta_dot_rps",
+        "theta_meas_rad",
+        "theta_dot_meas_rps",
+        "theta_hat_rad",
+        "theta_dot_hat_rps",
+        "bias_hat_rps",
+        "force_cmd_N",
+        "mode",
+        "disturbance_force_N"
+      ],
+      "source_root": "sources/cases/case_manual_002"
+    },
+    "judgement_policy": "acceptance_criteria_from_reference_behavior",
+    "scenario_window": {
+      "start_time": 0,
+      "step_size": 0.001,
+      "stop_time": 20
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "bias_hat_rps": [
+        "bias_hat_rps",
+        "asset_case_case_manual_002__PoleAngleEstimator.bias_hat_rps"
+      ],
+      "force_cmd_N": [
+        "force_cmd_N",
+        "asset_case_case_manual_002__SwingUpBalanceController.force_cmd_N"
+      ],
+      "mode": [
+        "mode",
+        "asset_case_case_manual_002__SwingUpBalanceController.mode"
+      ],
+      "theta_dot_hat_rps": [
+        "theta_dot_hat_rps",
+        "asset_case_case_manual_002__PoleAngleEstimator.theta_dot_hat_rps"
+      ],
+      "theta_dot_meas_rps": [
+        "theta_dot_meas_rps",
+        "asset_case_case_manual_002__CartPolePlant.theta_dot_meas_rps"
+      ],
+      "theta_dot_rps": [
+        "theta_dot_rps",
+        "asset_case_case_manual_002__CartPolePlant.theta_dot_rps"
+      ],
+      "theta_hat_rad": [
+        "theta_hat_rad",
+        "asset_case_case_manual_002__PoleAngleEstimator.theta_hat_rad"
+      ],
+      "theta_meas_rad": [
+        "theta_meas_rad",
+        "asset_case_case_manual_002__CartPolePlant.theta_meas_rad"
+      ],
+      "theta_rad": [
+        "theta_rad",
+        "asset_case_case_manual_002__CartPolePlant.theta_rad"
+      ],
+      "x_dot_mps": [
+        "x_dot_mps",
+        "asset_case_case_manual_002__CartPolePlant.x_dot_mps"
+      ],
+      "x_m": [
+        "x_m",
+        "asset_case_case_manual_002__CartPolePlant.x_m"
+      ]
+    },
+    "signals": [
+      "x_m",
+      "theta_rad",
+      "theta_hat_rad",
+      "bias_hat_rps",
+      "force_cmd_N",
+      "mode",
+      "x_dot_mps",
+      "theta_dot_rps",
+      "theta_meas_rad",
+      "theta_dot_meas_rps",
+      "theta_dot_hat_rps"
+    ],
+    "text": "Cart-pole case normalized to reference-consistent acceptance criteria. Scenario time window 0s to 20s; inputs: disturbance_force_N_profile, enable, reset, x_ref_m_profile; initial conditions: theta_bias_rps, theta_dot_rps, theta_rad, x_dot_mps, x_m. Acceptance criteria: within_range(force_cmd_N) in [-15.0, 15.0]; within_range(x_m) in [-0.8, 0.8]; within_range(mode) in [0.0, 1.0]; abs(bias_hat_rps - -4.3109201386) at t=20.0s <= 0.01; abs(x_m - 0.52) at t=20.0s <= 0.15; abs(theta_hat_rad - theta_rad) at t=20.0s <= 2.0.",
+    "time_column_aliases": [],
+    "title": "倒立摆摆起与位置跟踪 Verification Requirement",
+    "tolerances": {}
+  },
+  "verification_result": {
+    "case_id": "case_manual_002",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "source_kind": "offline_cosimulation"
+    },
+    "missing_requirements": [],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "Ground-truth trajectory generated by offline co-simulation of the constituent FMU models using the canonical orchestration (solution.json).",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_manual_002",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "ground_truth_trajectory.csv",
+    "input_relpath": "",
+    "reference_generation_method": "offline_cosimulation",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "bias_hat_rps": [
+        "bias_hat_rps"
+      ],
+      "force_cmd_N": [
+        "force_cmd_N"
+      ],
+      "mode": [
+        "mode"
+      ],
+      "theta_hat_rad": [
+        "theta_hat_rad"
+      ],
+      "theta_rad": [
+        "theta_rad"
+      ],
+      "x_m": [
+        "x_m"
+      ]
+    },
+    "signal_columns": [
+      "x_m",
+      "theta_rad",
+      "theta_hat_rad",
+      "bias_hat_rps",
+      "force_cmd_N",
+      "mode"
+    ],
+    "source_kind": "offline_cosimulation",
+    "stage_segments": [],
+    "supports_numerical_fidelity": true,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "dataset/cases/case_manual_002/ground_truth_trajectory.csv",
+  "input_trajectory_path": null,
+  "declared_scenario_window": {
+    "start_time": 0,
+    "stop_time": 20,
+    "step_size": 0.001
+  },
+  "declared_initial_conditions": {
+    "theta_bias_rps": 0.05,
+    "theta_dot_rps": 0.0,
+    "theta_rad": 0.0,
+    "x_dot_mps": 0.0,
+    "x_m": 0.0
+  },
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": true,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "manual_multi_fmu_case",
+    "expected_behavior": "Starting from theta=0 (hanging down), controller first performs energy-based swing-up (mode=0) and then switches to balance/LQR (mode=1) when |wrap(theta_hat-pi)| is small. With disturbance impulses, the controller keeps theta near pi and tracks x_ref_m changes, while force_cmd_N stays saturated within limits.",
+    "title": "倒立摆摆起与位置跟踪",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": true,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": true,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

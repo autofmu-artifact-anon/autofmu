@@ -1,0 +1,327 @@
+{
+  "case_id": "case_dtaas_mass_spring_damper",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_dtaas_mass_spring_damper__msd1",
+        "asset_dtaas_mass_spring_damper__msd2"
+      ]
+    ],
+    "case_id": "case_dtaas_mass_spring_damper",
+    "equivalence_class_id": "",
+    "equivalence_reason": "",
+    "oracle_mode": "exact_asset_set",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_dtaas_mass_spring_damper",
+    "connections": [
+      {
+        "source": "asset_dtaas_mass_spring_damper__msd1.x1",
+        "target": "asset_dtaas_mass_spring_damper__msd2.x1"
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper__msd1.v1",
+        "target": "asset_dtaas_mass_spring_damper__msd2.v1"
+      },
+      {
+        "source": "asset_dtaas_mass_spring_damper__msd2.fk",
+        "target": "asset_dtaas_mass_spring_damper__msd1.fk"
+      }
+    ],
+    "execution_order": [
+      "asset_dtaas_mass_spring_damper__msd1",
+      "asset_dtaas_mass_spring_damper__msd2"
+    ],
+    "extensions": {
+      "parameter_overrides": [
+        {
+          "target": "asset_dtaas_mass_spring_damper__msd2.c2",
+          "value": 1.0
+        },
+        {
+          "target": "asset_dtaas_mass_spring_damper__msd2.cc",
+          "value": 1.0
+        },
+        {
+          "target": "asset_dtaas_mass_spring_damper__msd2.d2",
+          "value": 1.0
+        },
+        {
+          "target": "asset_dtaas_mass_spring_damper__msd2.dc",
+          "value": 1.0
+        },
+        {
+          "target": "asset_dtaas_mass_spring_damper__msd2.m2",
+          "value": 1.0
+        }
+      ],
+      "raw_config_relpaths": [
+        "raw/digital_twins/mass-spring-damper/README.md",
+        "raw/digital_twins/mass-spring-damper/cosim.json",
+        "raw/digital_twins/mass-spring-damper/time.json"
+      ]
+    },
+    "external_inputs": [],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "x2",
+        "source": "asset_dtaas_mass_spring_damper__msd2.x2"
+      },
+      {
+        "name": "v2",
+        "source": "asset_dtaas_mass_spring_damper__msd2.v2"
+      }
+    ],
+    "notes": [
+      "The coupled FMUs exchange displacement, velocity, and force so the two-mass system evolves coherently under the configured fixed-step schedule."
+    ],
+    "schedule": {
+      "co_simulation_type": "fixed-step",
+      "kind": "co_simulation",
+      "live_log_interval": 0,
+      "report_progress": true,
+      "start_time": 0,
+      "step_size": 0.001,
+      "stop_time": 10
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_dtaas_mass_spring_damper__msd1",
+      "asset_dtaas_mass_spring_damper__msd2"
+    ],
+    "stages": [
+      {
+        "connections": [
+          {
+            "source": "asset_dtaas_mass_spring_damper__msd1.x1",
+            "target": "asset_dtaas_mass_spring_damper__msd2.x1"
+          },
+          {
+            "source": "asset_dtaas_mass_spring_damper__msd1.v1",
+            "target": "asset_dtaas_mass_spring_damper__msd2.v1"
+          },
+          {
+            "source": "asset_dtaas_mass_spring_damper__msd2.fk",
+            "target": "asset_dtaas_mass_spring_damper__msd1.fk"
+          }
+        ],
+        "execution_order": [
+          "asset_dtaas_mass_spring_damper__msd1",
+          "asset_dtaas_mass_spring_damper__msd2"
+        ],
+        "extensions": {
+          "parameter_overrides": [
+            {
+              "target": "asset_dtaas_mass_spring_damper__msd2.c2",
+              "value": 1.0
+            },
+            {
+              "target": "asset_dtaas_mass_spring_damper__msd2.cc",
+              "value": 1.0
+            },
+            {
+              "target": "asset_dtaas_mass_spring_damper__msd2.d2",
+              "value": 1.0
+            },
+            {
+              "target": "asset_dtaas_mass_spring_damper__msd2.dc",
+              "value": 1.0
+            },
+            {
+              "target": "asset_dtaas_mass_spring_damper__msd2.m2",
+              "value": 1.0
+            }
+          ],
+          "raw_config_relpaths": [
+            "raw/digital_twins/mass-spring-damper/cosim.json",
+            "raw/digital_twins/mass-spring-damper/time.json"
+          ]
+        },
+        "external_inputs": [],
+        "monitored_outputs": [
+          {
+            "name": "x2",
+            "source": "asset_dtaas_mass_spring_damper__msd2.x2"
+          },
+          {
+            "name": "v2",
+            "source": "asset_dtaas_mass_spring_damper__msd2.v2"
+          }
+        ],
+        "schedule": {
+          "co_simulation_type": "fixed-step",
+          "kind": "co_simulation",
+          "live_log_interval": 0,
+          "report_progress": true,
+          "start_time": 0,
+          "step_size": 0.001,
+          "stop_time": 10
+        },
+        "selected_asset_ids": [
+          "asset_dtaas_mass_spring_damper__msd1",
+          "asset_dtaas_mass_spring_damper__msd2"
+        ],
+        "stage_id": "stage1"
+      }
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_dtaas_mass_spring_damper",
+    "criteria": [
+      {
+        "metric": "within_range(x2)",
+        "notes": "第二质量块位移应保持在当前参考轨迹对应的有界范围内。",
+        "operator": "in",
+        "signals": [
+          "x2"
+        ],
+        "unit": "m",
+        "value": [
+          -0.2,
+          0.2
+        ]
+      },
+      {
+        "metric": "within_range(v2)",
+        "notes": "第二质量块速度应保持在当前参考轨迹对应的有界范围内。",
+        "operator": "in",
+        "signals": [
+          "v2"
+        ],
+        "unit": "m/s",
+        "value": [
+          -0.2,
+          0.2
+        ]
+      },
+      {
+        "metric": "abs(x2) at t=10s",
+        "notes": "末端位移在 10s 时应保持接近静止点。",
+        "operator": "<=",
+        "signals": [
+          "x2"
+        ],
+        "unit": "m",
+        "value": 0.01
+      }
+    ],
+    "decision_rule": {
+      "criteria_source": "verification_requirement.criteria",
+      "kind": "acceptance_criteria",
+      "requires_ground_truth": true
+    },
+    "derivation_basis": {
+      "expected_behavior": "The coupled FMUs exchange displacement, velocity, and force so the two-mass system evolves coherently under the configured fixed-step schedule.",
+      "signals_of_interest": [
+        "x2",
+        "v2"
+      ],
+      "source_root": "sources/dtaas_examples/case_dtaas_mass_spring_damper"
+    },
+    "judgement_policy": "acceptance_criteria_from_requirement",
+    "scenario_window": {
+      "start_time": 0,
+      "step_size": 0.001,
+      "stop_time": 10
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "v2": [
+        "v2",
+        "asset_dtaas_mass_spring_damper__msd2.v2"
+      ],
+      "x2": [
+        "x2",
+        "asset_dtaas_mass_spring_damper__msd2.x2"
+      ]
+    },
+    "signals": [],
+    "text": "Mass Spring Damper bounded-response check. The coupled second mass should remain within the displacement and velocity envelope exhibited by the canonical trace, and settle close to the origin by 10s.",
+    "time_column_aliases": [
+      "time",
+      "TIME",
+      "Time",
+      "t"
+    ],
+    "title": "Mass Spring Damper Verification Requirement",
+    "tolerances": {}
+  },
+  "verification_result": {
+    "case_id": "case_dtaas_mass_spring_damper",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "source_kind": "offline_cosimulation"
+    },
+    "missing_requirements": [],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "Ground-truth trajectory generated by offline co-simulation of the constituent FMU models using the canonical orchestration (solution.json).",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_dtaas_mass_spring_damper",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "ground_truth_trajectory.csv",
+    "input_relpath": "",
+    "reference_generation_method": "offline_cosimulation",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "v2": [
+        "v2"
+      ],
+      "x2": [
+        "x2"
+      ]
+    },
+    "signal_columns": [],
+    "source_kind": "offline_cosimulation",
+    "stage_segments": [
+      {
+        "stage_id": "stage1",
+        "start_time": 0,
+        "stop_time": 10
+      }
+    ],
+    "supports_numerical_fidelity": false,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "dataset/cases/case_dtaas_mass_spring_damper/ground_truth_trajectory.csv",
+  "input_trajectory_path": null,
+  "declared_scenario_window": {
+    "start_time": 0,
+    "stop_time": 10,
+    "step_size": 0.001
+  },
+  "declared_initial_conditions": {},
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": false,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "dtaas_multi_fmu_case",
+    "expected_behavior": "The coupled FMUs exchange displacement, velocity, and force so the two-mass system evolves coherently under the configured fixed-step schedule.",
+    "title": "Mass Spring Damper",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": true,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": false,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

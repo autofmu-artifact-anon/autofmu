@@ -1,0 +1,730 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_monolithic",
+        "objective": "Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.. Scenario time window 0s to 10s. Signal",
+        "required_signals": [
+          "distance",
+          "xpos",
+          "ypos"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "distance",
+            "direction": "out",
+            "component_hint": "distance",
+            "port_hint": "distance.distance",
+            "unit_hint": "",
+            "type_hint": "Integer",
+            "role": "observed",
+            "source_text": "distance",
+            "grounded_component_ref": "distance",
+            "grounded_port_ref": "distance.distance"
+          },
+          {
+            "signal_name": "distance",
+            "direction": "in",
+            "component_hint": "rbmq",
+            "port_hint": "rbmq.distance",
+            "unit_hint": "",
+            "type_hint": "Integer",
+            "role": "driven",
+            "source_text": "distance",
+            "grounded_component_ref": "rbmq",
+            "grounded_port_ref": "rbmq.distance"
+          },
+          {
+            "signal_name": "xpos",
+            "direction": "in",
+            "component_hint": "distance",
+            "port_hint": "distance.xpos",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "xpos",
+            "grounded_component_ref": "distance",
+            "grounded_port_ref": "distance.xpos"
+          },
+          {
+            "signal_name": "xpos",
+            "direction": "out",
+            "component_hint": "rbmq",
+            "port_hint": "rbmq.xpos",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "xpos",
+            "grounded_component_ref": "rbmq",
+            "grounded_port_ref": "rbmq.xpos"
+          },
+          {
+            "signal_name": "ypos",
+            "direction": "in",
+            "component_hint": "distance",
+            "port_hint": "distance.ypos",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "ypos",
+            "grounded_component_ref": "distance",
+            "grounded_port_ref": "distance.ypos"
+          },
+          {
+            "signal_name": "ypos",
+            "direction": "out",
+            "component_hint": "rbmq",
+            "port_hint": "rbmq.ypos",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "ypos",
+            "grounded_component_ref": "rbmq",
+            "grounded_port_ref": "rbmq.ypos"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 10.0,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "distance",
+          "rbmq"
+        ],
+        "grounded_component_types": [
+          "Unifmu",
+          "Rabbitmq"
+        ],
+        "grounded_ports": [
+          "distance",
+          "xpos",
+          "ypos"
+        ],
+        "task_trace": {
+          "components": [
+            "distance",
+            "rbmq"
+          ],
+          "ports": [
+            "distance",
+            "xpos",
+            "ypos"
+          ],
+          "signals": [
+            "distance",
+            "xpos",
+            "ypos"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 3,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      }
+    ],
+    "rationale": "rule-generated holistic raw task set",
+    "score": 0.6328301886792455,
+    "p_value": 0.5238095238095238,
+    "task_set_id": "taskset_2",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "distance",
+        "target_component": "rbmq",
+        "signals": [
+          "distance",
+          "distance"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "distance",
+            "source_signal": "distance",
+            "target_component": "rbmq",
+            "target_signal": "distance",
+            "must_route": true,
+            "semantic_intent": "distance.distance -> rbmq.distance",
+            "adjacency_evidence": {
+              "source_component": "distance",
+              "target_component": "rbmq"
+            }
+          }
+        ],
+        "semantic_intent": "distance.distance -> rbmq.distance",
+        "details": {
+          "source_signal": "distance",
+          "target_signal": "distance"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "rbmq",
+        "target_component": "distance",
+        "signals": [
+          "xpos",
+          "xpos"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "rbmq",
+            "source_signal": "xpos",
+            "target_component": "distance",
+            "target_signal": "xpos",
+            "must_route": true,
+            "semantic_intent": "rbmq.xpos -> distance.xpos",
+            "adjacency_evidence": {
+              "source_component": "rbmq",
+              "target_component": "distance"
+            }
+          }
+        ],
+        "semantic_intent": "rbmq.xpos -> distance.xpos",
+        "details": {
+          "source_signal": "xpos",
+          "target_signal": "xpos"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "rbmq",
+        "target_component": "distance",
+        "signals": [
+          "ypos",
+          "ypos"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "rbmq",
+            "source_signal": "ypos",
+            "target_component": "distance",
+            "target_signal": "ypos",
+            "must_route": true,
+            "semantic_intent": "rbmq.ypos -> distance.ypos",
+            "adjacency_evidence": {
+              "source_component": "rbmq",
+              "target_component": "distance"
+            }
+          }
+        ],
+        "semantic_intent": "rbmq.ypos -> distance.ypos",
+        "details": {
+          "source_signal": "ypos",
+          "target_signal": "ypos"
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.5238095238095238,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.36716981132075455,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 1.0,
+      "criteria_coverage": 0.0,
+      "constraint_completeness": 0.0,
+      "regime_coverage": 1.0,
+      "topology_alignment": 0.3333333333333333,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.05660377358490566,
+      "final_score": 0.6328301886792455
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "required_chain_count": 3,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_monolithic:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.5238095238095238,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.36716981132075455,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_monolithic",
+      "task_index": 0,
+      "fmu_uid": "asset_dtaas_drobotti_rmqfmu__distance",
+      "score": 2.45,
+      "cost": 2.05,
+      "hard_ok": true,
+      "semantic_cost": 2.05,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "graph_match_only",
+        "component_exact=distance",
+        "exact_signal_hits=6"
+      ],
+      "grounded_components": [
+        "distance",
+        "rbmq"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_dtaas_drobotti_rmqfmu__distance",
+      "name": "distance",
+      "description": "distance instance of unifmu in Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.",
+      "path": "dataset/assets/asset_dtaas_drobotti_rmqfmu__distance/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "CoSimulation"
+      ],
+      "ports": [
+        {
+          "name": "distance",
+          "causality": "output",
+          "variability": "discrete",
+          "type": "Integer",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "xpos",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        },
+        {
+          "name": "ypos",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "",
+          "dimensions": []
+        }
+      ],
+      "inputs": [
+        "xpos",
+        "ypos"
+      ],
+      "outputs": [
+        "distance"
+      ],
+      "tags": [
+        "drobotti_rmqfmu",
+        "rabbitmq",
+        "runtime_io"
+      ],
+      "capabilities": {
+        "needs_execution_tool": true,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_dtaas_drobotti_rmqfmu__distance",
+        "asset_json": {
+          "asset_id": "asset_dtaas_drobotti_rmqfmu__distance",
+          "backend_kind": "rabbitmq_bridge_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": true,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_dtaas_drobotti_rmqfmu"
+          ],
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 10
+          },
+          "description": "distance instance of unifmu in Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [
+            "xpos",
+            "ypos"
+          ],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "distance",
+          "outputs": [
+            "distance"
+          ],
+          "ports": [
+            {
+              "causality": "output",
+              "description": "",
+              "name": "distance",
+              "type": "Integer",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "",
+              "name": "xpos",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "",
+              "name": "ypos",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            }
+          ],
+          "provenance": {
+            "base_model_name": "unifmu",
+            "example_path": "digital_twins/drobotti_rmqfmu",
+            "example_slug": "drobotti_rmqfmu",
+            "generated": false,
+            "workspace_path": "models/distance_from_zero.fmu"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "case_dtaas_drobotti_rmqfmu::distance",
+          "source_type": "dtaas_example_fmu",
+          "tags": [
+            "drobotti_rmqfmu",
+            "rabbitmq",
+            "runtime_io"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_dtaas_drobotti_rmqfmu__distance",
+          "backend_kind": "rabbitmq_bridge_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": true,
+            "provides_directional_derivatives": false
+          },
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 10
+          },
+          "description": "distance instance of unifmu in Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [
+            "xpos",
+            "ypos"
+          ],
+          "name": "distance",
+          "outputs": [
+            "distance"
+          ],
+          "ports": [
+            {
+              "causality": "output",
+              "description": "",
+              "name": "distance",
+              "type": "Integer",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "",
+              "name": "xpos",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "",
+              "name": "ypos",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0,
+          "stepSize": 0.1,
+          "stopTime": 10
+        },
+        "source_type": "dtaas_example_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_dtaas_drobotti_rmqfmu__distance"
+    ],
+    "port_nodes": [
+      "asset_dtaas_drobotti_rmqfmu__distance.distance",
+      "asset_dtaas_drobotti_rmqfmu__distance.xpos",
+      "asset_dtaas_drobotti_rmqfmu__distance.ypos"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "distance": "asset_dtaas_drobotti_rmqfmu__distance",
+      "rbmq": "asset_dtaas_drobotti_rmqfmu__distance"
+    },
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "distance",
+        "target_component": "rbmq",
+        "signals": [
+          "distance",
+          "distance"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "distance",
+            "source_signal": "distance",
+            "target_component": "rbmq",
+            "target_signal": "distance",
+            "must_route": true,
+            "semantic_intent": "distance.distance -> rbmq.distance",
+            "adjacency_evidence": {
+              "source_component": "distance",
+              "target_component": "rbmq"
+            }
+          }
+        ],
+        "semantic_intent": "distance.distance -> rbmq.distance",
+        "details": {
+          "source_signal": "distance",
+          "target_signal": "distance"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "rbmq",
+        "target_component": "distance",
+        "signals": [
+          "xpos",
+          "xpos"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "rbmq",
+            "source_signal": "xpos",
+            "target_component": "distance",
+            "target_signal": "xpos",
+            "must_route": true,
+            "semantic_intent": "rbmq.xpos -> distance.xpos",
+            "adjacency_evidence": {
+              "source_component": "rbmq",
+              "target_component": "distance"
+            }
+          }
+        ],
+        "semantic_intent": "rbmq.xpos -> distance.xpos",
+        "details": {
+          "source_signal": "xpos",
+          "target_signal": "xpos"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "rbmq",
+        "target_component": "distance",
+        "signals": [
+          "ypos",
+          "ypos"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "rbmq",
+            "source_signal": "ypos",
+            "target_component": "distance",
+            "target_signal": "ypos",
+            "must_route": true,
+            "semantic_intent": "rbmq.ypos -> distance.ypos",
+            "adjacency_evidence": {
+              "source_component": "rbmq",
+              "target_component": "distance"
+            }
+          }
+        ],
+        "semantic_intent": "rbmq.ypos -> distance.ypos",
+        "details": {
+          "source_signal": "ypos",
+          "target_signal": "ypos"
+        }
+      }
+    ],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "simplified_name_match"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 2.05,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_1",
+      "status": "ok",
+      "selected_task_set_cost": 6.6000000000000005,
+      "final_cost": 6.6000000000000005,
+      "selected_fmus": [
+        "asset_dtaas_drobotti_rmqfmu__distance"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    },
+    {
+      "task_set_id": "taskset_2",
+      "status": "ok",
+      "selected_task_set_cost": 2.05,
+      "final_cost": 2.05,
+      "selected_fmus": [
+        "asset_dtaas_drobotti_rmqfmu__distance"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    },
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 4.1,
+      "final_cost": 4.1,
+      "selected_fmus": [
+        "asset_dtaas_drobotti_rmqfmu__distance",
+        "asset_dtaas_drobotti_rmqfmu__rbmq"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 2.05,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "graph_match_only",
+    "structural_reasoning": true,
+    "semantic_retrieval": false,
+    "binding_count": 0,
+    "fallback_used": false,
+    "failure_type": ""
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "case_id": "case_bench_fmu-002340",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_bench_fmu-001595"
+      ],
+      [
+        "asset_bench_fmu-002340"
+      ]
+    ],
+    "case_id": "case_bench_fmu-002340",
+    "equivalence_class_id": "bench_eq_30b8852aa75c",
+    "equivalence_reason": "benchmark requirement text does not distinguish identical model/interface variants",
+    "oracle_mode": "equivalence_class",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_bench_fmu-002340",
+    "connections": [],
+    "execution_order": [
+      "asset_bench_fmu-002340"
+    ],
+    "external_inputs": [
+      {
+        "name": "Reference_angle",
+        "targets": [
+          "asset_bench_fmu-002340.Reference_angle"
+        ]
+      }
+    ],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "DCMotor_angle",
+        "source": "asset_bench_fmu-002340.DCMotor_angle"
+      },
+      {
+        "name": "DCMotot_speed",
+        "source": "asset_bench_fmu-002340.DCMotot_speed"
+      },
+      {
+        "name": "controller_output",
+        "source": "asset_bench_fmu-002340.controller_output"
+      }
+    ],
+    "notes": [
+      "Auto-generated single-FMU benchmark solution."
+    ],
+    "schedule": {
+      "kind": "single_fmu",
+      "start_time": 0.0,
+      "step_size": 0.0,
+      "stop_time": 10.0
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_bench_fmu-002340"
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_bench_fmu-002340",
+    "criteria": [
+      {
+        "metric": "trajectory_match",
+        "operator": "<=",
+        "signals": [
+          "DCMotor_angle",
+          "DCMotot_speed",
+          "controller_output"
+        ],
+        "value": 0.0001
+      }
+    ],
+    "decision_rule": {
+      "kind": "trajectory_tolerance",
+      "signals": [
+        "DCMotor_angle",
+        "DCMotot_speed",
+        "controller_output"
+      ],
+      "time_column": "time",
+      "tolerance": 0.0001
+    },
+    "derivation_basis": {
+      "ground_truth_source": "sb_DCMotor_Controller_ref.csv",
+      "input_source": "sb_DCMotor_Controller_in.csv",
+      "signals": [
+        "DCMotor_angle",
+        "DCMotot_speed",
+        "controller_output"
+      ],
+      "source_root": "sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/solidThinking_Activate/2020/sb_DCMotor_Controller",
+      "source_type": "benchmark_single_fmu_case"
+    },
+    "judgement_policy": "trajectory_match",
+    "scenario_window": {
+      "start_time": 0.0,
+      "step_size": 0.0,
+      "stop_time": 10.0
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "DCMotor_angle": [
+        "DCMotor_angle"
+      ],
+      "DCMotot_speed": [
+        "DCMotot_speed"
+      ],
+      "controller_output": [
+        "controller_output"
+      ]
+    },
+    "signals": [
+      "DCMotor_angle",
+      "DCMotot_speed",
+      "controller_output"
+    ],
+    "text": "Run the benchmark FMU sb_DCMotor_Controller under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs DCMotor_angle, DCMotot_speed, controller_output.",
+    "time_column_aliases": [
+      "time",
+      "TIME",
+      "Time",
+      "t"
+    ],
+    "title": "Verify benchmark FMU sb_DCMotor_Controller",
+    "tolerances": {
+      "trajectory_match": 0.0001
+    }
+  },
+  "verification_result": {
+    "case_id": "case_bench_fmu-002340",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "input_trajectory.csv",
+      "source_kind": "benchmark_ref_csv"
+    },
+    "missing_requirements": [],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "The normalized benchmark case ships with an archived reference trajectory from the source dataset; that trajectory is treated as the ground-truth verification outcome for the reference model.",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_bench_fmu-002340",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "ground_truth_trajectory.csv",
+    "input_relpath": "input_trajectory.csv",
+    "reference_generation_method": "benchmark_ref_csv",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "DCMotor_angle": [
+        "DCMotor_angle"
+      ],
+      "DCMotot_speed": [
+        "DCMotot_speed"
+      ],
+      "controller_output": [
+        "controller_output"
+      ]
+    },
+    "signal_columns": [
+      "DCMotor_angle",
+      "DCMotot_speed",
+      "controller_output"
+    ],
+    "source_kind": "benchmark_ref_csv",
+    "stage_segments": [],
+    "supports_numerical_fidelity": true,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "dataset/sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/solidThinking_Activate/2020/sb_DCMotor_Controller/sb_DCMotor_Controller_ref.csv",
+  "input_trajectory_path": "dataset/sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/solidThinking_Activate/2020/sb_DCMotor_Controller/sb_DCMotor_Controller_in.csv",
+  "declared_scenario_window": {
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "step_size": 0.0
+  },
+  "declared_initial_conditions": {},
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": true,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "benchmark_single_fmu_case",
+    "expected_behavior": "Ground-truth trajectory available via benchmark_ref_csv.",
+    "title": "sb_DCMotor_Controller",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "input_trajectory.csv",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": true,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": true,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

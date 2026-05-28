@@ -1,0 +1,81 @@
+{
+  "id": "REQ-IP-003",
+  "title": "倒立摆直立稳定与位置跟踪（含扰动）",
+  "description": "在给定位置参考与外部扰动下，倒立摆系统应保持接近直立并将小车位置跟踪到参考值。该需求用于检验非线性多状态 FMU 的连接与闭环行为是否正确。",
+  "scenario": {
+    "t_start_s": 0,
+    "t_end_s": 20,
+    "inputs": {
+      "theta_ref_rad": 0.0,
+      "x_ref_m_profile": [
+        {"t_s": 0, "value_m": 0.0},
+        {"t_s": 2, "value_m": 0.3},
+        {"t_s": 12, "value_m": 0.0}
+      ],
+      "disturbance_N_profile": [
+        {"t_s": 0, "value_N": 0.0},
+        {"t_s": 6, "value_N": 5.0},
+        {"t_s": 6.2, "value_N": 0.0}
+      ]
+    },
+    "initial_conditions": {
+      "x_m": 0.0,
+      "x_dot_mps": 0.0,
+      "theta_rad": 0.12,
+      "theta_dot_radps": 0.0,
+      "int_theta": 0.0,
+      "int_x": 0.0,
+      "force_act_N": 0.0
+    }
+  },
+  "acceptance_criteria": [
+    {
+      "metric": "max(abs(theta_rad))",
+      "operator": "<=",
+      "value": 0.35,
+      "unit": "rad",
+      "notes": "全程角度不应发散；0.35rad约20度，用于排除连接错误或符号反接。"
+    },
+    {
+      "metric": "max(abs(x_m))",
+      "operator": "<=",
+      "value": 1.5,
+      "unit": "m",
+      "notes": "小车位置不应无限漂移（用于发现闭环失稳或遗漏摩擦）。"
+    },
+    {
+      "metric": "within_range(force_cmd_N)",
+      "operator": "in",
+      "value": [-15.0, 15.0],
+      "unit": "N",
+      "notes": "输出应被饱和限制住。"
+    },
+    {
+      "metric": "abs(theta_rad) at t=10s",
+      "operator": "<=",
+      "value": 0.08,
+      "unit": "rad",
+      "notes": "扰动后应能恢复到接近直立（稳态误差可由积分消除）。"
+    },
+    {
+      "metric": "abs(x_m - x_ref_m) at t=11s",
+      "operator": "<=",
+      "value": 0.15,
+      "unit": "m",
+      "notes": "位置跟踪精度检查；允许一定超调/欠调。"
+    }
+  ],
+  "signals_of_interest": [
+    "x_ref_m",
+    "theta_ref_rad",
+    "disturbance_N",
+    "force_cmd_N",
+    "x_m",
+    "x_dot_mps",
+    "theta_rad",
+    "theta_dot_radps",
+    "int_theta",
+    "int_x",
+    "force_act_N"
+  ]
+}

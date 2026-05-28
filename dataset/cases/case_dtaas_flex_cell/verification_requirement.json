@@ -1,0 +1,148 @@
+{
+  "case_id": "case_dtaas_flex_cell",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "notes": "Requires canonical DTaaS reference execution trace.",
+      "operator": "<=",
+      "signals": [
+        "actual_q0",
+        "actual_q1",
+        "actual_q2",
+        "actual_q3",
+        "actual_q4",
+        "actual_q5",
+        "actual_q6",
+        "actual_X",
+        "actual_Y",
+        "actual_Z",
+        "actual_x",
+        "actual_y",
+        "actual_z"
+      ],
+      "value": null
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "requires_ground_truth": true,
+    "signals": [
+      "actual_q0",
+      "actual_q1",
+      "actual_q2",
+      "actual_q3",
+      "actual_q4",
+      "actual_q5",
+      "actual_q6",
+      "actual_X",
+      "actual_Y",
+      "actual_Z",
+      "actual_x",
+      "actual_y",
+      "actual_z"
+    ],
+    "time_column": "time"
+  },
+  "derivation_basis": {
+    "expected_behavior": "The RabbitMQ FMU injects target Cartesian positions and motion durations for both robot FMUs, and the logged robot states track those commands over fixed-step co-simulation.",
+    "signals_of_interest": [
+      "actual_q0",
+      "actual_q1",
+      "actual_q2",
+      "actual_q3",
+      "actual_q4",
+      "actual_q5",
+      "actual_q6",
+      "actual_X",
+      "actual_Y",
+      "actual_Z",
+      "actual_x",
+      "actual_y",
+      "actual_z"
+    ],
+    "source_root": "sources/dtaas_examples/case_dtaas_flex_cell"
+  },
+  "judgement_policy": "behavioral_expectation_pending_execution",
+  "scenario_window": {
+    "step_size": 0.2
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "actual_X": [
+      "actual_X",
+      "asset_dtaas_flex_cell__ur5e.actual_X"
+    ],
+    "actual_Y": [
+      "actual_Y",
+      "asset_dtaas_flex_cell__ur5e.actual_Y"
+    ],
+    "actual_Z": [
+      "actual_Z",
+      "asset_dtaas_flex_cell__ur5e.actual_Z"
+    ],
+    "actual_q0": [
+      "actual_q0",
+      "asset_dtaas_flex_cell__ur5e.actual_q0"
+    ],
+    "actual_q1": [
+      "actual_q1",
+      "asset_dtaas_flex_cell__ur5e.actual_q1"
+    ],
+    "actual_q2": [
+      "actual_q2",
+      "asset_dtaas_flex_cell__ur5e.actual_q2"
+    ],
+    "actual_q3": [
+      "actual_q3",
+      "asset_dtaas_flex_cell__ur5e.actual_q3"
+    ],
+    "actual_q4": [
+      "actual_q4",
+      "asset_dtaas_flex_cell__ur5e.actual_q4"
+    ],
+    "actual_q5": [
+      "actual_q5",
+      "asset_dtaas_flex_cell__ur5e.actual_q5"
+    ],
+    "actual_q6": [
+      "actual_q6",
+      "asset_dtaas_flex_cell__kuka.actual_q6"
+    ],
+    "actual_x": [
+      "actual_x",
+      "asset_dtaas_flex_cell__ur5e.actual_x"
+    ],
+    "actual_y": [
+      "actual_y",
+      "asset_dtaas_flex_cell__ur5e.actual_y"
+    ],
+    "actual_z": [
+      "actual_z",
+      "asset_dtaas_flex_cell__ur5e.actual_z"
+    ]
+  },
+  "signals": [
+    "actual_q0",
+    "actual_q1",
+    "actual_q2",
+    "actual_q3",
+    "actual_q4",
+    "actual_q5",
+    "actual_q6",
+    "actual_X",
+    "actual_Y",
+    "actual_Z",
+    "actual_x",
+    "actual_y",
+    "actual_z"
+  ],
+  "text": "Flex Cell Digital Twin with Two Industrial Robots. TwinManager-driven co-simulation that couples UR5e and Kuka robot FMUs with a RabbitMQ FMU.. Scenario time window Nones to Nones. Signals of interest: actual_q0, actual_q1, actual_q2, actual_q3, actual_q4, actual_q5, actual_q6, actual_X, actual_Y, actual_Z, actual_x, actual_y, actual_z Expected ground-truth behavior: The RabbitMQ FMU injects target Cartesian positions and motion durations for both robot FMUs, and the logged robot states track those commands over fixed-step co-simulation. A final pass/fail conclusion remains pending until a reference execution trace is normalized.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Flex Cell Digital Twin with Two Industrial Robots Verification Requirement",
+  "tolerances": {}
+}

@@ -1,0 +1,1 @@
+"""Baseline package smoke tests."""

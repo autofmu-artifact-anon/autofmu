@@ -1,0 +1,224 @@
+{
+  "case_id": "case_manual_005",
+  "case_name": "电池包热管理闭环",
+  "description": "电池包电-热模型 + 冷却回路 + 带迟滞 PI 控制器的闭环 Co-Simulation 编排。",
+  "fmi_version": "2.0",
+  "co_simulation_type": "fixed_step",
+
+  "simulation_config": {
+    "start_time_s": 0,
+    "end_time_s": 900,
+    "step_size_s": 0.1,
+    "output_interval_s": 1.0
+  },
+
+  "fmus": [
+    {
+      "instance_name": "controller",
+      "fmu_name": "ThermalController",
+      "fmu_path": "fmus/ThermalController.fmu",
+      "step_size_s": 0.1
+    },
+    {
+      "instance_name": "coolant",
+      "fmu_name": "CoolantLoopPlant",
+      "fmu_path": "fmus/CoolantLoopPlant.fmu",
+      "step_size_s": 0.1
+    },
+    {
+      "instance_name": "battery",
+      "fmu_name": "BatteryPackPlant",
+      "fmu_path": "fmus/BatteryPackPlant.fmu",
+      "step_size_s": 0.1
+    }
+  ],
+
+  "connections": [
+    {
+      "from": "controller.pump_cmd",
+      "to": "coolant.pump_cmd",
+      "description": "热控制器输出泵命令驱动冷却回路"
+    },
+    {
+      "from": "battery.heat_gen_W",
+      "to": "coolant.heat_in_W",
+      "description": "电池包发热作为冷却回路输入热负载"
+    },
+    {
+      "from": "coolant.coolant_temp_C",
+      "to": "battery.coolant_in_temp_C",
+      "description": "冷却液温度反馈到电池热模型"
+    },
+    {
+      "from": "battery.temp_cell_C",
+      "to": "controller.temp_cell_C",
+      "description": "电芯温度反馈到控制器"
+    },
+    {
+      "from": "coolant.coolant_temp_C",
+      "to": "controller.coolant_temp_C",
+      "description": "冷却液温度提供给控制器用于保护/前馈"
+    }
+  ],
+
+  "exogenous_inputs": [
+    {
+      "name": "enable",
+      "target": "controller.enable",
+      "description": "控制使能",
+      "value": true
+    },
+    {
+      "name": "temp_ref_C",
+      "target": "controller.temp_ref_C",
+      "description": "目标电芯温度",
+      "value": 35.0
+    },
+    {
+      "name": "ambient_temp_C",
+      "target": "coolant.ambient_temp_C",
+      "description": "环境温度（分段阶跃）",
+      "profile": [
+        {"t_s": 0, "value": 25.0},
+        {"t_s": 500, "value": 25.0},
+        {"t_s": 520, "value": 32.0},
+        {"t_s": 900, "value": 32.0}
+      ]
+    },
+    {
+      "name": "i_load_A",
+      "target": "battery.i_load_A",
+      "description": "放电电流（分段阶跃）",
+      "profile": [
+        {"t_s": 0, "value": 40.0},
+        {"t_s": 200, "value": 40.0},
+        {"t_s": 220, "value": 120.0},
+        {"t_s": 420, "value": 120.0},
+        {"t_s": 440, "value": 70.0},
+        {"t_s": 650, "value": 70.0},
+        {"t_s": 670, "value": 140.0},
+        {"t_s": 900, "value": 140.0}
+      ]
+    }
+  ],
+
+  "initial_conditions": {
+    "battery": {
+      "soc": 0.85,
+      "temp_cell_C": 30.0
+    },
+    "coolant": {
+      "coolant_temp_C": 28.0,
+      "pump_state": 0.2
+    },
+    "controller": {
+      "integrator": 0.0,
+      "u_cmd_state": 0.2
+    }
+  },
+
+  "parameter_overrides": {
+    "controller": {
+      "kp": 0.08,
+      "ki": 0.01,
+      "u_min": 0.0,
+      "u_max": 1.0,
+      "hys_band_C": 0.8,
+      "coolant_overtemp_C": 60.0,
+      "u_slew_per_s": 0.8
+    },
+    "coolant": {
+      "coolant_thermal_mass_JK": 18000.0,
+      "ua_min_WK": 40.0,
+      "ua_max_WK": 320.0,
+      "ua_shape": 2.2,
+      "pump_tau_s": 2.5,
+      "pump_rate_limit_per_s": 0.6,
+      "temp_min_C": -20.0,
+      "temp_max_C": 120.0
+    },
+    "battery": {
+      "n_series": 96,
+      "capacity_Ah": 50.0,
+      "coulombic_eff": 0.995,
+      "soc_min": 0.05,
+      "soc_max": 0.98,
+      "ocv_a0_V": 3.2,
+      "ocv_a1_V": 0.9,
+      "ocv_a2_V": -0.6,
+      "ocv_a3_V": 0.35,
+      "r0_Ohm": 0.002,
+      "r_soc_gain": 1.2,
+      "r_temp_beta": 0.035,
+      "k_pol_V": 0.01,
+      "thermal_mass_JK": 65000.0,
+      "h_cool_WK": 120.0,
+      "temp_min_C": -10.0,
+      "temp_max_C": 80.0
+    }
+  },
+
+  "logged_variables": [
+    "enable",
+    "temp_ref_C",
+    "ambient_temp_C",
+    "i_load_A",
+    "controller.pump_cmd",
+    "controller.sat_flag",
+    "coolant.coolant_temp_C",
+    "coolant.heat_removed_W",
+    "battery.soc",
+    "battery.temp_cell_C",
+    "battery.heat_gen_W",
+    "battery.v_term_V"
+  ],
+
+  "acceptance_criteria": [
+    {
+      "metric": "max(temp_cell_C)_over_all",
+      "operator": "<=",
+      "value": 45.0,
+      "unit": "C",
+      "description": "电芯安全温度上限"
+    },
+    {
+      "metric": "max(abs(temp_cell_C - temp_ref_C))_after_t=250s",
+      "operator": "<=",
+      "value": 6.0,
+      "unit": "C",
+      "description": "负载阶跃后温度偏差应收敛到目标附近"
+    },
+    {
+      "metric": "within_range(pump_cmd)",
+      "operator": "in",
+      "value": [0.0, 1.0],
+      "unit": "-",
+      "description": "泵命令必须在物理范围内"
+    },
+    {
+      "metric": "max(abs(d(pump_cmd)/dt))",
+      "operator": "<=",
+      "value": 1.0,
+      "unit": "1/s",
+      "description": "泵命令变化率限制"
+    },
+    {
+      "metric": "within_range(soc)",
+      "operator": "in",
+      "value": [0.0, 1.0],
+      "unit": "-",
+      "description": "SOC 必须在 0..1"
+    },
+    {
+      "metric": "within_range(v_term_V)",
+      "operator": "in",
+      "value": [250.0, 430.0],
+      "unit": "V",
+      "description": "端电压范围检查（数值稳定性约束）"
+    }
+  ],
+
+  "execution_order": ["battery", "controller", "coolant"],
+
+  "created_at": "2026-03-09T02:08:00Z"
+}

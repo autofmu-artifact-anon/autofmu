@@ -1,0 +1,1548 @@
+{
+  "graph_augmented": {
+    "nodes": [
+      "asset_case_case_manual_003__InvertedPendulumPlant"
+    ],
+    "port_nodes": [
+      "asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N",
+      "asset_case_case_manual_003__InvertedPendulumPlant.disturbance_N",
+      "asset_case_case_manual_003__InvertedPendulumPlant.x_m",
+      "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps",
+      "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad",
+      "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps",
+      "asset_case_case_manual_003__InvertedPendulumPlant.m_cart_kg",
+      "asset_case_case_manual_003__InvertedPendulumPlant.m_pend_kg",
+      "asset_case_case_manual_003__InvertedPendulumPlant.length_m",
+      "asset_case_case_manual_003__InvertedPendulumPlant.g_mps2",
+      "asset_case_case_manual_003__InvertedPendulumPlant.cart_friction_Nspm",
+      "asset_case_case_manual_003__InvertedPendulumPlant.pend_damping_Nms"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "controller": "asset_case_case_manual_003__InvertedPendulumPlant",
+      "plant": "asset_case_case_manual_003__InvertedPendulumPlant"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "simplified_name_match",
+      "stage3_variant": "static_rule_scheduler",
+      "schedule_family": "single_fmu",
+      "global_optimization": false,
+      "adapter_generation": false,
+      "strict_chain_only": true
+    }
+  },
+  "adapters": [],
+  "schedule": {
+    "base_tick": 0.01,
+    "duration": 1.0,
+    "per_node_period": {
+      "asset_case_case_manual_003__InvertedPendulumPlant": 0.01
+    },
+    "per_edge_hold_policy": [],
+    "loop_wrappers": [],
+    "warnings": [],
+    "base_tick_method": "max_default_step",
+    "materialized": true,
+    "communication_point_count": 101,
+    "family": "single_fmu",
+    "node_order": [
+      "asset_case_case_manual_003__InvertedPendulumPlant"
+    ],
+    "fmu_steps": {
+      "asset_case_case_manual_003__InvertedPendulumPlant": 0.01
+    }
+  },
+  "loop_resolution": [],
+  "simulation_config": {
+    "step_size": 0.01,
+    "duration": 1.0,
+    "fmus": [
+      {
+        "uid": "asset_case_case_manual_003__InvertedPendulumPlant",
+        "name": "InvertedPendulumPlant",
+        "description": "倒立摆-小车非线性动力学（4状态：x, x_dot, theta, theta_dot）。输入为水平作用力与扰动，输出为位置与角度等。",
+        "path": "dataset/assets/asset_case_case_manual_003__InvertedPendulumPlant/model.fmu",
+        "fmi_version": "2.0",
+        "fmi_types": [
+          "Co-Simulation"
+        ],
+        "ports": [
+          {
+            "name": "force_cmd_N",
+            "causality": "input",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "N",
+            "description": "控制器输出的水平作用力（施加到小车）",
+            "dimensions": []
+          },
+          {
+            "name": "disturbance_N",
+            "causality": "input",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "N",
+            "description": "外部扰动水平力（风、碰撞等），正向与force_cmd_N同向",
+            "dimensions": []
+          },
+          {
+            "name": "x_m",
+            "causality": "output",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "m",
+            "description": "小车位置",
+            "dimensions": []
+          },
+          {
+            "name": "x_dot_mps",
+            "causality": "output",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "m/s",
+            "description": "小车速度",
+            "dimensions": []
+          },
+          {
+            "name": "theta_rad",
+            "causality": "output",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "rad",
+            "description": "摆杆与竖直向上方向的夹角（theta=0 为竖直向上）",
+            "dimensions": []
+          },
+          {
+            "name": "theta_dot_radps",
+            "causality": "output",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "rad/s",
+            "description": "摆杆角速度",
+            "dimensions": []
+          },
+          {
+            "name": "m_cart_kg",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Real",
+            "unit": "kg",
+            "description": "小车质量",
+            "dimensions": []
+          },
+          {
+            "name": "m_pend_kg",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Real",
+            "unit": "kg",
+            "description": "摆杆等效质量（集中于质心）",
+            "dimensions": []
+          },
+          {
+            "name": "length_m",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Real",
+            "unit": "m",
+            "description": "摆杆转轴到质心距离",
+            "dimensions": []
+          },
+          {
+            "name": "g_mps2",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Real",
+            "unit": "m/s^2",
+            "description": "重力加速度",
+            "dimensions": []
+          },
+          {
+            "name": "cart_friction_Nspm",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Real",
+            "unit": "N·s/m",
+            "description": "小车粘性摩擦系数（与速度成正比的阻力）",
+            "dimensions": []
+          },
+          {
+            "name": "pend_damping_Nms",
+            "causality": "parameter",
+            "variability": "fixed",
+            "type": "Real",
+            "unit": "N·m·s",
+            "description": "摆杆关节粘性阻尼（与角速度成正比的阻尼矩）",
+            "dimensions": []
+          }
+        ],
+        "inputs": [
+          "force_cmd_N",
+          "disturbance_N"
+        ],
+        "outputs": [
+          "x_m",
+          "x_dot_mps",
+          "theta_rad",
+          "theta_dot_radps"
+        ],
+        "tags": [
+          "case_manual_003",
+          "manual_case"
+        ],
+        "capabilities": {
+          "needs_execution_tool": false,
+          "can_handle_variable_communication_step_size": true,
+          "can_interpolate_inputs": false,
+          "can_run_asynchronously": false,
+          "can_be_instantiated_only_once_per_process": false,
+          "provides_directional_derivatives": false,
+          "fixed_internal_step_size": null
+        },
+        "meta": {
+          "asset_dir": "dataset/assets/asset_case_case_manual_003__InvertedPendulumPlant",
+          "asset_json": {
+            "asset_id": "asset_case_case_manual_003__InvertedPendulumPlant",
+            "backend_kind": "python_source_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "needs_execution_tool": false,
+              "provides_directional_derivatives": false
+            },
+            "case_origin": [
+              "case_manual_003"
+            ],
+            "default_experiment": {
+              "startTime": 0.0,
+              "stepSize": 0.01,
+              "stopTime": 1.0
+            },
+            "description": "倒立摆-小车非线性动力学（4状态：x, x_dot, theta, theta_dot）。输入为水平作用力与扰动，输出为位置与角度等。",
+            "description_relpath": "description.md",
+            "fmi_types": [
+              "Co-Simulation"
+            ],
+            "fmi_version": "2.0",
+            "fmu_relpath": "model.fmu",
+            "ground_truth_only": false,
+            "inputs": [
+              "force_cmd_N",
+              "disturbance_N"
+            ],
+            "library_visible": true,
+            "metadata_relpath": "metadata.json",
+            "name": "InvertedPendulumPlant",
+            "outputs": [
+              "x_m",
+              "x_dot_mps",
+              "theta_rad",
+              "theta_dot_radps"
+            ],
+            "ports": [
+              {
+                "causality": "input",
+                "description": "控制器输出的水平作用力（施加到小车）",
+                "name": "force_cmd_N",
+                "type": "Real",
+                "unit": "N",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "外部扰动水平力（风、碰撞等），正向与force_cmd_N同向",
+                "name": "disturbance_N",
+                "type": "Real",
+                "unit": "N",
+                "variability": "continuous"
+              },
+              {
+                "causality": "output",
+                "description": "小车位置",
+                "name": "x_m",
+                "type": "Real",
+                "unit": "m",
+                "variability": "continuous"
+              },
+              {
+                "causality": "output",
+                "description": "小车速度",
+                "name": "x_dot_mps",
+                "type": "Real",
+                "unit": "m/s",
+                "variability": "continuous"
+              },
+              {
+                "causality": "output",
+                "description": "摆杆与竖直向上方向的夹角（theta=0 为竖直向上）",
+                "name": "theta_rad",
+                "type": "Real",
+                "unit": "rad",
+                "variability": "continuous"
+              },
+              {
+                "causality": "output",
+                "description": "摆杆角速度",
+                "name": "theta_dot_radps",
+                "type": "Real",
+                "unit": "rad/s",
+                "variability": "continuous"
+              },
+              {
+                "causality": "parameter",
+                "description": "小车质量",
+                "name": "m_cart_kg",
+                "type": "Real",
+                "unit": "kg",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "摆杆等效质量（集中于质心）",
+                "name": "m_pend_kg",
+                "type": "Real",
+                "unit": "kg",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "摆杆转轴到质心距离",
+                "name": "length_m",
+                "type": "Real",
+                "unit": "m",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "重力加速度",
+                "name": "g_mps2",
+                "type": "Real",
+                "unit": "m/s^2",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "小车粘性摩擦系数（与速度成正比的阻力）",
+                "name": "cart_friction_Nspm",
+                "type": "Real",
+                "unit": "N·s/m",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "摆杆关节粘性阻尼（与角速度成正比的阻尼矩）",
+                "name": "pend_damping_Nms",
+                "type": "Real",
+                "unit": "N·m·s",
+                "variability": "fixed"
+              }
+            ],
+            "provenance": {
+              "case_id": "case_manual_003",
+              "legacy_fmu_list_entry": {
+                "description": "非线性倒立摆小车动力学模型：4状态（位置、速度、角度、角速度），含摩擦和阻尼",
+                "fmi_version": "2.0",
+                "fmu_path": "fmus/InvertedPendulumPlant.fmu",
+                "guid": "{b2c3d4e5-f6a7-8901-bcde-f23456789012}",
+                "inputs": [
+                  {
+                    "description": "水平控制力指令",
+                    "name": "force_cmd_N",
+                    "type": "Real",
+                    "unit": "N"
+                  },
+                  {
+                    "description": "外部水平扰动力",
+                    "name": "disturbance_N",
+                    "type": "Real",
+                    "unit": "N"
+                  }
+                ],
+                "name": "InvertedPendulumPlant",
+                "outputs": [
+                  {
+                    "description": "小车位置",
+                    "name": "x_m",
+                    "type": "Real",
+                    "unit": "m"
+                  },
+                  {
+                    "description": "小车速度",
+                    "name": "x_dot_mps",
+                    "type": "Real",
+                    "unit": "m/s"
+                  },
+                  {
+                    "description": "摆角（0=竖直向上）",
+                    "name": "theta_rad",
+                    "type": "Real",
+                    "unit": "rad"
+                  },
+                  {
+                    "description": "摆角速度",
+                    "name": "theta_dot_radps",
+                    "type": "Real",
+                    "unit": "rad/s"
+                  }
+                ],
+                "parameters": [
+                  {
+                    "default": 1.0,
+                    "name": "m_cart_kg",
+                    "unit": "kg"
+                  },
+                  {
+                    "default": 0.2,
+                    "name": "m_pend_kg",
+                    "unit": "kg"
+                  },
+                  {
+                    "default": 0.5,
+                    "name": "length_m",
+                    "unit": "m"
+                  },
+                  {
+                    "default": 9.81,
+                    "name": "g_mps2",
+                    "unit": "m/s^2"
+                  },
+                  {
+                    "default": 0.1,
+                    "name": "cart_friction_Nspm",
+                    "unit": "N*s/m"
+                  },
+                  {
+                    "default": 0.02,
+                    "name": "pend_damping_Nms",
+                    "unit": "N*m*s"
+                  }
+                ],
+                "states": [
+                  {
+                    "description": "小车位置",
+                    "name": "x_m_state"
+                  },
+                  {
+                    "description": "小车速度",
+                    "name": "x_dot_mps_state"
+                  },
+                  {
+                    "description": "摆角",
+                    "name": "theta_rad_state"
+                  },
+                  {
+                    "description": "摆角速度",
+                    "name": "theta_dot_radps_state"
+                  }
+                ],
+                "type": "Co-Simulation"
+              }
+            },
+            "schema": "UNIFIED_ASSET_V1",
+            "source_id": "case_manual_003::InvertedPendulumPlant",
+            "source_type": "manual_case_fmu",
+            "tags": [
+              "case_manual_003",
+              "manual_case"
+            ]
+          },
+          "metadata_json": {
+            "asset_id": "asset_case_case_manual_003__InvertedPendulumPlant",
+            "backend_kind": "python_source_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "needs_execution_tool": false,
+              "provides_directional_derivatives": false
+            },
+            "default_experiment": {
+              "startTime": 0.0,
+              "stepSize": 0.01,
+              "stopTime": 1.0
+            },
+            "description": "倒立摆-小车非线性动力学（4状态：x, x_dot, theta, theta_dot）。输入为水平作用力与扰动，输出为位置与角度等。",
+            "fmi_types": [
+              "Co-Simulation"
+            ],
+            "fmi_version": "2.0",
+            "inputs": [
+              "force_cmd_N",
+              "disturbance_N"
+            ],
+            "name": "InvertedPendulumPlant",
+            "outputs": [
+              "x_m",
+              "x_dot_mps",
+              "theta_rad",
+              "theta_dot_radps"
+            ],
+            "ports": [
+              {
+                "causality": "input",
+                "description": "控制器输出的水平作用力（施加到小车）",
+                "name": "force_cmd_N",
+                "type": "Real",
+                "unit": "N",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "外部扰动水平力（风、碰撞等），正向与force_cmd_N同向",
+                "name": "disturbance_N",
+                "type": "Real",
+                "unit": "N",
+                "variability": "continuous"
+              },
+              {
+                "causality": "output",
+                "description": "小车位置",
+                "name": "x_m",
+                "type": "Real",
+                "unit": "m",
+                "variability": "continuous"
+              },
+              {
+                "causality": "output",
+                "description": "小车速度",
+                "name": "x_dot_mps",
+                "type": "Real",
+                "unit": "m/s",
+                "variability": "continuous"
+              },
+              {
+                "causality": "output",
+                "description": "摆杆与竖直向上方向的夹角（theta=0 为竖直向上）",
+                "name": "theta_rad",
+                "type": "Real",
+                "unit": "rad",
+                "variability": "continuous"
+              },
+              {
+                "causality": "output",
+                "description": "摆杆角速度",
+                "name": "theta_dot_radps",
+                "type": "Real",
+                "unit": "rad/s",
+                "variability": "continuous"
+              },
+              {
+                "causality": "parameter",
+                "description": "小车质量",
+                "name": "m_cart_kg",
+                "type": "Real",
+                "unit": "kg",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "摆杆等效质量（集中于质心）",
+                "name": "m_pend_kg",
+                "type": "Real",
+                "unit": "kg",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "摆杆转轴到质心距离",
+                "name": "length_m",
+                "type": "Real",
+                "unit": "m",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "重力加速度",
+                "name": "g_mps2",
+                "type": "Real",
+                "unit": "m/s^2",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "小车粘性摩擦系数（与速度成正比的阻力）",
+                "name": "cart_friction_Nspm",
+                "type": "Real",
+                "unit": "N·s/m",
+                "variability": "fixed"
+              },
+              {
+                "causality": "parameter",
+                "description": "摆杆关节粘性阻尼（与角速度成正比的阻尼矩）",
+                "name": "pend_damping_Nms",
+                "type": "Real",
+                "unit": "N·m·s",
+                "variability": "fixed"
+              }
+            ],
+            "schema": "UNIFIED_FMU_METADATA_V1"
+          },
+          "default_experiment": {
+            "startTime": 0.0,
+            "stepSize": 0.01,
+            "stopTime": 1.0
+          },
+          "source_type": "manual_case_fmu"
+        }
+      }
+    ],
+    "connections": [],
+    "scheduler": {
+      "base_tick": 0.01,
+      "per_node_period": {
+        "asset_case_case_manual_003__InvertedPendulumPlant": 0.01
+      },
+      "communication_grid": [
+        0.0,
+        0.01,
+        0.02,
+        0.03,
+        0.04,
+        0.05,
+        0.06,
+        0.07,
+        0.08,
+        0.09,
+        0.1,
+        0.11,
+        0.12,
+        0.13,
+        0.14,
+        0.15,
+        0.16,
+        0.17,
+        0.18,
+        0.19,
+        0.2,
+        0.21,
+        0.22,
+        0.23,
+        0.24,
+        0.25,
+        0.26,
+        0.27,
+        0.28,
+        0.29,
+        0.3,
+        0.31,
+        0.32,
+        0.33,
+        0.34,
+        0.35,
+        0.36,
+        0.37,
+        0.38,
+        0.39,
+        0.4,
+        0.41,
+        0.42,
+        0.43,
+        0.44,
+        0.45,
+        0.46,
+        0.47,
+        0.48,
+        0.49,
+        0.5,
+        0.51,
+        0.52,
+        0.53,
+        0.54,
+        0.55,
+        0.56,
+        0.57,
+        0.58,
+        0.59,
+        0.6,
+        0.61,
+        0.62,
+        0.63,
+        0.64,
+        0.65,
+        0.66,
+        0.67,
+        0.68,
+        0.69,
+        0.7,
+        0.71,
+        0.72,
+        0.73,
+        0.74,
+        0.75,
+        0.76,
+        0.77,
+        0.78,
+        0.79,
+        0.8,
+        0.81,
+        0.82,
+        0.83,
+        0.84,
+        0.85,
+        0.86,
+        0.87,
+        0.88,
+        0.89,
+        0.9,
+        0.91,
+        0.92,
+        0.93,
+        0.94,
+        0.95,
+        0.96,
+        0.97,
+        0.98,
+        0.99,
+        1.0
+      ],
+      "execution_plan": [
+        {
+          "time": 0.0,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.01,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.02,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.03,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.04,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.05,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.06,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.07,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.08,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.09,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.1,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.11,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.12,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.13,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.14,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.15,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.16,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.17,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.18,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.19,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.2,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.21,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.22,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.23,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.24,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.25,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.26,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.27,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.28,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.29,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.3,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.31,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.32,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.33,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.34,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.35,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.36,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.37,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.38,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.39,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.4,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.41,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.42,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.43,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.44,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.45,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.46,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.47,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.48,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.49,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.5,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.51,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.52,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.53,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.54,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.55,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.56,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.57,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.58,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.59,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.6,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.61,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.62,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.63,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.64,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.65,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.66,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.67,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.68,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.69,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.7,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.71,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.72,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.73,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.74,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.75,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.76,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.77,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.78,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.79,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.8,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.81,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.82,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.83,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.84,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.85,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.86,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.87,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.88,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.89,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.9,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.91,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.92,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.93,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.94,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.95,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.96,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.97,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.98,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.99,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.0,
+          "active_nodes": [
+            "asset_case_case_manual_003__InvertedPendulumPlant"
+          ],
+          "family": "single_fmu",
+          "requires_fixed_point_iteration": false
+        }
+      ],
+      "materialized": true,
+      "family": "single_fmu",
+      "node_order": [
+        "asset_case_case_manual_003__InvertedPendulumPlant"
+      ],
+      "connection_order": [],
+      "deterministic": true,
+      "start_time": 0.0,
+      "stop_time": 1.0,
+      "communication_point_count": 101
+    },
+    "meta": {
+      "method_name": "baseline_b1_rule_sequential",
+      "workspace_root": "./baseline/workspaces/baseline_b1_rule_sequential",
+      "schedule_family": "single_fmu",
+      "selected_task_set_id": "taskset_0",
+      "selected_asset_ids": [
+        "asset_case_case_manual_003__InvertedPendulumPlant"
+      ],
+      "connection_order": [],
+      "adapters": []
+    }
+  },
+  "diagnostics": {
+    "stage3_variant": "static_rule_scheduler",
+    "schedule_family": "single_fmu",
+    "binding_count": 0,
+    "validation_issues": [],
+    "deterministic": true,
+    "global_optimization": false,
+    "strict_chain_only": true
+  }
+}

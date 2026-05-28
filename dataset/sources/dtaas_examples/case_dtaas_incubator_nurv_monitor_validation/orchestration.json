@@ -1,0 +1,151 @@
+{
+  "adapters": [],
+  "case_id": "case_dtaas_incubator_nurv_monitor_validation",
+  "connections": [
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__src.sensor_data",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.sensor_data"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__src.error_threshold",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.error_threshold"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__src.kalman_input",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.kalman_input"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__ad.verdict",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__es.lid_open"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__ad.verdict",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__mon.anomaly"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__es.ctrl_desired_temperature",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__wtc.desired_temperature"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__wtc.energy_saving",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__mon.energy_saving"
+    }
+  ],
+  "execution_order": [
+    "asset_dtaas_incubator_nurv_monitor_validation__ad",
+    "asset_dtaas_incubator_nurv_monitor_validation__es",
+    "asset_dtaas_incubator_nurv_monitor_validation__src",
+    "asset_dtaas_incubator_nurv_monitor_validation__wtc",
+    "asset_dtaas_incubator_nurv_monitor_validation__mon"
+  ],
+  "extensions": {
+    "parameter_overrides": [],
+    "raw_config_relpaths": [
+      "raw/digital_twins/incubator-NuRV-monitor-validation/README.md",
+      "raw/digital_twins/incubator-NuRV-monitor-validation/cosim.json",
+      "raw/digital_twins/incubator-NuRV-monitor-validation/time.json",
+      "raw/digital_twins/incubator-NuRV-monitor-validation/model/safe-operation.smv"
+    ]
+  },
+  "external_inputs": [],
+  "loop_resolution": [],
+  "monitored_outputs": [
+    {
+      "name": "_output",
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__mon._output"
+    }
+  ],
+  "notes": [
+    "Source, anomaly-detection, energy-saver, watcher, and generated monitor FMUs execute together so that the monitor validates timely energy-saving activation after anomaly detection."
+  ],
+  "schedule": {
+    "co_simulation_type": "fixed-step",
+    "kind": "co_simulation",
+    "live_log_interval": 0,
+    "report_progress": true,
+    "start_time": 0,
+    "step_size": 1.0,
+    "stop_time": 300
+  },
+  "schema": "UNIFIED_SOLUTION_V1",
+  "selected_asset_ids": [
+    "asset_dtaas_incubator_nurv_monitor_validation__ad",
+    "asset_dtaas_incubator_nurv_monitor_validation__es",
+    "asset_dtaas_incubator_nurv_monitor_validation__src",
+    "asset_dtaas_incubator_nurv_monitor_validation__wtc",
+    "asset_dtaas_incubator_nurv_monitor_validation__mon"
+  ],
+  "stages": [
+    {
+      "connections": [
+        {
+          "source": "asset_dtaas_incubator_nurv_monitor_validation__src.sensor_data",
+          "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.sensor_data"
+        },
+        {
+          "source": "asset_dtaas_incubator_nurv_monitor_validation__src.error_threshold",
+          "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.error_threshold"
+        },
+        {
+          "source": "asset_dtaas_incubator_nurv_monitor_validation__src.kalman_input",
+          "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.kalman_input"
+        },
+        {
+          "source": "asset_dtaas_incubator_nurv_monitor_validation__ad.verdict",
+          "target": "asset_dtaas_incubator_nurv_monitor_validation__es.lid_open"
+        },
+        {
+          "source": "asset_dtaas_incubator_nurv_monitor_validation__ad.verdict",
+          "target": "asset_dtaas_incubator_nurv_monitor_validation__mon.anomaly"
+        },
+        {
+          "source": "asset_dtaas_incubator_nurv_monitor_validation__es.ctrl_desired_temperature",
+          "target": "asset_dtaas_incubator_nurv_monitor_validation__wtc.desired_temperature"
+        },
+        {
+          "source": "asset_dtaas_incubator_nurv_monitor_validation__wtc.energy_saving",
+          "target": "asset_dtaas_incubator_nurv_monitor_validation__mon.energy_saving"
+        }
+      ],
+      "execution_order": [
+        "asset_dtaas_incubator_nurv_monitor_validation__ad",
+        "asset_dtaas_incubator_nurv_monitor_validation__es",
+        "asset_dtaas_incubator_nurv_monitor_validation__src",
+        "asset_dtaas_incubator_nurv_monitor_validation__wtc",
+        "asset_dtaas_incubator_nurv_monitor_validation__mon"
+      ],
+      "extensions": {
+        "parameter_overrides": [],
+        "raw_config_relpaths": [
+          "raw/digital_twins/incubator-NuRV-monitor-validation/cosim.json",
+          "raw/digital_twins/incubator-NuRV-monitor-validation/time.json",
+          "raw/digital_twins/incubator-NuRV-monitor-validation/model/safe-operation.smv"
+        ]
+      },
+      "external_inputs": [],
+      "monitored_outputs": [
+        {
+          "name": "_output",
+          "source": "asset_dtaas_incubator_nurv_monitor_validation__mon._output"
+        }
+      ],
+      "schedule": {
+        "co_simulation_type": "fixed-step",
+        "kind": "co_simulation",
+        "live_log_interval": 0,
+        "report_progress": true,
+        "start_time": 0,
+        "step_size": 1.0,
+        "stop_time": 300
+      },
+      "selected_asset_ids": [
+        "asset_dtaas_incubator_nurv_monitor_validation__ad",
+        "asset_dtaas_incubator_nurv_monitor_validation__es",
+        "asset_dtaas_incubator_nurv_monitor_validation__src",
+        "asset_dtaas_incubator_nurv_monitor_validation__wtc",
+        "asset_dtaas_incubator_nurv_monitor_validation__mon"
+      ],
+      "stage_id": "stage1"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "adapter_id": "adapter_asset_a_asset_b_temperature_C_temperature_K",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "mode": "unit_conversion",
+          "offset": 273.15,
+          "scale": 1.0,
+          "source_unit": "degc",
+          "target_unit": "k"
+        }
+      },
+      "sysml": {
+        "name": "temperature_C"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "mode": "unit_conversion",
+          "offset": 273.15,
+          "scale": 1.0,
+          "source_unit": "degc",
+          "target_unit": "k"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "temperature_K"
+      }
+    }
+  ],
+  "model_name": "adapter_asset_a_asset_b_temperature_C_temperature_K",
+  "notes": [
+    "generated_for=asset_a->asset_b"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_a"
+    },
+    {
+      "name": "asset_b"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

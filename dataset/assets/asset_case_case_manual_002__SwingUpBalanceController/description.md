@@ -1,0 +1,1 @@
+../../sources/cases/case_manual_002/fmu_specs/fmu_SwingUpBalanceController.md

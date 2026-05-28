@@ -1,0 +1,1614 @@
+[
+  {
+    "tasks": [
+      {
+        "task_id": "task_monolithic",
+        "objective": "电液伺服缸有界响应检查. 在 0s 到 5s 的阀控场景下，位移、阀命令、阀芯位移与腔压都应保持在物理可接受范围内。Verification should conclude pass only when the co-simulation runs to completion and satisfies every a",
+        "required_signals": [
+          "x_ref_m",
+          "x_meas_m",
+          "v_meas_mps",
+          "enable",
+          "valve_cmd",
+          "sat_flag",
+          "spool_u",
+          "load_force_N",
+          "x_m",
+          "v_mps",
+          "pA_Pa",
+          "pB_Pa",
+          "rod_force_N"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "x_ref_m",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.x_ref_m",
+            "unit_hint": "",
+            "type_hint": "LengthValue",
+            "role": "driven",
+            "source_text": "x_ref_m",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.x_ref_m"
+          },
+          {
+            "signal_name": "x_meas_m",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.x_meas_m",
+            "unit_hint": "",
+            "type_hint": "LengthValue",
+            "role": "driven",
+            "source_text": "x_meas_m",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.x_meas_m"
+          },
+          {
+            "signal_name": "v_meas_mps",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.v_meas_mps",
+            "unit_hint": "",
+            "type_hint": "SpeedValue",
+            "role": "driven",
+            "source_text": "v_meas_mps",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.v_meas_mps"
+          },
+          {
+            "signal_name": "enable",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.enable",
+            "unit_hint": "",
+            "type_hint": "Boolean",
+            "role": "driven",
+            "source_text": "enable",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.enable"
+          },
+          {
+            "signal_name": "valve_cmd",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.valve_cmd",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "valve_cmd",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.valve_cmd"
+          },
+          {
+            "signal_name": "valve_cmd",
+            "direction": "in",
+            "component_hint": "actuator",
+            "port_hint": "actuator.valve_cmd",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "valve_cmd",
+            "grounded_component_ref": "actuator",
+            "grounded_port_ref": "actuator.valve_cmd"
+          },
+          {
+            "signal_name": "sat_flag",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.sat_flag",
+            "unit_hint": "",
+            "type_hint": "Boolean",
+            "role": "observed",
+            "source_text": "sat_flag",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.sat_flag"
+          },
+          {
+            "signal_name": "spool_u",
+            "direction": "out",
+            "component_hint": "actuator",
+            "port_hint": "actuator.spool_u",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "spool_u",
+            "grounded_component_ref": "actuator",
+            "grounded_port_ref": "actuator.spool_u"
+          },
+          {
+            "signal_name": "spool_u",
+            "direction": "in",
+            "component_hint": "plant",
+            "port_hint": "plant.spool_u",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "spool_u",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.spool_u"
+          },
+          {
+            "signal_name": "load_force_N",
+            "direction": "in",
+            "component_hint": "plant",
+            "port_hint": "plant.load_force_N",
+            "unit_hint": "",
+            "type_hint": "ForceValue",
+            "role": "driven",
+            "source_text": "load_force_N",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.load_force_N"
+          },
+          {
+            "signal_name": "x_m",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.x_m",
+            "unit_hint": "",
+            "type_hint": "LengthValue",
+            "role": "observed",
+            "source_text": "x_m",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.x_m"
+          },
+          {
+            "signal_name": "v_mps",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.v_mps",
+            "unit_hint": "",
+            "type_hint": "SpeedValue",
+            "role": "observed",
+            "source_text": "v_mps",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.v_mps"
+          },
+          {
+            "signal_name": "pA_Pa",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.pA_Pa",
+            "unit_hint": "",
+            "type_hint": "PressureValue",
+            "role": "observed",
+            "source_text": "pA_Pa",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.pA_Pa"
+          },
+          {
+            "signal_name": "pB_Pa",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.pB_Pa",
+            "unit_hint": "",
+            "type_hint": "PressureValue",
+            "role": "observed",
+            "source_text": "pB_Pa",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.pB_Pa"
+          },
+          {
+            "signal_name": "rod_force_N",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.rod_force_N",
+            "unit_hint": "",
+            "type_hint": "ForceValue",
+            "role": "observed",
+            "source_text": "rod_force_N",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.rod_force_N"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "controller",
+          "actuator",
+          "plant"
+        ],
+        "grounded_component_types": [
+          "PositionController",
+          "SpoolValveActuator",
+          "HydraulicCylinderPlant"
+        ],
+        "grounded_ports": [
+          "x_ref_m",
+          "x_meas_m",
+          "v_meas_mps",
+          "enable",
+          "valve_cmd",
+          "sat_flag",
+          "spool_u",
+          "load_force_N",
+          "x_m",
+          "v_mps",
+          "pA_Pa",
+          "pB_Pa",
+          "rod_force_N"
+        ],
+        "task_trace": {
+          "components": [
+            "controller",
+            "actuator",
+            "plant"
+          ],
+          "ports": [
+            "x_ref_m",
+            "x_meas_m",
+            "v_meas_mps",
+            "enable",
+            "valve_cmd",
+            "sat_flag",
+            "spool_u",
+            "load_force_N",
+            "x_m",
+            "v_mps",
+            "pA_Pa",
+            "pB_Pa",
+            "rod_force_N"
+          ],
+          "signals": [
+            "x_ref_m",
+            "x_meas_m",
+            "v_meas_mps",
+            "enable",
+            "valve_cmd",
+            "sat_flag",
+            "spool_u",
+            "load_force_N",
+            "x_m",
+            "v_mps",
+            "pA_Pa",
+            "pB_Pa",
+            "rod_force_N"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 3,
+          "grounded_signal_count": 13,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      }
+    ],
+    "rationale": "rule-generated holistic raw task set",
+    "score": 0.52,
+    "p_value": 0.38095238095238093,
+    "task_set_id": "taskset_2",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "controller",
+        "target_component": "actuator",
+        "signals": [
+          "valve_cmd",
+          "valve_cmd"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "controller",
+            "source_signal": "valve_cmd",
+            "target_component": "actuator",
+            "target_signal": "valve_cmd",
+            "must_route": true,
+            "semantic_intent": "controller.valve_cmd -> actuator.valve_cmd",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "actuator"
+            }
+          }
+        ],
+        "semantic_intent": "controller.valve_cmd -> actuator.valve_cmd",
+        "details": {
+          "source_signal": "valve_cmd",
+          "target_signal": "valve_cmd"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "actuator",
+        "target_component": "plant",
+        "signals": [
+          "spool_u",
+          "spool_u"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "actuator",
+            "source_signal": "spool_u",
+            "target_component": "plant",
+            "target_signal": "spool_u",
+            "must_route": true,
+            "semantic_intent": "actuator.spool_u -> plant.spool_u",
+            "adjacency_evidence": {
+              "source_component": "actuator",
+              "target_component": "plant"
+            }
+          }
+        ],
+        "semantic_intent": "actuator.spool_u -> plant.spool_u",
+        "details": {
+          "source_signal": "spool_u",
+          "target_signal": "spool_u"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "plant",
+        "target_component": "controller",
+        "signals": [
+          "x_m",
+          "x_meas_m"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "plant",
+            "source_signal": "x_m",
+            "target_component": "controller",
+            "target_signal": "x_meas_m",
+            "must_route": true,
+            "semantic_intent": "plant.x_m -> controller.x_meas_m",
+            "adjacency_evidence": {
+              "source_component": "plant",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "plant.x_m -> controller.x_meas_m",
+        "details": {
+          "source_signal": "x_m",
+          "target_signal": "x_meas_m"
+        }
+      },
+      {
+        "chain_id": "chain_3",
+        "source_component": "plant",
+        "target_component": "controller",
+        "signals": [
+          "v_mps",
+          "v_meas_mps"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_3_seg_0",
+            "source_component": "plant",
+            "source_signal": "v_mps",
+            "target_component": "controller",
+            "target_signal": "v_meas_mps",
+            "must_route": true,
+            "semantic_intent": "plant.v_mps -> controller.v_meas_mps",
+            "adjacency_evidence": {
+              "source_component": "plant",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "plant.v_mps -> controller.v_meas_mps",
+        "details": {
+          "source_signal": "v_mps",
+          "target_signal": "v_meas_mps"
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.38095238095238093,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.48,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 1.0,
+      "criteria_coverage": 0.0,
+      "constraint_completeness": 0.0,
+      "regime_coverage": 0.0,
+      "topology_alignment": 0.25,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.0,
+      "final_score": 0.52
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "required_chain_count": 4,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_monolithic:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.38095238095238093,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.48,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  },
+  {
+    "tasks": [
+      {
+        "task_id": "task_connection_0",
+        "objective": "Verify transfer from controller to actuator",
+        "required_signals": [
+          "valve_cmd"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "valve_cmd",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.valve_cmd",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "valve_cmd",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.valve_cmd"
+          },
+          {
+            "signal_name": "valve_cmd",
+            "direction": "in",
+            "component_hint": "actuator",
+            "port_hint": "actuator.valve_cmd",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "valve_cmd",
+            "grounded_component_ref": "actuator",
+            "grounded_port_ref": "actuator.valve_cmd"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "controller",
+          "actuator"
+        ],
+        "grounded_component_types": [
+          "PositionController",
+          "SpoolValveActuator"
+        ],
+        "grounded_ports": [
+          "valve_cmd"
+        ],
+        "task_trace": {
+          "components": [
+            "controller",
+            "actuator"
+          ],
+          "ports": [
+            "valve_cmd"
+          ],
+          "signals": [
+            "valve_cmd"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_1",
+        "objective": "Verify transfer from actuator to plant",
+        "required_signals": [
+          "spool_u"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "spool_u",
+            "direction": "out",
+            "component_hint": "actuator",
+            "port_hint": "actuator.spool_u",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "spool_u",
+            "grounded_component_ref": "actuator",
+            "grounded_port_ref": "actuator.spool_u"
+          },
+          {
+            "signal_name": "spool_u",
+            "direction": "in",
+            "component_hint": "plant",
+            "port_hint": "plant.spool_u",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "spool_u",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.spool_u"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "actuator",
+          "plant"
+        ],
+        "grounded_component_types": [
+          "SpoolValveActuator",
+          "HydraulicCylinderPlant"
+        ],
+        "grounded_ports": [
+          "spool_u"
+        ],
+        "task_trace": {
+          "components": [
+            "actuator",
+            "plant"
+          ],
+          "ports": [
+            "spool_u"
+          ],
+          "signals": [
+            "spool_u"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_2",
+        "objective": "Verify transfer from plant to controller",
+        "required_signals": [
+          "x_m",
+          "x_meas_m"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "x_m",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.x_m",
+            "unit_hint": "",
+            "type_hint": "LengthValue",
+            "role": "observed",
+            "source_text": "x_m",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.x_m"
+          },
+          {
+            "signal_name": "x_meas_m",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.x_meas_m",
+            "unit_hint": "",
+            "type_hint": "LengthValue",
+            "role": "driven",
+            "source_text": "x_meas_m",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.x_meas_m"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "plant",
+          "controller"
+        ],
+        "grounded_component_types": [
+          "HydraulicCylinderPlant",
+          "PositionController"
+        ],
+        "grounded_ports": [
+          "x_m",
+          "x_meas_m"
+        ],
+        "task_trace": {
+          "components": [
+            "plant",
+            "controller"
+          ],
+          "ports": [
+            "x_m",
+            "x_meas_m"
+          ],
+          "signals": [
+            "x_m",
+            "x_meas_m"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 2,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_3",
+        "objective": "Verify transfer from plant to controller",
+        "required_signals": [
+          "v_mps",
+          "v_meas_mps"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "v_mps",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.v_mps",
+            "unit_hint": "",
+            "type_hint": "SpeedValue",
+            "role": "observed",
+            "source_text": "v_mps",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.v_mps"
+          },
+          {
+            "signal_name": "v_meas_mps",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.v_meas_mps",
+            "unit_hint": "",
+            "type_hint": "SpeedValue",
+            "role": "driven",
+            "source_text": "v_meas_mps",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.v_meas_mps"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "plant",
+          "controller"
+        ],
+        "grounded_component_types": [
+          "HydraulicCylinderPlant",
+          "PositionController"
+        ],
+        "grounded_ports": [
+          "v_mps",
+          "v_meas_mps"
+        ],
+        "task_trace": {
+          "components": [
+            "plant",
+            "controller"
+          ],
+          "ports": [
+            "v_mps",
+            "v_meas_mps"
+          ],
+          "signals": [
+            "v_mps",
+            "v_meas_mps"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 2,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      }
+    ],
+    "rationale": "rule-generated connection-aligned raw task set",
+    "score": 0.5023076923076923,
+    "p_value": 0.38095238095238093,
+    "task_set_id": "taskset_1",
+    "generation_source": "rules_connection",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "controller",
+        "target_component": "actuator",
+        "signals": [
+          "valve_cmd",
+          "valve_cmd"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "controller",
+            "source_signal": "valve_cmd",
+            "target_component": "actuator",
+            "target_signal": "valve_cmd",
+            "must_route": true,
+            "semantic_intent": "controller.valve_cmd -> actuator.valve_cmd",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "actuator"
+            }
+          }
+        ],
+        "semantic_intent": "controller.valve_cmd -> actuator.valve_cmd",
+        "details": {
+          "source_signal": "valve_cmd",
+          "target_signal": "valve_cmd"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "actuator",
+        "target_component": "plant",
+        "signals": [
+          "spool_u",
+          "spool_u"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "actuator",
+            "source_signal": "spool_u",
+            "target_component": "plant",
+            "target_signal": "spool_u",
+            "must_route": true,
+            "semantic_intent": "actuator.spool_u -> plant.spool_u",
+            "adjacency_evidence": {
+              "source_component": "actuator",
+              "target_component": "plant"
+            }
+          }
+        ],
+        "semantic_intent": "actuator.spool_u -> plant.spool_u",
+        "details": {
+          "source_signal": "spool_u",
+          "target_signal": "spool_u"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "plant",
+        "target_component": "controller",
+        "signals": [
+          "x_m",
+          "x_meas_m"
+        ],
+        "origin_task_ids": [
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "plant",
+            "source_signal": "x_m",
+            "target_component": "controller",
+            "target_signal": "x_meas_m",
+            "must_route": true,
+            "semantic_intent": "plant.x_m -> controller.x_meas_m",
+            "adjacency_evidence": {
+              "source_component": "plant",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "plant.x_m -> controller.x_meas_m",
+        "details": {
+          "source_signal": "x_m",
+          "target_signal": "x_meas_m"
+        }
+      },
+      {
+        "chain_id": "chain_3",
+        "source_component": "plant",
+        "target_component": "controller",
+        "signals": [
+          "v_mps",
+          "v_meas_mps"
+        ],
+        "origin_task_ids": [
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_3_seg_0",
+            "source_component": "plant",
+            "source_signal": "v_mps",
+            "target_component": "controller",
+            "target_signal": "v_meas_mps",
+            "must_route": true,
+            "semantic_intent": "plant.v_mps -> controller.v_meas_mps",
+            "adjacency_evidence": {
+              "source_component": "plant",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "plant.v_mps -> controller.v_meas_mps",
+        "details": {
+          "source_signal": "v_mps",
+          "target_signal": "v_meas_mps"
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.38095238095238093,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.49769230769230766,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 0.46153846153846156,
+      "criteria_coverage": 0.0,
+      "constraint_completeness": 0.0,
+      "regime_coverage": 0.0,
+      "topology_alignment": 1.0,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.0,
+      "final_score": 0.5023076923076923
+    },
+    "meta": {
+      "generation_source": "rules_connection",
+      "generation_family": "rules",
+      "required_chain_count": 4,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_connection_0:component_signal_grounded",
+        "task_connection_1:component_signal_grounded",
+        "task_connection_2:component_signal_grounded",
+        "task_connection_3:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.38095238095238093,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.49769230769230766,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  },
+  {
+    "tasks": [
+      {
+        "task_id": "task_component_0",
+        "objective": "Verify PositionController behavior for requirement: 电液伺服缸有界响应检查. 在 0s 到 5s 的阀控场景下，位移、阀命令、阀芯位移与腔压都应保持在物理可接受范围内。Verification should conclude pass only when the co-simulation runs to completion and satisfies every a",
+        "required_signals": [
+          "x_ref_m",
+          "x_meas_m",
+          "v_meas_mps",
+          "enable",
+          "valve_cmd",
+          "sat_flag"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "x_ref_m",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.x_ref_m",
+            "unit_hint": "",
+            "type_hint": "LengthValue",
+            "role": "driven",
+            "source_text": "x_ref_m",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.x_ref_m"
+          },
+          {
+            "signal_name": "x_meas_m",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.x_meas_m",
+            "unit_hint": "",
+            "type_hint": "LengthValue",
+            "role": "driven",
+            "source_text": "x_meas_m",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.x_meas_m"
+          },
+          {
+            "signal_name": "v_meas_mps",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.v_meas_mps",
+            "unit_hint": "",
+            "type_hint": "SpeedValue",
+            "role": "driven",
+            "source_text": "v_meas_mps",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.v_meas_mps"
+          },
+          {
+            "signal_name": "enable",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.enable",
+            "unit_hint": "",
+            "type_hint": "Boolean",
+            "role": "driven",
+            "source_text": "enable",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.enable"
+          },
+          {
+            "signal_name": "valve_cmd",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.valve_cmd",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "valve_cmd",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.valve_cmd"
+          },
+          {
+            "signal_name": "sat_flag",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.sat_flag",
+            "unit_hint": "",
+            "type_hint": "Boolean",
+            "role": "observed",
+            "source_text": "sat_flag",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.sat_flag"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "controller"
+        ],
+        "grounded_component_types": [
+          "PositionController"
+        ],
+        "grounded_ports": [
+          "x_ref_m",
+          "x_meas_m",
+          "v_meas_mps",
+          "enable",
+          "valve_cmd",
+          "sat_flag"
+        ],
+        "task_trace": {
+          "components": [
+            "controller"
+          ],
+          "ports": [
+            "x_ref_m",
+            "x_meas_m",
+            "v_meas_mps",
+            "enable",
+            "valve_cmd",
+            "sat_flag"
+          ],
+          "signals": [
+            "x_ref_m",
+            "x_meas_m",
+            "v_meas_mps",
+            "enable",
+            "valve_cmd",
+            "sat_flag"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_component",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 6,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_component_1",
+        "objective": "Verify SpoolValveActuator behavior for requirement: 电液伺服缸有界响应检查. 在 0s 到 5s 的阀控场景下，位移、阀命令、阀芯位移与腔压都应保持在物理可接受范围内。Verification should conclude pass only when the co-simulation runs to completion and satisfies every a",
+        "required_signals": [
+          "valve_cmd",
+          "spool_u"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "valve_cmd",
+            "direction": "in",
+            "component_hint": "actuator",
+            "port_hint": "actuator.valve_cmd",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "valve_cmd",
+            "grounded_component_ref": "actuator",
+            "grounded_port_ref": "actuator.valve_cmd"
+          },
+          {
+            "signal_name": "spool_u",
+            "direction": "out",
+            "component_hint": "actuator",
+            "port_hint": "actuator.spool_u",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "spool_u",
+            "grounded_component_ref": "actuator",
+            "grounded_port_ref": "actuator.spool_u"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "actuator"
+        ],
+        "grounded_component_types": [
+          "SpoolValveActuator"
+        ],
+        "grounded_ports": [
+          "valve_cmd",
+          "spool_u"
+        ],
+        "task_trace": {
+          "components": [
+            "actuator"
+          ],
+          "ports": [
+            "valve_cmd",
+            "spool_u"
+          ],
+          "signals": [
+            "valve_cmd",
+            "spool_u"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_component",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 2,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_component_2",
+        "objective": "Verify HydraulicCylinderPlant behavior for requirement: 电液伺服缸有界响应检查. 在 0s 到 5s 的阀控场景下，位移、阀命令、阀芯位移与腔压都应保持在物理可接受范围内。Verification should conclude pass only when the co-simulation runs to completion and satisfies every a",
+        "required_signals": [
+          "spool_u",
+          "load_force_N",
+          "x_m",
+          "v_mps",
+          "pA_Pa",
+          "pB_Pa",
+          "rod_force_N"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "spool_u",
+            "direction": "in",
+            "component_hint": "plant",
+            "port_hint": "plant.spool_u",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "spool_u",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.spool_u"
+          },
+          {
+            "signal_name": "load_force_N",
+            "direction": "in",
+            "component_hint": "plant",
+            "port_hint": "plant.load_force_N",
+            "unit_hint": "",
+            "type_hint": "ForceValue",
+            "role": "driven",
+            "source_text": "load_force_N",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.load_force_N"
+          },
+          {
+            "signal_name": "x_m",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.x_m",
+            "unit_hint": "",
+            "type_hint": "LengthValue",
+            "role": "observed",
+            "source_text": "x_m",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.x_m"
+          },
+          {
+            "signal_name": "v_mps",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.v_mps",
+            "unit_hint": "",
+            "type_hint": "SpeedValue",
+            "role": "observed",
+            "source_text": "v_mps",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.v_mps"
+          },
+          {
+            "signal_name": "pA_Pa",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.pA_Pa",
+            "unit_hint": "",
+            "type_hint": "PressureValue",
+            "role": "observed",
+            "source_text": "pA_Pa",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.pA_Pa"
+          },
+          {
+            "signal_name": "pB_Pa",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.pB_Pa",
+            "unit_hint": "",
+            "type_hint": "PressureValue",
+            "role": "observed",
+            "source_text": "pB_Pa",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.pB_Pa"
+          },
+          {
+            "signal_name": "rod_force_N",
+            "direction": "out",
+            "component_hint": "plant",
+            "port_hint": "plant.rod_force_N",
+            "unit_hint": "",
+            "type_hint": "ForceValue",
+            "role": "observed",
+            "source_text": "rod_force_N",
+            "grounded_component_ref": "plant",
+            "grounded_port_ref": "plant.rod_force_N"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "plant"
+        ],
+        "grounded_component_types": [
+          "HydraulicCylinderPlant"
+        ],
+        "grounded_ports": [
+          "spool_u",
+          "load_force_N",
+          "x_m",
+          "v_mps",
+          "pA_Pa",
+          "pB_Pa",
+          "rod_force_N"
+        ],
+        "task_trace": {
+          "components": [
+            "plant"
+          ],
+          "ports": [
+            "spool_u",
+            "load_force_N",
+            "x_m",
+            "v_mps",
+            "pA_Pa",
+            "pB_Pa",
+            "rod_force_N"
+          ],
+          "signals": [
+            "spool_u",
+            "load_force_N",
+            "x_m",
+            "v_mps",
+            "pA_Pa",
+            "pB_Pa",
+            "rod_force_N"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_component",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 7,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      }
+    ],
+    "rationale": "rule-generated component-aligned raw task set",
+    "score": 0.49000000000000005,
+    "p_value": 0.3333333333333333,
+    "task_set_id": "taskset_0",
+    "generation_source": "rules_component",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "controller",
+        "target_component": "actuator",
+        "signals": [
+          "valve_cmd",
+          "valve_cmd"
+        ],
+        "origin_task_ids": [
+          "task_component_0",
+          "task_component_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "controller",
+            "source_signal": "valve_cmd",
+            "target_component": "actuator",
+            "target_signal": "valve_cmd",
+            "must_route": true,
+            "semantic_intent": "controller.valve_cmd -> actuator.valve_cmd",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "actuator"
+            }
+          }
+        ],
+        "semantic_intent": "controller.valve_cmd -> actuator.valve_cmd",
+        "details": {
+          "source_signal": "valve_cmd",
+          "target_signal": "valve_cmd"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "actuator",
+        "target_component": "plant",
+        "signals": [
+          "spool_u",
+          "spool_u"
+        ],
+        "origin_task_ids": [
+          "task_component_1",
+          "task_component_2"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "actuator",
+            "source_signal": "spool_u",
+            "target_component": "plant",
+            "target_signal": "spool_u",
+            "must_route": true,
+            "semantic_intent": "actuator.spool_u -> plant.spool_u",
+            "adjacency_evidence": {
+              "source_component": "actuator",
+              "target_component": "plant"
+            }
+          }
+        ],
+        "semantic_intent": "actuator.spool_u -> plant.spool_u",
+        "details": {
+          "source_signal": "spool_u",
+          "target_signal": "spool_u"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "plant",
+        "target_component": "controller",
+        "signals": [
+          "x_m",
+          "x_meas_m"
+        ],
+        "origin_task_ids": [
+          "task_component_2",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "plant",
+            "source_signal": "x_m",
+            "target_component": "controller",
+            "target_signal": "x_meas_m",
+            "must_route": true,
+            "semantic_intent": "plant.x_m -> controller.x_meas_m",
+            "adjacency_evidence": {
+              "source_component": "plant",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "plant.x_m -> controller.x_meas_m",
+        "details": {
+          "source_signal": "x_m",
+          "target_signal": "x_meas_m"
+        }
+      },
+      {
+        "chain_id": "chain_3",
+        "source_component": "plant",
+        "target_component": "controller",
+        "signals": [
+          "v_mps",
+          "v_meas_mps"
+        ],
+        "origin_task_ids": [
+          "task_component_2",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_3_seg_0",
+            "source_component": "plant",
+            "source_signal": "v_mps",
+            "target_component": "controller",
+            "target_signal": "v_meas_mps",
+            "must_route": true,
+            "semantic_intent": "plant.v_mps -> controller.v_meas_mps",
+            "adjacency_evidence": {
+              "source_component": "plant",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "plant.v_mps -> controller.v_meas_mps",
+        "details": {
+          "source_signal": "v_mps",
+          "target_signal": "v_meas_mps"
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.3333333333333333,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.51,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 1.0,
+      "criteria_coverage": 0.0,
+      "constraint_completeness": 0.0,
+      "regime_coverage": 0.0,
+      "topology_alignment": 0.0,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.0,
+      "final_score": 0.49000000000000005
+    },
+    "meta": {
+      "generation_source": "rules_component",
+      "generation_family": "rules",
+      "required_chain_count": 4,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_component_0:component_signal_grounded",
+        "task_component_1:component_signal_grounded",
+        "task_component_2:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.3333333333333333,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.51,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  }
+]

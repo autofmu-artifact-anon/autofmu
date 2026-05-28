@@ -1,0 +1,162 @@
+{
+  "id": "REQ-SHIP-PROPULSION",
+  "title": "Ship Propulsion System Verification",
+  "description": "Verify re-convergence and safety evidence for eight signals in a ship propulsion system under a five-phase operating profile covering 300 seconds. The SysML architecture contains fourteen blocks covering the full propulsion chain, including engine, gearbox, shaft line, propeller, fuel system, exhaust thermal monitoring, and propulsion efficiency estimation. All FMUs are exported from Modelica models via the FMI 2.0 co-simulation interface.",
+  "signals_of_interest": [
+    "K_T",
+    "RPM",
+    "Thrust",
+    "cavitation_margin",
+    "resistance_margin",
+    "shaft_torsional_stress",
+    "thermal_margin",
+    "SFOC"
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "AC-01",
+      "signal": "K_T",
+      "description": "K_T settling after Phase 3 disturbance",
+      "criterion": "settling_time <= 15 s after t=100"
+    },
+    {
+      "id": "AC-02",
+      "signal": "RPM",
+      "description": "RPM settling during Phase 1 cold start",
+      "criterion": "settling_time <= 30 s"
+    },
+    {
+      "id": "AC-03",
+      "signal": "RPM",
+      "description": "RPM settling during Phase 3 sea-state disturbance",
+      "criterion": "settling_time <= 30 s"
+    },
+    {
+      "id": "AC-04",
+      "signal": "RPM",
+      "description": "RPM settling during Phase 4 speed step",
+      "criterion": "settling_time <= 25 s"
+    },
+    {
+      "id": "AC-05",
+      "signal": "RPM",
+      "description": "RPM stays within safe operating range",
+      "criterion": "RPM in [0, 130] rpm"
+    },
+    {
+      "id": "AC-06",
+      "signal": "Thrust",
+      "description": "Thrust settling after Phase 4 speed step",
+      "criterion": "settling_time <= 20 s after t=160"
+    },
+    {
+      "id": "AC-07",
+      "signal": "cavitation_margin",
+      "description": "Cavitation margin stays above safety threshold",
+      "criterion": "cavitation_margin > 0.1 throughout"
+    },
+    {
+      "id": "AC-08",
+      "signal": "resistance_margin",
+      "description": "Resistance margin stays within design envelope",
+      "criterion": "resistance_margin in [0, 1.5] throughout"
+    },
+    {
+      "id": "AC-09",
+      "signal": "shaft_torsional_stress",
+      "description": "Shaft torsional stress below structural limit",
+      "criterion": "shaft_torsional_stress < 0.85 (normalized) throughout"
+    },
+    {
+      "id": "AC-10",
+      "signal": "thermal_margin",
+      "description": "Thermal margin above minimum safety threshold",
+      "criterion": "thermal_margin > 0.05 throughout"
+    },
+    {
+      "id": "AC-11",
+      "signal": "SFOC",
+      "description": "Specific fuel oil consumption at steady state",
+      "criterion": "SFOC < 220 g/kWh at steady state"
+    },
+    {
+      "id": "AC-12",
+      "signal": "torque",
+      "description": "Torque within safe operating range",
+      "criterion": "torque in [0, 1.5] kNm"
+    },
+    {
+      "id": "AC-13",
+      "signal": "SCC1_convergence",
+      "description": "SCC1 Gauss-Seidel iteration always converges",
+      "criterion": "max iterations < 20"
+    },
+    {
+      "id": "AC-14",
+      "signal": "SCC2_convergence",
+      "description": "SCC2 Gauss-Seidel iteration always converges",
+      "criterion": "max iterations < 20"
+    }
+  ],
+  "scenario": {
+    "duration_s": 300,
+    "phases": [
+      {
+        "id": "phase_1",
+        "name": "Cold start",
+        "start_s": 0,
+        "end_s": 40,
+        "cruise_speed_kn": "ramp 0 to 12",
+        "sea_state": 2
+      },
+      {
+        "id": "phase_2",
+        "name": "Steady cruise",
+        "start_s": 40,
+        "end_s": 100,
+        "cruise_speed_kn": 12,
+        "sea_state": 2
+      },
+      {
+        "id": "phase_3",
+        "name": "Sea-state disturbance",
+        "start_s": 100,
+        "end_s": 160,
+        "cruise_speed_kn": 12,
+        "sea_state": 6
+      },
+      {
+        "id": "phase_4",
+        "name": "Speed step",
+        "start_s": 160,
+        "end_s": 240,
+        "cruise_speed_kn": 14,
+        "sea_state": 4
+      },
+      {
+        "id": "phase_5",
+        "name": "Deceleration",
+        "start_s": 240,
+        "end_s": 300,
+        "cruise_speed_kn": "ramp 14 to 8",
+        "sea_state": 3
+      }
+    ],
+    "inputs": {
+      "cruise_speed": [
+        {"time": 0, "value": 0},
+        {"time": 40, "value": 12},
+        {"time": 100, "value": 12},
+        {"time": 160, "value": 14},
+        {"time": 240, "value": 14},
+        {"time": 300, "value": 8}
+      ],
+      "sea_state": [
+        {"time": 0, "value": 2},
+        {"time": 100, "value": 6},
+        {"time": 160, "value": 4},
+        {"time": 240, "value": 3}
+      ]
+    }
+  }
+}

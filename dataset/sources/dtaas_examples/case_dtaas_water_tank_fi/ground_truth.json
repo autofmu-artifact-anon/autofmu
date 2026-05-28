@@ -1,0 +1,78 @@
+{
+  "correct_connections": [
+    {
+      "from": "asset_dtaas_water_tank_fi__x1.valve",
+      "to": "asset_dtaas_water_tank_fi__x2.valvecontrol"
+    },
+    {
+      "from": "asset_dtaas_water_tank_fi__x2.level",
+      "to": "asset_dtaas_water_tank_fi__x1.level"
+    }
+  ],
+  "correct_fmus": [
+    "fmu_x1",
+    "fmu_x2"
+  ],
+  "expected_behavior": "Fault injection tampers with controller output during the configured interval, causing the tank level to rise beyond the nominal operating band.",
+  "extensions": {
+    "fault_injection": [
+      {
+        "configuration_relpath": "raw/data/water_tank_FI/input/wt_fault.xml",
+        "instances": {
+          "tank": "id-A"
+        }
+      }
+    ],
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_water_tank_fi__x1.maxlevel",
+        "value": 2
+      },
+      {
+        "target": "asset_dtaas_water_tank_fi__x1.minlevel",
+        "value": 1
+      }
+    ],
+    "raw_config_relpaths": [
+      "raw/digital_twins/water_tank_FI/README.md",
+      "raw/digital_twins/water_tank_FI/multimodelFI.json",
+      "raw/digital_twins/water_tank_FI/simulation-config.json",
+      "raw/common/tools/FaultInject.mabl",
+      "raw/data/water_tank_FI/input/wt_fault.xml"
+    ],
+    "runtime_io": {
+      "raw_relpaths": [
+        "raw/data/water_tank_FI/input/wt_fault.xml"
+      ],
+      "summary": ""
+    }
+  },
+  "stages": [
+    {
+      "connections": [
+        {
+          "source": "asset_dtaas_water_tank_fi__x1.valve",
+          "target": "asset_dtaas_water_tank_fi__x2.valvecontrol"
+        },
+        {
+          "source": "asset_dtaas_water_tank_fi__x2.level",
+          "target": "asset_dtaas_water_tank_fi__x1.level"
+        }
+      ],
+      "schedule": {
+        "co_simulation_type": "fixed-step",
+        "kind": "co_simulation",
+        "live_log_interval": 0,
+        "report_progress": true,
+        "start_time": 0,
+        "step_size": 0.1,
+        "stop_time": 100
+      },
+      "selected_asset_ids": [
+        "asset_dtaas_water_tank_fi__x1",
+        "asset_dtaas_water_tank_fi__x2"
+      ],
+      "stage_id": "stage1"
+    }
+  ]
+}

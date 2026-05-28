@@ -1,0 +1,37 @@
+{
+  "name": "CoolingLoop",
+  "description": "Simplified liquid cooling loop with pump + radiator + fan. Produces coolant inlet temperature to battery and flow rate based on commands and heat load. Includes nonlinear flow and UA characteristics plus actuator dynamics.",
+  "inputs": [
+    {"name": "pump_cmd", "type": "Real", "unit": "0..1", "description": "Pump command (normalized)."},
+    {"name": "fan_cmd", "type": "Real", "unit": "0..1", "description": "Radiator fan command (normalized)."},
+    {"name": "ambient_temp_C", "type": "Real", "unit": "degC", "description": "Ambient air temperature to radiator."},
+    {"name": "T_batt_surface_C", "type": "Real", "unit": "degC", "description": "Battery surface temperature (affects heat pickup)."},
+    {"name": "heat_load_W", "type": "Real", "unit": "W", "description": "Heat that must be removed from battery (positive adds heat to coolant)."}
+  ],
+  "outputs": [
+    {"name": "coolant_in_temp_C", "type": "Real", "unit": "degC", "description": "Coolant temperature entering battery cold-plate."},
+    {"name": "coolant_flow_kgps", "type": "Real", "unit": "kg/s", "description": "Coolant mass flow rate through battery cold-plate."},
+    {"name": "radiator_out_temp_C", "type": "Real", "unit": "degC", "description": "Coolant temperature after radiator (entering battery)."},
+    {"name": "pump_power_W", "type": "Real", "unit": "W", "description": "Estimated pump electrical power consumption."}
+  ],
+  "parameters": [
+    {"name": "coolant_mass_kg", "type": "Real", "default": 6.0, "unit": "kg", "description": "Effective coolant thermal mass in the loop."},
+    {"name": "coolant_cp_JpkgK", "type": "Real", "default": 3800.0, "unit": "J/(kg*K)", "description": "Coolant specific heat."},
+
+    {"name": "flow_max_kgps", "type": "Real", "default": 0.25, "unit": "kg/s", "description": "Maximum coolant mass flow at pump_cmd=1."},
+    {"name": "pump_tau_s", "type": "Real", "default": 1.5, "unit": "s", "description": "First-order lag time constant for pump speed/flow response."},
+
+    {"name": "UA_base_WpK", "type": "Real", "default": 250.0, "unit": "W/K", "description": "Base radiator conductance (no fan)."},
+    {"name": "UA_fan_gain", "type": "Real", "default": 600.0, "unit": "W/K", "description": "Additional conductance enabled by fan."},
+    {"name": "UA_max_WpK", "type": "Real", "default": 1200.0, "unit": "W/K", "description": "Upper bound on effective UA."},
+
+    {"name": "pump_power_max_W", "type": "Real", "default": 450.0, "unit": "W", "description": "Pump electric power at full command."},
+
+    {"name": "T_min_C", "type": "Real", "default": -20.0, "unit": "degC", "description": "Lower bound for coolant temperature to avoid numerical issues."},
+    {"name": "T_max_C", "type": "Real", "default": 120.0, "unit": "degC", "description": "Upper bound for coolant temperature to avoid numerical issues."}
+  ],
+  "states": [
+    {"name": "coolant_temp_C", "derivative": "d_coolant_temp_dt"},
+    {"name": "flow_state_kgps", "derivative": "d_flow_state_dt"}
+  ]
+}

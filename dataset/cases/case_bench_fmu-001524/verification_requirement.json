@@ -1,0 +1,77 @@
+{
+  "case_id": "case_bench_fmu-001524",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "operator": "<=",
+      "signals": [
+        "J1_w",
+        "J2_w",
+        "J3_w",
+        "J4_w"
+      ],
+      "value": 1e-06
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "signals": [
+      "J1_w",
+      "J2_w",
+      "J3_w",
+      "J4_w"
+    ],
+    "time_column": "time",
+    "tolerance": 1e-06
+  },
+  "derivation_basis": {
+    "ground_truth_source": "FMICrossCheck.CoupledClutches_ref.csv",
+    "input_source": "FMICrossCheck.CoupledClutches_in.csv",
+    "signals": [
+      "J1_w",
+      "J2_w",
+      "J3_w",
+      "J4_w"
+    ],
+    "source_root": "sources/fmu-benchmark-mini/fmus/2.0/me/linux64/SystemModeler/5.0/FMICrossCheck.CoupledClutches",
+    "source_type": "benchmark_single_fmu_case"
+  },
+  "judgement_policy": "trajectory_match",
+  "scenario_window": {
+    "start_time": 0.0,
+    "step_size": 0.0,
+    "stop_time": 1.5
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "J1_w": [
+      "J1_w"
+    ],
+    "J2_w": [
+      "J2_w"
+    ],
+    "J3_w": [
+      "J3_w"
+    ],
+    "J4_w": [
+      "J4_w"
+    ]
+  },
+  "signals": [
+    "J1_w",
+    "J2_w",
+    "J3_w",
+    "J4_w"
+  ],
+  "text": "Run the benchmark FMU FMICrossCheck.CoupledClutches under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs J1_w, J2_w, J3_w, J4_w.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Verify benchmark FMU FMICrossCheck.CoupledClutches",
+  "tolerances": {
+    "trajectory_match": 1e-06
+  }
+}

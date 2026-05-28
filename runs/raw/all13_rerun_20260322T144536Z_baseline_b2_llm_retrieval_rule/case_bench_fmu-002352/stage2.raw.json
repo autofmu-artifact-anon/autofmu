@@ -1,0 +1,594 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_llm_fallback_0",
+        "objective": "Run the benchmark FMU m6502 under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs addr, datao, vpab, sync, we_n, oeb.",
+        "required_signals": [],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "output"
+        ],
+        "grounded_component_types": [
+          "OutputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_fallback_raw",
+          "generation_family": "llm",
+          "llm_fallback": true
+        }
+      }
+    ],
+    "rationale": "top1_llm fallback raw task set",
+    "score": 0.5,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "llm_fallback_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 0.0,
+      "criteria_bonus": 0.0,
+      "final_score": 0.5
+    },
+    "meta": {
+      "generation_source": "llm_fallback_raw",
+      "generation_family": "llm",
+      "llm_fallback": true,
+      "fallback_component": "output",
+      "grounding_valid": true
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_llm_fallback_0",
+      "task_index": 0,
+      "fmu_uid": "asset_bench_fmu-002352",
+      "score": 0.2261289864253988,
+      "cost": 0.7738710135746012,
+      "hard_ok": true,
+      "semantic_cost": 0.7738710135746012,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "output"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_bench_fmu-002352",
+      "name": "m6502",
+      "description": "m6502 design",
+      "path": "dataset/assets/asset_bench_fmu-002352/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "CoSimulation"
+      ],
+      "ports": [
+        {
+          "name": "addr",
+          "causality": "output",
+          "variability": "discrete",
+          "type": "Integer",
+          "unit": "",
+          "description": "uint16",
+          "dimensions": []
+        },
+        {
+          "name": "datai",
+          "causality": "input",
+          "variability": "discrete",
+          "type": "Integer",
+          "unit": "",
+          "description": "uint8",
+          "dimensions": []
+        },
+        {
+          "name": "datao",
+          "causality": "output",
+          "variability": "discrete",
+          "type": "Integer",
+          "unit": "",
+          "description": "uint8",
+          "dimensions": []
+        },
+        {
+          "name": "irq_n",
+          "causality": "input",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "bool",
+          "dimensions": []
+        },
+        {
+          "name": "nmi_n",
+          "causality": "input",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "bool",
+          "dimensions": []
+        },
+        {
+          "name": "sob_n",
+          "causality": "input",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "bool",
+          "dimensions": []
+        },
+        {
+          "name": "res_n",
+          "causality": "input",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "bool",
+          "dimensions": []
+        },
+        {
+          "name": "rdy",
+          "causality": "input",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "bool",
+          "dimensions": []
+        },
+        {
+          "name": "vpab",
+          "causality": "output",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "bool",
+          "dimensions": []
+        },
+        {
+          "name": "sync",
+          "causality": "output",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "bool",
+          "dimensions": []
+        },
+        {
+          "name": "we_n",
+          "causality": "output",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "bool",
+          "dimensions": []
+        },
+        {
+          "name": "oeb",
+          "causality": "output",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "bool",
+          "dimensions": []
+        }
+      ],
+      "inputs": [
+        "datai",
+        "irq_n",
+        "nmi_n",
+        "sob_n",
+        "res_n",
+        "rdy"
+      ],
+      "outputs": [
+        "addr",
+        "datao",
+        "vpab",
+        "sync",
+        "we_n",
+        "oeb"
+      ],
+      "tags": [
+        "EDALab_HIFSuite",
+        "linux64"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": false,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_bench_fmu-002352",
+        "asset_json": {
+          "asset_id": "asset_bench_fmu-002352",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": false,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_bench_fmu-002352"
+          ],
+          "default_experiment": {
+            "startTime": 0.0,
+            "stepSize": 0.001,
+            "stopTime": 10,
+            "tolerance": 0.0
+          },
+          "description": "m6502 design",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [
+            "datai",
+            "irq_n",
+            "nmi_n",
+            "sob_n",
+            "res_n",
+            "rdy"
+          ],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "m6502",
+          "outputs": [
+            "addr",
+            "datao",
+            "vpab",
+            "sync",
+            "we_n",
+            "oeb"
+          ],
+          "ports": [
+            {
+              "causality": "output",
+              "description": "uint16",
+              "name": "addr",
+              "type": "Integer",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "uint8",
+              "name": "datai",
+              "type": "Integer",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "output",
+              "description": "uint8",
+              "name": "datao",
+              "type": "Integer",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "bool",
+              "name": "irq_n",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "bool",
+              "name": "nmi_n",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "bool",
+              "name": "sob_n",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "bool",
+              "name": "res_n",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "bool",
+              "name": "rdy",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "output",
+              "description": "bool",
+              "name": "vpab",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "output",
+              "description": "bool",
+              "name": "sync",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "output",
+              "description": "bool",
+              "name": "we_n",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "output",
+              "description": "bool",
+              "name": "oeb",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            }
+          ],
+          "provenance": {
+            "path_to_fmu": "fmus/2.0/cs/linux64/EDALab_HIFSuite/2017.05_antlia/m6502/m6502.fmu",
+            "path_to_metadata": "fmus/2.0/cs/linux64/EDALab_HIFSuite/2017.05_antlia/m6502/m6502.metadata.json",
+            "source_path": "fmus/2.0/cs/linux64/EDALab_HIFSuite/2017.05_antlia/m6502/m6502.fmu",
+            "source_repo": "fmi-cross-check-master"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "fmu-002352",
+          "source_type": "benchmark_single_fmu",
+          "tags": [
+            "EDALab_HIFSuite",
+            "linux64"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_bench_fmu-002352",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": false,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "dataset_id": "fmu-002352",
+          "default_experiment": {
+            "startTime": 0.0,
+            "stepSize": 0.001,
+            "stopTime": 10,
+            "tolerance": 0.0
+          },
+          "description": "m6502 design",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [
+            "datai",
+            "irq_n",
+            "nmi_n",
+            "sob_n",
+            "res_n",
+            "rdy"
+          ],
+          "name": "m6502",
+          "outputs": [
+            "addr",
+            "datao",
+            "vpab",
+            "sync",
+            "we_n",
+            "oeb"
+          ],
+          "ports": [
+            {
+              "causality": "output",
+              "description": "uint16",
+              "name": "addr",
+              "type": "Integer",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "uint8",
+              "name": "datai",
+              "type": "Integer",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "output",
+              "description": "uint8",
+              "name": "datao",
+              "type": "Integer",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "bool",
+              "name": "irq_n",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "bool",
+              "name": "nmi_n",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "bool",
+              "name": "sob_n",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "bool",
+              "name": "res_n",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "input",
+              "description": "bool",
+              "name": "rdy",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "output",
+              "description": "bool",
+              "name": "vpab",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "output",
+              "description": "bool",
+              "name": "sync",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "output",
+              "description": "bool",
+              "name": "we_n",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "output",
+              "description": "bool",
+              "name": "oeb",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0.0,
+          "stepSize": 0.001,
+          "stopTime": 10,
+          "tolerance": 0.0
+        },
+        "source_type": "benchmark_single_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_bench_fmu-002352"
+    ],
+    "port_nodes": [
+      "asset_bench_fmu-002352.addr",
+      "asset_bench_fmu-002352.datai",
+      "asset_bench_fmu-002352.datao",
+      "asset_bench_fmu-002352.irq_n",
+      "asset_bench_fmu-002352.nmi_n",
+      "asset_bench_fmu-002352.sob_n",
+      "asset_bench_fmu-002352.res_n",
+      "asset_bench_fmu-002352.rdy",
+      "asset_bench_fmu-002352.vpab",
+      "asset_bench_fmu-002352.sync",
+      "asset_bench_fmu-002352.we_n",
+      "asset_bench_fmu-002352.oeb"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "output": "asset_bench_fmu-002352"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "semantic_only_no_bindings"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 0.7738710135746012,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 0.7738710135746012,
+      "final_cost": 0.7738710135746012,
+      "selected_fmus": [
+        "asset_bench_fmu-002352"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 0.7738710135746012,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "semantic_retrieval_only",
+    "structural_reasoning": false,
+    "selected_task_count": 1,
+    "failure_type": ""
+  }
+}

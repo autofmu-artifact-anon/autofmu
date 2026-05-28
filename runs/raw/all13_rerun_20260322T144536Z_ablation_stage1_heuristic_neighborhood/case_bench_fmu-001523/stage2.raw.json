@@ -1,0 +1,4531 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_neighborhood_0",
+        "objective": "Verify neighborhood behavior around output: Run the benchmark FMU FMICrossCheck.ControlledTemperature under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs TRes.",
+        "required_signals": [],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "output"
+        ],
+        "grounded_component_types": [
+          "OutputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": true,
+          "anchor_score": 2.0,
+          "anchor_reasons": [
+            "component_mentioned"
+          ]
+        }
+      }
+    ],
+    "rationale": "heuristic neighborhood raw task set",
+    "score": 0.5,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "heuristic_neighborhood_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 0.0,
+      "criteria_bonus": 0.0,
+      "final_score": 0.5
+    },
+    "meta": {
+      "generation_source": "heuristic_neighborhood_raw",
+      "generation_family": "heuristic",
+      "seed_components": [
+        "output"
+      ],
+      "expanded_components": [
+        "output"
+      ],
+      "anchor_trace": {
+        "output": {
+          "score": 2.0,
+          "reasons": [
+            "component_mentioned"
+          ]
+        }
+      },
+      "grounding_valid": true,
+      "selection_mode": "single_heuristic_neighborhood"
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_neighborhood_0",
+      "task_index": 0,
+      "fmu_uid": "asset_bench_fmu-001523",
+      "score": 6.232864847799896,
+      "cost": -5.232864847799896,
+      "hard_ok": true,
+      "semantic_cost": -5.232864847799896,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "transport_top_mass=1.000000"
+      ],
+      "grounded_components": [
+        "output"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_bench_fmu-001523",
+      "name": "FMICrossCheck.ControlledTemperature",
+      "description": "FMICrossCheck.ControlledTemperature",
+      "path": "dataset/assets/asset_bench_fmu-001523/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "ModelExchange"
+      ],
+      "ports": [
+        {
+          "name": "heatCapacitor.T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Temperature of element",
+          "dimensions": []
+        },
+        {
+          "name": "der(heatCapacitor.T)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "K/s",
+          "description": "Derivative of T",
+          "dimensions": []
+        },
+        {
+          "name": "TRes",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Resulting Temperature",
+          "dimensions": []
+        },
+        {
+          "name": "heatCapacitor.der_T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Time derivative of temperature (= der(T))",
+          "dimensions": []
+        },
+        {
+          "name": "heatCapacitor.port.Q_flow",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Heat flow rate (positive if flowing from outside into the component)",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Voltage drop between the two pins (= p.v - n.v)",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Current flowing from pin p to pin n",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.LossPower",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Loss power leaving component via heatPort",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.R",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Resistance = R_ref*(1 + alpha*(T_heatPort - T_ref))",
+          "dimensions": []
+        },
+        {
+          "name": "temperatureSensor.T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Absolute temperature in degree Celsius as output signal",
+          "dimensions": []
+        },
+        {
+          "name": "thermalConductor.Q_flow",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Heat flow rate from port_a -> port_b",
+          "dimensions": []
+        },
+        {
+          "name": "thermalConductor.dT",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "port_a.T - port_b.T",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Voltage drop between the two pins (= p.v - n.v)",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.LossPower",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Loss power leaving component via heatPort",
+          "dimensions": []
+        },
+        {
+          "name": "ramp.y",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Connector of Real output signal",
+          "dimensions": []
+        },
+        {
+          "name": "onOffController.y",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "Connector of Real output signal used as actuator signal",
+          "dimensions": []
+        },
+        {
+          "name": "TAmb",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Ambient Temperature",
+          "dimensions": []
+        },
+        {
+          "name": "TDif",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Error in Temperature",
+          "dimensions": []
+        },
+        {
+          "name": "constantVoltage.V",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Value of constant voltage",
+          "dimensions": []
+        },
+        {
+          "name": "heatCapacitor.C",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Heat capacity of element (= cp*m)",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.useHeatPort",
+          "causality": "local",
+          "variability": "fixed",
+          "type": "Boolean",
+          "unit": "",
+          "description": "=true, if heatPort is enabled",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.R_ref",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Resistance at temperature T_ref",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.T_ref",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Reference temperature",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.alpha",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Temperature coefficient of resistance (R = R_ref*(1 + alpha*(heatPort.T - T_ref))",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.T",
+          "causality": "calculatedParameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Fixed device temperature if useHeatPort = false",
+          "dimensions": []
+        },
+        {
+          "name": "fixedTemperature.T",
+          "causality": "calculatedParameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Fixed temperature at port",
+          "dimensions": []
+        },
+        {
+          "name": "thermalConductor.G",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Constant thermal conductance of material",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.Ron",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Closed switch resistance",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.Goff",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Opened switch conductance",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.useHeatPort",
+          "causality": "local",
+          "variability": "fixed",
+          "type": "Boolean",
+          "unit": "",
+          "description": "=true, if heatPort is enabled",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.T",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Fixed device temperature if useHeatPort = false",
+          "dimensions": []
+        },
+        {
+          "name": "ramp.height",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Height of ramps",
+          "dimensions": []
+        },
+        {
+          "name": "ramp.duration",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Duration of ramp (= 0.0 gives a Step)",
+          "dimensions": []
+        },
+        {
+          "name": "ramp.offset",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Offset of output signal",
+          "dimensions": []
+        },
+        {
+          "name": "ramp.startTime",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Output = offset for time < startTime",
+          "dimensions": []
+        },
+        {
+          "name": "onOffController.bandwidth",
+          "causality": "calculatedParameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "Bandwidth around reference signal",
+          "dimensions": []
+        },
+        {
+          "name": "onOffController.pre_y_start",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Boolean",
+          "unit": "",
+          "description": "Value of pre(y) at initial time",
+          "dimensions": []
+        },
+        {
+          "name": "logicalNot.y",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "Connector of Boolean output signal",
+          "dimensions": []
+        },
+        {
+          "name": "logicalNot.u",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "Connector of Boolean input signal",
+          "dimensions": []
+        },
+        {
+          "name": "onOffController.u",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Connector of Real input signal used as measurement signal",
+          "dimensions": []
+        },
+        {
+          "name": "onOffController.reference",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Connector of Real input signal used as reference signal",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.control",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "true => switch open, false => p--n connected",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.n.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Current flowing into the pin",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.n.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Potential at the pin",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.p.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Current flowing into the pin",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.p.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Potential at the pin",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Current flowing from pin p to pin n",
+          "dimensions": []
+        },
+        {
+          "name": "thermalConductor.port_b.Q_flow",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Heat flow rate (positive if flowing from outside into the component)",
+          "dimensions": []
+        },
+        {
+          "name": "thermalConductor.port_a.Q_flow",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Heat flow rate (positive if flowing from outside into the component)",
+          "dimensions": []
+        },
+        {
+          "name": "thermalConductor.port_a.T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Port temperature",
+          "dimensions": []
+        },
+        {
+          "name": "temperatureSensor.port.Q_flow",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Heat flow rate (positive if flowing from outside into the component)",
+          "dimensions": []
+        },
+        {
+          "name": "temperatureSensor.port.T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Port temperature",
+          "dimensions": []
+        },
+        {
+          "name": "fixedTemperature.port.Q_flow",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Heat flow rate (positive if flowing from outside into the component)",
+          "dimensions": []
+        },
+        {
+          "name": "fixedTemperature.port.T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Port temperature",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.heatPort.Q_flow",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Heat flow rate (positive if flowing from outside into the component)",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.heatPort.T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Port temperature",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.T_heatPort",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Temperature of heatPort",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.n.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Current flowing into the pin",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.n.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Potential at the pin",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.p.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Current flowing into the pin",
+          "dimensions": []
+        },
+        {
+          "name": "heatingResistor.p.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Potential at the pin",
+          "dimensions": []
+        },
+        {
+          "name": "heatCapacitor.port.T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Port temperature",
+          "dimensions": []
+        },
+        {
+          "name": "constantVoltage.n.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Current flowing into the pin",
+          "dimensions": []
+        },
+        {
+          "name": "constantVoltage.n.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Potential at the pin",
+          "dimensions": []
+        },
+        {
+          "name": "constantVoltage.p.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Current flowing into the pin",
+          "dimensions": []
+        },
+        {
+          "name": "constantVoltage.p.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Potential at the pin",
+          "dimensions": []
+        },
+        {
+          "name": "constantVoltage.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Current flowing from pin p to pin n",
+          "dimensions": []
+        },
+        {
+          "name": "constantVoltage.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Voltage drop between the two pins (= p.v - n.v)",
+          "dimensions": []
+        },
+        {
+          "name": "ground.p.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Current flowing into the pin",
+          "dimensions": []
+        },
+        {
+          "name": "ground.p.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Potential at the pin",
+          "dimensions": []
+        },
+        {
+          "name": "idealSwitch.T_heatPort",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Temperature of heatPort",
+          "dimensions": []
+        },
+        {
+          "name": "thermalConductor.port_b.T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "Port temperature",
+          "dimensions": []
+        }
+      ],
+      "inputs": [],
+      "outputs": [
+        "TRes"
+      ],
+      "tags": [
+        "SystemModeler",
+        "linux64"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": false,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": true,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_bench_fmu-001523",
+        "asset_json": {
+          "asset_id": "asset_bench_fmu-001523",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": true,
+            "can_handle_variable_communication_step_size": false,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_bench_fmu-001523"
+          ],
+          "default_experiment": {
+            "startTime": 0.0,
+            "stepSize": 0.0,
+            "stopTime": 10,
+            "tolerance": 1e-06
+          },
+          "description": "FMICrossCheck.ControlledTemperature",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "ModelExchange"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "FMICrossCheck.ControlledTemperature",
+          "outputs": [
+            "TRes"
+          ],
+          "ports": [
+            {
+              "causality": "local",
+              "description": "Temperature of element",
+              "name": "heatCapacitor.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Derivative of T",
+              "name": "der(heatCapacitor.T)",
+              "type": "Real",
+              "unit": "K/s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Resulting Temperature",
+              "name": "TRes",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Time derivative of temperature (= der(T))",
+              "name": "heatCapacitor.der_T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "heatCapacitor.port.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Voltage drop between the two pins (= p.v - n.v)",
+              "name": "heatingResistor.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing from pin p to pin n",
+              "name": "heatingResistor.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Loss power leaving component via heatPort",
+              "name": "heatingResistor.LossPower",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Resistance = R_ref*(1 + alpha*(T_heatPort - T_ref))",
+              "name": "heatingResistor.R",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Absolute temperature in degree Celsius as output signal",
+              "name": "temperatureSensor.T",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate from port_a -> port_b",
+              "name": "thermalConductor.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "port_a.T - port_b.T",
+              "name": "thermalConductor.dT",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Voltage drop between the two pins (= p.v - n.v)",
+              "name": "idealSwitch.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Loss power leaving component via heatPort",
+              "name": "idealSwitch.LossPower",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real output signal",
+              "name": "ramp.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real output signal used as actuator signal",
+              "name": "onOffController.y",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "parameter",
+              "description": "Ambient Temperature",
+              "name": "TAmb",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Error in Temperature",
+              "name": "TDif",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Value of constant voltage",
+              "name": "constantVoltage.V",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Heat capacity of element (= cp*m)",
+              "name": "heatCapacitor.C",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "local",
+              "description": "=true, if heatPort is enabled",
+              "name": "heatingResistor.useHeatPort",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Resistance at temperature T_ref",
+              "name": "heatingResistor.R_ref",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Reference temperature",
+              "name": "heatingResistor.T_ref",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Temperature coefficient of resistance (R = R_ref*(1 + alpha*(heatPort.T - T_ref))",
+              "name": "heatingResistor.alpha",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "calculatedParameter",
+              "description": "Fixed device temperature if useHeatPort = false",
+              "name": "heatingResistor.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "calculatedParameter",
+              "description": "Fixed temperature at port",
+              "name": "fixedTemperature.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Constant thermal conductance of material",
+              "name": "thermalConductor.G",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Closed switch resistance",
+              "name": "idealSwitch.Ron",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Opened switch conductance",
+              "name": "idealSwitch.Goff",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "local",
+              "description": "=true, if heatPort is enabled",
+              "name": "idealSwitch.useHeatPort",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Fixed device temperature if useHeatPort = false",
+              "name": "idealSwitch.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Height of ramps",
+              "name": "ramp.height",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Duration of ramp (= 0.0 gives a Step)",
+              "name": "ramp.duration",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Offset of output signal",
+              "name": "ramp.offset",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Output = offset for time < startTime",
+              "name": "ramp.startTime",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "calculatedParameter",
+              "description": "Bandwidth around reference signal",
+              "name": "onOffController.bandwidth",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Value of pre(y) at initial time",
+              "name": "onOffController.pre_y_start",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Boolean output signal",
+              "name": "logicalNot.y",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Boolean input signal",
+              "name": "logicalNot.u",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real input signal used as measurement signal",
+              "name": "onOffController.u",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real input signal used as reference signal",
+              "name": "onOffController.reference",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "true => switch open, false => p--n connected",
+              "name": "idealSwitch.control",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "idealSwitch.n.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "idealSwitch.n.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "idealSwitch.p.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "idealSwitch.p.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing from pin p to pin n",
+              "name": "idealSwitch.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "thermalConductor.port_b.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "thermalConductor.port_a.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "thermalConductor.port_a.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "temperatureSensor.port.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "temperatureSensor.port.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "fixedTemperature.port.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "fixedTemperature.port.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "heatingResistor.heatPort.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "heatingResistor.heatPort.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Temperature of heatPort",
+              "name": "heatingResistor.T_heatPort",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "heatingResistor.n.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "heatingResistor.n.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "heatingResistor.p.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "heatingResistor.p.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "heatCapacitor.port.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "constantVoltage.n.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "constantVoltage.n.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "constantVoltage.p.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "constantVoltage.p.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing from pin p to pin n",
+              "name": "constantVoltage.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Voltage drop between the two pins (= p.v - n.v)",
+              "name": "constantVoltage.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "ground.p.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "ground.p.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Temperature of heatPort",
+              "name": "idealSwitch.T_heatPort",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "thermalConductor.port_b.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            }
+          ],
+          "provenance": {
+            "path_to_fmu": "fmus/2.0/me/linux64/SystemModeler/5.0/FMICrossCheck.ControlledTemperature/FMICrossCheck.ControlledTemperature.fmu",
+            "path_to_metadata": "fmus/2.0/me/linux64/SystemModeler/5.0/FMICrossCheck.ControlledTemperature/FMICrossCheck.ControlledTemperature.metadata.json",
+            "source_path": "fmus/2.0/me/linux64/SystemModeler/5.0/ControlledTemperature/ControlledTemperature.fmu",
+            "source_repo": "fmi-cross-check-master"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "fmu-001523",
+          "source_type": "benchmark_single_fmu",
+          "tags": [
+            "SystemModeler",
+            "linux64"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_bench_fmu-001523",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": true,
+            "can_handle_variable_communication_step_size": false,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "dataset_id": "fmu-001523",
+          "default_experiment": {
+            "startTime": 0.0,
+            "stepSize": 0.0,
+            "stopTime": 10,
+            "tolerance": 1e-06
+          },
+          "description": "FMICrossCheck.ControlledTemperature",
+          "fmi_types": [
+            "ModelExchange"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [],
+          "name": "FMICrossCheck.ControlledTemperature",
+          "outputs": [
+            "TRes"
+          ],
+          "ports": [
+            {
+              "causality": "local",
+              "description": "Temperature of element",
+              "name": "heatCapacitor.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Derivative of T",
+              "name": "der(heatCapacitor.T)",
+              "type": "Real",
+              "unit": "K/s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Resulting Temperature",
+              "name": "TRes",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Time derivative of temperature (= der(T))",
+              "name": "heatCapacitor.der_T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "heatCapacitor.port.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Voltage drop between the two pins (= p.v - n.v)",
+              "name": "heatingResistor.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing from pin p to pin n",
+              "name": "heatingResistor.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Loss power leaving component via heatPort",
+              "name": "heatingResistor.LossPower",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Resistance = R_ref*(1 + alpha*(T_heatPort - T_ref))",
+              "name": "heatingResistor.R",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Absolute temperature in degree Celsius as output signal",
+              "name": "temperatureSensor.T",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate from port_a -> port_b",
+              "name": "thermalConductor.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "port_a.T - port_b.T",
+              "name": "thermalConductor.dT",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Voltage drop between the two pins (= p.v - n.v)",
+              "name": "idealSwitch.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Loss power leaving component via heatPort",
+              "name": "idealSwitch.LossPower",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real output signal",
+              "name": "ramp.y",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real output signal used as actuator signal",
+              "name": "onOffController.y",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "parameter",
+              "description": "Ambient Temperature",
+              "name": "TAmb",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Error in Temperature",
+              "name": "TDif",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Value of constant voltage",
+              "name": "constantVoltage.V",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Heat capacity of element (= cp*m)",
+              "name": "heatCapacitor.C",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "local",
+              "description": "=true, if heatPort is enabled",
+              "name": "heatingResistor.useHeatPort",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Resistance at temperature T_ref",
+              "name": "heatingResistor.R_ref",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Reference temperature",
+              "name": "heatingResistor.T_ref",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Temperature coefficient of resistance (R = R_ref*(1 + alpha*(heatPort.T - T_ref))",
+              "name": "heatingResistor.alpha",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "calculatedParameter",
+              "description": "Fixed device temperature if useHeatPort = false",
+              "name": "heatingResistor.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "calculatedParameter",
+              "description": "Fixed temperature at port",
+              "name": "fixedTemperature.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Constant thermal conductance of material",
+              "name": "thermalConductor.G",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Closed switch resistance",
+              "name": "idealSwitch.Ron",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Opened switch conductance",
+              "name": "idealSwitch.Goff",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "local",
+              "description": "=true, if heatPort is enabled",
+              "name": "idealSwitch.useHeatPort",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Fixed device temperature if useHeatPort = false",
+              "name": "idealSwitch.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Height of ramps",
+              "name": "ramp.height",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Duration of ramp (= 0.0 gives a Step)",
+              "name": "ramp.duration",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Offset of output signal",
+              "name": "ramp.offset",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Output = offset for time < startTime",
+              "name": "ramp.startTime",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "calculatedParameter",
+              "description": "Bandwidth around reference signal",
+              "name": "onOffController.bandwidth",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Value of pre(y) at initial time",
+              "name": "onOffController.pre_y_start",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Boolean output signal",
+              "name": "logicalNot.y",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Boolean input signal",
+              "name": "logicalNot.u",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real input signal used as measurement signal",
+              "name": "onOffController.u",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Connector of Real input signal used as reference signal",
+              "name": "onOffController.reference",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "true => switch open, false => p--n connected",
+              "name": "idealSwitch.control",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "idealSwitch.n.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "idealSwitch.n.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "idealSwitch.p.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "idealSwitch.p.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing from pin p to pin n",
+              "name": "idealSwitch.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "thermalConductor.port_b.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "thermalConductor.port_a.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "thermalConductor.port_a.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "temperatureSensor.port.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "temperatureSensor.port.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "fixedTemperature.port.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "fixedTemperature.port.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Heat flow rate (positive if flowing from outside into the component)",
+              "name": "heatingResistor.heatPort.Q_flow",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "heatingResistor.heatPort.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Temperature of heatPort",
+              "name": "heatingResistor.T_heatPort",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "heatingResistor.n.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "heatingResistor.n.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "heatingResistor.p.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "heatingResistor.p.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "heatCapacitor.port.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "constantVoltage.n.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "constantVoltage.n.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "constantVoltage.p.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "constantVoltage.p.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing from pin p to pin n",
+              "name": "constantVoltage.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Voltage drop between the two pins (= p.v - n.v)",
+              "name": "constantVoltage.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Current flowing into the pin",
+              "name": "ground.p.i",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Potential at the pin",
+              "name": "ground.p.v",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Temperature of heatPort",
+              "name": "idealSwitch.T_heatPort",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "local",
+              "description": "Port temperature",
+              "name": "thermalConductor.port_b.T",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0.0,
+          "stepSize": 0.0,
+          "stopTime": 10,
+          "tolerance": 1e-06
+        },
+        "source_type": "benchmark_single_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_bench_fmu-001523"
+    ],
+    "port_nodes": [
+      "asset_bench_fmu-001523.heatCapacitor.T",
+      "asset_bench_fmu-001523.der(heatCapacitor.T)",
+      "asset_bench_fmu-001523.TRes",
+      "asset_bench_fmu-001523.heatCapacitor.der_T",
+      "asset_bench_fmu-001523.heatCapacitor.port.Q_flow",
+      "asset_bench_fmu-001523.heatingResistor.v",
+      "asset_bench_fmu-001523.heatingResistor.i",
+      "asset_bench_fmu-001523.heatingResistor.LossPower",
+      "asset_bench_fmu-001523.heatingResistor.R",
+      "asset_bench_fmu-001523.temperatureSensor.T",
+      "asset_bench_fmu-001523.thermalConductor.Q_flow",
+      "asset_bench_fmu-001523.thermalConductor.dT",
+      "asset_bench_fmu-001523.idealSwitch.v",
+      "asset_bench_fmu-001523.idealSwitch.LossPower",
+      "asset_bench_fmu-001523.ramp.y",
+      "asset_bench_fmu-001523.onOffController.y",
+      "asset_bench_fmu-001523.TAmb",
+      "asset_bench_fmu-001523.TDif",
+      "asset_bench_fmu-001523.constantVoltage.V",
+      "asset_bench_fmu-001523.heatCapacitor.C",
+      "asset_bench_fmu-001523.heatingResistor.useHeatPort",
+      "asset_bench_fmu-001523.heatingResistor.R_ref",
+      "asset_bench_fmu-001523.heatingResistor.T_ref",
+      "asset_bench_fmu-001523.heatingResistor.alpha",
+      "asset_bench_fmu-001523.heatingResistor.T",
+      "asset_bench_fmu-001523.fixedTemperature.T",
+      "asset_bench_fmu-001523.thermalConductor.G",
+      "asset_bench_fmu-001523.idealSwitch.Ron",
+      "asset_bench_fmu-001523.idealSwitch.Goff",
+      "asset_bench_fmu-001523.idealSwitch.useHeatPort",
+      "asset_bench_fmu-001523.idealSwitch.T",
+      "asset_bench_fmu-001523.ramp.height",
+      "asset_bench_fmu-001523.ramp.duration",
+      "asset_bench_fmu-001523.ramp.offset",
+      "asset_bench_fmu-001523.ramp.startTime",
+      "asset_bench_fmu-001523.onOffController.bandwidth",
+      "asset_bench_fmu-001523.onOffController.pre_y_start",
+      "asset_bench_fmu-001523.logicalNot.y",
+      "asset_bench_fmu-001523.logicalNot.u",
+      "asset_bench_fmu-001523.onOffController.u",
+      "asset_bench_fmu-001523.onOffController.reference",
+      "asset_bench_fmu-001523.idealSwitch.control",
+      "asset_bench_fmu-001523.idealSwitch.n.i",
+      "asset_bench_fmu-001523.idealSwitch.n.v",
+      "asset_bench_fmu-001523.idealSwitch.p.i",
+      "asset_bench_fmu-001523.idealSwitch.p.v",
+      "asset_bench_fmu-001523.idealSwitch.i",
+      "asset_bench_fmu-001523.thermalConductor.port_b.Q_flow",
+      "asset_bench_fmu-001523.thermalConductor.port_a.Q_flow",
+      "asset_bench_fmu-001523.thermalConductor.port_a.T",
+      "asset_bench_fmu-001523.temperatureSensor.port.Q_flow",
+      "asset_bench_fmu-001523.temperatureSensor.port.T",
+      "asset_bench_fmu-001523.fixedTemperature.port.Q_flow",
+      "asset_bench_fmu-001523.fixedTemperature.port.T",
+      "asset_bench_fmu-001523.heatingResistor.heatPort.Q_flow",
+      "asset_bench_fmu-001523.heatingResistor.heatPort.T",
+      "asset_bench_fmu-001523.heatingResistor.T_heatPort",
+      "asset_bench_fmu-001523.heatingResistor.n.i",
+      "asset_bench_fmu-001523.heatingResistor.n.v",
+      "asset_bench_fmu-001523.heatingResistor.p.i",
+      "asset_bench_fmu-001523.heatingResistor.p.v",
+      "asset_bench_fmu-001523.heatCapacitor.port.T",
+      "asset_bench_fmu-001523.constantVoltage.n.i",
+      "asset_bench_fmu-001523.constantVoltage.n.v",
+      "asset_bench_fmu-001523.constantVoltage.p.i",
+      "asset_bench_fmu-001523.constantVoltage.p.v",
+      "asset_bench_fmu-001523.constantVoltage.i",
+      "asset_bench_fmu-001523.constantVoltage.v",
+      "asset_bench_fmu-001523.ground.p.i",
+      "asset_bench_fmu-001523.ground.p.v",
+      "asset_bench_fmu-001523.idealSwitch.T_heatPort",
+      "asset_bench_fmu-001523.thermalConductor.port_b.T"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "output": "asset_bench_fmu-001523"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "status": "ok",
+      "note": "no_required_signal_chains",
+      "routing_failure_count": 0
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "assignment": [
+        {
+          "task_id": "task_neighborhood_0",
+          "task_index": 0,
+          "fmu_uid": "asset_bench_fmu-001523",
+          "semantic_cost": -5.232864847799896,
+          "transport_mass": 1.0
+        }
+      ],
+      "closure_failure": null,
+      "failure_type": "",
+      "failure_class": "",
+      "revision_eligible": false
+    }
+  ],
+  "final_cost": -5.232864847799896,
+  "transport_plans": [
+    {
+      "revision": 0,
+      "objective": -5.232864847799896,
+      "cost_matrix": [
+        [
+          -0.6564905744457841,
+          -0.6194504069096866,
+          -0.6352913367300187,
+          -0.6314861520263315,
+          -5.232864847799896,
+          -0.6353229824649216,
+          -0.6165317411830457,
+          -0.6176733218839758,
+          -0.625762363986428,
+          -0.6210951740524074,
+          -0.6566130368971731,
+          -0.6194864464810088,
+          -0.6355903716135567,
+          -0.6319348555098387,
+          -1.0496420686507197,
+          -0.6105951293079127,
+          -0.6041568350929671,
+          -1.0496420686507197,
+          -0.6105951293079127,
+          -0.6041568350929671,
+          -1.0766886848077521,
+          -0.6047549312071203,
+          -0.6027748797174344,
+          -1.0766886848077521,
+          -0.6047549312071203,
+          -0.6027748797174344,
+          -1.0779005437612177,
+          -0.6053408793202028,
+          -0.6027748797174344,
+          -1.0485928061508019,
+          -1.0771427875198774,
+          -0.6055299729202468,
+          -0.603894953865199,
+          -1.0747726746791537,
+          -0.6050029654843245,
+          -0.6027025680786011,
+          -1.0745628450529667,
+          -0.6049882798794225,
+          -0.6027025680786011,
+          -0.6064059803505409,
+          -0.6029663313166435,
+          -0.6053632217969558,
+          -0.6042819068843932,
+          -0.6016725574501463,
+          -0.6099553462211486,
+          -0.6579180262902508,
+          -0.6017946484417369,
+          -0.6095750701566548,
+          -0.6172463068530836,
+          -0.6565388429052259,
+          -0.6194646159300542,
+          -0.6354085300243053,
+          -0.6316610861378892,
+          -0.6565040206664662,
+          -0.6194543656692348,
+          -0.6353238965863596,
+          -0.6315346370027085,
+          -0.6296804618449624,
+          -0.6564905744457841,
+          -0.6194504069096866,
+          -0.6352913367300187,
+          -0.6314861520263315,
+          -0.6296801919282209,
+          -0.6296805463819136,
+          -0.6163958169894581,
+          -0.6176510052557329,
+          -0.625604775402996,
+          -0.6208149211680261,
+          -0.6565320053803142,
+          -0.6194626034556133,
+          -0.6353918761835599,
+          -0.6319385309517397,
+          -1.0496430074929748,
+          -0.6161333807826936,
+          -0.6041568371806666,
+          -1.0496430074929748,
+          -0.6161333807826936,
+          -0.6041568371806666,
+          -1.0766888499967076,
+          -0.6054056910406033,
+          -0.6027748805495661,
+          -1.0766888499967076,
+          -0.6054056910406033,
+          -0.6027748805495661,
+          -1.0779007760516301,
+          -0.6053408797279721,
+          -0.6027748805495661,
+          -1.0485928837916145,
+          -1.077142950579819,
+          -0.6062960989454499,
+          -0.6038949549297543,
+          -1.0747728407946342,
+          -0.6057136378387661,
+          -0.6027025688473588,
+          -1.0745630051091417,
+          -0.6056929797050846,
+          -0.6027025688473588,
+          -0.6296807934222372,
+          -0.6069866732305179,
+          -0.6031613709704946,
+          -0.6061770103498298,
+          -0.605321265694092,
+          -0.6024246904539909,
+          -0.610238500048745,
+          -0.6003852270645461,
+          -0.6209722376421337,
+          -0.6004813911040976,
+          -0.6146264186055823,
+          -0.658163377557116,
+          -0.6017947701874719,
+          -0.609630085243194,
+          -0.6172465992054489,
+          -0.6565040206664662,
+          -0.6194543656692348,
+          -0.6353238965863596,
+          -0.6315346370027085,
+          -0.6296804618449624,
+          -0.6564905744457841,
+          -0.6194504069096866,
+          -0.6352913367300187,
+          -0.6314861520263315,
+          -0.6252409065506418,
+          -0.6252409065506418,
+          -0.6252410195623281,
+          -0.6252410195623281,
+          -0.6252411884206385,
+          -0.6252411884206385,
+          -0.6252409065506418,
+          -0.6252409065506418,
+          -0.6252410195623281,
+          -0.6252410195623281,
+          -0.6252409065506418,
+          -0.6252409065506418,
+          -0.6252410195623281,
+          -0.6252410195623281,
+          -0.6252410343941193,
+          -0.6252410343941193,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "transport_matrix": [
+        [
+          1.7787631312392796e-40,
+          8.47991134331739e-41,
+          1.1640828204463283e-40,
+          1.0787789549825285e-40,
+          1.0,
+          1.1648198187770661e-40,
+          7.999081162682665e-41,
+          8.183813945325059e-41,
+          9.620912710096086e-41,
+          8.763499730741515e-41,
+          1.7831251047082185e-40,
+          8.486025794067786e-41,
+          1.171065708315658e-40,
+          1.0885035618697786e-40,
+          4.623688937457515e-37,
+          7.103548464406417e-41,
+          6.245296113943348e-41,
+          4.623688937457515e-37,
+          7.103548464406417e-41,
+          6.245296113943348e-41,
+          7.94168270936297e-37,
+          6.320450459779439e-41,
+          6.075045331090329e-41,
+          7.94168270936297e-37,
+          6.320450459779439e-41,
+          6.075045331090329e-41,
+          8.136518289957946e-37,
+          6.394955287155299e-41,
+          6.075045331090329e-41,
+          4.527670676485787e-37,
+          8.014138026033048e-37,
+          6.419185979310759e-41,
+          6.212671111002362e-41,
+          7.643112980456623e-37,
+          6.351882123851227e-41,
+          6.066265751600822e-41,
+          7.611105158532996e-37,
+          6.350016773177555e-41,
+          6.066265751600822e-41,
+          6.532642053083462e-41,
+          6.098351465460101e-41,
+          6.397813508502015e-41,
+          6.26093787667924e-41,
+          5.942577761144032e-41,
+          7.013232917001887e-41,
+          1.8302769415227634e-40,
+          5.957106196064763e-41,
+          6.960095948052639e-41,
+          8.11421931655696e-41,
+          1.7804811234753742e-40,
+          8.482321510422127e-41,
+          1.1668144745221499e-40,
+          1.0825598699969806e-40,
+          1.7792415483975072e-40,
+          8.480582768497094e-41,
+          1.1648411147071017e-40,
+          1.0798255537866721e-40,
+          1.0405152265923752e-40,
+          1.7787631312392796e-40,
+          8.47991134331739e-41,
+          1.1640828204463283e-40,
+          1.0787789549825285e-40,
+          1.0405096095579573e-40,
+          1.0405169858335633e-40,
+          7.977365320010663e-41,
+          8.180162057695293e-41,
+          9.590637525286767e-41,
+          8.714517212364665e-41,
+          1.7802376584420144e-40,
+          8.481980108188011e-41,
+          1.16642590038951e-40,
+          1.088583579442749e-40,
+          4.623775756563555e-37,
+          7.935604022757763e-41,
+          6.2452963747094e-41,
+          4.623775756563555e-37,
+          7.935604022757763e-41,
+          6.2452963747094e-41,
+          7.941708946971743e-37,
+          6.403250023035846e-41,
+          6.075045432195064e-41,
+          7.941708946971743e-37,
+          6.403250023035846e-41,
+          6.075045432195064e-41,
+          8.136556090749523e-37,
+          6.394955339308694e-41,
+          6.075045432195064e-41,
+          4.527677707131818e-37,
+          8.014164161773197e-37,
+          6.518301498702648e-41,
+          6.212671243276968e-41,
+          7.643138373286506e-37,
+          6.442808925209844e-41,
+          6.066265844870568e-41,
+          7.611129522659614e-37,
+          6.440147546877609e-41,
+          6.066265844870568e-41,
+          1.0405221268393265e-40,
+          6.608953505055434e-41,
+          6.12218632985194e-41,
+          6.502794865239074e-41,
+          6.392447213871694e-41,
+          6.032645670470995e-41,
+          7.053062063194615e-41,
+          5.791529378376842e-41,
+          8.741979134265321e-41,
+          5.802678833910977e-41,
+          7.699999230076736e-41,
+          1.8392802284619008e-40,
+          5.957120701127817e-41,
+          6.967758368384753e-41,
+          8.114266760919851e-41,
+          1.7792415483975072e-40,
+          8.480582768497094e-41,
+          1.1648411147071017e-40,
+          1.0798255537866721e-40,
+          1.0405152265923752e-40,
+          1.7787631312392796e-40,
+          8.47991134331739e-41,
+          1.1640828204463283e-40,
+          1.0787789549825285e-40,
+          9.521096186076424e-41,
+          9.521096186076424e-41,
+          9.521117706003472e-41,
+          9.521117706003472e-41,
+          9.52114986045462e-41,
+          9.52114986045462e-41,
+          9.521096186076424e-41,
+          9.521096186076424e-41,
+          9.521117706003472e-41,
+          9.521117706003472e-41,
+          9.521096186076424e-41,
+          9.521096186076424e-41,
+          9.521117706003472e-41,
+          9.521117706003472e-41,
+          9.52112053030843e-41,
+          9.52112053030843e-41,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "iterations": 2,
+      "converged": true,
+      "epsilon": 0.05
+    }
+  ],
+  "mask_history": [
+    {
+      "revision": 0,
+      "finite_pairs": 137,
+      "blocked_pairs": 44,
+      "mask_matrix": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "mask_explanations": [
+        [
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          },
+          {
+            "mask_value": 0.0,
+            "checks": {
+              "signal_support": true,
+              "component_role_compatibility": true,
+              "topology_predicate": true,
+              "fmi_contract_feasibility": true
+            },
+            "reasons": []
+          }
+        ]
+      ],
+      "applied_exclusion_pair": null,
+      "exclusion_reason": null
+    }
+  ],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": -5.232864847799896,
+      "final_cost": -5.232864847799896,
+      "selected_fmus": [
+        "asset_bench_fmu-001523"
+      ],
+      "discrepancy_count": 0
+    }
+  ],
+  "selected_task_set_cost": -5.232864847799896,
+  "diagnostics": {
+    "status": "ok",
+    "revisions": 1,
+    "objective_kind": "fused_transport"
+  }
+}

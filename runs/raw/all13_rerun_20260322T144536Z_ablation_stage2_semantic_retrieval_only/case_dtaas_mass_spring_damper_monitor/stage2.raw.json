@@ -1,0 +1,957 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_monolithic",
+        "objective": "Mass Spring Damper with Monitor. Mass-spring-damper co-simulation extended with generated monitor FMU and two RtI instances.. Scenario time window 0s to 10s. Si",
+        "required_signals": [
+          "x2",
+          "v2",
+          "y",
+          "output"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "x2",
+            "direction": "in",
+            "component_hint": "m2",
+            "port_hint": "m2.x2",
+            "unit_hint": "",
+            "type_hint": "Integer",
+            "role": "driven",
+            "source_text": "x2",
+            "grounded_component_ref": "m2",
+            "grounded_port_ref": "m2.x2"
+          },
+          {
+            "signal_name": "x2",
+            "direction": "out",
+            "component_hint": "msd2",
+            "port_hint": "msd2.x2",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "x2",
+            "grounded_component_ref": "msd2",
+            "grounded_port_ref": "msd2.x2"
+          },
+          {
+            "signal_name": "v2",
+            "direction": "out",
+            "component_hint": "msd2",
+            "port_hint": "msd2.v2",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "v2",
+            "grounded_component_ref": "msd2",
+            "grounded_port_ref": "msd2.v2"
+          },
+          {
+            "signal_name": "y",
+            "direction": "out",
+            "component_hint": "rti1",
+            "port_hint": "rti1.y",
+            "unit_hint": "",
+            "type_hint": "Integer",
+            "role": "observed",
+            "source_text": "y",
+            "grounded_component_ref": "rti1",
+            "grounded_port_ref": "rti1.y"
+          },
+          {
+            "signal_name": "y",
+            "direction": "out",
+            "component_hint": "rti2",
+            "port_hint": "rti2.y",
+            "unit_hint": "",
+            "type_hint": "Integer",
+            "role": "observed",
+            "source_text": "y",
+            "grounded_component_ref": "rti2",
+            "grounded_port_ref": "rti2.y"
+          },
+          {
+            "signal_name": "output",
+            "direction": "out",
+            "component_hint": "m2",
+            "port_hint": "m2.output",
+            "unit_hint": "",
+            "type_hint": "Integer",
+            "role": "observed",
+            "source_text": "output",
+            "grounded_component_ref": "m2",
+            "grounded_port_ref": "m2.output"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 10.0,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "m2",
+          "msd2",
+          "rti1",
+          "rti2"
+        ],
+        "grounded_component_types": [
+          "EuFbkNurvM2",
+          "Massspringdamper2",
+          "Rti"
+        ],
+        "grounded_ports": [
+          "x2",
+          "v2",
+          "y",
+          "output"
+        ],
+        "task_trace": {
+          "components": [
+            "m2",
+            "msd2",
+            "rti1",
+            "rti2"
+          ],
+          "ports": [
+            "x2",
+            "v2",
+            "y",
+            "output"
+          ],
+          "signals": [
+            "x2",
+            "v2",
+            "y",
+            "output"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 4,
+          "grounded_signal_count": 4,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": [
+            "dropped_components_without_signal_support"
+          ]
+        }
+      },
+      {
+        "task_id": "case_structure_hint_task_0",
+        "objective": "Preserve structural signal path msd1.x1 -> msd2.x1",
+        "required_signals": [
+          "x1",
+          "x1"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "msd1",
+          "msd2"
+        ],
+        "grounded_component_types": [],
+        "grounded_ports": [
+          "msd1.x1",
+          "msd2.x1"
+        ],
+        "task_trace": {
+          "notes": [
+            "case_structure_hints"
+          ],
+          "structure_hint": {
+            "source_component": "msd1",
+            "source_signal": "x1",
+            "target_component": "msd2",
+            "target_signal": "x1"
+          }
+        },
+        "diagnostics": {
+          "case_structure_hint": true,
+          "case_structure_hint_reason": "Preserve the physical displacement coupling between the two masses."
+        }
+      },
+      {
+        "task_id": "case_structure_hint_task_1",
+        "objective": "Preserve structural signal path msd1.x1 -> rti1.u",
+        "required_signals": [
+          "x1",
+          "u"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "msd1",
+          "rti1"
+        ],
+        "grounded_component_types": [],
+        "grounded_ports": [
+          "msd1.x1",
+          "rti1.u"
+        ],
+        "task_trace": {
+          "notes": [
+            "case_structure_hints"
+          ],
+          "structure_hint": {
+            "source_component": "msd1",
+            "source_signal": "x1",
+            "target_component": "rti1",
+            "target_signal": "u"
+          }
+        },
+        "diagnostics": {
+          "case_structure_hint": true,
+          "case_structure_hint_reason": "Feed the first RtI helper from the first mass displacement."
+        }
+      }
+    ],
+    "rationale": "rule-generated holistic raw task set",
+    "score": 0.45554051796157063,
+    "p_value": 0.2857142857142857,
+    "task_set_id": "taskset_2",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_2",
+        "source_component": "rti1",
+        "target_component": "m2",
+        "signals": [
+          "y",
+          "x1"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "rti1",
+            "source_signal": "y",
+            "target_component": "m2",
+            "target_signal": "x1",
+            "must_route": true,
+            "semantic_intent": "rti1.y -> m2.x1",
+            "adjacency_evidence": {
+              "source_component": "rti1",
+              "target_component": "m2"
+            }
+          }
+        ],
+        "semantic_intent": "rti1.y -> m2.x1",
+        "details": {
+          "source_signal": "y",
+          "target_signal": "x1"
+        }
+      },
+      {
+        "chain_id": "chain_5",
+        "source_component": "msd2",
+        "target_component": "rti2",
+        "signals": [
+          "x2",
+          "u"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_5_seg_0",
+            "source_component": "msd2",
+            "source_signal": "x2",
+            "target_component": "rti2",
+            "target_signal": "u",
+            "must_route": true,
+            "semantic_intent": "msd2.x2 -> rti2.u",
+            "adjacency_evidence": {
+              "source_component": "msd2",
+              "target_component": "rti2"
+            }
+          }
+        ],
+        "semantic_intent": "msd2.x2 -> rti2.u",
+        "details": {
+          "source_signal": "x2",
+          "target_signal": "u"
+        }
+      },
+      {
+        "chain_id": "chain_6",
+        "source_component": "rti2",
+        "target_component": "m2",
+        "signals": [
+          "y",
+          "x2"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_6_seg_0",
+            "source_component": "rti2",
+            "source_signal": "y",
+            "target_component": "m2",
+            "target_signal": "x2",
+            "must_route": true,
+            "semantic_intent": "rti2.y -> m2.x2",
+            "adjacency_evidence": {
+              "source_component": "rti2",
+              "target_component": "m2"
+            }
+          }
+        ],
+        "semantic_intent": "rti2.y -> m2.x2",
+        "details": {
+          "source_signal": "y",
+          "target_signal": "x2"
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_0",
+        "source_component": "msd1",
+        "target_component": "msd2",
+        "signals": [
+          "x1",
+          "x1"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_0_seg_0",
+            "source_component": "msd1",
+            "source_signal": "x1",
+            "target_component": "msd2",
+            "target_signal": "x1",
+            "must_route": true,
+            "semantic_intent": "msd1.x1 -> msd2.x1",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve the physical displacement coupling between the two masses."
+            }
+          }
+        ],
+        "semantic_intent": "msd1.x1 -> msd2.x1",
+        "details": {
+          "source_signal": "x1",
+          "target_signal": "x1",
+          "source": "case_structure_hints",
+          "rationale": "Preserve the physical displacement coupling between the two masses."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_1",
+        "source_component": "msd1",
+        "target_component": "rti1",
+        "signals": [
+          "x1",
+          "u"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_1_seg_0",
+            "source_component": "msd1",
+            "source_signal": "x1",
+            "target_component": "rti1",
+            "target_signal": "u",
+            "must_route": true,
+            "semantic_intent": "msd1.x1 -> rti1.u",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Feed the first RtI helper from the first mass displacement."
+            }
+          }
+        ],
+        "semantic_intent": "msd1.x1 -> rti1.u",
+        "details": {
+          "source_signal": "x1",
+          "target_signal": "u",
+          "source": "case_structure_hints",
+          "rationale": "Feed the first RtI helper from the first mass displacement."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_3",
+        "source_component": "msd1",
+        "target_component": "msd2",
+        "signals": [
+          "v1",
+          "v1"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_3_seg_0",
+            "source_component": "msd1",
+            "source_signal": "v1",
+            "target_component": "msd2",
+            "target_signal": "v1",
+            "must_route": true,
+            "semantic_intent": "msd1.v1 -> msd2.v1",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve the physical velocity coupling between the two masses."
+            }
+          }
+        ],
+        "semantic_intent": "msd1.v1 -> msd2.v1",
+        "details": {
+          "source_signal": "v1",
+          "target_signal": "v1",
+          "source": "case_structure_hints",
+          "rationale": "Preserve the physical velocity coupling between the two masses."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_4",
+        "source_component": "msd2",
+        "target_component": "msd1",
+        "signals": [
+          "fk",
+          "fk"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_4_seg_0",
+            "source_component": "msd2",
+            "source_signal": "fk",
+            "target_component": "msd1",
+            "target_signal": "fk",
+            "must_route": true,
+            "semantic_intent": "msd2.fk -> msd1.fk",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve the feedback force from the second mass."
+            }
+          }
+        ],
+        "semantic_intent": "msd2.fk -> msd1.fk",
+        "details": {
+          "source_signal": "fk",
+          "target_signal": "fk",
+          "source": "case_structure_hints",
+          "rationale": "Preserve the feedback force from the second mass."
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.2857142857142857,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.5444594820384294,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 0.8,
+      "signal_coverage": 0.4444444444444444,
+      "criteria_coverage": 0.0,
+      "constraint_completeness": 0.0,
+      "regime_coverage": 1.0,
+      "topology_alignment": 0.14285714285714285,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.07017543859649122,
+      "final_score": 0.45554051796157063
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "required_chain_count": 7,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_monolithic:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.2857142857142857,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.5444594820384294,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "case_structure_hints_applied": true,
+      "case_structure_hint_chain_count": 4,
+      "case_structure_hint_task_count": 2
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_monolithic",
+      "task_index": 0,
+      "fmu_uid": "asset_dtaas_mass_spring_damper_monitor__msd2",
+      "score": 0.6793218958827559,
+      "cost": 0.32067810411724407,
+      "hard_ok": true,
+      "semantic_cost": 0.32067810411724407,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "m2",
+        "msd2",
+        "rti1",
+        "rti2"
+      ]
+    },
+    {
+      "task_id": "case_structure_hint_task_0",
+      "task_index": 1,
+      "fmu_uid": "asset_dtaas_mass_spring_damper__msd1",
+      "score": 0.2715645233890177,
+      "cost": 0.7284354766109823,
+      "hard_ok": true,
+      "semantic_cost": 0.7284354766109823,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "msd1",
+        "msd2"
+      ]
+    },
+    {
+      "task_id": "case_structure_hint_task_1",
+      "task_index": 2,
+      "fmu_uid": "asset_dtaas_mass_spring_damper_monitor__rti1",
+      "score": 0.25357059905711143,
+      "cost": 0.7464294009428886,
+      "hard_ok": true,
+      "semantic_cost": 0.7464294009428886,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "msd1",
+        "rti1"
+      ]
+    }
+  ],
+  "selected_fmus": [],
+  "graph": {
+    "nodes": [
+      "asset_dtaas_mass_spring_damper_monitor__msd2",
+      "asset_dtaas_mass_spring_damper__msd1",
+      "asset_dtaas_mass_spring_damper_monitor__rti1"
+    ],
+    "port_nodes": [
+      "asset_dtaas_mass_spring_damper_monitor__msd2.fk",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.x1",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.v1",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.c2",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.d2",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.cc",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.dc",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.m2",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.x2",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.x2_initial",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.v2_dot",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.v2",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.v2_initial",
+      "asset_dtaas_mass_spring_damper__msd1.fk",
+      "asset_dtaas_mass_spring_damper__msd1.c1",
+      "asset_dtaas_mass_spring_damper__msd1.d1",
+      "asset_dtaas_mass_spring_damper__msd1.m1",
+      "asset_dtaas_mass_spring_damper__msd1.x1",
+      "asset_dtaas_mass_spring_damper__msd1.x1_initial",
+      "asset_dtaas_mass_spring_damper__msd1.v1_dot",
+      "asset_dtaas_mass_spring_damper__msd1.v1",
+      "asset_dtaas_mass_spring_damper__msd1.v1_initial",
+      "asset_dtaas_mass_spring_damper_monitor__rti1.gain.y",
+      "asset_dtaas_mass_spring_damper_monitor__rti1.u",
+      "asset_dtaas_mass_spring_damper_monitor__rti1.gain.k",
+      "asset_dtaas_mass_spring_damper_monitor__rti1.gain.u",
+      "asset_dtaas_mass_spring_damper_monitor__rti1.realToInteger.u",
+      "asset_dtaas_mass_spring_damper_monitor__rti1.y",
+      "asset_dtaas_mass_spring_damper_monitor__rti1.realToInteger.y"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "m2": "asset_dtaas_mass_spring_damper_monitor__msd2",
+      "msd2": "asset_dtaas_mass_spring_damper_monitor__msd2",
+      "rti1": "asset_dtaas_mass_spring_damper_monitor__msd2",
+      "rti2": "asset_dtaas_mass_spring_damper_monitor__msd2",
+      "msd1": "asset_dtaas_mass_spring_damper__msd1"
+    },
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_2",
+        "source_component": "rti1",
+        "target_component": "m2",
+        "signals": [
+          "y",
+          "x1"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "rti1",
+            "source_signal": "y",
+            "target_component": "m2",
+            "target_signal": "x1",
+            "must_route": true,
+            "semantic_intent": "rti1.y -> m2.x1",
+            "adjacency_evidence": {
+              "source_component": "rti1",
+              "target_component": "m2"
+            }
+          }
+        ],
+        "semantic_intent": "rti1.y -> m2.x1",
+        "details": {
+          "source_signal": "y",
+          "target_signal": "x1"
+        }
+      },
+      {
+        "chain_id": "chain_5",
+        "source_component": "msd2",
+        "target_component": "rti2",
+        "signals": [
+          "x2",
+          "u"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_5_seg_0",
+            "source_component": "msd2",
+            "source_signal": "x2",
+            "target_component": "rti2",
+            "target_signal": "u",
+            "must_route": true,
+            "semantic_intent": "msd2.x2 -> rti2.u",
+            "adjacency_evidence": {
+              "source_component": "msd2",
+              "target_component": "rti2"
+            }
+          }
+        ],
+        "semantic_intent": "msd2.x2 -> rti2.u",
+        "details": {
+          "source_signal": "x2",
+          "target_signal": "u"
+        }
+      },
+      {
+        "chain_id": "chain_6",
+        "source_component": "rti2",
+        "target_component": "m2",
+        "signals": [
+          "y",
+          "x2"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_6_seg_0",
+            "source_component": "rti2",
+            "source_signal": "y",
+            "target_component": "m2",
+            "target_signal": "x2",
+            "must_route": true,
+            "semantic_intent": "rti2.y -> m2.x2",
+            "adjacency_evidence": {
+              "source_component": "rti2",
+              "target_component": "m2"
+            }
+          }
+        ],
+        "semantic_intent": "rti2.y -> m2.x2",
+        "details": {
+          "source_signal": "y",
+          "target_signal": "x2"
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_0",
+        "source_component": "msd1",
+        "target_component": "msd2",
+        "signals": [
+          "x1",
+          "x1"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_0_seg_0",
+            "source_component": "msd1",
+            "source_signal": "x1",
+            "target_component": "msd2",
+            "target_signal": "x1",
+            "must_route": true,
+            "semantic_intent": "msd1.x1 -> msd2.x1",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve the physical displacement coupling between the two masses."
+            }
+          }
+        ],
+        "semantic_intent": "msd1.x1 -> msd2.x1",
+        "details": {
+          "source_signal": "x1",
+          "target_signal": "x1",
+          "source": "case_structure_hints",
+          "rationale": "Preserve the physical displacement coupling between the two masses."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_1",
+        "source_component": "msd1",
+        "target_component": "rti1",
+        "signals": [
+          "x1",
+          "u"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_1_seg_0",
+            "source_component": "msd1",
+            "source_signal": "x1",
+            "target_component": "rti1",
+            "target_signal": "u",
+            "must_route": true,
+            "semantic_intent": "msd1.x1 -> rti1.u",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Feed the first RtI helper from the first mass displacement."
+            }
+          }
+        ],
+        "semantic_intent": "msd1.x1 -> rti1.u",
+        "details": {
+          "source_signal": "x1",
+          "target_signal": "u",
+          "source": "case_structure_hints",
+          "rationale": "Feed the first RtI helper from the first mass displacement."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_3",
+        "source_component": "msd1",
+        "target_component": "msd2",
+        "signals": [
+          "v1",
+          "v1"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_3_seg_0",
+            "source_component": "msd1",
+            "source_signal": "v1",
+            "target_component": "msd2",
+            "target_signal": "v1",
+            "must_route": true,
+            "semantic_intent": "msd1.v1 -> msd2.v1",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve the physical velocity coupling between the two masses."
+            }
+          }
+        ],
+        "semantic_intent": "msd1.v1 -> msd2.v1",
+        "details": {
+          "source_signal": "v1",
+          "target_signal": "v1",
+          "source": "case_structure_hints",
+          "rationale": "Preserve the physical velocity coupling between the two masses."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_4",
+        "source_component": "msd2",
+        "target_component": "msd1",
+        "signals": [
+          "fk",
+          "fk"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_4_seg_0",
+            "source_component": "msd2",
+            "source_signal": "fk",
+            "target_component": "msd1",
+            "target_signal": "fk",
+            "must_route": true,
+            "semantic_intent": "msd2.fk -> msd1.fk",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve the feedback force from the second mass."
+            }
+          }
+        ],
+        "semantic_intent": "msd2.fk -> msd1.fk",
+        "details": {
+          "source_signal": "fk",
+          "target_signal": "fk",
+          "source": "case_structure_hints",
+          "rationale": "Preserve the feedback force from the second mass."
+        }
+      }
+    ],
+    "binding_candidates": [],
+    "closure_ok": false,
+    "closure_failures": [
+      "no_structural_reasoning"
+    ],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "semantic_only_no_bindings"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "failed",
+      "closure_ok": false
+    }
+  ],
+  "final_cost": 1.7955429816711148,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_1",
+      "status": "failed",
+      "selected_task_set_cost": 5.045894628071691,
+      "final_cost": 5.045894628071691,
+      "selected_fmus": [
+        "asset_dtaas_mass_spring_damper__msd1",
+        "asset_dtaas_mass_spring_damper_monitor__rti1",
+        "asset_dtaas_mass_spring_damper_monitor__m2",
+        "asset_dtaas_mass_spring_damper__msd2"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": "port_graph_closure"
+    },
+    {
+      "task_set_id": "taskset_2",
+      "status": "failed",
+      "selected_task_set_cost": 1.7955429816711148,
+      "final_cost": 1.7955429816711148,
+      "selected_fmus": [
+        "asset_dtaas_mass_spring_damper_monitor__msd2",
+        "asset_dtaas_mass_spring_damper__msd1",
+        "asset_dtaas_mass_spring_damper_monitor__rti1"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": "port_graph_closure"
+    },
+    {
+      "task_set_id": "taskset_0",
+      "status": "failed",
+      "selected_task_set_cost": 4.417440101957933,
+      "final_cost": 4.417440101957933,
+      "selected_fmus": [
+        "asset_dtaas_mass_spring_damper_monitor__rti1",
+        "asset_dtaas_mass_spring_damper_monitor__rti2",
+        "asset_dtaas_mass_spring_damper__msd1",
+        "asset_dtaas_mass_spring_damper_monitor__m2",
+        "asset_dtaas_mass_spring_damper__msd2"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": "port_graph_closure"
+    }
+  ],
+  "selected_task_set_cost": 1.7955429816711148,
+  "diagnostics": {
+    "status": "failed",
+    "stage2_variant": "semantic_retrieval_only",
+    "structural_reasoning": false,
+    "selected_task_count": 3,
+    "failure_type": "port_graph_closure"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_mass_spring_damper",
+  "selected_asset_ids": [
+    "asset_dtaas_mass_spring_damper__msd1",
+    "asset_dtaas_mass_spring_damper__msd2"
+  ],
+  "connections": [
+    {
+      "source": "asset_dtaas_mass_spring_damper__msd1.x1",
+      "target": "asset_dtaas_mass_spring_damper__msd2.x1",
+      "kind": "direct"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper__msd1.v1",
+      "target": "asset_dtaas_mass_spring_damper__msd2.v1",
+      "kind": "direct"
+    },
+    {
+      "source": "asset_dtaas_mass_spring_damper__msd2.fk",
+      "target": "asset_dtaas_mass_spring_damper__msd1.fk",
+      "kind": "direct"
+    }
+  ],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "x2",
+      "source": "asset_dtaas_mass_spring_damper__msd2.x2"
+    },
+    {
+      "name": "v2",
+      "source": "asset_dtaas_mass_spring_damper__msd2.v2"
+    }
+  ],
+  "schedule": {
+    "kind": "co_simulation",
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "duration": 10.0,
+    "step_size": 0.001,
+    "execution_order": [
+      "asset_dtaas_mass_spring_damper__msd1",
+      "asset_dtaas_mass_spring_damper__msd2"
+    ],
+    "node_order": [
+      "asset_dtaas_mass_spring_damper__msd1",
+      "asset_dtaas_mass_spring_damper__msd2"
+    ],
+    "warnings": [],
+    "per_node_period": {
+      "asset_dtaas_mass_spring_damper__msd1": 0.001,
+      "asset_dtaas_mass_spring_damper__msd2": 0.001
+    }
+  },
+  "execution_order": [
+    "asset_dtaas_mass_spring_damper__msd1",
+    "asset_dtaas_mass_spring_damper__msd2"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=2",
+    "Coupled mass-spring-damper system with bidirectional force-displacement feedback loop"
+  ],
+  "extensions": {
+    "system": "SystemMassSpringDamper",
+    "task_set_id": "taskset_0"
+  }
+}

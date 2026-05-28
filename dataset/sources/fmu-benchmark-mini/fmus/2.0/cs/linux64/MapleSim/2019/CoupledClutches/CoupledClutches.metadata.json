@@ -1,0 +1,1464 @@
+{
+  "dataset_id": "fmu-002320",
+  "source_repo": "fmi-cross-check-master",
+  "source_path": "fmus/2.0/cs/linux64/MapleSim/2019/CoupledClutches/CoupledClutches.fmu",
+  "source_commit": "",
+  "fmi": {
+    "fmiVersion": "2.0",
+    "fmiTypes": [
+      "CoSimulation"
+    ],
+    "modelName": "CoupledClutches",
+    "guid": "{d9c9bdd1-1219-cc1a-1cea-9c06fa05138f}",
+    "description": "CoupledClutches example from the FMI test suite",
+    "author": "",
+    "generationTool": "MapleSim (1432996/1432996/1432996)",
+    "generationDateAndTime": "2019-11-12T15:07:04Z",
+    "variableNamingConvention": "structured",
+    "numberOfEventIndicators": 25,
+    "defaultExperiment": {
+      "startTime": 0.0,
+      "stopTime": 1.5,
+      "stepSize": 0.001
+    }
+  },
+  "implementation": {
+    "platforms": [
+      "linux64"
+    ],
+    "coSimulation": {
+      "modelIdentifier": "CoupledClutches",
+      "canGetAndSetFMUstate": true,
+      "canSerializeFMUstate": true,
+      "providesDirectionalDerivative": false,
+      "canHandleVariableCommunicationStepSize": true,
+      "canInterpolateInputs": false
+    }
+  },
+  "variables": [
+    {
+      "name": "internalTime",
+      "valueReference": 0,
+      "causality": "independent",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal time",
+      "unit": "s"
+    },
+    {
+      "name": "CoupledClutches1_T2",
+      "valueReference": 57,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Time when clutch2 is invoked",
+      "unit": "s",
+      "start": 0.4
+    },
+    {
+      "name": "CoupledClutches1_freqHz",
+      "valueReference": 58,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Frequency of sine function to invoke clutch1",
+      "unit": "Hz",
+      "start": 0.2
+    },
+    {
+      "name": "inputs",
+      "valueReference": 17,
+      "causality": "input",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "RI1",
+      "start": 0.0
+    },
+    {
+      "name": "outputs[1]",
+      "valueReference": 2,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J1.w",
+      "initial": "exact",
+      "unit": "rad/s",
+      "start": 10.0
+    },
+    {
+      "name": "outputs[2]",
+      "valueReference": 4,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J2.w",
+      "initial": "exact",
+      "unit": "rad/s",
+      "start": 0.0
+    },
+    {
+      "name": "outputs[3]",
+      "valueReference": 6,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J3.w",
+      "initial": "exact",
+      "unit": "rad/s",
+      "start": 0.0
+    },
+    {
+      "name": "outputs[4]",
+      "valueReference": 8,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J4.w",
+      "initial": "exact",
+      "unit": "rad/s",
+      "start": 0.0
+    },
+    {
+      "name": "J1.phi",
+      "valueReference": 1,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J1.phi",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "J2.phi",
+      "valueReference": 3,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J2.phi",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "J3.phi",
+      "valueReference": 5,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J3.phi",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "J4.phi",
+      "valueReference": 7,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "J4.phi",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "clutch1.sa",
+      "valueReference": 9,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch1.sa",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch2.sa",
+      "valueReference": 10,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch2.sa",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch2.tau0_max",
+      "valueReference": 11,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch2.tau0_max",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch3.sa",
+      "valueReference": 12,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch3.sa",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch1.a_relfric",
+      "valueReference": 13,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch1.a_relfric",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch2.a_relfric",
+      "valueReference": 14,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch2.a_relfric",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch3.a_relfric",
+      "valueReference": 15,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch3.a_relfric",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch3.tau",
+      "valueReference": 16,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "clutch3.tau",
+      "initial": "calculated"
+    },
+    {
+      "name": "clutch1.locked",
+      "valueReference": 18,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch1.locked"
+    },
+    {
+      "name": "clutch1.mode",
+      "valueReference": 19,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch1.mode"
+    },
+    {
+      "name": "clutch2.locked",
+      "valueReference": 20,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch2.locked"
+    },
+    {
+      "name": "clutch2.mode",
+      "valueReference": 21,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch2.mode"
+    },
+    {
+      "name": "clutch3.locked",
+      "valueReference": 22,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch3.locked"
+    },
+    {
+      "name": "clutch3.mode",
+      "valueReference": 23,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch3.mode"
+    },
+    {
+      "name": "clutch1.startBackward",
+      "valueReference": 24,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch1.startBackward"
+    },
+    {
+      "name": "clutch1.startForward",
+      "valueReference": 25,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch1.startForward"
+    },
+    {
+      "name": "clutch2.startBackward",
+      "valueReference": 26,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch2.startBackward"
+    },
+    {
+      "name": "clutch2.startForward",
+      "valueReference": 27,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch2.startForward"
+    },
+    {
+      "name": "clutch3.startBackward",
+      "valueReference": 28,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch3.startBackward"
+    },
+    {
+      "name": "clutch3.startForward",
+      "valueReference": 29,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch3.startForward"
+    },
+    {
+      "name": "CoupledClutches_r_30",
+      "valueReference": 30,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "_msim_initial"
+    },
+    {
+      "name": "CoupledClutches_r_31",
+      "valueReference": 31,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "_msim_terminate"
+    },
+    {
+      "name": "clutch3.free",
+      "valueReference": 32,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch3.free"
+    },
+    {
+      "name": "clutch1.free",
+      "valueReference": 33,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch1.free"
+    },
+    {
+      "name": "clutch2.free",
+      "valueReference": 34,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "clutch2.free"
+    },
+    {
+      "name": "CoupledClutches_r_35",
+      "valueReference": 35,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR1"
+    },
+    {
+      "name": "CoupledClutches_r_36",
+      "valueReference": 36,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR2"
+    },
+    {
+      "name": "CoupledClutches_r_37",
+      "valueReference": 37,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR3"
+    },
+    {
+      "name": "CoupledClutches_r_38",
+      "valueReference": 38,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR4"
+    },
+    {
+      "name": "CoupledClutches_r_39",
+      "valueReference": 39,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR5"
+    },
+    {
+      "name": "CoupledClutches_r_40",
+      "valueReference": 40,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR6"
+    },
+    {
+      "name": "CoupledClutches_r_41",
+      "valueReference": 41,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR7"
+    },
+    {
+      "name": "CoupledClutches_r_42",
+      "valueReference": 42,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR8"
+    },
+    {
+      "name": "CoupledClutches_r_43",
+      "valueReference": 43,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR9"
+    },
+    {
+      "name": "CoupledClutches_r_44",
+      "valueReference": 44,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR10"
+    },
+    {
+      "name": "CoupledClutches_r_45",
+      "valueReference": 45,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR11"
+    },
+    {
+      "name": "CoupledClutches_r_46",
+      "valueReference": 46,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR12"
+    },
+    {
+      "name": "CoupledClutches_r_47",
+      "valueReference": 47,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR13"
+    },
+    {
+      "name": "CoupledClutches_r_48",
+      "valueReference": 48,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR14"
+    },
+    {
+      "name": "CoupledClutches_r_49",
+      "valueReference": 49,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR15"
+    },
+    {
+      "name": "CoupledClutches_r_50",
+      "valueReference": 50,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR16"
+    },
+    {
+      "name": "CoupledClutches_r_51",
+      "valueReference": 51,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR17"
+    },
+    {
+      "name": "CoupledClutches_r_52",
+      "valueReference": 52,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR18"
+    },
+    {
+      "name": "CoupledClutches_r_53",
+      "valueReference": 53,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR19"
+    },
+    {
+      "name": "CoupledClutches_r_54",
+      "valueReference": 54,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR20"
+    },
+    {
+      "name": "CoupledClutches_r_55",
+      "valueReference": 55,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR21"
+    },
+    {
+      "name": "CoupledClutches_r_56",
+      "valueReference": 56,
+      "causality": "local",
+      "variability": "discrete",
+      "type": "Real",
+      "description": "msim_RVAR22"
+    },
+    {
+      "name": "J1.phi.der",
+      "valueReference": 59,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J1.phi)",
+      "derivative": 9
+    },
+    {
+      "name": "der(outputs[1])",
+      "valueReference": 60,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J1.w)",
+      "derivative": 5
+    },
+    {
+      "name": "J2.phi.der",
+      "valueReference": 61,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J2.phi)",
+      "derivative": 10
+    },
+    {
+      "name": "der(outputs[2])",
+      "valueReference": 62,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J2.w)",
+      "derivative": 6
+    },
+    {
+      "name": "J3.phi.der",
+      "valueReference": 63,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J3.phi)",
+      "derivative": 11
+    },
+    {
+      "name": "der(outputs[3])",
+      "valueReference": 64,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J3.w)",
+      "derivative": 7
+    },
+    {
+      "name": "J4.phi.der",
+      "valueReference": 65,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J4.phi)",
+      "derivative": 12
+    },
+    {
+      "name": "der(outputs[4])",
+      "valueReference": 66,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "der(J4.w)",
+      "derivative": 8
+    },
+    {
+      "name": "CoupledClutches_r_67",
+      "valueReference": 67,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_68",
+      "valueReference": 68,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_69",
+      "valueReference": 69,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_70",
+      "valueReference": 70,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_71",
+      "valueReference": 71,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_72",
+      "valueReference": 72,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_73",
+      "valueReference": 73,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_74",
+      "valueReference": 74,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_75",
+      "valueReference": 75,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_76",
+      "valueReference": 76,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_77",
+      "valueReference": 77,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_78",
+      "valueReference": 78,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_79",
+      "valueReference": 79,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_80",
+      "valueReference": 80,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_81",
+      "valueReference": 81,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_82",
+      "valueReference": 82,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_83",
+      "valueReference": 83,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_84",
+      "valueReference": 84,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_85",
+      "valueReference": 85,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_86",
+      "valueReference": 86,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_87",
+      "valueReference": 87,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_88",
+      "valueReference": 88,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_89",
+      "valueReference": 89,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_90",
+      "valueReference": 90,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_91",
+      "valueReference": 91,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_92",
+      "valueReference": 92,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_93",
+      "valueReference": 93,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_94",
+      "valueReference": 94,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_95",
+      "valueReference": 95,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_96",
+      "valueReference": 96,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_97",
+      "valueReference": 97,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_98",
+      "valueReference": 98,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_99",
+      "valueReference": 99,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_100",
+      "valueReference": 100,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_101",
+      "valueReference": 101,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_102",
+      "valueReference": 102,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_103",
+      "valueReference": 103,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_104",
+      "valueReference": 104,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_105",
+      "valueReference": 105,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_106",
+      "valueReference": 106,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_107",
+      "valueReference": 107,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_108",
+      "valueReference": 108,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_109",
+      "valueReference": 109,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_110",
+      "valueReference": 110,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_111",
+      "valueReference": 111,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_112",
+      "valueReference": 112,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_113",
+      "valueReference": 113,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_114",
+      "valueReference": 114,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_115",
+      "valueReference": 115,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_116",
+      "valueReference": 116,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_117",
+      "valueReference": 117,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_118",
+      "valueReference": 118,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_119",
+      "valueReference": 119,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_120",
+      "valueReference": 120,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_121",
+      "valueReference": 121,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_122",
+      "valueReference": 122,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_123",
+      "valueReference": 123,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_124",
+      "valueReference": 124,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_125",
+      "valueReference": 125,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_126",
+      "valueReference": 126,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_127",
+      "valueReference": 127,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_128",
+      "valueReference": 128,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_129",
+      "valueReference": 129,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_130",
+      "valueReference": 130,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_131",
+      "valueReference": 131,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_132",
+      "valueReference": 132,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_133",
+      "valueReference": 133,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_134",
+      "valueReference": 134,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_135",
+      "valueReference": 135,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_136",
+      "valueReference": 136,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_137",
+      "valueReference": 137,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_138",
+      "valueReference": 138,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_139",
+      "valueReference": 139,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_140",
+      "valueReference": 140,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_141",
+      "valueReference": 141,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_142",
+      "valueReference": 142,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_143",
+      "valueReference": 143,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_144",
+      "valueReference": 144,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_145",
+      "valueReference": 145,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_146",
+      "valueReference": 146,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "CoupledClutches_r_147",
+      "valueReference": 147,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "internal variable"
+    },
+    {
+      "name": "minsamplestep",
+      "valueReference": 148,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "description": "Minimum time step between samples in binary data file",
+      "unit": "s",
+      "start": 0.025
+    },
+    {
+      "name": "binfilename",
+      "valueReference": 149,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "String",
+      "description": "Name of binary data file",
+      "start": "DISABLED"
+    }
+  ],
+  "interface": {
+    "inputs": [
+      "inputs"
+    ],
+    "outputs": [
+      "outputs[1]",
+      "outputs[2]",
+      "outputs[3]",
+      "outputs[4]"
+    ],
+    "parameters": [
+      "CoupledClutches1_T2",
+      "CoupledClutches1_freqHz",
+      "minsamplestep",
+      "binfilename"
+    ],
+    "locals": [
+      "J1.phi",
+      "J2.phi",
+      "J3.phi",
+      "J4.phi",
+      "clutch1.sa",
+      "clutch2.sa",
+      "clutch2.tau0_max",
+      "clutch3.sa",
+      "clutch1.a_relfric",
+      "clutch2.a_relfric",
+      "clutch3.a_relfric",
+      "clutch3.tau",
+      "clutch1.locked",
+      "clutch1.mode",
+      "clutch2.locked",
+      "clutch2.mode",
+      "clutch3.locked",
+      "clutch3.mode",
+      "clutch1.startBackward",
+      "clutch1.startForward",
+      "clutch2.startBackward",
+      "clutch2.startForward",
+      "clutch3.startBackward",
+      "clutch3.startForward",
+      "CoupledClutches_r_30",
+      "CoupledClutches_r_31",
+      "clutch3.free",
+      "clutch1.free",
+      "clutch2.free",
+      "CoupledClutches_r_35",
+      "CoupledClutches_r_36",
+      "CoupledClutches_r_37",
+      "CoupledClutches_r_38",
+      "CoupledClutches_r_39",
+      "CoupledClutches_r_40",
+      "CoupledClutches_r_41",
+      "CoupledClutches_r_42",
+      "CoupledClutches_r_43",
+      "CoupledClutches_r_44",
+      "CoupledClutches_r_45",
+      "CoupledClutches_r_46",
+      "CoupledClutches_r_47",
+      "CoupledClutches_r_48",
+      "CoupledClutches_r_49",
+      "CoupledClutches_r_50",
+      "CoupledClutches_r_51",
+      "CoupledClutches_r_52",
+      "CoupledClutches_r_53",
+      "CoupledClutches_r_54",
+      "CoupledClutches_r_55",
+      "CoupledClutches_r_56",
+      "J1.phi.der",
+      "der(outputs[1])",
+      "J2.phi.der",
+      "der(outputs[2])",
+      "J3.phi.der",
+      "der(outputs[3])",
+      "J4.phi.der",
+      "der(outputs[4])",
+      "CoupledClutches_r_67",
+      "CoupledClutches_r_68",
+      "CoupledClutches_r_69",
+      "CoupledClutches_r_70",
+      "CoupledClutches_r_71",
+      "CoupledClutches_r_72",
+      "CoupledClutches_r_73",
+      "CoupledClutches_r_74",
+      "CoupledClutches_r_75",
+      "CoupledClutches_r_76",
+      "CoupledClutches_r_77",
+      "CoupledClutches_r_78",
+      "CoupledClutches_r_79",
+      "CoupledClutches_r_80",
+      "CoupledClutches_r_81",
+      "CoupledClutches_r_82",
+      "CoupledClutches_r_83",
+      "CoupledClutches_r_84",
+      "CoupledClutches_r_85",
+      "CoupledClutches_r_86",
+      "CoupledClutches_r_87",
+      "CoupledClutches_r_88",
+      "CoupledClutches_r_89",
+      "CoupledClutches_r_90",
+      "CoupledClutches_r_91",
+      "CoupledClutches_r_92",
+      "CoupledClutches_r_93",
+      "CoupledClutches_r_94",
+      "CoupledClutches_r_95",
+      "CoupledClutches_r_96",
+      "CoupledClutches_r_97",
+      "CoupledClutches_r_98",
+      "CoupledClutches_r_99",
+      "CoupledClutches_r_100",
+      "CoupledClutches_r_101",
+      "CoupledClutches_r_102",
+      "CoupledClutches_r_103",
+      "CoupledClutches_r_104",
+      "CoupledClutches_r_105",
+      "CoupledClutches_r_106",
+      "CoupledClutches_r_107",
+      "CoupledClutches_r_108",
+      "CoupledClutches_r_109",
+      "CoupledClutches_r_110",
+      "CoupledClutches_r_111",
+      "CoupledClutches_r_112",
+      "CoupledClutches_r_113",
+      "CoupledClutches_r_114",
+      "CoupledClutches_r_115",
+      "CoupledClutches_r_116",
+      "CoupledClutches_r_117",
+      "CoupledClutches_r_118",
+      "CoupledClutches_r_119",
+      "CoupledClutches_r_120",
+      "CoupledClutches_r_121",
+      "CoupledClutches_r_122",
+      "CoupledClutches_r_123",
+      "CoupledClutches_r_124",
+      "CoupledClutches_r_125",
+      "CoupledClutches_r_126",
+      "CoupledClutches_r_127",
+      "CoupledClutches_r_128",
+      "CoupledClutches_r_129",
+      "CoupledClutches_r_130",
+      "CoupledClutches_r_131",
+      "CoupledClutches_r_132",
+      "CoupledClutches_r_133",
+      "CoupledClutches_r_134",
+      "CoupledClutches_r_135",
+      "CoupledClutches_r_136",
+      "CoupledClutches_r_137",
+      "CoupledClutches_r_138",
+      "CoupledClutches_r_139",
+      "CoupledClutches_r_140",
+      "CoupledClutches_r_141",
+      "CoupledClutches_r_142",
+      "CoupledClutches_r_143",
+      "CoupledClutches_r_144",
+      "CoupledClutches_r_145",
+      "CoupledClutches_r_146",
+      "CoupledClutches_r_147"
+    ],
+    "states": [
+      "J1.phi.der",
+      "der(outputs[1])",
+      "J2.phi.der",
+      "der(outputs[2])",
+      "J3.phi.der",
+      "der(outputs[3])",
+      "J4.phi.der",
+      "der(outputs[4])"
+    ]
+  },
+  "test": {
+    "hasReferenceInput": true,
+    "hasReferenceOutput": true,
+    "referenceInputFile": "CoupledClutches_in.csv",
+    "referenceOutputFile": "CoupledClutches_ref.csv",
+    "simulationOptionsFile": "CoupledClutches_simopt.json"
+  },
+  "validation": {
+    "fmiCompliance": "not_checked"
+  }
+}

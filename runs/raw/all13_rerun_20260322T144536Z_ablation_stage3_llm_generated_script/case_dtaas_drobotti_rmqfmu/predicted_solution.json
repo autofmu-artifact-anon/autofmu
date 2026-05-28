@@ -1,0 +1,93 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_drobotti_rmqfmu",
+  "selected_asset_ids": [
+    "asset_dtaas_drobotti_rmqfmu__distance",
+    "asset_dtaas_drobotti_rmqfmu__rbmq"
+  ],
+  "connections": [],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "distance",
+      "source": "asset_dtaas_drobotti_rmqfmu__distance.distance"
+    },
+    {
+      "name": "xpos",
+      "source": "asset_dtaas_drobotti_rmqfmu__rbmq.xpos"
+    },
+    {
+      "name": "ypos",
+      "source": "asset_dtaas_drobotti_rmqfmu__rbmq.ypos"
+    }
+  ],
+  "schedule": {
+    "kind": "fixed_step",
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "duration": 10.0,
+    "step_size": 0.1,
+    "execution_order": [
+      "asset_dtaas_drobotti_rmqfmu__distance",
+      "asset_dtaas_drobotti_rmqfmu__rbmq"
+    ],
+    "node_order": [
+      "asset_dtaas_drobotti_rmqfmu__distance",
+      "asset_dtaas_drobotti_rmqfmu__rbmq"
+    ],
+    "warnings": [
+      "weak_stage3_fallback"
+    ],
+    "per_node_period": {
+      "asset_dtaas_drobotti_rmqfmu__distance": 0.1,
+      "asset_dtaas_drobotti_rmqfmu__rbmq": 0.1
+    }
+  },
+  "execution_order": [
+    "asset_dtaas_drobotti_rmqfmu__distance",
+    "asset_dtaas_drobotti_rmqfmu__rbmq"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=2",
+    "task_goal=Generate the final UNIFIED_SOLUTION_V1 orchestration payload fields for 2 FMUs in SystemDrobottiRmqfmu without using adapters or loop wrappers.",
+    "connection_count=0",
+    "fallback_mode=weak_fixed_step",
+    "stage3_variant=llm_generated_script",
+    "case_extensions_extracted"
+  ],
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.maxage",
+        "value": 300
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.hostname",
+        "value": "host"
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.username",
+        "value": "usr"
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.password",
+        "value": "pass"
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.vhost",
+        "value": "vhost"
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.port",
+        "value": 5672
+      },
+      {
+        "target": "asset_dtaas_drobotti_rmqfmu__rbmq.config.precision",
+        "value": 10
+      }
+    ]
+  }
+}

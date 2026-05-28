@@ -1,0 +1,1 @@
+../../sources/cases/case_manual_001/fmu_specs/fmu_BatteryPackElectroThermal.md

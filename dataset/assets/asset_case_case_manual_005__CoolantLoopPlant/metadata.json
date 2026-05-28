@@ -1,0 +1,139 @@
+{
+  "asset_id": "asset_case_case_manual_005__CoolantLoopPlant",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "default_experiment": {
+    "startTime": 0.0,
+    "stepSize": 0.01,
+    "stopTime": 1.0
+  },
+  "description": "简化冷却回路：泵命令驱动换热系数 UA(pump_cmd)（非线性饱和），冷却液温度为一阶动态并与环境换热。",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "inputs": [
+    "pump_cmd",
+    "ambient_temp_C",
+    "heat_in_W"
+  ],
+  "name": "CoolantLoopPlant",
+  "outputs": [
+    "coolant_temp_C",
+    "heat_removed_W"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "泵速度/占空比命令（0..1）",
+      "name": "pump_cmd",
+      "type": "Real",
+      "unit": "0..1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "环境温度（°C）",
+      "name": "ambient_temp_C",
+      "type": "Real",
+      "unit": "C",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "进入冷却回路的热量（来自电池包）（W）",
+      "name": "heat_in_W",
+      "type": "Real",
+      "unit": "W",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "回路代表性冷却液温度（°C）",
+      "name": "coolant_temp_C",
+      "type": "Real",
+      "unit": "C",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "通过散热器向环境移除的热量（W）",
+      "name": "heat_removed_W",
+      "type": "Real",
+      "unit": "W",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "冷却液等效热容",
+      "name": "coolant_thermal_mass_JK",
+      "type": "Real",
+      "unit": "J/K",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "最小等效 UA（泵低速/停转时仍有少量自然对流）",
+      "name": "ua_min_WK",
+      "type": "Real",
+      "unit": "W/K",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "最大等效 UA（泵高速时饱和）",
+      "name": "ua_max_WK",
+      "type": "Real",
+      "unit": "W/K",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "UA(pump_cmd) 非线性形状参数（指数/曲率）",
+      "name": "ua_shape",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "泵一阶惯性时间常数",
+      "name": "pump_tau_s",
+      "type": "Real",
+      "unit": "s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "泵内部状态变化率限制",
+      "name": "pump_rate_limit_per_s",
+      "type": "Real",
+      "unit": "1/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "数值保护下限温度",
+      "name": "temp_min_C",
+      "type": "Real",
+      "unit": "C",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "数值保护上限温度",
+      "name": "temp_max_C",
+      "type": "Real",
+      "unit": "C",
+      "variability": "fixed"
+    }
+  ],
+  "schema": "UNIFIED_FMU_METADATA_V1"
+}

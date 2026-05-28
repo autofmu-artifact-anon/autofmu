@@ -1,0 +1,497 @@
+{
+  "case_id": "case_manual_005",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_case_case_manual_005__ThermalController",
+        "asset_case_case_manual_005__CoolantLoopPlant",
+        "asset_case_case_manual_005__BatteryPackPlant"
+      ]
+    ],
+    "case_id": "case_manual_005",
+    "equivalence_class_id": "",
+    "equivalence_reason": "",
+    "oracle_mode": "exact_asset_set",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_manual_005",
+    "connections": [
+      {
+        "source": "asset_case_case_manual_005__ThermalController.pump_cmd",
+        "target": "asset_case_case_manual_005__CoolantLoopPlant.pump_cmd"
+      },
+      {
+        "source": "asset_case_case_manual_005__BatteryPackPlant.heat_gen_W",
+        "target": "asset_case_case_manual_005__CoolantLoopPlant.heat_in_W"
+      },
+      {
+        "source": "asset_case_case_manual_005__CoolantLoopPlant.coolant_temp_C",
+        "target": "asset_case_case_manual_005__BatteryPackPlant.coolant_in_temp_C"
+      },
+      {
+        "source": "asset_case_case_manual_005__BatteryPackPlant.temp_cell_C",
+        "target": "asset_case_case_manual_005__ThermalController.temp_cell_C"
+      },
+      {
+        "source": "asset_case_case_manual_005__CoolantLoopPlant.coolant_temp_C",
+        "target": "asset_case_case_manual_005__ThermalController.coolant_temp_C"
+      }
+    ],
+    "execution_order": [
+      "battery",
+      "controller",
+      "coolant"
+    ],
+    "extensions": {
+      "parameter_overrides": [
+        {
+          "target": "asset_case_case_manual_005__ThermalController.kp",
+          "value": 0.08
+        },
+        {
+          "target": "asset_case_case_manual_005__ThermalController.ki",
+          "value": 0.01
+        },
+        {
+          "target": "asset_case_case_manual_005__ThermalController.u_min",
+          "value": 0.0
+        },
+        {
+          "target": "asset_case_case_manual_005__ThermalController.u_max",
+          "value": 1.0
+        },
+        {
+          "target": "asset_case_case_manual_005__ThermalController.hys_band_C",
+          "value": 0.8
+        },
+        {
+          "target": "asset_case_case_manual_005__ThermalController.coolant_overtemp_C",
+          "value": 60.0
+        },
+        {
+          "target": "asset_case_case_manual_005__ThermalController.u_slew_per_s",
+          "value": 0.8
+        },
+        {
+          "target": "asset_case_case_manual_005__CoolantLoopPlant.coolant_thermal_mass_JK",
+          "value": 18000.0
+        },
+        {
+          "target": "asset_case_case_manual_005__CoolantLoopPlant.ua_min_WK",
+          "value": 40.0
+        },
+        {
+          "target": "asset_case_case_manual_005__CoolantLoopPlant.ua_max_WK",
+          "value": 320.0
+        },
+        {
+          "target": "asset_case_case_manual_005__CoolantLoopPlant.ua_shape",
+          "value": 2.2
+        },
+        {
+          "target": "asset_case_case_manual_005__CoolantLoopPlant.pump_tau_s",
+          "value": 2.5
+        },
+        {
+          "target": "asset_case_case_manual_005__CoolantLoopPlant.pump_rate_limit_per_s",
+          "value": 0.6
+        },
+        {
+          "target": "asset_case_case_manual_005__CoolantLoopPlant.temp_min_C",
+          "value": -20.0
+        },
+        {
+          "target": "asset_case_case_manual_005__CoolantLoopPlant.temp_max_C",
+          "value": 120.0
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.n_series",
+          "value": 96
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.capacity_Ah",
+          "value": 50.0
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.coulombic_eff",
+          "value": 0.995
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.soc_min",
+          "value": 0.05
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.soc_max",
+          "value": 0.98
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.ocv_a0_V",
+          "value": 3.2
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.ocv_a1_V",
+          "value": 0.9
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.ocv_a2_V",
+          "value": -0.6
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.ocv_a3_V",
+          "value": 0.35
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.r0_Ohm",
+          "value": 0.002
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.r_soc_gain",
+          "value": 1.2
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.r_temp_beta",
+          "value": 0.035
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.k_pol_V",
+          "value": 0.01
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.thermal_mass_JK",
+          "value": 65000.0
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.h_cool_WK",
+          "value": 120.0
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.temp_min_C",
+          "value": -10.0
+        },
+        {
+          "target": "asset_case_case_manual_005__BatteryPackPlant.temp_max_C",
+          "value": 80.0
+        }
+      ]
+    },
+    "external_inputs": [
+      {
+        "default": null,
+        "name": "enable",
+        "targets": [
+          "controller.enable"
+        ],
+        "unit": null
+      },
+      {
+        "default": null,
+        "name": "temp_ref_C",
+        "targets": [
+          "controller.temp_ref_C"
+        ],
+        "unit": null
+      },
+      {
+        "default": null,
+        "name": "ambient_temp_C",
+        "targets": [
+          "coolant.ambient_temp_C"
+        ],
+        "unit": null
+      },
+      {
+        "default": null,
+        "name": "i_load_A",
+        "targets": [
+          "battery.i_load_A"
+        ],
+        "unit": null
+      }
+    ],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "pump_cmd",
+        "source": "asset_case_case_manual_005__ThermalController.pump_cmd",
+        "unit": "0..1"
+      },
+      {
+        "name": "sat_flag",
+        "source": "asset_case_case_manual_005__ThermalController.sat_flag",
+        "unit": ""
+      },
+      {
+        "name": "coolant_temp_C",
+        "source": "asset_case_case_manual_005__CoolantLoopPlant.coolant_temp_C",
+        "unit": "C"
+      },
+      {
+        "name": "heat_removed_W",
+        "source": "asset_case_case_manual_005__CoolantLoopPlant.heat_removed_W",
+        "unit": "W"
+      },
+      {
+        "name": "soc",
+        "source": "asset_case_case_manual_005__BatteryPackPlant.soc",
+        "unit": "0..1"
+      },
+      {
+        "name": "temp_cell_C",
+        "source": "asset_case_case_manual_005__BatteryPackPlant.temp_cell_C",
+        "unit": "C"
+      },
+      {
+        "name": "heat_gen_W",
+        "source": "asset_case_case_manual_005__BatteryPackPlant.heat_gen_W",
+        "unit": "W"
+      },
+      {
+        "name": "v_term_V",
+        "source": "asset_case_case_manual_005__BatteryPackPlant.v_term_V",
+        "unit": "V"
+      }
+    ],
+    "notes": [
+      "When enable=true, the controller increases pump_cmd when cell temperature exceeds temp_ref_C (with hysteresis and PI action). The coolant loop removes heat with a pump-dependent UA that saturates at high pump_cmd. Under a step increase in i_load_A, heat_gen_W rises nonlinearly (I^2*R(T,SOC) + |I|*k_pol), causing temp_cell_C to rise; the loop reacts by ramping pump_cmd toward saturation and then settling, keeping temp_cell_C within safe bounds without sustained oscillation. Under a rise in ambient_temp_C, coolant_temp_C increases and the controller compensates by increasing pump_cmd, but heat removal capacity degrades as (T_coolant - T_amb) shrinks."
+    ],
+    "schedule": {
+      "co_simulation": {
+        "end_time_s": 900,
+        "output_interval_s": 1.0,
+        "start_time_s": 0,
+        "step_size_s": 0.1
+      },
+      "co_simulation_type": "fixed_step",
+      "kind": "co_simulation"
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_case_case_manual_005__ThermalController",
+      "asset_case_case_manual_005__CoolantLoopPlant",
+      "asset_case_case_manual_005__BatteryPackPlant"
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_manual_005",
+    "criteria": [
+      {
+        "metric": "max(temp_cell_C)_over_all",
+        "notes": "电芯安全温度上限。",
+        "operator": "<=",
+        "signals": [
+          "temp_cell_C"
+        ],
+        "unit": "C",
+        "value": 45.0
+      },
+      {
+        "metric": "max(abs(temp_cell_C - temp_ref_C))_after_t=250s",
+        "notes": "负载与环境变化后的温度偏差应保持在可接受带宽内。",
+        "operator": "<=",
+        "signals": [
+          "temp_cell_C"
+        ],
+        "unit": "C",
+        "value": 8.5
+      },
+      {
+        "metric": "within_range(pump_cmd)",
+        "operator": "in",
+        "signals": [
+          "pump_cmd"
+        ],
+        "unit": "-",
+        "value": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "metric": "max(abs(d(pump_cmd)/dt))",
+        "notes": "泵命令变化速率限制（反映执行器惯性/保护）。",
+        "operator": "<=",
+        "signals": [
+          "pump_cmd"
+        ],
+        "unit": "1/s",
+        "value": 1.0
+      },
+      {
+        "metric": "within_range(soc)",
+        "operator": "in",
+        "signals": [
+          "soc"
+        ],
+        "unit": "-",
+        "value": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "metric": "within_range(v_term_V)",
+        "notes": "电压范围依据当前 ground truth 轨迹下界回推，避免把正常放电误判为失效。",
+        "operator": "in",
+        "signals": [
+          "v_term_V"
+        ],
+        "unit": "V",
+        "value": [
+          160.0,
+          430.0
+        ]
+      }
+    ],
+    "decision_rule": {
+      "criteria_source": "verification_requirement.criteria",
+      "kind": "acceptance_criteria",
+      "requires_ground_truth": true
+    },
+    "derivation_basis": {
+      "acceptance_criteria_count": 6,
+      "signals_of_interest": [
+        "pump_cmd",
+        "coolant_temp_C",
+        "soc",
+        "temp_cell_C",
+        "heat_gen_W",
+        "v_term_V"
+      ],
+      "source_root": "sources/cases/case_manual_005"
+    },
+    "judgement_policy": "acceptance_criteria_from_requirement",
+    "scenario_window": {
+      "start_time": 0,
+      "stop_time": 900
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "coolant_temp_C": [
+        "coolant_temp_C",
+        "asset_case_case_manual_005__CoolantLoopPlant.coolant_temp_C"
+      ],
+      "heat_gen_W": [
+        "heat_gen_W",
+        "asset_case_case_manual_005__BatteryPackPlant.heat_gen_W"
+      ],
+      "heat_removed_W": [
+        "heat_removed_W",
+        "asset_case_case_manual_005__CoolantLoopPlant.heat_removed_W"
+      ],
+      "pump_cmd": [
+        "pump_cmd",
+        "asset_case_case_manual_005__ThermalController.pump_cmd"
+      ],
+      "sat_flag": [
+        "sat_flag",
+        "asset_case_case_manual_005__ThermalController.sat_flag"
+      ],
+      "soc": [
+        "soc",
+        "asset_case_case_manual_005__BatteryPackPlant.soc"
+      ],
+      "temp_cell_C": [
+        "temp_cell_C",
+        "asset_case_case_manual_005__BatteryPackPlant.temp_cell_C"
+      ],
+      "v_term_V": [
+        "v_term_V",
+        "asset_case_case_manual_005__BatteryPackPlant.v_term_V"
+      ]
+    },
+    "signals": [],
+    "text": "电池包热管理安全包络检查. 在给定放电电流与环境温度变化下，电芯温度、泵命令、SOC 与端电压都应保持在当前场景可接受的热电包络内。Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+    "time_column_aliases": [],
+    "title": "电池包热管理安全包络检查 Verification Requirement",
+    "tolerances": {}
+  },
+  "verification_result": {
+    "case_id": "case_manual_005",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "source_kind": "offline_cosimulation"
+    },
+    "missing_requirements": [],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "Ground-truth trajectory generated by offline co-simulation of the constituent FMU models using the canonical orchestration (solution.json).",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_manual_005",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "ground_truth_trajectory.csv",
+    "input_relpath": "",
+    "reference_generation_method": "offline_cosimulation",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "coolant_temp_C": [
+        "coolant_temp_C"
+      ],
+      "heat_gen_W": [
+        "heat_gen_W"
+      ],
+      "pump_cmd": [
+        "pump_cmd"
+      ],
+      "soc": [
+        "soc"
+      ],
+      "temp_cell_C": [
+        "temp_cell_C"
+      ],
+      "v_term_V": [
+        "v_term_V"
+      ]
+    },
+    "signal_columns": [],
+    "source_kind": "offline_cosimulation",
+    "stage_segments": [],
+    "supports_numerical_fidelity": false,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "dataset/cases/case_manual_005/ground_truth_trajectory.csv",
+  "input_trajectory_path": null,
+  "declared_scenario_window": {
+    "start_time": 0,
+    "stop_time": 900
+  },
+  "declared_initial_conditions": {
+    "coolant_temp_C": 28.0,
+    "integrator": 0.0,
+    "pump_state": 0.2,
+    "soc": 0.85,
+    "temp_cell_C": 30.0,
+    "u_cmd_state": 0.2
+  },
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": false,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "manual_multi_fmu_case",
+    "expected_behavior": "When enable=true, the controller increases pump_cmd when cell temperature exceeds temp_ref_C (with hysteresis and PI action). The coolant loop removes heat with a pump-dependent UA that saturates at high pump_cmd. Under a step increase in i_load_A, heat_gen_W rises nonlinearly (I^2*R(T,SOC) + |I|*k_pol), causing temp_cell_C to rise; the loop reacts by ramping pump_cmd toward saturation and then settling, keeping temp_cell_C within safe bounds without sustained oscillation. Under a rise in ambient_temp_C, coolant_temp_C increases and the controller compensates by increasing pump_cmd, but heat removal capacity degrades as (T_coolant - T_amb) shrinks.",
+    "title": "电池包热管理：负载阶跃下温度约束与泵命令物理边界",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": true,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": false,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

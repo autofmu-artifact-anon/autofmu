@@ -1,0 +1,73 @@
+{
+  "adapter_id": "adapter_chain_0_asset_case_case_manual_001__ThermalController_asset_case_case_manual_002__CartPolePlant_fan_cmd_force_cmd_N",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "1",
+          "target_unit": "n",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "sysml": {
+        "name": "fan_cmd"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "1",
+          "target_unit": "n",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "force_cmd_N"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_0_asset_case_case_manual_001__ThermalController_asset_case_case_manual_002__CartPolePlant_fan_cmd_force_cmd_N",
+  "notes": [
+    "Unit conversion from normalized command (0..1) to force (N) requires domain-specific scale factor",
+    "Scale=1.0 is conservative placeholder; actual value depends on actuator force range",
+    "Signal name mismatch (fan_cmd vs force_cmd_N) noted but preserved per task intent"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_case_case_manual_001__ThermalController"
+    },
+    {
+      "name": "asset_case_case_manual_002__CartPolePlant"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

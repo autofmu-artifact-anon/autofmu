@@ -1,0 +1,26 @@
+{
+  "correct_fmus": [
+    "fmu_PositionController",
+    "fmu_SpoolValveActuator",
+    "fmu_HydraulicCylinderPlant"
+  ],
+  "correct_connections": [
+    {"from": "fmu_PositionController.valve_cmd", "to": "fmu_SpoolValveActuator.valve_cmd"},
+    {"from": "fmu_SpoolValveActuator.spool_u", "to": "fmu_HydraulicCylinderPlant.spool_u"},
+
+    {"from": "fmu_HydraulicCylinderPlant.x_m", "to": "fmu_PositionController.x_meas_m"},
+    {"from": "fmu_HydraulicCylinderPlant.v_mps", "to": "fmu_PositionController.v_meas_mps"}
+  ],
+  "exogenous_inputs": {
+    "x_ref_m": [
+      "fmu_PositionController.x_ref_m"
+    ],
+    "enable": [
+      "fmu_PositionController.enable"
+    ],
+    "load_force_N": [
+      "fmu_HydraulicCylinderPlant.load_force_N"
+    ]
+  },
+  "expected_behavior": "With enable=true, the controller tracks x_ref_m using a PI structure driving a spool valve. The valve actuator introduces deadzone and rate limits, while the cylinder plant exhibits nonlinear orifice flow and pressure dynamics. Under a step increase in load_force_N, the loop maintains position with limited transient error and valve_cmd saturates but recovers (anti-windup)."
+}

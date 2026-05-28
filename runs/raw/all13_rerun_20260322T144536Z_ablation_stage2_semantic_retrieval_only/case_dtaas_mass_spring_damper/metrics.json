@@ -1,0 +1,118 @@
+{
+  "schema": "EVALUATOR_CASE_METRICS_V2",
+  "retrieval": {
+    "top_k": 5,
+    "oracle_mode": "exact_asset_set",
+    "equivalence_class_id": "",
+    "acceptable_asset_set_count": 1,
+    "acceptable_asset_sets": [
+      [
+        "asset_dtaas_mass_spring_damper__msd1",
+        "asset_dtaas_mass_spring_damper__msd2"
+      ]
+    ],
+    "top1_asset_ids": [
+      "asset_dtaas_mass_spring_damper__msd2"
+    ],
+    "candidate_asset_sets": [
+      [
+        "asset_dtaas_mass_spring_damper__msd2"
+      ],
+      [
+        "asset_dtaas_mass_spring_damper__msd1"
+      ],
+      [
+        "asset_dtaas_mass_spring_damper__msd1",
+        "asset_dtaas_mass_spring_damper__msd2"
+      ]
+    ],
+    "top1_hit": false,
+    "topk_hit": true
+  },
+  "execution": {
+    "supported": true,
+    "success": true,
+    "backend": "fmpy_cosimulation",
+    "execution_time_seconds": 0.628758842125535,
+    "generated_trajectory_path": "runs/raw/all13_rerun_20260322T144536Z_ablation_stage2_semantic_retrieval_only/case_dtaas_mass_spring_damper/generated_trajectory.csv",
+    "error": null,
+    "warnings": []
+  },
+  "numerical_fidelity": {
+    "supported": true,
+    "mae": null,
+    "rmse": null,
+    "nrmse": null,
+    "max_abs_error": null,
+    "aligned_sample_count": 0,
+    "signal_count": 0,
+    "signals": [],
+    "generated_time_column": "time",
+    "reference_time_column": "time",
+    "generated_signal_map": {},
+    "reference_signal_map": {},
+    "unresolved_generated_signals": [],
+    "unresolved_reference_signals": []
+  },
+  "decision": {
+    "supported": true,
+    "predicted_conclusion": "pass",
+    "reference_conclusion": "pass",
+    "passed": true,
+    "correct": true,
+    "evidence": {
+      "rule_kind": "acceptance_criteria",
+      "supported": true,
+      "conclusion": "pass",
+      "criterion_results": [
+        {
+          "metric": "within_range(x2)",
+          "operator": "in",
+          "expected": [
+            -0.2,
+            0.2
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "passed": true,
+          "error": ""
+        },
+        {
+          "metric": "within_range(v2)",
+          "operator": "in",
+          "expected": [
+            -0.2,
+            0.2
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "passed": true,
+          "error": ""
+        },
+        {
+          "metric": "abs(x2) at t=10s",
+          "operator": "<=",
+          "expected": 0.01,
+          "observed": 0.0,
+          "passed": true,
+          "error": ""
+        }
+      ],
+      "unsupported_criteria": [],
+      "time_coverage": {
+        "observed_start_time": 0.0,
+        "observed_stop_time": 10.0,
+        "declared_start_time": 0,
+        "declared_stop_time": 10,
+        "sample_count": 10001
+      },
+      "initial_condition_results": [],
+      "coverage_failures": [],
+      "decision_policy": "acceptance_criteria_pass"
+    }
+  }
+}

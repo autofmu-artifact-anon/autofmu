@@ -1,0 +1,354 @@
+{
+  "case_id": "case_bench_fmu-002811",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_bench_fmu-002736"
+      ],
+      [
+        "asset_bench_fmu-002739"
+      ],
+      [
+        "asset_bench_fmu-002811"
+      ],
+      [
+        "asset_bench_fmu-002814"
+      ]
+    ],
+    "case_id": "case_bench_fmu-002811",
+    "equivalence_class_id": "bench_eq_0e177f32558c",
+    "equivalence_reason": "benchmark requirement text does not distinguish identical model/interface variants",
+    "oracle_mode": "equivalence_class",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_bench_fmu-002811",
+    "connections": [],
+    "execution_order": [
+      "asset_bench_fmu-002811"
+    ],
+    "external_inputs": [
+      {
+        "name": "step2",
+        "targets": [
+          "asset_bench_fmu-002811.step2"
+        ]
+      }
+    ],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "J1_w",
+        "source": "asset_bench_fmu-002811.J1_w"
+      },
+      {
+        "name": "J2_w",
+        "source": "asset_bench_fmu-002811.J2_w"
+      },
+      {
+        "name": "J3_w",
+        "source": "asset_bench_fmu-002811.J3_w"
+      },
+      {
+        "name": "J4_w",
+        "source": "asset_bench_fmu-002811.J4_w"
+      }
+    ],
+    "notes": [
+      "Auto-generated single-FMU benchmark solution."
+    ],
+    "schedule": {
+      "kind": "single_fmu",
+      "start_time": 0.0,
+      "step_size": 0.01,
+      "stop_time": 1.5
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_bench_fmu-002811"
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_bench_fmu-002811",
+    "criteria": [
+      {
+        "metric": "abs(J1_w - 10.0) at t=0.0s",
+        "operator": "<=",
+        "value": 0.01
+      },
+      {
+        "metric": "abs(J2_w) at t=0.0s",
+        "operator": "<=",
+        "value": 0.01
+      },
+      {
+        "metric": "abs(J3_w) at t=0.0s",
+        "operator": "<=",
+        "value": 0.01
+      },
+      {
+        "metric": "abs(J4_w) at t=0.0s",
+        "operator": "<=",
+        "value": 0.01
+      },
+      {
+        "metric": "abs(J1_w - 2.7) at t=1.0s",
+        "operator": "<=",
+        "value": 0.5
+      },
+      {
+        "metric": "abs(J2_w - 2.6) at t=1.0s",
+        "operator": "<=",
+        "value": 0.5
+      },
+      {
+        "metric": "abs(J3_w - 2.6) at t=1.0s",
+        "operator": "<=",
+        "value": 0.5
+      },
+      {
+        "metric": "abs(J4_w - 2.3) at t=1.0s",
+        "operator": "<=",
+        "value": 0.5
+      },
+      {
+        "metric": "abs(J1_w - J2_w) at t=1.0s",
+        "operator": "<=",
+        "value": 0.5
+      },
+      {
+        "metric": "abs(J2_w - J3_w) at t=1.0s",
+        "operator": "<=",
+        "value": 0.1
+      },
+      {
+        "metric": "abs(J3_w - J4_w) at t=1.0s",
+        "operator": "<=",
+        "value": 0.5
+      }
+    ],
+    "decision_rule": {
+      "criteria": [
+        {
+          "metric": "abs(J1_w - 10.0) at t=0.0s",
+          "operator": "<=",
+          "value": 0.01
+        },
+        {
+          "metric": "abs(J2_w) at t=0.0s",
+          "operator": "<=",
+          "value": 0.01
+        },
+        {
+          "metric": "abs(J3_w) at t=0.0s",
+          "operator": "<=",
+          "value": 0.01
+        },
+        {
+          "metric": "abs(J4_w) at t=0.0s",
+          "operator": "<=",
+          "value": 0.01
+        },
+        {
+          "metric": "abs(J1_w - 2.7) at t=1.0s",
+          "operator": "<=",
+          "value": 0.5
+        },
+        {
+          "metric": "abs(J2_w - 2.6) at t=1.0s",
+          "operator": "<=",
+          "value": 0.5
+        },
+        {
+          "metric": "abs(J3_w - 2.6) at t=1.0s",
+          "operator": "<=",
+          "value": 0.5
+        },
+        {
+          "metric": "abs(J4_w - 2.3) at t=1.0s",
+          "operator": "<=",
+          "value": 0.5
+        },
+        {
+          "metric": "abs(J1_w - J2_w) at t=1.0s",
+          "operator": "<=",
+          "value": 0.5
+        },
+        {
+          "metric": "abs(J2_w - J3_w) at t=1.0s",
+          "operator": "<=",
+          "value": 0.1
+        },
+        {
+          "metric": "abs(J3_w - J4_w) at t=1.0s",
+          "operator": "<=",
+          "value": 0.5
+        }
+      ],
+      "kind": "acceptance_criteria"
+    },
+    "derivation_basis": {
+      "ground_truth_source": "CoupledClutches_fmi2_Ida.timeseries.csv",
+      "input_source": "CoupledClutches_fmi2_Ida_in.csv",
+      "normalization_note": "Archived benchmark trajectory coverage is 0.0s..1.0s; evaluator uses pointwise acceptance criteria anchored at t=0.0s and t=1.0s instead of exact trace matching over the previously overstated 1.5s window.",
+      "signals": [
+        "J1_w",
+        "J2_w",
+        "J3_w",
+        "J4_w"
+      ],
+      "source_root": "sources/fmu-benchmark-mini/fmus/2.0/me/linux64/Dymola/2025x/CoupledClutches_fmi2_Ida",
+      "source_type": "benchmark_single_fmu_case"
+    },
+    "judgement_policy": "acceptance_criteria",
+    "scenario_window": {
+      "start_time": 0.0,
+      "step_size": 0.01,
+      "stop_time": 1.0
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "J1_w": [
+        "J1_w"
+      ],
+      "J2_w": [
+        "J2_w"
+      ],
+      "J3_w": [
+        "J3_w"
+      ],
+      "J4_w": [
+        "J4_w"
+      ],
+      "input_step2": [
+        "input_step2"
+      ],
+      "output_J1_w": [
+        "output_J1_w"
+      ],
+      "output_J2_w": [
+        "output_J2_w"
+      ],
+      "output_J3_w": [
+        "output_J3_w"
+      ],
+      "output_J4_w": [
+        "output_J4_w"
+      ]
+    },
+    "signals": [
+      "J1_w",
+      "J2_w",
+      "J3_w",
+      "J4_w"
+    ],
+    "text": "Run the benchmark FMU CoupledClutches_fmi2_Ida and verify the coupled-clutch transient with acceptance criteria: initial shaft speeds at t=0.0s remain at the archived values and terminal shaft speeds at t=1.0s remain within the archived synchronized envelope for J1_w, J2_w, J3_w, and J4_w.",
+    "time_column_aliases": [
+      "time",
+      "TIME",
+      "Time",
+      "t"
+    ],
+    "title": "Verify benchmark FMU CoupledClutches_fmi2_Ida",
+    "tolerances": {
+      "acceptance_profile": "coupled_clutches_terminal_sync_v1"
+    }
+  },
+  "verification_result": {
+    "case_id": "case_bench_fmu-002811",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "input_trajectory.csv",
+      "source_kind": "benchmark_timeseries_csv"
+    },
+    "missing_requirements": [],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "The normalized benchmark case ships with an archived reference trajectory from the source dataset; that trajectory is treated as the ground-truth verification outcome for the reference model.",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_bench_fmu-002811",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "ground_truth_trajectory.csv",
+    "input_relpath": "input_trajectory.csv",
+    "reference_generation_method": "benchmark_timeseries_csv",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "J1_w": [
+        "J1_w"
+      ],
+      "J2_w": [
+        "J2_w"
+      ],
+      "J3_w": [
+        "J3_w"
+      ],
+      "J4_w": [
+        "J4_w"
+      ],
+      "input_step2": [
+        "input_step2"
+      ],
+      "output_J1_w": [
+        "output_J1_w"
+      ],
+      "output_J2_w": [
+        "output_J2_w"
+      ],
+      "output_J3_w": [
+        "output_J3_w"
+      ],
+      "output_J4_w": [
+        "output_J4_w"
+      ]
+    },
+    "signal_columns": [
+      "input_step2",
+      "output_J1_w",
+      "output_J2_w",
+      "output_J3_w",
+      "output_J4_w"
+    ],
+    "source_kind": "benchmark_timeseries_csv",
+    "stage_segments": [],
+    "supports_numerical_fidelity": true,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "dataset/sources/fmu-benchmark-mini/fmus/2.0/me/linux64/Dymola/2025x/CoupledClutches_fmi2_Ida/CoupledClutches_fmi2_Ida.timeseries.csv",
+  "input_trajectory_path": "dataset/sources/fmu-benchmark-mini/fmus/2.0/me/linux64/Dymola/2025x/CoupledClutches_fmi2_Ida/CoupledClutches_fmi2_Ida_in.csv",
+  "declared_scenario_window": {
+    "start_time": 0.0,
+    "stop_time": 1.0,
+    "step_size": 0.01
+  },
+  "declared_initial_conditions": {},
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": true,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "benchmark_single_fmu_case",
+    "expected_behavior": "Ground-truth trajectory available via benchmark_timeseries_csv.",
+    "title": "CoupledClutches_fmi2_Ida",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "input_trajectory.csv",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": true,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": true,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "adapters": [],
+  "case_id": "case_manual_003",
+  "connections": [
+    {
+      "source": "asset_case_case_manual_003__PendulumController.force_cmd_N",
+      "target": "asset_case_case_manual_003__InvertedPendulumPlant.force_cmd_N"
+    },
+    {
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.x_m",
+      "target": "asset_case_case_manual_003__PendulumController.x_m"
+    },
+    {
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps",
+      "target": "asset_case_case_manual_003__PendulumController.x_dot_mps"
+    },
+    {
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad",
+      "target": "asset_case_case_manual_003__PendulumController.theta_rad"
+    },
+    {
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps",
+      "target": "asset_case_case_manual_003__PendulumController.theta_dot_radps"
+    }
+  ],
+  "execution_order": [
+    "controller",
+    "plant"
+  ],
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_case_case_manual_003__PendulumController.Kp_theta",
+        "value": 80.0
+      },
+      {
+        "target": "asset_case_case_manual_003__PendulumController.Kd_theta",
+        "value": 12.0
+      },
+      {
+        "target": "asset_case_case_manual_003__PendulumController.Ki_theta",
+        "value": 10.0
+      },
+      {
+        "target": "asset_case_case_manual_003__PendulumController.Kp_x",
+        "value": 2.0
+      },
+      {
+        "target": "asset_case_case_manual_003__PendulumController.Kd_x",
+        "value": 2.5
+      },
+      {
+        "target": "asset_case_case_manual_003__PendulumController.Ki_x",
+        "value": 0.5
+      },
+      {
+        "target": "asset_case_case_manual_003__PendulumController.u_max_N",
+        "value": 15.0
+      },
+      {
+        "target": "asset_case_case_manual_003__PendulumController.deadzone_N",
+        "value": 0.3
+      },
+      {
+        "target": "asset_case_case_manual_003__PendulumController.actuator_tau_s",
+        "value": 0.05
+      },
+      {
+        "target": "asset_case_case_manual_003__PendulumController.antiwindup_gain",
+        "value": 5.0
+      },
+      {
+        "target": "asset_case_case_manual_003__InvertedPendulumPlant.m_cart_kg",
+        "value": 1.0
+      },
+      {
+        "target": "asset_case_case_manual_003__InvertedPendulumPlant.m_pend_kg",
+        "value": 0.2
+      },
+      {
+        "target": "asset_case_case_manual_003__InvertedPendulumPlant.length_m",
+        "value": 0.5
+      },
+      {
+        "target": "asset_case_case_manual_003__InvertedPendulumPlant.g_mps2",
+        "value": 9.81
+      },
+      {
+        "target": "asset_case_case_manual_003__InvertedPendulumPlant.cart_friction_Nspm",
+        "value": 0.1
+      },
+      {
+        "target": "asset_case_case_manual_003__InvertedPendulumPlant.pend_damping_Nms",
+        "value": 0.02
+      }
+    ]
+  },
+  "external_inputs": [
+    {
+      "default": null,
+      "name": "x_ref_m",
+      "targets": [
+        "controller.x_ref_m"
+      ],
+      "unit": null
+    },
+    {
+      "default": null,
+      "name": "theta_ref_rad",
+      "targets": [
+        "controller.theta_ref_rad"
+      ],
+      "unit": null
+    },
+    {
+      "default": null,
+      "name": "disturbance_N",
+      "targets": [
+        "plant.disturbance_N"
+      ],
+      "unit": null
+    }
+  ],
+  "loop_resolution": [],
+  "monitored_outputs": [
+    {
+      "name": "force_cmd_N",
+      "source": "asset_case_case_manual_003__PendulumController.force_cmd_N",
+      "unit": "N"
+    },
+    {
+      "name": "int_theta",
+      "source": "asset_case_case_manual_003__PendulumController.int_theta",
+      "unit": null
+    },
+    {
+      "name": "int_x",
+      "source": "asset_case_case_manual_003__PendulumController.int_x",
+      "unit": null
+    },
+    {
+      "name": "x_m",
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.x_m",
+      "unit": "m"
+    },
+    {
+      "name": "x_dot_mps",
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps",
+      "unit": "m/s"
+    },
+    {
+      "name": "theta_rad",
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad",
+      "unit": "rad"
+    },
+    {
+      "name": "theta_dot_radps",
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps",
+      "unit": "rad/s"
+    }
+  ],
+  "notes": [
+    "With theta_ref_rad=0 and x_ref_m stepping from 0 to 0.3 m, the controller should keep the pendulum near upright (|theta| stays small) while moving the cart. When a short disturbance_N impulse is applied, the system should recover without saturating force_cmd_N for an extended time; theta_rad should return close to 0."
+  ],
+  "schedule": {
+    "co_simulation": {
+      "end_time_s": 20,
+      "output_interval_s": 0.01,
+      "start_time_s": 0,
+      "step_size_s": 0.001
+    },
+    "co_simulation_type": "fixed_step",
+    "kind": "co_simulation"
+  },
+  "schema": "UNIFIED_SOLUTION_V1",
+  "selected_asset_ids": [
+    "asset_case_case_manual_003__PendulumController",
+    "asset_case_case_manual_003__InvertedPendulumPlant"
+  ]
+}

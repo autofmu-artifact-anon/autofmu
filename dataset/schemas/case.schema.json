@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UnifiedCase",
+  "type": "object",
+  "required": [
+    "schema",
+    "case_id",
+    "source_type",
+    "title",
+    "requirement",
+    "mbse",
+    "ground_truth_asset_ids",
+    "solution_relpath",
+    "evaluation_artifacts"
+  ],
+  "properties": {
+    "schema": {"type": "string"},
+    "case_id": {"type": "string"},
+    "source_type": {"type": "string"},
+    "title": {"type": "string"},
+    "description": {"type": "string"},
+    "requirement": {"type": "object"},
+    "mbse": {"type": "object"},
+    "ground_truth_asset_ids": {"type": "array", "items": {"type": "string"}},
+    "candidate_asset_ids": {"type": "array", "items": {"type": "string"}},
+    "case_category": {"type": "string", "enum": ["simple", "complex"]},
+    "complexity_metrics": {
+      "type": "object",
+      "properties": {
+        "rule_id": {"type": "string"},
+        "fmu_count": {"type": "integer"},
+        "connection_count": {"type": "integer"},
+        "stage_count": {"type": "integer"},
+        "ground_truth_port_count": {"type": "integer"},
+        "ground_truth_input_count": {"type": "integer"},
+        "ground_truth_output_count": {"type": "integer"},
+        "monitored_output_count": {"type": "integer"},
+        "single_fmu_port_threshold_for_complex": {"type": "integer"}
+      },
+      "additionalProperties": true
+    },
+    "solution_relpath": {"type": "string"},
+    "expected_behavior": {"type": "string"},
+    "provenance": {"type": "object"},
+    "evaluation_artifacts": {
+      "type": "object",
+      "required": [
+        "retrieval_reference_relpath",
+        "verification_requirement_relpath",
+        "verification_result_relpath",
+        "trajectory_manifest_relpath",
+        "ground_truth_trajectory_relpath",
+        "input_trajectory_relpath",
+        "supports_execution_metrics",
+        "supports_numerical_fidelity",
+        "supports_decision_accuracy"
+      ],
+      "properties": {
+        "retrieval_reference_relpath": {"type": "string"},
+        "verification_requirement_relpath": {"type": "string"},
+        "verification_result_relpath": {"type": "string"},
+        "trajectory_manifest_relpath": {"type": "string"},
+        "ground_truth_trajectory_relpath": {"type": "string"},
+        "input_trajectory_relpath": {"type": "string"},
+        "supports_execution_metrics": {"type": "boolean"},
+        "supports_numerical_fidelity": {"type": "boolean"},
+        "supports_decision_accuracy": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    }
+  }
+}

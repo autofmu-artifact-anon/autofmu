@@ -1,0 +1,110 @@
+{
+  "case_id": "case_manual_003",
+  "criteria": [
+    {
+      "metric": "max(abs(theta_rad))_during_t=[0s,1s]",
+      "notes": "起始 1s 内摆杆角度应保持在可恢复范围内。",
+      "operator": "<=",
+      "signals": [
+        "theta_rad"
+      ],
+      "unit": "rad",
+      "value": 0.2
+    },
+    {
+      "metric": "max(abs(x_m))_during_t=[0s,1s]",
+      "notes": "小车位移在初始化阶段不应出现失控漂移。",
+      "operator": "<=",
+      "signals": [
+        "x_m"
+      ],
+      "unit": "m",
+      "value": 0.2
+    },
+    {
+      "metric": "max(abs(force_cmd_N))_during_t=[0s,1s]",
+      "notes": "初始化阶段控制输出应保持在执行器可接受范围内。",
+      "operator": "<=",
+      "signals": [
+        "force_cmd_N"
+      ],
+      "unit": "N",
+      "value": 12.0
+    },
+    {
+      "metric": "abs(theta_rad) at t=1.0s",
+      "notes": "1s 时角度应已回到接近直立的范围。",
+      "operator": "<=",
+      "signals": [
+        "theta_rad"
+      ],
+      "unit": "rad",
+      "value": 0.05
+    },
+    {
+      "metric": "abs(x_m) at t=1.0s",
+      "notes": "1s 时小车位置仍应处于初始化允许范围内。",
+      "operator": "<=",
+      "signals": [
+        "x_m"
+      ],
+      "unit": "m",
+      "value": 0.12
+    }
+  ],
+  "decision_rule": {
+    "criteria_source": "verification_requirement.criteria",
+    "kind": "acceptance_criteria",
+    "requires_ground_truth": true
+  },
+  "derivation_basis": {
+    "acceptance_criteria_count": 5,
+    "signals_of_interest": [
+      "theta_rad",
+      "x_m",
+      "force_cmd_N"
+    ],
+    "source_root": "sources/cases/case_manual_003"
+  },
+  "judgement_policy": "acceptance_criteria_from_requirement",
+  "scenario_window": {
+    "start_time": 0,
+    "stop_time": 1
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "force_cmd_N": [
+      "force_cmd_N",
+      "asset_case_case_manual_003__PendulumController.force_cmd_N"
+    ],
+    "int_theta": [
+      "int_theta",
+      "asset_case_case_manual_003__PendulumController.int_theta"
+    ],
+    "int_x": [
+      "int_x",
+      "asset_case_case_manual_003__PendulumController.int_x"
+    ],
+    "theta_dot_radps": [
+      "theta_dot_radps",
+      "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps"
+    ],
+    "theta_rad": [
+      "theta_rad",
+      "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad"
+    ],
+    "x_dot_mps": [
+      "x_dot_mps",
+      "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps"
+    ],
+    "x_m": [
+      "x_m",
+      "asset_case_case_manual_003__InvertedPendulumPlant.x_m"
+    ]
+  },
+  "signals": [],
+  "text": "倒立摆初始化阶段的直立保持. 在 0s 到 1s 的初始化阶段，系统保持 theta_ref_rad=0、x_ref_m=0、disturbance_N=0。Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+  "time_column_aliases": [],
+  "title": "倒立摆初始化阶段的直立保持 Verification Requirement",
+  "tolerances": {}
+}

@@ -1,0 +1,77 @@
+{
+  "case_id": "case_manual_003",
+  "case_name": "倒立摆稳定",
+  "description": "倒立摆直立稳定与位置跟踪控制系统，包含非线性倒立摆动力学和带抗积分饱和的PID控制器",
+  "fmus": [
+    {
+      "name": "PendulumController",
+      "fmu_path": "fmus/PendulumController.fmu",
+      "guid": "{c3d4e5f6-a789-0123-cdef-345678901234}",
+      "description": "倒立摆小车控制器：角度+位置反馈，包含两个积分状态、执行器一阶滞后，以及非线性饱和/死区/抗积分饱和",
+      "type": "Co-Simulation",
+      "fmi_version": "2.0",
+      "inputs": [
+        {"name": "x_ref_m", "type": "Real", "unit": "m", "description": "期望位置"},
+        {"name": "theta_ref_rad", "type": "Real", "unit": "rad", "description": "期望摆角（通常为0，竖直向上）"},
+        {"name": "x_m", "type": "Real", "unit": "m", "description": "测得小车位置"},
+        {"name": "x_dot_mps", "type": "Real", "unit": "m/s", "description": "测得小车速度"},
+        {"name": "theta_rad", "type": "Real", "unit": "rad", "description": "测得摆角"},
+        {"name": "theta_dot_radps", "type": "Real", "unit": "rad/s", "description": "测得摆角速度"}
+      ],
+      "outputs": [
+        {"name": "force_cmd_N", "type": "Real", "unit": "N", "description": "输出给小车的水平力指令"}
+      ],
+      "parameters": [
+        {"name": "Kp_theta", "default": 80.0, "unit": "N/rad"},
+        {"name": "Kd_theta", "default": 12.0, "unit": "N/(rad/s)"},
+        {"name": "Ki_theta", "default": 10.0, "unit": "N/(rad·s)"},
+        {"name": "Kp_x", "default": 2.0, "unit": "N/m"},
+        {"name": "Kd_x", "default": 2.5, "unit": "N/(m/s)"},
+        {"name": "Ki_x", "default": 0.5, "unit": "N/(m·s)"},
+        {"name": "u_max_N", "default": 15.0, "unit": "N"},
+        {"name": "deadzone_N", "default": 0.3, "unit": "N"},
+        {"name": "actuator_tau_s", "default": 0.05, "unit": "s"},
+        {"name": "antiwindup_gain", "default": 5.0, "unit": "1/s"}
+      ],
+      "states": [
+        {"name": "int_theta", "description": "摆角误差积分"},
+        {"name": "int_x", "description": "位置误差积分"},
+        {"name": "force_act_N", "description": "执行器输出力"}
+      ]
+    },
+    {
+      "name": "InvertedPendulumPlant",
+      "fmu_path": "fmus/InvertedPendulumPlant.fmu",
+      "guid": "{b2c3d4e5-f6a7-8901-bcde-f23456789012}",
+      "description": "非线性倒立摆小车动力学模型：4状态（位置、速度、角度、角速度），含摩擦和阻尼",
+      "type": "Co-Simulation",
+      "fmi_version": "2.0",
+      "inputs": [
+        {"name": "force_cmd_N", "type": "Real", "unit": "N", "description": "水平控制力指令"},
+        {"name": "disturbance_N", "type": "Real", "unit": "N", "description": "外部水平扰动力"}
+      ],
+      "outputs": [
+        {"name": "x_m", "type": "Real", "unit": "m", "description": "小车位置"},
+        {"name": "x_dot_mps", "type": "Real", "unit": "m/s", "description": "小车速度"},
+        {"name": "theta_rad", "type": "Real", "unit": "rad", "description": "摆角（0=竖直向上）"},
+        {"name": "theta_dot_radps", "type": "Real", "unit": "rad/s", "description": "摆角速度"}
+      ],
+      "parameters": [
+        {"name": "m_cart_kg", "default": 1.0, "unit": "kg"},
+        {"name": "m_pend_kg", "default": 0.2, "unit": "kg"},
+        {"name": "length_m", "default": 0.5, "unit": "m"},
+        {"name": "g_mps2", "default": 9.81, "unit": "m/s^2"},
+        {"name": "cart_friction_Nspm", "default": 0.1, "unit": "N*s/m"},
+        {"name": "pend_damping_Nms", "default": 0.02, "unit": "N*m*s"}
+      ],
+      "states": [
+        {"name": "x_m_state", "description": "小车位置"},
+        {"name": "x_dot_mps_state", "description": "小车速度"},
+        {"name": "theta_rad_state", "description": "摆角"},
+        {"name": "theta_dot_radps_state", "description": "摆角速度"}
+      ]
+    }
+  ],
+  "created_at": "2026-03-09T05:26:00Z",
+  "total_fmus": 2
+}

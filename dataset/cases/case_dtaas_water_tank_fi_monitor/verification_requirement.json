@@ -1,0 +1,78 @@
+{
+  "case_id": "case_dtaas_water_tank_fi_monitor",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "notes": "Requires canonical DTaaS reference execution trace.",
+      "operator": "<=",
+      "signals": [
+        "valve",
+        "level",
+        "y",
+        "_output"
+      ],
+      "value": null
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "requires_ground_truth": true,
+    "signals": [
+      "valve",
+      "level",
+      "y",
+      "_output"
+    ],
+    "time_column": "time"
+  },
+  "derivation_basis": {
+    "expected_behavior": "The injected controller fault drives the tank level beyond the monitor threshold and the generated monitor verdict transitions to violation for the bundled scenario.",
+    "signals_of_interest": [
+      "valve",
+      "level",
+      "y",
+      "_output"
+    ],
+    "source_root": "sources/dtaas_examples/case_dtaas_water_tank_fi_monitor"
+  },
+  "judgement_policy": "behavioral_expectation_pending_execution",
+  "scenario_window": {
+    "start_time": 0,
+    "step_size": 0.1,
+    "stop_time": 100
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "_output": [
+      "_output",
+      "asset_dtaas_water_tank_fi_monitor__x4._output"
+    ],
+    "level": [
+      "level",
+      "asset_dtaas_water_tank_fi_monitor__x2.level"
+    ],
+    "valve": [
+      "valve",
+      "asset_dtaas_water_tank_fi_monitor__x1.valve"
+    ],
+    "y": [
+      "y",
+      "asset_dtaas_water_tank_fi_monitor__x3.y"
+    ]
+  },
+  "signals": [
+    "valve",
+    "level",
+    "y",
+    "_output"
+  ],
+  "text": "Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.. Scenario time window 0s to 100s. Signals of interest: valve, level, y, _output Expected ground-truth behavior: The injected controller fault drives the tank level beyond the monitor threshold and the generated monitor verdict transitions to violation for the bundled scenario. A final pass/fail conclusion remains pending until a reference execution trace is normalized.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Water Tank Fault Injection with Monitor Verification Requirement",
+  "tolerances": {}
+}

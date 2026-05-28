@@ -1,0 +1,199 @@
+[
+  {
+    "tasks": [
+      {
+        "task_id": "task_neighborhood_0",
+        "objective": "Verify neighborhood behavior around battery: 电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_su...",
+        "required_signals": [
+          "current_A",
+          "coolantFlow_kgps",
+          "voltage_V",
+          "soc"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "battery"
+        ],
+        "grounded_component_types": [
+          "BatteryPackElectroThermal"
+        ],
+        "grounded_ports": [
+          "current_A",
+          "coolantFlow_kgps",
+          "voltage_V",
+          "soc"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": true,
+          "anchor_score": 1.55,
+          "anchor_reasons": [
+            "port_token_overlap=4"
+          ]
+        }
+      },
+      {
+        "task_id": "task_neighborhood_1",
+        "objective": "Verify neighborhood behavior around controller: 电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_su...",
+        "required_signals": [
+          "soc",
+          "voltage_V",
+          "current_A"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "controller"
+        ],
+        "grounded_component_types": [
+          "ThermalManagementController"
+        ],
+        "grounded_ports": [
+          "soc",
+          "voltage_V",
+          "current_A"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": false,
+          "anchor_score": 1.35,
+          "anchor_reasons": [
+            "port_token_overlap=3"
+          ]
+        }
+      },
+      {
+        "task_id": "task_neighborhood_2",
+        "objective": "Verify neighborhood behavior around coolingLoop: 电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_su...",
+        "required_signals": [
+          "coolantFlow_kgps"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "coolingLoop"
+        ],
+        "grounded_component_types": [
+          "CoolingLoop"
+        ],
+        "grounded_ports": [
+          "coolantFlow_kgps"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": false,
+          "anchor_score": 0.95,
+          "anchor_reasons": [
+            "port_token_overlap=1"
+          ]
+        }
+      }
+    ],
+    "rationale": "heuristic neighborhood raw task set",
+    "score": 1.0,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "heuristic_neighborhood_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.15,
+      "final_score": 1.0
+    },
+    "meta": {
+      "generation_source": "heuristic_neighborhood_raw",
+      "generation_family": "heuristic",
+      "seed_components": [
+        "battery"
+      ],
+      "expanded_components": [
+        "battery",
+        "controller",
+        "coolingLoop"
+      ],
+      "anchor_trace": {
+        "controller": {
+          "score": 1.35,
+          "reasons": [
+            "port_token_overlap=3"
+          ]
+        },
+        "battery": {
+          "score": 1.55,
+          "reasons": [
+            "port_token_overlap=4"
+          ]
+        },
+        "coolingLoop": {
+          "score": 0.95,
+          "reasons": [
+            "port_token_overlap=1"
+          ]
+        }
+      },
+      "grounding_valid": true,
+      "selection_mode": "single_heuristic_neighborhood"
+    }
+  }
+]

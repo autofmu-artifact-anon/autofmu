@@ -1,0 +1,120 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_manual_003",
+  "selected_asset_ids": [
+    "asset_case_case_manual_003__InvertedPendulumPlant",
+    "asset_case_case_manual_003__PendulumController"
+  ],
+  "connections": [],
+  "external_inputs": [
+    {
+      "name": "disturbance_N",
+      "targets": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.disturbance_N"
+      ],
+      "default": null
+    },
+    {
+      "name": "theta_ref_rad",
+      "targets": [
+        "asset_case_case_manual_003__PendulumController.theta_ref_rad"
+      ],
+      "default": null
+    },
+    {
+      "name": "x_ref_m",
+      "targets": [
+        "asset_case_case_manual_003__PendulumController.x_ref_m"
+      ],
+      "default": null
+    }
+  ],
+  "initial_conditions": [
+    {
+      "name": "force_act_N",
+      "targets": []
+    },
+    {
+      "name": "int_theta",
+      "targets": []
+    },
+    {
+      "name": "int_x",
+      "targets": []
+    },
+    {
+      "name": "theta_dot_radps",
+      "targets": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.theta_dot_radps"
+      ]
+    },
+    {
+      "name": "theta_rad",
+      "targets": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad"
+      ]
+    },
+    {
+      "name": "x_dot_mps",
+      "targets": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.x_dot_mps"
+      ]
+    },
+    {
+      "name": "x_m",
+      "targets": [
+        "asset_case_case_manual_003__InvertedPendulumPlant.x_m"
+      ]
+    }
+  ],
+  "monitored_outputs": [
+    {
+      "name": "theta_rad",
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.theta_rad"
+    },
+    {
+      "name": "x_m",
+      "source": "asset_case_case_manual_003__InvertedPendulumPlant.x_m"
+    },
+    {
+      "name": "force_cmd_N",
+      "source": "asset_case_case_manual_003__PendulumController.force_cmd_N"
+    }
+  ],
+  "schedule": {
+    "kind": "fixed_step",
+    "start_time": 0.0,
+    "stop_time": 1.0,
+    "duration": 1.0,
+    "step_size": 0.01,
+    "execution_order": [
+      "asset_case_case_manual_003__InvertedPendulumPlant",
+      "asset_case_case_manual_003__PendulumController"
+    ],
+    "node_order": [
+      "asset_case_case_manual_003__InvertedPendulumPlant",
+      "asset_case_case_manual_003__PendulumController"
+    ],
+    "warnings": [
+      "weak_stage3_fallback"
+    ],
+    "per_node_period": {
+      "asset_case_case_manual_003__InvertedPendulumPlant": 0.01,
+      "asset_case_case_manual_003__PendulumController": 0.01
+    }
+  },
+  "execution_order": [
+    "asset_case_case_manual_003__InvertedPendulumPlant",
+    "asset_case_case_manual_003__PendulumController"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=2",
+    "task_goal=Generate the final UNIFIED_SOLUTION_V1 orchestration payload fields for 2 FMUs in InvertedPendulumStabilizationSystem without using adapters or loop wrappers.",
+    "connection_count=0",
+    "fallback_mode=weak_fixed_step",
+    "stage3_variant=llm_generated_script"
+  ],
+  "extensions": {}
+}

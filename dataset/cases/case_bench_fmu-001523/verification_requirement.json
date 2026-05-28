@@ -1,0 +1,56 @@
+{
+  "case_id": "case_bench_fmu-001523",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "operator": "<=",
+      "signals": [
+        "TRes"
+      ],
+      "value": 1e-06
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "signals": [
+      "TRes"
+    ],
+    "time_column": "time",
+    "tolerance": 1e-06
+  },
+  "derivation_basis": {
+    "ground_truth_source": "FMICrossCheck.ControlledTemperature_ref.csv",
+    "input_source": "",
+    "signals": [
+      "TRes"
+    ],
+    "source_root": "sources/fmu-benchmark-mini/fmus/2.0/me/linux64/SystemModeler/5.0/FMICrossCheck.ControlledTemperature",
+    "source_type": "benchmark_single_fmu_case"
+  },
+  "judgement_policy": "trajectory_match",
+  "scenario_window": {
+    "start_time": 0.0,
+    "step_size": 0.0,
+    "stop_time": 10
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "TRes": [
+      "TRes"
+    ]
+  },
+  "signals": [
+    "TRes"
+  ],
+  "text": "Run the benchmark FMU FMICrossCheck.ControlledTemperature under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs TRes.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Verify benchmark FMU FMICrossCheck.ControlledTemperature",
+  "tolerances": {
+    "trajectory_match": 1e-06
+  }
+}

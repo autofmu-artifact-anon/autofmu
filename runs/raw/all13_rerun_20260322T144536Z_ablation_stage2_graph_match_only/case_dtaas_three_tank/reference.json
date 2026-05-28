@@ -1,0 +1,440 @@
+{
+  "case_id": "case_dtaas_three_tank",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_dtaas_three_tank__tank1",
+        "asset_dtaas_three_tank__tank2",
+        "asset_dtaas_three_tank__tank3"
+      ]
+    ],
+    "case_id": "case_dtaas_three_tank",
+    "equivalence_class_id": "",
+    "equivalence_reason": "",
+    "oracle_mode": "exact_asset_set",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_dtaas_three_tank",
+    "connections": [
+      {
+        "source": "asset_dtaas_three_tank__tank1.outPort",
+        "target": "asset_dtaas_three_tank__tank2.inPort"
+      },
+      {
+        "source": "asset_dtaas_three_tank__tank2.outPort",
+        "target": "asset_dtaas_three_tank__tank3.inPort"
+      }
+    ],
+    "execution_order": [
+      "asset_dtaas_three_tank__tank1",
+      "asset_dtaas_three_tank__tank2",
+      "asset_dtaas_three_tank__tank3"
+    ],
+    "extensions": {
+      "parameter_overrides": [
+        {
+          "target": "asset_dtaas_three_tank__tank2.level",
+          "value": 10
+        },
+        {
+          "target": "asset_dtaas_three_tank__tank1.level",
+          "value": 2
+        },
+        {
+          "target": "asset_dtaas_three_tank__tank3.level",
+          "value": 35
+        }
+      ],
+      "raw_config_relpaths": [
+        "raw/digital_twins/three-tank/README.md",
+        "raw/digital_twins/three-tank/multimodel.json",
+        "raw/digital_twins/three-tank/coe.json",
+        "raw/digital_twins/three-tank/tank1.conf",
+        "raw/digital_twins/three-tank/tank2.conf",
+        "raw/digital_twins/three-tank/tank3.conf"
+      ]
+    },
+    "external_inputs": [],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "level",
+        "source": "asset_dtaas_three_tank__tank1.level"
+      },
+      {
+        "name": "inPort",
+        "source": "asset_dtaas_three_tank__tank1.inPort"
+      },
+      {
+        "name": "outPort",
+        "source": "asset_dtaas_three_tank__tank1.outPort"
+      },
+      {
+        "name": "leak",
+        "source": "asset_dtaas_three_tank__tank1.leak"
+      },
+      {
+        "name": "der(level)",
+        "source": "asset_dtaas_three_tank__tank1.der(level)"
+      },
+      {
+        "name": "level",
+        "source": "asset_dtaas_three_tank__tank2.level"
+      },
+      {
+        "name": "inPort",
+        "source": "asset_dtaas_three_tank__tank2.inPort"
+      },
+      {
+        "name": "outPort",
+        "source": "asset_dtaas_three_tank__tank2.outPort"
+      },
+      {
+        "name": "leak",
+        "source": "asset_dtaas_three_tank__tank2.leak"
+      },
+      {
+        "name": "der(level)",
+        "source": "asset_dtaas_three_tank__tank2.der(level)"
+      },
+      {
+        "name": "level",
+        "source": "asset_dtaas_three_tank__tank3.level"
+      },
+      {
+        "name": "inPort",
+        "source": "asset_dtaas_three_tank__tank3.inPort"
+      },
+      {
+        "name": "outPort",
+        "source": "asset_dtaas_three_tank__tank3.outPort"
+      },
+      {
+        "name": "leak",
+        "source": "asset_dtaas_three_tank__tank3.leak"
+      },
+      {
+        "name": "der(level)",
+        "source": "asset_dtaas_three_tank__tank3.der(level)"
+      }
+    ],
+    "notes": [
+      "The three tank instances propagate flow from tank1 to tank3 while logging level, in/out flow, leak, and derivative signals over the configured time window."
+    ],
+    "schedule": {
+      "co_simulation_type": "fixed-step",
+      "kind": "co_simulation",
+      "live_log_interval": 0,
+      "report_progress": false,
+      "start_time": 0,
+      "step_size": 0.5,
+      "stop_time": 10
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_dtaas_three_tank__tank1",
+      "asset_dtaas_three_tank__tank2",
+      "asset_dtaas_three_tank__tank3"
+    ],
+    "stages": [
+      {
+        "connections": [
+          {
+            "source": "asset_dtaas_three_tank__tank1.outPort",
+            "target": "asset_dtaas_three_tank__tank2.inPort"
+          },
+          {
+            "source": "asset_dtaas_three_tank__tank2.outPort",
+            "target": "asset_dtaas_three_tank__tank3.inPort"
+          }
+        ],
+        "execution_order": [
+          "asset_dtaas_three_tank__tank1",
+          "asset_dtaas_three_tank__tank2",
+          "asset_dtaas_three_tank__tank3"
+        ],
+        "extensions": {
+          "aliases": {
+            "Level": "level",
+            "tank1": "{tank}.tank1",
+            "tank2": "{tank}.tank2",
+            "tank3": "{tank}.tank3"
+          },
+          "parameter_overrides": [
+            {
+              "target": "asset_dtaas_three_tank__tank2.level",
+              "value": 10
+            },
+            {
+              "target": "asset_dtaas_three_tank__tank1.level",
+              "value": 2
+            },
+            {
+              "target": "asset_dtaas_three_tank__tank3.level",
+              "value": 35
+            }
+          ],
+          "raw_config_relpaths": [
+            "raw/digital_twins/three-tank/multimodel.json",
+            "raw/digital_twins/three-tank/coe.json",
+            "raw/digital_twins/three-tank/tank1.conf",
+            "raw/digital_twins/three-tank/tank2.conf",
+            "raw/digital_twins/three-tank/tank3.conf"
+          ]
+        },
+        "external_inputs": [],
+        "monitored_outputs": [
+          {
+            "name": "level",
+            "source": "asset_dtaas_three_tank__tank1.level"
+          },
+          {
+            "name": "inPort",
+            "source": "asset_dtaas_three_tank__tank1.inPort"
+          },
+          {
+            "name": "outPort",
+            "source": "asset_dtaas_three_tank__tank1.outPort"
+          },
+          {
+            "name": "leak",
+            "source": "asset_dtaas_three_tank__tank1.leak"
+          },
+          {
+            "name": "der(level)",
+            "source": "asset_dtaas_three_tank__tank1.der(level)"
+          },
+          {
+            "name": "level",
+            "source": "asset_dtaas_three_tank__tank2.level"
+          },
+          {
+            "name": "inPort",
+            "source": "asset_dtaas_three_tank__tank2.inPort"
+          },
+          {
+            "name": "outPort",
+            "source": "asset_dtaas_three_tank__tank2.outPort"
+          },
+          {
+            "name": "leak",
+            "source": "asset_dtaas_three_tank__tank2.leak"
+          },
+          {
+            "name": "der(level)",
+            "source": "asset_dtaas_three_tank__tank2.der(level)"
+          },
+          {
+            "name": "level",
+            "source": "asset_dtaas_three_tank__tank3.level"
+          },
+          {
+            "name": "inPort",
+            "source": "asset_dtaas_three_tank__tank3.inPort"
+          },
+          {
+            "name": "outPort",
+            "source": "asset_dtaas_three_tank__tank3.outPort"
+          },
+          {
+            "name": "leak",
+            "source": "asset_dtaas_three_tank__tank3.leak"
+          },
+          {
+            "name": "der(level)",
+            "source": "asset_dtaas_three_tank__tank3.der(level)"
+          }
+        ],
+        "schedule": {
+          "co_simulation_type": "fixed-step",
+          "kind": "co_simulation",
+          "live_log_interval": 0,
+          "report_progress": false,
+          "start_time": 0,
+          "step_size": 0.5,
+          "stop_time": 10
+        },
+        "selected_asset_ids": [
+          "asset_dtaas_three_tank__tank1",
+          "asset_dtaas_three_tank__tank2",
+          "asset_dtaas_three_tank__tank3"
+        ],
+        "stage_id": "stage1"
+      }
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_dtaas_three_tank",
+    "criteria": [
+      {
+        "metric": "within_range(asset_dtaas_three_tank__tank1.outPort)",
+        "notes": "Tank1 出流应保持在参考轨迹包络内。",
+        "operator": "in",
+        "signals": [
+          "asset_dtaas_three_tank__tank1.outPort"
+        ],
+        "unit": "-",
+        "value": [
+          0.0,
+          2.0
+        ]
+      },
+      {
+        "metric": "within_range(asset_dtaas_three_tank__tank1.leak)",
+        "notes": "Tank1 漏流应保持在参考轨迹包络内。",
+        "operator": "in",
+        "signals": [
+          "asset_dtaas_three_tank__tank1.leak"
+        ],
+        "unit": "-",
+        "value": [
+          0.0,
+          0.2
+        ]
+      }
+    ],
+    "decision_rule": {
+      "criteria_source": "verification_requirement.criteria",
+      "kind": "acceptance_criteria",
+      "requires_ground_truth": true
+    },
+    "derivation_basis": {
+      "expected_behavior": "The three tank instances propagate flow from tank1 to tank3 while logging level, in/out flow, leak, and derivative signals over the configured time window.",
+      "signals_of_interest": [
+        "asset_dtaas_three_tank__tank1.outPort",
+        "asset_dtaas_three_tank__tank1.leak"
+      ],
+      "source_root": "sources/dtaas_examples/case_dtaas_three_tank"
+    },
+    "judgement_policy": "acceptance_criteria_from_requirement",
+    "scenario_window": {
+      "start_time": 0,
+      "step_size": 0.5,
+      "stop_time": 10
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "der(level)": [
+        "asset_dtaas_three_tank__tank1.der(level)",
+        "der(level)"
+      ],
+      "inPort": [
+        "asset_dtaas_three_tank__tank1.inPort",
+        "inPort"
+      ],
+      "leak": [
+        "asset_dtaas_three_tank__tank1.leak",
+        "leak"
+      ],
+      "level": [
+        "asset_dtaas_three_tank__tank1.level",
+        "level"
+      ],
+      "outPort": [
+        "asset_dtaas_three_tank__tank1.outPort",
+        "outPort"
+      ]
+    },
+    "signals": [],
+    "text": "Three-Tank System Digital Twin bounded-response check. Tank1 outflow and leak signals should remain inside the canonical operating envelope over 0s to 10s.",
+    "time_column_aliases": [
+      "time",
+      "TIME",
+      "Time",
+      "t"
+    ],
+    "title": "Three-Tank System Digital Twin Verification Requirement",
+    "tolerances": {}
+  },
+  "verification_result": {
+    "case_id": "case_dtaas_three_tank",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "source_kind": "offline_cosimulation"
+    },
+    "missing_requirements": [],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "Ground-truth trajectory generated by offline co-simulation of the constituent FMU models using the canonical orchestration (solution.json).",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_dtaas_three_tank",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "ground_truth_trajectory.csv",
+    "input_relpath": "",
+    "reference_generation_method": "offline_cosimulation",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "der(level)": [
+        "asset_dtaas_three_tank__tank1.der(level)",
+        "der(level)"
+      ],
+      "inPort": [
+        "asset_dtaas_three_tank__tank1.inPort",
+        "inPort"
+      ],
+      "leak": [
+        "asset_dtaas_three_tank__tank1.leak",
+        "leak"
+      ],
+      "level": [
+        "asset_dtaas_three_tank__tank1.level",
+        "level"
+      ],
+      "outPort": [
+        "asset_dtaas_three_tank__tank1.outPort",
+        "outPort"
+      ]
+    },
+    "signal_columns": [],
+    "source_kind": "offline_cosimulation",
+    "stage_segments": [
+      {
+        "stage_id": "stage1",
+        "start_time": 0,
+        "stop_time": 10
+      }
+    ],
+    "supports_numerical_fidelity": false,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "dataset/cases/case_dtaas_three_tank/ground_truth_trajectory.csv",
+  "input_trajectory_path": null,
+  "declared_scenario_window": {
+    "start_time": 0,
+    "stop_time": 10,
+    "step_size": 0.5
+  },
+  "declared_initial_conditions": {},
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": false,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "dtaas_multi_fmu_case",
+    "expected_behavior": "The three tank instances propagate flow from tank1 to tank3 while logging level, in/out flow, leak, and derivative signals over the configured time window.",
+    "title": "Three-Tank System Digital Twin",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": true,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": false,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

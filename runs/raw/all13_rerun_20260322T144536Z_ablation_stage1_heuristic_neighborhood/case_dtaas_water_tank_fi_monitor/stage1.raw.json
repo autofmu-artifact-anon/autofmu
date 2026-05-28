@@ -1,0 +1,338 @@
+[
+  {
+    "tasks": [
+      {
+        "task_id": "task_neighborhood_0",
+        "objective": "Verify neighborhood behavior around x3: Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.. Scenario time window 0s to 100s. Signals of interest: valve, level...",
+        "required_signals": [
+          "level",
+          "u",
+          "y"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "x3"
+        ],
+        "grounded_component_types": [
+          "Rti"
+        ],
+        "grounded_ports": [
+          "level",
+          "u",
+          "y"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": true,
+          "anchor_score": 3.25,
+          "anchor_reasons": [
+            "component_mentioned",
+            "component_token_overlap=1"
+          ]
+        }
+      },
+      {
+        "task_id": "task_neighborhood_1",
+        "objective": "Verify neighborhood behavior around x2: Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.. Scenario time window 0s to 100s. Signals of interest: valve, level...",
+        "required_signals": [
+          "level"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "x2"
+        ],
+        "grounded_component_types": [
+          "Singlewatertank"
+        ],
+        "grounded_ports": [
+          "level"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": false,
+          "anchor_score": 0.95,
+          "anchor_reasons": [
+            "port_token_overlap=1"
+          ]
+        }
+      },
+      {
+        "task_id": "task_neighborhood_2",
+        "objective": "Verify neighborhood behavior around x4: Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.. Scenario time window 0s to 100s. Signals of interest: valve, level...",
+        "required_signals": [
+          "level",
+          "output"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "x4"
+        ],
+        "grounded_component_types": [
+          "EuFbkNurvM1"
+        ],
+        "grounded_ports": [
+          "level",
+          "output"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": false,
+          "anchor_score": 1.15,
+          "anchor_reasons": [
+            "port_token_overlap=2"
+          ]
+        }
+      },
+      {
+        "task_id": "case_structure_hint_task_0",
+        "objective": "Preserve structural signal path x1.valve -> x2.valvecontrol",
+        "required_signals": [
+          "valve",
+          "valvecontrol"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "x1",
+          "x2"
+        ],
+        "grounded_component_types": [],
+        "grounded_ports": [
+          "x1.valve",
+          "x2.valvecontrol"
+        ],
+        "task_trace": {
+          "notes": [
+            "case_structure_hints"
+          ],
+          "structure_hint": {
+            "source_component": "x1",
+            "source_signal": "valve",
+            "target_component": "x2",
+            "target_signal": "valvecontrol"
+          }
+        },
+        "diagnostics": {
+          "case_structure_hint": true,
+          "case_structure_hint_reason": "Preserve the controller-to-tank actuation path."
+        }
+      }
+    ],
+    "rationale": "heuristic neighborhood raw task set",
+    "score": 0.85,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "heuristic_neighborhood_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "case_structure_hint_chain_0",
+        "source_component": "x1",
+        "target_component": "x2",
+        "signals": [
+          "valve",
+          "valvecontrol"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_0_seg_0",
+            "source_component": "x1",
+            "source_signal": "valve",
+            "target_component": "x2",
+            "target_signal": "valvecontrol",
+            "must_route": true,
+            "semantic_intent": "x1.valve -> x2.valvecontrol",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve the controller-to-tank actuation path."
+            }
+          }
+        ],
+        "semantic_intent": "x1.valve -> x2.valvecontrol",
+        "details": {
+          "source_signal": "valve",
+          "target_signal": "valvecontrol",
+          "source": "case_structure_hints",
+          "rationale": "Preserve the controller-to-tank actuation path."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_1",
+        "source_component": "x2",
+        "target_component": "x1",
+        "signals": [
+          "level",
+          "level"
+        ],
+        "origin_task_ids": [
+          "task_neighborhood_0",
+          "task_neighborhood_1",
+          "task_neighborhood_2",
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_1_seg_0",
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x1",
+            "target_signal": "level",
+            "must_route": true,
+            "semantic_intent": "x2.level -> x1.level",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Feed the tank level back into the controller."
+            }
+          }
+        ],
+        "semantic_intent": "x2.level -> x1.level",
+        "details": {
+          "source_signal": "level",
+          "target_signal": "level",
+          "source": "case_structure_hints",
+          "rationale": "Feed the tank level back into the controller."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_2",
+        "source_component": "x2",
+        "target_component": "x3",
+        "signals": [
+          "level",
+          "u"
+        ],
+        "origin_task_ids": [
+          "task_neighborhood_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_2_seg_0",
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x3",
+            "target_signal": "u",
+            "must_route": true,
+            "semantic_intent": "x2.level -> x3.u",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Expose the tank level to the RtI helper for monitoring."
+            }
+          }
+        ],
+        "semantic_intent": "x2.level -> x3.u",
+        "details": {
+          "source_signal": "level",
+          "target_signal": "u",
+          "source": "case_structure_hints",
+          "rationale": "Expose the tank level to the RtI helper for monitoring."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_3",
+        "source_component": "x3",
+        "target_component": "x4",
+        "signals": [
+          "y",
+          "level"
+        ],
+        "origin_task_ids": [
+          "task_neighborhood_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_3_seg_0",
+            "source_component": "x3",
+            "source_signal": "y",
+            "target_component": "x4",
+            "target_signal": "level",
+            "must_route": true,
+            "semantic_intent": "x3.y -> x4.level",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Deliver the monitored observable into the generated monitor FMU."
+            }
+          }
+        ],
+        "semantic_intent": "x3.y -> x4.level",
+        "details": {
+          "source_signal": "y",
+          "target_signal": "level",
+          "source": "case_structure_hints",
+          "rationale": "Deliver the monitored observable into the generated monitor FMU."
+        }
+      }
+    ],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.0,
+      "final_score": 0.85
+    },
+    "meta": {
+      "generation_source": "heuristic_neighborhood_raw",
+      "generation_family": "heuristic",
+      "seed_components": [
+        "x3"
+      ],
+      "expanded_components": [
+        "x3",
+        "x2",
+        "x4"
+      ],
+      "anchor_trace": {
+        "x1": {
+          "score": 1.15,
+          "reasons": [
+            "port_token_overlap=2"
+          ]
+        },
+        "x2": {
+          "score": 0.95,
+          "reasons": [
+            "port_token_overlap=1"
+          ]
+        },
+        "x3": {
+          "score": 3.25,
+          "reasons": [
+            "component_mentioned",
+            "component_token_overlap=1"
+          ]
+        },
+        "x4": {
+          "score": 1.15,
+          "reasons": [
+            "port_token_overlap=2"
+          ]
+        }
+      },
+      "grounding_valid": true,
+      "selection_mode": "single_heuristic_neighborhood",
+      "case_structure_hints_applied": true,
+      "case_structure_hint_chain_count": 4,
+      "case_structure_hint_task_count": 1,
+      "required_chain_count": 4
+    }
+  }
+]

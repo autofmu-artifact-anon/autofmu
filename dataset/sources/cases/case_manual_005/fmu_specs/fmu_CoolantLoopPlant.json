@@ -1,0 +1,29 @@
+{
+  "name": "CoolantLoopPlant",
+  "description": "简化冷却回路：泵命令驱动换热系数 UA(pump_cmd)（非线性饱和），冷却液温度为一阶动态并与环境换热。",
+  "inputs": [
+    {"name": "pump_cmd", "type": "Real", "unit": "0..1", "description": "泵速度/占空比命令（0..1）"},
+    {"name": "ambient_temp_C", "type": "Real", "unit": "C", "description": "环境温度（°C）"},
+    {"name": "heat_in_W", "type": "Real", "unit": "W", "description": "进入冷却回路的热量（来自电池包）（W）"}
+  ],
+  "outputs": [
+    {"name": "coolant_temp_C", "type": "Real", "unit": "C", "description": "回路代表性冷却液温度（°C）"},
+    {"name": "heat_removed_W", "type": "Real", "unit": "W", "description": "通过散热器向环境移除的热量（W）"}
+  ],
+  "parameters": [
+    {"name": "coolant_thermal_mass_JK", "type": "Real", "default": 18000.0, "unit": "J/K", "description": "冷却液等效热容"},
+    {"name": "ua_min_WK", "type": "Real", "default": 40.0, "unit": "W/K", "description": "最小等效 UA（泵低速/停转时仍有少量自然对流）"},
+    {"name": "ua_max_WK", "type": "Real", "default": 320.0, "unit": "W/K", "description": "最大等效 UA（泵高速时饱和）"},
+    {"name": "ua_shape", "type": "Real", "default": 2.2, "unit": "-", "description": "UA(pump_cmd) 非线性形状参数（指数/曲率）"},
+
+    {"name": "pump_tau_s", "type": "Real", "default": 2.5, "unit": "s", "description": "泵一阶惯性时间常数"},
+    {"name": "pump_rate_limit_per_s", "type": "Real", "default": 0.6, "unit": "1/s", "description": "泵内部状态变化率限制"},
+
+    {"name": "temp_min_C", "type": "Real", "default": -20.0, "unit": "C", "description": "数值保护下限温度"},
+    {"name": "temp_max_C", "type": "Real", "default": 120.0, "unit": "C", "description": "数值保护上限温度"}
+  ],
+  "states": [
+    {"name": "coolant_temp_C", "derivative": "d_coolant_temp_dt"},
+    {"name": "pump_state", "derivative": "d_pump_state_dt"}
+  ]
+}

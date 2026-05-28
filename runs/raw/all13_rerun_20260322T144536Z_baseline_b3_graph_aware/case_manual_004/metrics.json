@@ -1,0 +1,166 @@
+{
+  "schema": "EVALUATOR_CASE_METRICS_V2",
+  "retrieval": {
+    "top_k": 5,
+    "oracle_mode": "exact_asset_set",
+    "equivalence_class_id": "",
+    "acceptable_asset_set_count": 1,
+    "acceptable_asset_sets": [
+      [
+        "asset_case_case_manual_004__HydraulicCylinderPlant",
+        "asset_case_case_manual_004__PositionController",
+        "asset_case_case_manual_004__SpoolValveActuator"
+      ]
+    ],
+    "top1_asset_ids": [
+      "asset_case_case_manual_004__HydraulicCylinderPlant",
+      "asset_case_case_manual_004__PositionController",
+      "asset_case_case_manual_004__SpoolValveActuator"
+    ],
+    "candidate_asset_sets": [
+      [
+        "asset_case_case_manual_004__HydraulicCylinderPlant",
+        "asset_case_case_manual_004__PositionController",
+        "asset_case_case_manual_004__SpoolValveActuator"
+      ]
+    ],
+    "top1_hit": true,
+    "topk_hit": true
+  },
+  "execution": {
+    "supported": true,
+    "success": true,
+    "backend": "mixed_cosim",
+    "execution_time_seconds": 0.7809901721775532,
+    "generated_trajectory_path": "runs/raw/all13_rerun_20260322T144536Z_baseline_b3_graph_aware/case_manual_004/generated_trajectory.csv",
+    "error": null,
+    "warnings": []
+  },
+  "numerical_fidelity": {
+    "supported": true,
+    "mae": null,
+    "rmse": null,
+    "nrmse": null,
+    "max_abs_error": null,
+    "aligned_sample_count": 0,
+    "signal_count": 0,
+    "signals": [],
+    "generated_time_column": "time",
+    "reference_time_column": "time",
+    "generated_signal_map": {},
+    "reference_signal_map": {},
+    "unresolved_generated_signals": [],
+    "unresolved_reference_signals": []
+  },
+  "decision": {
+    "supported": true,
+    "predicted_conclusion": "fail",
+    "reference_conclusion": "pass",
+    "passed": false,
+    "correct": false,
+    "evidence": {
+      "rule_kind": "acceptance_criteria",
+      "supported": true,
+      "conclusion": "fail",
+      "criterion_results": [
+        {
+          "metric": "within_range(x_m)",
+          "operator": "in",
+          "expected": [
+            0.0,
+            0.13
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        },
+        {
+          "metric": "within_range(valve_cmd)",
+          "operator": "in",
+          "expected": [
+            -1.0,
+            1.0
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        },
+        {
+          "metric": "within_range(spool_u)",
+          "operator": "in",
+          "expected": [
+            -0.1,
+            0.1
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        },
+        {
+          "metric": "within_range(pA_Pa)",
+          "operator": "in",
+          "expected": [
+            100000.0,
+            21000000.0
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        },
+        {
+          "metric": "within_range(pB_Pa)",
+          "operator": "in",
+          "expected": [
+            100000.0,
+            21000000.0
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "insufficient_time_coverage"
+        }
+      ],
+      "unsupported_criteria": [],
+      "time_coverage": {
+        "observed_start_time": 0.0,
+        "observed_stop_time": 1.0,
+        "declared_start_time": 0,
+        "declared_stop_time": 5,
+        "sample_count": 101
+      },
+      "initial_condition_results": [
+        {
+          "signal": "pA_Pa",
+          "expected": 10000000.0,
+          "observed": 10000000.0,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        },
+        {
+          "signal": "pB_Pa",
+          "expected": 5000000.0,
+          "observed": 5000000.0,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        },
+        {
+          "signal": "x_m",
+          "expected": 0.05,
+          "observed": 0.05,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        }
+      ],
+      "coverage_failures": [
+        "within_range(x_m)",
+        "within_range(valve_cmd)",
+        "within_range(spool_u)",
+        "within_range(pA_Pa)",
+        "within_range(pB_Pa)"
+      ],
+      "decision_policy": "acceptance_criteria_pass"
+    }
+  }
+}

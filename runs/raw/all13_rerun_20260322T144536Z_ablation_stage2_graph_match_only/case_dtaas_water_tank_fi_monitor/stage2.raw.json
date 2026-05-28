@@ -1,0 +1,819 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_monolithic",
+        "objective": "Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.. Scenario time window 0s to 10",
+        "required_signals": [
+          "valve",
+          "level",
+          "y",
+          "output"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [
+          {
+            "signal_name": "valve",
+            "direction": "out",
+            "component_hint": "x1",
+            "port_hint": "x1.valve",
+            "unit_hint": "",
+            "type_hint": "Boolean",
+            "role": "observed",
+            "source_text": "valve",
+            "grounded_component_ref": "x1",
+            "grounded_port_ref": "x1.valve"
+          },
+          {
+            "signal_name": "level",
+            "direction": "in",
+            "component_hint": "x1",
+            "port_hint": "x1.level",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "level",
+            "grounded_component_ref": "x1",
+            "grounded_port_ref": "x1.level"
+          },
+          {
+            "signal_name": "level",
+            "direction": "out",
+            "component_hint": "x2",
+            "port_hint": "x2.level",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "level",
+            "grounded_component_ref": "x2",
+            "grounded_port_ref": "x2.level"
+          },
+          {
+            "signal_name": "level",
+            "direction": "in",
+            "component_hint": "x4",
+            "port_hint": "x4.level",
+            "unit_hint": "",
+            "type_hint": "Integer",
+            "role": "driven",
+            "source_text": "level",
+            "grounded_component_ref": "x4",
+            "grounded_port_ref": "x4.level"
+          },
+          {
+            "signal_name": "y",
+            "direction": "out",
+            "component_hint": "x3",
+            "port_hint": "x3.y",
+            "unit_hint": "",
+            "type_hint": "Integer",
+            "role": "observed",
+            "source_text": "y",
+            "grounded_component_ref": "x3",
+            "grounded_port_ref": "x3.y"
+          },
+          {
+            "signal_name": "output",
+            "direction": "out",
+            "component_hint": "x4",
+            "port_hint": "x4.output",
+            "unit_hint": "",
+            "type_hint": "Integer",
+            "role": "observed",
+            "source_text": "output",
+            "grounded_component_ref": "x4",
+            "grounded_port_ref": "x4.output"
+          }
+        ],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 100.0,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "grounded_component_types": [
+          "Tankcontroller",
+          "Singlewatertank",
+          "Rti",
+          "EuFbkNurvM1"
+        ],
+        "grounded_ports": [
+          "valve",
+          "level",
+          "y",
+          "output"
+        ],
+        "task_trace": {
+          "components": [
+            "x1",
+            "x2",
+            "x3",
+            "x4"
+          ],
+          "ports": [
+            "valve",
+            "level",
+            "y",
+            "output"
+          ],
+          "signals": [
+            "valve",
+            "level",
+            "y",
+            "output"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 4,
+          "grounded_signal_count": 4,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      }
+    ],
+    "rationale": "rule-generated holistic raw task set",
+    "score": 0.5379894179894179,
+    "p_value": 0.38095238095238093,
+    "task_set_id": "taskset_2",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "x1",
+        "target_component": "x2",
+        "signals": [
+          "valve",
+          "valvecontrol"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "x1",
+            "source_signal": "valve",
+            "target_component": "x2",
+            "target_signal": "valvecontrol",
+            "must_route": true,
+            "semantic_intent": "x1.valve -> x2.valvecontrol",
+            "adjacency_evidence": {
+              "source_component": "x1",
+              "target_component": "x2"
+            }
+          }
+        ],
+        "semantic_intent": "x1.valve -> x2.valvecontrol",
+        "details": {
+          "source_signal": "valve",
+          "target_signal": "valvecontrol"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "x2",
+        "target_component": "x1",
+        "signals": [
+          "level",
+          "level"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x1",
+            "target_signal": "level",
+            "must_route": true,
+            "semantic_intent": "x2.level -> x1.level",
+            "adjacency_evidence": {
+              "source_component": "x2",
+              "target_component": "x1"
+            }
+          }
+        ],
+        "semantic_intent": "x2.level -> x1.level",
+        "details": {
+          "source_signal": "level",
+          "target_signal": "level"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "x2",
+        "target_component": "x3",
+        "signals": [
+          "level",
+          "u"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x3",
+            "target_signal": "u",
+            "must_route": true,
+            "semantic_intent": "x2.level -> x3.u",
+            "adjacency_evidence": {
+              "source_component": "x2",
+              "target_component": "x3"
+            }
+          }
+        ],
+        "semantic_intent": "x2.level -> x3.u",
+        "details": {
+          "source_signal": "level",
+          "target_signal": "u"
+        }
+      },
+      {
+        "chain_id": "chain_3",
+        "source_component": "x3",
+        "target_component": "x4",
+        "signals": [
+          "y",
+          "level"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_3_seg_0",
+            "source_component": "x3",
+            "source_signal": "y",
+            "target_component": "x4",
+            "target_signal": "level",
+            "must_route": true,
+            "semantic_intent": "x3.y -> x4.level",
+            "adjacency_evidence": {
+              "source_component": "x3",
+              "target_component": "x4"
+            }
+          }
+        ],
+        "semantic_intent": "x3.y -> x4.level",
+        "details": {
+          "source_signal": "y",
+          "target_signal": "level"
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.38095238095238093,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.4620105820105821,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 0.5714285714285714,
+      "criteria_coverage": 0.0,
+      "constraint_completeness": 0.0,
+      "regime_coverage": 1.0,
+      "topology_alignment": 0.25,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.07407407407407407,
+      "final_score": 0.5379894179894179
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "required_chain_count": 4,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_monolithic:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.38095238095238093,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.4620105820105821,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_monolithic",
+      "task_index": 0,
+      "fmu_uid": "asset_dtaas_water_tank_fi__x1",
+      "score": 2.45,
+      "cost": 2.05,
+      "hard_ok": true,
+      "semantic_cost": 2.05,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "graph_match_only",
+        "component_exact=x1",
+        "exact_signal_hits=4"
+      ],
+      "grounded_components": [
+        "x1",
+        "x2",
+        "x3",
+        "x4"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_dtaas_water_tank_fi__x1",
+      "name": "x1",
+      "description": "x1 instance of tankcontroller in Water Tank Fault Injection. Water-tank controller and plant co-simulation with Maestro fault injection extension.",
+      "path": "dataset/assets/asset_dtaas_water_tank_fi__x1/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "CoSimulation"
+      ],
+      "ports": [
+        {
+          "name": "maxlevel",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "the max tank level",
+          "dimensions": []
+        },
+        {
+          "name": "minlevel",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "the min tank level",
+          "dimensions": []
+        },
+        {
+          "name": "level",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "the tank level",
+          "dimensions": []
+        },
+        {
+          "name": "valve",
+          "causality": "output",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "the tank valve state",
+          "dimensions": []
+        }
+      ],
+      "inputs": [
+        "level"
+      ],
+      "outputs": [
+        "valve"
+      ],
+      "tags": [
+        "water_tank_fi",
+        "fault_injection"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_dtaas_water_tank_fi__x1",
+        "asset_json": {
+          "asset_id": "asset_dtaas_water_tank_fi__x1",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_dtaas_water_tank_fi"
+          ],
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 100
+          },
+          "description": "x1 instance of tankcontroller in Water Tank Fault Injection. Water-tank controller and plant co-simulation with Maestro fault injection extension.",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [
+            "level"
+          ],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "x1",
+          "outputs": [
+            "valve"
+          ],
+          "ports": [
+            {
+              "causality": "parameter",
+              "description": "the max tank level",
+              "name": "maxlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "the min tank level",
+              "name": "minlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "input",
+              "description": "the tank level",
+              "name": "level",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "the tank valve state",
+              "name": "valve",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            }
+          ],
+          "provenance": {
+            "base_model_name": "tankcontroller",
+            "example_path": "digital_twins/water_tank_FI",
+            "example_slug": "water_tank_fi",
+            "generated": false,
+            "workspace_path": "models/watertankcontroller-c.fmu"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "case_dtaas_water_tank_fi::x1",
+          "source_type": "dtaas_example_fmu",
+          "tags": [
+            "water_tank_fi",
+            "fault_injection"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_dtaas_water_tank_fi__x1",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 100
+          },
+          "description": "x1 instance of tankcontroller in Water Tank Fault Injection. Water-tank controller and plant co-simulation with Maestro fault injection extension.",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [
+            "level"
+          ],
+          "name": "x1",
+          "outputs": [
+            "valve"
+          ],
+          "ports": [
+            {
+              "causality": "parameter",
+              "description": "the max tank level",
+              "name": "maxlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "the min tank level",
+              "name": "minlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "input",
+              "description": "the tank level",
+              "name": "level",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "the tank valve state",
+              "name": "valve",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0,
+          "stepSize": 0.1,
+          "stopTime": 100
+        },
+        "source_type": "dtaas_example_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_dtaas_water_tank_fi__x1"
+    ],
+    "port_nodes": [
+      "asset_dtaas_water_tank_fi__x1.maxlevel",
+      "asset_dtaas_water_tank_fi__x1.minlevel",
+      "asset_dtaas_water_tank_fi__x1.level",
+      "asset_dtaas_water_tank_fi__x1.valve"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "x1": "asset_dtaas_water_tank_fi__x1",
+      "x2": "asset_dtaas_water_tank_fi__x1",
+      "x3": "asset_dtaas_water_tank_fi__x1",
+      "x4": "asset_dtaas_water_tank_fi__x1"
+    },
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "x1",
+        "target_component": "x2",
+        "signals": [
+          "valve",
+          "valvecontrol"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "x1",
+            "source_signal": "valve",
+            "target_component": "x2",
+            "target_signal": "valvecontrol",
+            "must_route": true,
+            "semantic_intent": "x1.valve -> x2.valvecontrol",
+            "adjacency_evidence": {
+              "source_component": "x1",
+              "target_component": "x2"
+            }
+          }
+        ],
+        "semantic_intent": "x1.valve -> x2.valvecontrol",
+        "details": {
+          "source_signal": "valve",
+          "target_signal": "valvecontrol"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "x2",
+        "target_component": "x1",
+        "signals": [
+          "level",
+          "level"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x1",
+            "target_signal": "level",
+            "must_route": true,
+            "semantic_intent": "x2.level -> x1.level",
+            "adjacency_evidence": {
+              "source_component": "x2",
+              "target_component": "x1"
+            }
+          }
+        ],
+        "semantic_intent": "x2.level -> x1.level",
+        "details": {
+          "source_signal": "level",
+          "target_signal": "level"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "x2",
+        "target_component": "x3",
+        "signals": [
+          "level",
+          "u"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x3",
+            "target_signal": "u",
+            "must_route": true,
+            "semantic_intent": "x2.level -> x3.u",
+            "adjacency_evidence": {
+              "source_component": "x2",
+              "target_component": "x3"
+            }
+          }
+        ],
+        "semantic_intent": "x2.level -> x3.u",
+        "details": {
+          "source_signal": "level",
+          "target_signal": "u"
+        }
+      },
+      {
+        "chain_id": "chain_3",
+        "source_component": "x3",
+        "target_component": "x4",
+        "signals": [
+          "y",
+          "level"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_3_seg_0",
+            "source_component": "x3",
+            "source_signal": "y",
+            "target_component": "x4",
+            "target_signal": "level",
+            "must_route": true,
+            "semantic_intent": "x3.y -> x4.level",
+            "adjacency_evidence": {
+              "source_component": "x3",
+              "target_component": "x4"
+            }
+          }
+        ],
+        "semantic_intent": "x3.y -> x4.level",
+        "details": {
+          "source_signal": "y",
+          "target_signal": "level"
+        }
+      }
+    ],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "simplified_name_match"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 2.05,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_1",
+      "status": "ok",
+      "selected_task_set_cost": 8.8,
+      "final_cost": 8.8,
+      "selected_fmus": [
+        "asset_dtaas_water_tank_fi__x1",
+        "asset_dtaas_water_tank_fi__x2",
+        "asset_dtaas_water_tank_fi_monitor__x3"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    },
+    {
+      "task_set_id": "taskset_2",
+      "status": "ok",
+      "selected_task_set_cost": 2.05,
+      "final_cost": 2.05,
+      "selected_fmus": [
+        "asset_dtaas_water_tank_fi__x1"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 2.05,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "graph_match_only",
+    "structural_reasoning": true,
+    "semantic_retrieval": false,
+    "binding_count": 0,
+    "fallback_used": false,
+    "failure_type": ""
+  }
+}

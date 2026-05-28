@@ -1,0 +1,55 @@
+{
+  "name": "CartPolePlant",
+  "description": "小车-倒立摆非线性动力学（含电机饱和、非线性摩擦、软限位与简化传感器）。角度定义：theta=0 为下垂，theta=pi 为倒立。",
+  "inputs": [
+    {
+      "name": "force_cmd_N",
+      "type": "Real",
+      "unit": "N",
+      "description": "电机期望输出水平力（将被内部饱和与一阶执行器动态处理）"
+    },
+    {
+      "name": "disturbance_force_N",
+      "type": "Real",
+      "unit": "N",
+      "description": "外部扰动力（脉冲推/拉，用于鲁棒性测试）"
+    }
+  ],
+  "outputs": [
+    {"name": "x_m", "type": "Real", "unit": "m", "description": "小车位置"},
+    {"name": "x_dot_mps", "type": "Real", "unit": "m/s", "description": "小车速度"},
+    {"name": "theta_rad", "type": "Real", "unit": "rad", "description": "杆角度（0下垂，pi倒立）"},
+    {"name": "theta_dot_rps", "type": "Real", "unit": "rad/s", "description": "杆角速度"},
+
+    {"name": "theta_meas_rad", "type": "Real", "unit": "rad", "description": "角度测量值（含噪声/量化/wrap）"},
+    {"name": "theta_dot_meas_rps", "type": "Real", "unit": "rad/s", "description": "角速度测量值（含偏置与噪声）"}
+  ],
+  "parameters": [
+    {"name": "m_cart_kg", "type": "Real", "default": 0.6, "unit": "kg", "description": "小车质量"},
+    {"name": "m_pole_kg", "type": "Real", "default": 0.2, "unit": "kg", "description": "杆质量"},
+    {"name": "l_com_m", "type": "Real", "default": 0.25, "unit": "m", "description": "转轴到杆质心距离"},
+    {"name": "I_pole_kgm2", "type": "Real", "default": 0.006, "unit": "kg*m^2", "description": "杆绕质心转动惯量"},
+    {"name": "g_mps2", "type": "Real", "default": 9.81, "unit": "m/s^2", "description": "重力加速度"},
+
+    {"name": "F_max_N", "type": "Real", "default": 15.0, "unit": "N", "description": "电机最大输出力（饱和）"},
+    {"name": "actuator_tau_s", "type": "Real", "default": 0.03, "unit": "s", "description": "执行器一阶滞后时间常数"},
+
+    {"name": "cart_fric_coulomb_N", "type": "Real", "default": 1.2, "unit": "N", "description": "小车库仑摩擦等效力幅值"},
+    {"name": "cart_fric_visc_Ns_per_m", "type": "Real", "default": 0.8, "unit": "N*s/m", "description": "小车粘性摩擦系数"},
+    {"name": "fric_smooth_v0_mps", "type": "Real", "default": 0.02, "unit": "m/s", "description": "tanh 平滑摩擦的速度尺度"},
+
+    {"name": "x_limit_m", "type": "Real", "default": 0.5, "unit": "m", "description": "轨道软限位（超出后施加非线性弹簧力）"},
+    {"name": "x_limit_k_N_per_m", "type": "Real", "default": 120.0, "unit": "N/m", "description": "软限位等效弹簧刚度"},
+
+    {"name": "theta_meas_sigma_rad", "type": "Real", "default": 0.003, "unit": "rad", "description": "角度测量噪声标准差"},
+    {"name": "theta_dot_bias_rps", "type": "Real", "default": 0.05, "unit": "rad/s", "description": "角速度测量偏置（常值）"},
+    {"name": "theta_dot_meas_sigma_rps", "type": "Real", "default": 0.02, "unit": "rad/s", "description": "角速度测量噪声标准差"}
+  ],
+  "states": [
+    {"name": "x_m", "derivative": "x_dot_mps"},
+    {"name": "x_dot_mps", "derivative": "x_ddot_mps2"},
+    {"name": "theta_rad", "derivative": "theta_dot_rps"},
+    {"name": "theta_dot_rps", "derivative": "theta_ddot_rps2"},
+    {"name": "F_act_N", "derivative": "dF_act_dt"}
+  ]
+}

@@ -1,0 +1,955 @@
+{
+  "version": "0.1.0",
+  "timestamp": "2025-12-12T10:30:31Z",
+  "file": "/root/mbse_val/fmu-benchmark-mini/fmus/2.0/me/linux64/MapleSim/2015.1/ControlledTemperature/ControlledTemperature.fmu",
+  "metadata_summary": {
+    "fmi": {
+      "fmiVersion": "2.0",
+      "fmiTypes": [
+        "ModelExchange"
+      ],
+      "modelName": "ControlledTemperature",
+      "guid": "{996b8261-6c0a-967d-50f3-6b586a6e783a}",
+      "description": "Model ControlledTemperature",
+      "author": "",
+      "generationTool": "MapleSim (1038805/1038805/1038805)",
+      "generationDateAndTime": "2015-04-23T14:39:49Z",
+      "variableNamingConvention": "structured",
+      "numberOfEventIndicators": 4,
+      "defaultExperiment": {
+        "startTime": 0.0,
+        "stopTime": 10.0,
+        "tolerance": 0.0001
+      }
+    },
+    "implementation": {
+      "platforms": [
+        "linux64"
+      ],
+      "modelExchange": {
+        "modelIdentifier": "ControlledTemperature",
+        "canGetAndSetFMUstate": true,
+        "canSerializeFMUstate": true,
+        "providesDirectionalDerivative": false
+      }
+    }
+  },
+  "variables": {
+    "all": [
+      {
+        "name": "internalTime",
+        "causality": "independent",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": "s",
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal time",
+        "writable": false
+      },
+      {
+        "name": "heatCapacitor.T",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "heatCapacitor.T",
+        "writable": false
+      },
+      {
+        "name": "outputs[1]",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "onOffController.reference",
+        "writable": false
+      },
+      {
+        "name": "heatingResistor.heatPort.Q_flow",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "heatingResistor.heatPort.Q_flow",
+        "writable": false
+      },
+      {
+        "name": "idealSwitch.p.i",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "idealSwitch.p.i",
+        "writable": false
+      },
+      {
+        "name": "idealSwitch.s",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "idealSwitch.s",
+        "writable": false
+      },
+      {
+        "name": "idealSwitch.v",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "idealSwitch.v",
+        "writable": false
+      },
+      {
+        "name": "outputs[2]",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": "degC",
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "TempInput.value",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(8)",
+        "causality": "local",
+        "variability": "discrete",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "onOffController.y",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(9)",
+        "causality": "local",
+        "variability": "discrete",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "msim/RVAR1",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(10)",
+        "causality": "local",
+        "variability": "discrete",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "msim/RVAR2",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(11)",
+        "causality": "local",
+        "variability": "discrete",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "msim/RVAR3",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(12)",
+        "causality": "local",
+        "variability": "discrete",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "msim/RVAR4",
+        "writable": false
+      },
+      {
+        "name": "TAmb",
+        "causality": "parameter",
+        "variability": "fixed",
+        "type": "Real",
+        "unit": "K",
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 293.15,
+        "description": "TAmb",
+        "writable": true
+      },
+      {
+        "name": "TDif",
+        "causality": "parameter",
+        "variability": "fixed",
+        "type": "Real",
+        "unit": "K",
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 2.0,
+        "description": "TDif",
+        "writable": true
+      },
+      {
+        "name": "msimder(heatCapacitor.T)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "der(heatCapacitor.T)",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(16)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(17)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(18)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(19)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(20)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(21)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(22)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(23)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(24)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(25)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(26)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(27)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(28)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(29)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(30)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      },
+      {
+        "name": "ControlledTemperature_r(31)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": "internal variable",
+        "writable": false
+      }
+    ],
+    "inputs": [],
+    "outputs_observed": [
+      {
+        "name": "outputs[1]",
+        "valueReference": 2,
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "description": "onOffController.reference",
+        "initial": "calculated"
+      },
+      {
+        "name": "outputs[2]",
+        "valueReference": 7,
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "description": "TempInput.value",
+        "initial": "calculated",
+        "unit": "degC"
+      }
+    ]
+  },
+  "probe_config": {
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "step_size": 0.05,
+    "scenarios": [
+      {
+        "kind": "step",
+        "start_time": 0.0,
+        "stop_time": 10.0,
+        "step_size": 0.05,
+        "seed": 0
+      },
+      {
+        "kind": "ramp",
+        "start_time": 0.0,
+        "stop_time": 10.0,
+        "step_size": 0.05,
+        "seed": 0
+      },
+      {
+        "kind": "sine",
+        "start_time": 0.0,
+        "stop_time": 10.0,
+        "step_size": 0.05,
+        "seed": 0
+      }
+    ],
+    "selected_inputs": [],
+    "selected_outputs": [
+      "outputs[1]",
+      "outputs[2]"
+    ],
+    "narrative": "Generic excitation on representative inputs (step/ramp/sine)."
+  },
+  "features": {
+    "outputs[1]": {
+      "variable_meta": {
+        "name": "outputs[1]",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null
+      },
+      "basic_stats": {
+        "mean": 37.89978900392369,
+        "variance": 92.27674979804887,
+        "std": 9.60607879407872,
+        "min": 25.0,
+        "max": 50.00000000333334,
+        "peak_to_peak": 25.00000000333334,
+        "first": 25.0,
+        "last": 50.0
+      },
+      "steady_state": 50.0,
+      "step_metrics": {
+        "baseline": 25.0,
+        "final": 50.0,
+        "amplitude": 25.0,
+        "rise_time": 4.800000000000001,
+        "overshoot_ratio": 1.333336285824771e-10,
+        "settling_time": 7.9,
+        "steady_slope": 1.121074578145423e-15
+      },
+      "spectral_metrics": {
+        "dominant_frequency_hz": 0.07812500000000028,
+        "dominant_power_ratio": 0.9382701548682659,
+        "spectral_centroid_hz": 0.08508504971136363,
+        "spectral_bandwidth_hz": 0.05729665784368382,
+        "low_freq_energy_ratio": 0.9382701548682659
+      },
+      "lag_phase": {},
+      "stability_flags": {
+        "diverged": false,
+        "saturated": false,
+        "jump_count": 0
+      },
+      "behavior_labels": [
+        "oscillatory"
+      ],
+      "ramp_basic_stats": {
+        "mean": 37.89978900392369,
+        "variance": 92.27674979804887,
+        "std": 9.60607879407872,
+        "min": 25.0,
+        "max": 50.00000000333334,
+        "peak_to_peak": 25.00000000333334,
+        "first": 25.0,
+        "last": 50.0
+      }
+    },
+    "outputs[2]": {
+      "variable_meta": {
+        "name": "outputs[2]",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": "degC",
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null
+      },
+      "basic_stats": {
+        "mean": 37.84248199120717,
+        "variance": 93.99378338089743,
+        "std": 9.695039111880748,
+        "min": 20.0,
+        "max": 51.00000002731559,
+        "peak_to_peak": 31.000000027315593,
+        "first": 20.0,
+        "last": 49.18987021882691
+      },
+      "steady_state": 50.01870213717683,
+      "step_metrics": {
+        "baseline": 24.3280114131481,
+        "final": 50.01870213717683,
+        "amplitude": 25.69069072402873,
+        "rise_time": 4.8,
+        "overshoot_ratio": 0.03819663319604505,
+        "settling_time": null,
+        "steady_slope": -0.5537116667771822
+      },
+      "spectral_metrics": {
+        "dominant_frequency_hz": 0.07812500000000028,
+        "dominant_power_ratio": 0.9154593986442174,
+        "spectral_centroid_hz": 0.10005340592993615,
+        "spectral_bandwidth_hz": 0.11296049433867432,
+        "low_freq_energy_ratio": 0.9154593986442174
+      },
+      "lag_phase": {},
+      "stability_flags": {
+        "diverged": false,
+        "saturated": false,
+        "jump_count": 0
+      },
+      "behavior_labels": [
+        "integrator-like",
+        "oscillatory"
+      ],
+      "ramp_basic_stats": {
+        "mean": 37.84248199120717,
+        "variance": 93.99378338089743,
+        "std": 9.695039111880748,
+        "min": 20.0,
+        "max": 51.00000002731559,
+        "peak_to_peak": 31.000000027315593,
+        "first": 20.0,
+        "last": 49.18987021882691
+      }
+    }
+  },
+  "fmu_profile": {
+    "num_inputs": 0,
+    "num_outputs_observed": 2,
+    "outputs_source": "outputs",
+    "continuous_ratio": 0.78125,
+    "recommended_step_size_range": [
+      0.31999999999999884,
+      1.2799999999999954
+    ],
+    "typical_dynamic_labels": [
+      "integrator-like",
+      "oscillatory"
+    ]
+  },
+  "llm_guidance": {
+    "prompt": {
+      "task": "Propose a reasonable reproducible usage scenario for probing FMU behavior.",
+      "constraints": [
+        "Return JSON only.",
+        "Select up to 3 representative inputs and up to 5 representative outputs by exact name.",
+        "Scenario must include step, ramp, sine excitations.",
+        "Do not invent variables not in the list."
+      ],
+      "model_info": {
+        "fmiVersion": "2.0",
+        "fmiTypes": [
+          "ModelExchange"
+        ],
+        "modelName": "ControlledTemperature",
+        "guid": "{996b8261-6c0a-967d-50f3-6b586a6e783a}",
+        "description": "Model ControlledTemperature",
+        "author": "",
+        "generationTool": "MapleSim (1038805/1038805/1038805)",
+        "generationDateAndTime": "2015-04-23T14:39:49Z",
+        "variableNamingConvention": "structured",
+        "numberOfEventIndicators": 4,
+        "defaultExperiment": {
+          "startTime": 0.0,
+          "stopTime": 10.0,
+          "tolerance": 0.0001
+        }
+      },
+      "variables": [
+        {
+          "name": "internalTime",
+          "causality": "independent",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "s",
+          "description": "internal time"
+        },
+        {
+          "name": "heatCapacitor.T",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "heatCapacitor.T"
+        },
+        {
+          "name": "outputs[1]",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "onOffController.reference"
+        },
+        {
+          "name": "heatingResistor.heatPort.Q_flow",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "heatingResistor.heatPort.Q_flow"
+        },
+        {
+          "name": "idealSwitch.p.i",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "idealSwitch.p.i"
+        },
+        {
+          "name": "idealSwitch.s",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "idealSwitch.s"
+        },
+        {
+          "name": "idealSwitch.v",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "idealSwitch.v"
+        },
+        {
+          "name": "outputs[2]",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "degC",
+          "description": "TempInput.value"
+        },
+        {
+          "name": "ControlledTemperature_r(8)",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "onOffController.y"
+        },
+        {
+          "name": "ControlledTemperature_r(9)",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "msim/RVAR1"
+        },
+        {
+          "name": "ControlledTemperature_r(10)",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "msim/RVAR2"
+        },
+        {
+          "name": "ControlledTemperature_r(11)",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "msim/RVAR3"
+        },
+        {
+          "name": "ControlledTemperature_r(12)",
+          "causality": "local",
+          "variability": "discrete",
+          "type": "Real",
+          "unit": "",
+          "description": "msim/RVAR4"
+        },
+        {
+          "name": "TAmb",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "K",
+          "description": "TAmb"
+        },
+        {
+          "name": "TDif",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "K",
+          "description": "TDif"
+        },
+        {
+          "name": "msimder(heatCapacitor.T)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "der(heatCapacitor.T)"
+        },
+        {
+          "name": "ControlledTemperature_r(16)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(17)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(18)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(19)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(20)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(21)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(22)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(23)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(24)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(25)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(26)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(27)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(28)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(29)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(30)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        },
+        {
+          "name": "ControlledTemperature_r(31)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "internal variable"
+        }
+      ],
+      "output_schema": {
+        "inputs": [
+          "..."
+        ],
+        "outputs": [
+          "..."
+        ],
+        "narrative": "short scenario description"
+      }
+    },
+    "raw_response": "```json\n{\n  \"inputs\": [\n    \"heatCapacitor.T\",\n    \"onOffController.reference\",\n    \"TempInput.value\"\n  ],\n  \"outputs\": [\n    \"heatCapacitor.T\",\n    \"onOffController.reference\",\n    \"heatingResistor.heatPort.Q_flow\",\n    \"idealSwitch.s\",\n    \"TempInput.value\"\n  ],\n  \"narrative\": \"In this scenario, we will simulate the behavior of a controlled temperature system using step, ramp, and sine excitations to test how different inputs affect key outputs over time. The system will be subject to a step input for heatCapacitor.T, ramp input for onOffController.reference, and a sine wave input for TempInput.value. The goal is to observe how these excitations influence the heating power (Q_flow), the on/off switching behavior (idealSwitch.s), and the final temperature readings (heatCapacitor.T and TempInput.value).\"\n}\n```"
+  },
+  "log_summary": {
+    "scenario_status": {
+      "step": "ok",
+      "ramp": "ok",
+      "sine": "ok"
+    },
+    "scenario_errors": {},
+    "elapsed_sec": 14.808969974517822
+  }
+}

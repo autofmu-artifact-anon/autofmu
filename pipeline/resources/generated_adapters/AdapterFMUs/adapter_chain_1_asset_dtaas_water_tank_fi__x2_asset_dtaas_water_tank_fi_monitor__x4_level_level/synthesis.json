@@ -1,0 +1,81 @@
+{
+  "adapter_id": "adapter_chain_1_asset_dtaas_water_tank_fi__x2_asset_dtaas_water_tank_fi_monitor__x4_level_level",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "mapping": {
+            "0": 0.0,
+            "1": 1.0,
+            "false": 0.0,
+            "true": 1.0
+          },
+          "source_type": "real",
+          "target_type": "integer",
+          "transform_kind": "mode_signal"
+        }
+      },
+      "sysml": {
+        "name": "level"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "mapping": {
+            "0": 0.0,
+            "1": 1.0,
+            "false": 0.0,
+            "true": 1.0
+          },
+          "source_type": "real",
+          "target_type": "integer",
+          "transform_kind": "mode_signal"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "level"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_1_asset_dtaas_water_tank_fi__x2_asset_dtaas_water_tank_fi_monitor__x4_level_level",
+  "notes": [
+    "Converts Real level signal to Integer for monitor input x4",
+    "Binary mode mapping preserves 0/1 semantics",
+    "Stateless conversion - no history required"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_dtaas_water_tank_fi__x2"
+    },
+    {
+      "name": "asset_dtaas_water_tank_fi_monitor__x4"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

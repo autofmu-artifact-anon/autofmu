@@ -1,0 +1,164 @@
+{
+  "dataset_id": "fmu-001750",
+  "source_repo": "fmi-cross-check-master",
+  "source_path": "fmus/2.0/me/c-code/Test-FMUs/0.0.2/Feedthrough/Feedthrough.fmu",
+  "source_commit": "",
+  "fmi": {
+    "fmiVersion": "2.0",
+    "fmiTypes": [
+      "ModelExchange",
+      "CoSimulation"
+    ],
+    "modelName": "Feedthrough",
+    "guid": "{8c4e810f-3df3-4a00-8276-176fa3c9f004}",
+    "description": "A model to test different variable types, causalities and variabilities",
+    "author": "",
+    "generationTool": "",
+    "generationDateAndTime": "",
+    "variableNamingConvention": "flat",
+    "numberOfEventIndicators": 0,
+    "defaultExperiment": {
+      "stopTime": 2.0
+    }
+  },
+  "implementation": {
+    "platforms": [
+      "win64",
+      "darwin64",
+      "linux64",
+      "c-code"
+    ],
+    "modelExchange": {
+      "modelIdentifier": "Feedthrough"
+    },
+    "coSimulation": {
+      "modelIdentifier": "Feedthrough",
+      "canHandleVariableCommunicationStepSize": true
+    }
+  },
+  "variables": [
+    {
+      "name": "real_fixed_param",
+      "valueReference": 0,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "start": 0.0
+    },
+    {
+      "name": "real_tunable_param",
+      "valueReference": 1,
+      "causality": "parameter",
+      "variability": "tunable",
+      "type": "Real",
+      "start": 0.0
+    },
+    {
+      "name": "real_continuous_in",
+      "valueReference": 2,
+      "causality": "input",
+      "variability": "continuous",
+      "type": "Real",
+      "start": 0.0
+    },
+    {
+      "name": "real_continuous_out",
+      "valueReference": 3,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "calculated"
+    },
+    {
+      "name": "real_discrete_in",
+      "valueReference": 4,
+      "causality": "input",
+      "variability": "discrete",
+      "type": "Real",
+      "start": 0.0
+    },
+    {
+      "name": "real_discrete_out",
+      "valueReference": 5,
+      "causality": "output",
+      "variability": "discrete",
+      "type": "Real",
+      "initial": "calculated"
+    },
+    {
+      "name": "int_in",
+      "valueReference": 6,
+      "causality": "input",
+      "variability": "discrete",
+      "type": "Integer",
+      "start": 0
+    },
+    {
+      "name": "int_out",
+      "valueReference": 7,
+      "causality": "output",
+      "variability": "discrete",
+      "type": "Integer",
+      "initial": "calculated"
+    },
+    {
+      "name": "bool_in",
+      "valueReference": 8,
+      "causality": "input",
+      "variability": "discrete",
+      "type": "Boolean",
+      "description": "boolean input",
+      "start": false
+    },
+    {
+      "name": "bool_out",
+      "valueReference": 9,
+      "causality": "output",
+      "variability": "discrete",
+      "type": "Boolean",
+      "description": "boolean output",
+      "initial": "calculated"
+    },
+    {
+      "name": "string_param",
+      "valueReference": 10,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "String",
+      "description": "String parameter",
+      "start": [
+        "Set",
+        "me!"
+      ]
+    }
+  ],
+  "interface": {
+    "inputs": [
+      "real_continuous_in",
+      "real_discrete_in",
+      "int_in",
+      "bool_in"
+    ],
+    "outputs": [
+      "real_continuous_out",
+      "real_discrete_out",
+      "int_out",
+      "bool_out"
+    ],
+    "parameters": [
+      "real_fixed_param",
+      "real_tunable_param",
+      "string_param"
+    ]
+  },
+  "test": {
+    "hasReferenceInput": true,
+    "hasReferenceOutput": true,
+    "referenceInputFile": "Feedthrough_in.csv",
+    "referenceOutputFile": "Feedthrough_ref.csv",
+    "simulationOptionsFile": "Feedthrough_simopt.json"
+  },
+  "validation": {
+    "fmiCompliance": "not_checked"
+  }
+}

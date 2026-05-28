@@ -1,0 +1,162 @@
+{
+  "case_id": "case_dtaas_water_tank_fi_monitor",
+  "case_name": "Water Tank Fault Injection with Monitor",
+  "description": "Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.",
+  "fmu_count": 4,
+  "fmus": [
+    {
+      "base_model_name": "tankcontroller",
+      "description": "x1 instance of tankcontroller in Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.",
+      "fmi_version": "2.0",
+      "generated": false,
+      "inputs": [
+        {
+          "description": "the tank level",
+          "name": "level",
+          "unit": ""
+        }
+      ],
+      "name": "x1",
+      "outputs": [
+        {
+          "description": "the tank valve state",
+          "name": "valve",
+          "unit": ""
+        }
+      ],
+      "parameters": [
+        {
+          "description": "the max tank level",
+          "name": "maxlevel",
+          "unit": ""
+        },
+        {
+          "description": "the min tank level",
+          "name": "minlevel",
+          "unit": ""
+        }
+      ],
+      "path": "fmus/x1.fmu",
+      "type": "CoSimulation"
+    },
+    {
+      "base_model_name": "SingleWatertank",
+      "description": "x2 instance of SingleWatertank in Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.",
+      "fmi_version": "2.0",
+      "generated": false,
+      "inputs": [
+        {
+          "description": "",
+          "name": "valvecontrol",
+          "unit": ""
+        }
+      ],
+      "name": "x2",
+      "outputs": [
+        {
+          "description": "",
+          "name": "level",
+          "unit": ""
+        }
+      ],
+      "parameters": [
+        {
+          "description": "",
+          "name": "Drain.r",
+          "unit": ""
+        },
+        {
+          "description": "flow rate",
+          "name": "FlowSource.phi",
+          "unit": ""
+        },
+        {
+          "description": "",
+          "name": "tank.Tank.area",
+          "unit": ""
+        },
+        {
+          "description": "",
+          "name": "tank.Tank.gravity",
+          "unit": ""
+        },
+        {
+          "description": "",
+          "name": "tank.Tank.liquid_density",
+          "unit": ""
+        },
+        {
+          "description": "",
+          "name": "tank.Tank.volume_initial",
+          "unit": ""
+        },
+        {
+          "description": "",
+          "name": "Valve.outflow_int_initial",
+          "unit": ""
+        }
+      ],
+      "path": "fmus/x2.fmu",
+      "type": "CoSimulation"
+    },
+    {
+      "base_model_name": "RtI",
+      "description": "x3 instance of RtI in Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.",
+      "fmi_version": "2.0",
+      "generated": false,
+      "inputs": [
+        {
+          "description": "",
+          "name": "u",
+          "unit": ""
+        }
+      ],
+      "name": "x3",
+      "outputs": [
+        {
+          "description": "",
+          "name": "y",
+          "unit": ""
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Gain value multiplied with input signal",
+          "name": "gain.k",
+          "unit": "1"
+        }
+      ],
+      "path": "fmus/x3.fmu",
+      "type": "CoSimulation,ModelExchange"
+    },
+    {
+      "base_model_name": "eu.fbk.nurv.m1",
+      "description": "x4 instance of eu.fbk.nurv.m1 in Water Tank Fault Injection with Monitor. A runtime monitor for co-simulation",
+      "fmi_version": "2.0",
+      "generated": true,
+      "inputs": [
+        {
+          "description": "",
+          "name": "level",
+          "unit": ""
+        },
+        {
+          "description": "",
+          "name": "_soft_reset",
+          "unit": ""
+        }
+      ],
+      "name": "x4",
+      "outputs": [
+        {
+          "description": "",
+          "name": "_output",
+          "unit": ""
+        }
+      ],
+      "parameters": [],
+      "path": "fmus/x4.fmu",
+      "type": "CoSimulation"
+    }
+  ]
+}

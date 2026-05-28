@@ -1,0 +1,184 @@
+{
+  "case_id": "case_ship_propulsion",
+  "total_candidates": 18,
+  "fmus": [
+    {
+      "name": "controller",
+      "asset_id": "asset_ship_propulsion__controller",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.005,
+      "inputs": ["cruise_speed", "sea_state", "K_T", "RPM"],
+      "outputs": ["control_signal", "torque_c"],
+      "selected": true
+    },
+    {
+      "name": "ce_wrapper",
+      "asset_id": "asset_ship_propulsion__ce_wrapper",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.005,
+      "inputs": ["control_signal"],
+      "outputs": ["RPM_command"],
+      "selected": true
+    },
+    {
+      "name": "engine_model",
+      "asset_id": "asset_ship_propulsion__engine_model",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.5,
+      "inputs": ["RPM_command"],
+      "outputs": ["K_T", "RPM", "engine_RPM", "engine_state_vector"],
+      "selected": true
+    },
+    {
+      "name": "gearbox",
+      "asset_id": "asset_ship_propulsion__gearbox",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.05,
+      "inputs": ["engine_RPM"],
+      "outputs": ["shaft_RPM"],
+      "selected": true
+    },
+    {
+      "name": "shaft_line_model",
+      "asset_id": "asset_ship_propulsion__shaft_line_model",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.05,
+      "inputs": ["shaft_RPM_in", "resistance_torque"],
+      "outputs": ["shaft_RPM_out", "shaft_torsional_stress"],
+      "selected": true
+    },
+    {
+      "name": "propeller_design",
+      "asset_id": "asset_ship_propulsion__propeller_design",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.1,
+      "inputs": ["shaft_RPM", "torque_c"],
+      "outputs": ["Thrust", "resistance_torque"],
+      "selected": true
+    },
+    {
+      "name": "fuel_consumption_model",
+      "asset_id": "asset_ship_propulsion__fuel_consumption_model",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 1.0,
+      "inputs": ["engine_power", "engine_RPM"],
+      "outputs": ["fuel_flow_rate", "SFOC"],
+      "selected": true
+    },
+    {
+      "name": "hull_load_estimator",
+      "asset_id": "asset_ship_propulsion__hull_load_estimator",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 1.0,
+      "inputs": ["Thrust", "sea_state"],
+      "outputs": ["resistance_margin"],
+      "selected": true
+    },
+    {
+      "name": "cavitation_proxy",
+      "asset_id": "asset_ship_propulsion__cavitation_proxy",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.5,
+      "inputs": ["Thrust", "RPM", "sea_state"],
+      "outputs": ["cavitation_margin"],
+      "selected": true
+    },
+    {
+      "name": "exhaust_thermal_monitor",
+      "asset_id": "asset_ship_propulsion__exhaust_thermal_monitor",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 2.0,
+      "inputs": ["fuel_flow_rate", "sea_state"],
+      "outputs": ["thermal_margin"],
+      "selected": true
+    },
+    {
+      "name": "shaft_dynamics_v2",
+      "asset_id": "asset_ship_propulsion__shaft_dynamics_v2",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.05,
+      "inputs": ["shaft_RPM"],
+      "outputs": ["vibration_amplitude", "vibration_frequency"],
+      "selected": false,
+      "rejection_round": 1,
+      "rejection_reason": "shaft_RPM declared as input (vibration monitor, not shaft dynamics)"
+    },
+    {
+      "name": "engine_model_legacy",
+      "asset_id": "asset_ship_propulsion__engine_model_legacy",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.5,
+      "inputs": ["RPM_command"],
+      "outputs": ["K_T", "RPM"],
+      "selected": false,
+      "rejection_round": 2,
+      "rejection_reason": "missing engine_state_vector port required by FuelConsumptionModel"
+    },
+    {
+      "name": "shaft_speed_sensor",
+      "asset_id": "asset_ship_propulsion__shaft_speed_sensor",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.01,
+      "inputs": [],
+      "outputs": ["shaft_RPM", "shaft_speed_raw"],
+      "selected": false,
+      "rejection_round": 3,
+      "rejection_reason": "no input ports"
+    },
+    {
+      "name": "thrust_allocator",
+      "asset_id": "asset_ship_propulsion__thrust_allocator",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.1,
+      "inputs": ["Thrust"],
+      "outputs": ["torque_demand", "allocated_torque"],
+      "selected": false,
+      "rejection_round": 3,
+      "rejection_reason": "reversed torque-thrust causality"
+    },
+    {
+      "name": "fuel_meter_digital",
+      "asset_id": "asset_ship_propulsion__fuel_meter_digital",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 1.0,
+      "inputs": ["engine_power"],
+      "outputs": ["fuel_flow_rate", "fuel_count"],
+      "selected": false,
+      "rejection_round": 3,
+      "rejection_reason": "Integer type on fuel_flow_rate port"
+    },
+    {
+      "name": "thermal_protection_relay",
+      "asset_id": "asset_ship_propulsion__thermal_protection_relay",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 2.0,
+      "inputs": ["exhaust_temperature"],
+      "outputs": ["relay_status", "alarm_active"],
+      "selected": false,
+      "rejection_round": 3,
+      "rejection_reason": "Boolean output, continuous signal required"
+    },
+    {
+      "name": "propeller_pitch_ctrl",
+      "asset_id": "asset_ship_propulsion__propeller_pitch_ctrl",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 0.1,
+      "inputs": ["pitch_command", "shaft_RPM"],
+      "outputs": ["pitch_angle", "pitch_rate"],
+      "selected": false,
+      "rejection_round": 3,
+      "rejection_reason": "pitch control model, not thrust computation"
+    },
+    {
+      "name": "auxiliary_cooling_pump",
+      "asset_id": "asset_ship_propulsion__auxiliary_cooling_pump",
+      "fmi_types": ["CoSimulation"],
+      "step_size": 1.0,
+      "inputs": ["coolant_temperature", "pump_speed_command"],
+      "outputs": ["coolant_flow_rate", "pump_power"],
+      "selected": false,
+      "rejection_round": 3,
+      "rejection_reason": "unrelated subsystem"
+    }
+  ]
+}

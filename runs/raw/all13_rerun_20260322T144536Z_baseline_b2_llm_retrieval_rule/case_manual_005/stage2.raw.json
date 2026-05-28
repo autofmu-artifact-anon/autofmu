@@ -1,0 +1,1033 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_llm_fallback_0",
+        "objective": "电池包热管理安全包络检查. 在给定放电电流与环境温度变化下，电芯温度、泵命令、SOC 与端电压都应保持在当前场景可接受的热电包络内。Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the mo...",
+        "required_signals": [
+          "enable"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "thermalController"
+        ],
+        "grounded_component_types": [
+          "ThermalController"
+        ],
+        "grounded_ports": [
+          "enable"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_fallback_raw",
+          "generation_family": "llm",
+          "llm_fallback": true
+        }
+      }
+    ],
+    "rationale": "top1_llm fallback raw task set",
+    "score": 0.85,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "llm_fallback_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.0,
+      "final_score": 0.85
+    },
+    "meta": {
+      "generation_source": "llm_fallback_raw",
+      "generation_family": "llm",
+      "llm_fallback": true,
+      "fallback_component": "thermalController",
+      "grounding_valid": true
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_llm_fallback_0",
+      "task_index": 0,
+      "fmu_uid": "asset_case_case_manual_005__BatteryPackPlant",
+      "score": 0.14156126404985359,
+      "cost": 0.8584387359501464,
+      "hard_ok": true,
+      "semantic_cost": 0.8584387359501464,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "thermalController"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_case_case_manual_005__BatteryPackPlant",
+      "name": "BatteryPackPlant",
+      "description": "电池包电-热耦合模型（SOC + 电芯温度），包含非线性 OCV(SOC)、Rint(T,SOC) 与热生成。",
+      "path": "dataset/assets/asset_case_case_manual_005__BatteryPackPlant/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "Co-Simulation"
+      ],
+      "ports": [
+        {
+          "name": "i_load_A",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "A",
+          "description": "放电电流（A），放电为正；充电为负。",
+          "dimensions": []
+        },
+        {
+          "name": "coolant_in_temp_C",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "C",
+          "description": "进入冷板/电池包的冷却液温度（°C）。",
+          "dimensions": []
+        },
+        {
+          "name": "v_term_V",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "V",
+          "description": "电池包端电压（V）。",
+          "dimensions": []
+        },
+        {
+          "name": "soc",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "0..1",
+          "description": "荷电状态（0..1）。",
+          "dimensions": []
+        },
+        {
+          "name": "temp_cell_C",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "C",
+          "description": "代表性电芯温度（°C）。",
+          "dimensions": []
+        },
+        {
+          "name": "heat_gen_W",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "W",
+          "description": "电池包发热功率（W），包含欧姆热与极化损耗。",
+          "dimensions": []
+        },
+        {
+          "name": "n_series",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Integer",
+          "unit": "",
+          "description": "串联电芯数",
+          "dimensions": []
+        },
+        {
+          "name": "capacity_Ah",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "Ah",
+          "description": "电芯标称容量",
+          "dimensions": []
+        },
+        {
+          "name": "coulombic_eff",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "-",
+          "description": "库仑效率（用于充电时可选）",
+          "dimensions": []
+        },
+        {
+          "name": "soc_min",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "-",
+          "description": "SOC 软下限",
+          "dimensions": []
+        },
+        {
+          "name": "soc_max",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "-",
+          "description": "SOC 软上限",
+          "dimensions": []
+        },
+        {
+          "name": "ocv_a0_V",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "V",
+          "description": "OCV(SOC) 多项式常数项",
+          "dimensions": []
+        },
+        {
+          "name": "ocv_a1_V",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "V",
+          "description": "OCV(SOC) 一次项系数",
+          "dimensions": []
+        },
+        {
+          "name": "ocv_a2_V",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "V",
+          "description": "OCV(SOC) 二次项系数",
+          "dimensions": []
+        },
+        {
+          "name": "ocv_a3_V",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "V",
+          "description": "OCV(SOC) 三次项系数",
+          "dimensions": []
+        },
+        {
+          "name": "r0_Ohm",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "Ohm",
+          "description": "内阻基值",
+          "dimensions": []
+        },
+        {
+          "name": "r_soc_gain",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "-",
+          "description": "低 SOC 内阻增益",
+          "dimensions": []
+        },
+        {
+          "name": "r_temp_beta",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "1/C",
+          "description": "温度对内阻的指数系数（Arrhenius 近似）",
+          "dimensions": []
+        },
+        {
+          "name": "k_pol_V",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "V",
+          "description": "极化损耗等效电压系数（与 |I| 成正比）",
+          "dimensions": []
+        },
+        {
+          "name": "thermal_mass_JK",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "J/K",
+          "description": "电池包等效热容",
+          "dimensions": []
+        },
+        {
+          "name": "h_cool_WK",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "W/K",
+          "description": "电池到冷却液的等效对流换热系数",
+          "dimensions": []
+        },
+        {
+          "name": "temp_min_C",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "C",
+          "description": "数值保护下限温度",
+          "dimensions": []
+        },
+        {
+          "name": "temp_max_C",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "C",
+          "description": "数值保护上限温度",
+          "dimensions": []
+        }
+      ],
+      "inputs": [
+        "i_load_A",
+        "coolant_in_temp_C"
+      ],
+      "outputs": [
+        "v_term_V",
+        "soc",
+        "temp_cell_C",
+        "heat_gen_W"
+      ],
+      "tags": [
+        "case_manual_005",
+        "manual_case"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_case_case_manual_005__BatteryPackPlant",
+        "asset_json": {
+          "asset_id": "asset_case_case_manual_005__BatteryPackPlant",
+          "backend_kind": "python_source_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_manual_005"
+          ],
+          "default_experiment": {
+            "startTime": 0.0,
+            "stepSize": 0.01,
+            "stopTime": 1.0
+          },
+          "description": "电池包电-热耦合模型（SOC + 电芯温度），包含非线性 OCV(SOC)、Rint(T,SOC) 与热生成。",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "Co-Simulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [
+            "i_load_A",
+            "coolant_in_temp_C"
+          ],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "BatteryPackPlant",
+          "outputs": [
+            "v_term_V",
+            "soc",
+            "temp_cell_C",
+            "heat_gen_W"
+          ],
+          "ports": [
+            {
+              "causality": "input",
+              "description": "放电电流（A），放电为正；充电为负。",
+              "name": "i_load_A",
+              "type": "Real",
+              "unit": "A",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "进入冷板/电池包的冷却液温度（°C）。",
+              "name": "coolant_in_temp_C",
+              "type": "Real",
+              "unit": "C",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "电池包端电压（V）。",
+              "name": "v_term_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "荷电状态（0..1）。",
+              "name": "soc",
+              "type": "Real",
+              "unit": "0..1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "代表性电芯温度（°C）。",
+              "name": "temp_cell_C",
+              "type": "Real",
+              "unit": "C",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "电池包发热功率（W），包含欧姆热与极化损耗。",
+              "name": "heat_gen_W",
+              "type": "Real",
+              "unit": "W",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "串联电芯数",
+              "name": "n_series",
+              "type": "Integer",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "电芯标称容量",
+              "name": "capacity_Ah",
+              "type": "Real",
+              "unit": "Ah",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "库仑效率（用于充电时可选）",
+              "name": "coulombic_eff",
+              "type": "Real",
+              "unit": "-",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "SOC 软下限",
+              "name": "soc_min",
+              "type": "Real",
+              "unit": "-",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "SOC 软上限",
+              "name": "soc_max",
+              "type": "Real",
+              "unit": "-",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "OCV(SOC) 多项式常数项",
+              "name": "ocv_a0_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "OCV(SOC) 一次项系数",
+              "name": "ocv_a1_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "OCV(SOC) 二次项系数",
+              "name": "ocv_a2_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "OCV(SOC) 三次项系数",
+              "name": "ocv_a3_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "内阻基值",
+              "name": "r0_Ohm",
+              "type": "Real",
+              "unit": "Ohm",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "低 SOC 内阻增益",
+              "name": "r_soc_gain",
+              "type": "Real",
+              "unit": "-",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "温度对内阻的指数系数（Arrhenius 近似）",
+              "name": "r_temp_beta",
+              "type": "Real",
+              "unit": "1/C",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "极化损耗等效电压系数（与 |I| 成正比）",
+              "name": "k_pol_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "电池包等效热容",
+              "name": "thermal_mass_JK",
+              "type": "Real",
+              "unit": "J/K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "电池到冷却液的等效对流换热系数",
+              "name": "h_cool_WK",
+              "type": "Real",
+              "unit": "W/K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "数值保护下限温度",
+              "name": "temp_min_C",
+              "type": "Real",
+              "unit": "C",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "数值保护上限温度",
+              "name": "temp_max_C",
+              "type": "Real",
+              "unit": "C",
+              "variability": "fixed"
+            }
+          ],
+          "provenance": {
+            "case_id": "case_manual_005",
+            "legacy_fmu_list_entry": {
+              "description": "电池包电-热耦合模型（SOC + 电芯温度），包含非线性 OCV(SOC)、Rint(T,SOC) 与热生成。",
+              "fmu_path": "fmus/BatteryPackPlant.fmu",
+              "inputs": [
+                {
+                  "description": "放电电流（A），放电为正；充电为负。",
+                  "name": "i_load_A",
+                  "type": "Real",
+                  "unit": "A"
+                },
+                {
+                  "description": "进入冷板/电池包的冷却液温度（°C）。",
+                  "name": "coolant_in_temp_C",
+                  "type": "Real",
+                  "unit": "C"
+                }
+              ],
+              "name": "BatteryPackPlant",
+              "outputs": [
+                {
+                  "description": "电池包端电压（V）。",
+                  "name": "v_term_V",
+                  "type": "Real",
+                  "unit": "V"
+                },
+                {
+                  "description": "荷电状态（0..1）。",
+                  "name": "soc",
+                  "type": "Real",
+                  "unit": "0..1"
+                },
+                {
+                  "description": "代表性电芯温度（°C）。",
+                  "name": "temp_cell_C",
+                  "type": "Real",
+                  "unit": "C"
+                },
+                {
+                  "description": "电池包发热功率（W），包含欧姆热与极化损耗。",
+                  "name": "heat_gen_W",
+                  "type": "Real",
+                  "unit": "W"
+                }
+              ],
+              "parameters": [
+                {
+                  "default": 96,
+                  "description": "串联电芯数",
+                  "name": "n_series",
+                  "type": "Integer",
+                  "unit": "-"
+                },
+                {
+                  "default": 50.0,
+                  "description": "电芯标称容量",
+                  "name": "capacity_Ah",
+                  "type": "Real",
+                  "unit": "Ah"
+                },
+                {
+                  "default": 0.995,
+                  "description": "库仑效率",
+                  "name": "coulombic_eff",
+                  "type": "Real",
+                  "unit": "-"
+                },
+                {
+                  "default": 0.05,
+                  "description": "SOC 软下限",
+                  "name": "soc_min",
+                  "type": "Real",
+                  "unit": "-"
+                },
+                {
+                  "default": 0.98,
+                  "description": "SOC 软上限",
+                  "name": "soc_max",
+                  "type": "Real",
+                  "unit": "-"
+                },
+                {
+                  "default": 3.2,
+                  "description": "OCV(SOC) 常数项",
+                  "name": "ocv_a0_V",
+                  "type": "Real",
+                  "unit": "V"
+                },
+                {
+                  "default": 0.9,
+                  "description": "OCV(SOC) 一次项",
+                  "name": "ocv_a1_V",
+                  "type": "Real",
+                  "unit": "V"
+                },
+                {
+                  "default": -0.6,
+                  "description": "OCV(SOC) 二次项",
+                  "name": "ocv_a2_V",
+                  "type": "Real",
+                  "unit": "V"
+                },
+                {
+                  "default": 0.35,
+                  "description": "OCV(SOC) 三次项",
+                  "name": "ocv_a3_V",
+                  "type": "Real",
+                  "unit": "V"
+                },
+                {
+                  "default": 0.002,
+                  "description": "内阻基值",
+                  "name": "r0_Ohm",
+                  "type": "Real",
+                  "unit": "Ohm"
+                },
+                {
+                  "default": 1.2,
+                  "description": "低 SOC 内阻增益",
+                  "name": "r_soc_gain",
+                  "type": "Real",
+                  "unit": "-"
+                },
+                {
+                  "default": 0.035,
+                  "description": "温度对内阻的指数系数",
+                  "name": "r_temp_beta",
+                  "type": "Real",
+                  "unit": "1/C"
+                },
+                {
+                  "default": 0.01,
+                  "description": "极化损耗等效电压系数",
+                  "name": "k_pol_V",
+                  "type": "Real",
+                  "unit": "V"
+                },
+                {
+                  "default": 65000.0,
+                  "description": "电池包等效热容",
+                  "name": "thermal_mass_JK",
+                  "type": "Real",
+                  "unit": "J/K"
+                },
+                {
+                  "default": 120.0,
+                  "description": "电池到冷却液的等效换热系数",
+                  "name": "h_cool_WK",
+                  "type": "Real",
+                  "unit": "W/K"
+                },
+                {
+                  "default": -10.0,
+                  "description": "数值保护下限温度",
+                  "name": "temp_min_C",
+                  "type": "Real",
+                  "unit": "C"
+                },
+                {
+                  "default": 80.0,
+                  "description": "数值保护上限温度",
+                  "name": "temp_max_C",
+                  "type": "Real",
+                  "unit": "C"
+                }
+              ],
+              "states": [
+                {
+                  "description": "荷电状态",
+                  "name": "soc"
+                },
+                {
+                  "description": "电芯温度",
+                  "name": "temp_cell_C"
+                }
+              ]
+            }
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "case_manual_005::BatteryPackPlant",
+          "source_type": "manual_case_fmu",
+          "tags": [
+            "case_manual_005",
+            "manual_case"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_case_case_manual_005__BatteryPackPlant",
+          "backend_kind": "python_source_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "default_experiment": {
+            "startTime": 0.0,
+            "stepSize": 0.01,
+            "stopTime": 1.0
+          },
+          "description": "电池包电-热耦合模型（SOC + 电芯温度），包含非线性 OCV(SOC)、Rint(T,SOC) 与热生成。",
+          "fmi_types": [
+            "Co-Simulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [
+            "i_load_A",
+            "coolant_in_temp_C"
+          ],
+          "name": "BatteryPackPlant",
+          "outputs": [
+            "v_term_V",
+            "soc",
+            "temp_cell_C",
+            "heat_gen_W"
+          ],
+          "ports": [
+            {
+              "causality": "input",
+              "description": "放电电流（A），放电为正；充电为负。",
+              "name": "i_load_A",
+              "type": "Real",
+              "unit": "A",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "进入冷板/电池包的冷却液温度（°C）。",
+              "name": "coolant_in_temp_C",
+              "type": "Real",
+              "unit": "C",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "电池包端电压（V）。",
+              "name": "v_term_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "荷电状态（0..1）。",
+              "name": "soc",
+              "type": "Real",
+              "unit": "0..1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "代表性电芯温度（°C）。",
+              "name": "temp_cell_C",
+              "type": "Real",
+              "unit": "C",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "电池包发热功率（W），包含欧姆热与极化损耗。",
+              "name": "heat_gen_W",
+              "type": "Real",
+              "unit": "W",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "串联电芯数",
+              "name": "n_series",
+              "type": "Integer",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "电芯标称容量",
+              "name": "capacity_Ah",
+              "type": "Real",
+              "unit": "Ah",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "库仑效率（用于充电时可选）",
+              "name": "coulombic_eff",
+              "type": "Real",
+              "unit": "-",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "SOC 软下限",
+              "name": "soc_min",
+              "type": "Real",
+              "unit": "-",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "SOC 软上限",
+              "name": "soc_max",
+              "type": "Real",
+              "unit": "-",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "OCV(SOC) 多项式常数项",
+              "name": "ocv_a0_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "OCV(SOC) 一次项系数",
+              "name": "ocv_a1_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "OCV(SOC) 二次项系数",
+              "name": "ocv_a2_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "OCV(SOC) 三次项系数",
+              "name": "ocv_a3_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "内阻基值",
+              "name": "r0_Ohm",
+              "type": "Real",
+              "unit": "Ohm",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "低 SOC 内阻增益",
+              "name": "r_soc_gain",
+              "type": "Real",
+              "unit": "-",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "温度对内阻的指数系数（Arrhenius 近似）",
+              "name": "r_temp_beta",
+              "type": "Real",
+              "unit": "1/C",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "极化损耗等效电压系数（与 |I| 成正比）",
+              "name": "k_pol_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "电池包等效热容",
+              "name": "thermal_mass_JK",
+              "type": "Real",
+              "unit": "J/K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "电池到冷却液的等效对流换热系数",
+              "name": "h_cool_WK",
+              "type": "Real",
+              "unit": "W/K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "数值保护下限温度",
+              "name": "temp_min_C",
+              "type": "Real",
+              "unit": "C",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "数值保护上限温度",
+              "name": "temp_max_C",
+              "type": "Real",
+              "unit": "C",
+              "variability": "fixed"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0.0,
+          "stepSize": 0.01,
+          "stopTime": 1.0
+        },
+        "source_type": "manual_case_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_case_case_manual_005__BatteryPackPlant"
+    ],
+    "port_nodes": [
+      "asset_case_case_manual_005__BatteryPackPlant.i_load_A",
+      "asset_case_case_manual_005__BatteryPackPlant.coolant_in_temp_C",
+      "asset_case_case_manual_005__BatteryPackPlant.v_term_V",
+      "asset_case_case_manual_005__BatteryPackPlant.soc",
+      "asset_case_case_manual_005__BatteryPackPlant.temp_cell_C",
+      "asset_case_case_manual_005__BatteryPackPlant.heat_gen_W",
+      "asset_case_case_manual_005__BatteryPackPlant.n_series",
+      "asset_case_case_manual_005__BatteryPackPlant.capacity_Ah",
+      "asset_case_case_manual_005__BatteryPackPlant.coulombic_eff",
+      "asset_case_case_manual_005__BatteryPackPlant.soc_min",
+      "asset_case_case_manual_005__BatteryPackPlant.soc_max",
+      "asset_case_case_manual_005__BatteryPackPlant.ocv_a0_V",
+      "asset_case_case_manual_005__BatteryPackPlant.ocv_a1_V",
+      "asset_case_case_manual_005__BatteryPackPlant.ocv_a2_V",
+      "asset_case_case_manual_005__BatteryPackPlant.ocv_a3_V",
+      "asset_case_case_manual_005__BatteryPackPlant.r0_Ohm",
+      "asset_case_case_manual_005__BatteryPackPlant.r_soc_gain",
+      "asset_case_case_manual_005__BatteryPackPlant.r_temp_beta",
+      "asset_case_case_manual_005__BatteryPackPlant.k_pol_V",
+      "asset_case_case_manual_005__BatteryPackPlant.thermal_mass_JK",
+      "asset_case_case_manual_005__BatteryPackPlant.h_cool_WK",
+      "asset_case_case_manual_005__BatteryPackPlant.temp_min_C",
+      "asset_case_case_manual_005__BatteryPackPlant.temp_max_C"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "thermalController": "asset_case_case_manual_005__BatteryPackPlant"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "semantic_only_no_bindings"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 0.8584387359501464,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 0.8584387359501464,
+      "final_cost": 0.8584387359501464,
+      "selected_fmus": [
+        "asset_case_case_manual_005__BatteryPackPlant"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 0.8584387359501464,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "semantic_retrieval_only",
+    "structural_reasoning": false,
+    "selected_task_count": 1,
+    "failure_type": ""
+  }
+}

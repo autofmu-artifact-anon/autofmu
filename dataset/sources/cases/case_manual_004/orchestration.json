@@ -1,0 +1,175 @@
+{
+  "case_id": "case_manual_004",
+  "case_name": "电液伺服系统",
+  "description": "电液伺服阀控缸系统闭环位置控制仿真编排，包含控制器、阀芯执行器和液压缸被控对象",
+  "fmi_version": "2.0",
+  "co_simulation_type": "fixed_step",
+  
+  "simulation_config": {
+    "start_time_s": 0,
+    "end_time_s": 5,
+    "step_size_s": 0.001,
+    "output_interval_s": 0.01
+  },
+  
+  "fmus": [
+    {
+      "instance_name": "controller",
+      "fmu_name": "PositionController",
+      "fmu_path": "fmus/PositionController.fmu",
+      "step_size_s": 0.001
+    },
+    {
+      "instance_name": "valve",
+      "fmu_name": "SpoolValveActuator",
+      "fmu_path": "fmus/SpoolValveActuator.fmu",
+      "step_size_s": 0.001
+    },
+    {
+      "instance_name": "plant",
+      "fmu_name": "HydraulicCylinderPlant",
+      "fmu_path": "fmus/HydraulicCylinderPlant.fmu",
+      "step_size_s": 0.001
+    }
+  ],
+  
+  "connections": [
+    {
+      "from": "controller.valve_cmd",
+      "to": "valve.valve_cmd",
+      "description": "控制器输出阀指令传递给阀芯执行器"
+    },
+    {
+      "from": "valve.spool_u",
+      "to": "plant.spool_u",
+      "description": "阀芯开度传递给液压缸被控对象"
+    },
+    {
+      "from": "plant.x_m",
+      "to": "controller.x_meas_m",
+      "description": "液压缸位置反馈给控制器"
+    },
+    {
+      "from": "plant.v_mps",
+      "to": "controller.v_meas_mps",
+      "description": "液压缸速度反馈给控制器"
+    }
+  ],
+  
+  "exogenous_inputs": [
+    {
+      "name": "x_ref_m",
+      "target": "controller.x_ref_m",
+      "description": "期望位置参考",
+      "profile": [
+        {"t_s": 0, "value": 0.05},
+        {"t_s": 1, "value": 0.05},
+        {"t_s": 2, "value": 0.08},
+        {"t_s": 3.5, "value": 0.02}
+      ]
+    },
+    {
+      "name": "enable",
+      "target": "controller.enable",
+      "description": "控制使能信号",
+      "value": true
+    },
+    {
+      "name": "load_force_N",
+      "target": "plant.load_force_N",
+      "description": "外部负载力",
+      "profile": [
+        {"t_s": 0, "value": 0.0},
+        {"t_s": 2.5, "value": 500.0},
+        {"t_s": 2.6, "value": 0.0}
+      ]
+    }
+  ],
+  
+  "initial_conditions": {
+    "controller": {
+      "i_state": 0.0
+    },
+    "valve": {
+      "spool_state": 0.0
+    },
+    "plant": {
+      "x_m": 0.05,
+      "v_mps": 0.0,
+      "pA_Pa": 10000000.0,
+      "pB_Pa": 10000000.0
+    }
+  },
+  
+  "parameter_overrides": {
+    "controller": {
+      "Kp": 18.0,
+      "Ki": 35.0,
+      "Kv": 3.0,
+      "u_min": -1.0,
+      "u_max": 1.0,
+      "integrator_limit": 0.5,
+      "aw_gain": 8.0,
+      "deadband_m": 0.0002
+    },
+    "valve": {
+      "tau_s": 0.03,
+      "deadzone": 0.05,
+      "rate_limit_per_s": 25.0,
+      "u_min": -1.0,
+      "u_max": 1.0
+    },
+    "plant": {
+      "stroke_m": 0.10,
+      "m_kg": 12.0,
+      "A_A_m2": 0.0012,
+      "A_B_m2": 0.0010,
+      "p_supply_Pa": 20000000.0,
+      "p_tank_Pa": 200000.0,
+      "F_coulomb_N": 250.0,
+      "b_visc_Nspm": 900.0
+    }
+  },
+  
+  "logged_variables": [
+    "x_ref_m",
+    "load_force_N",
+    "controller.valve_cmd",
+    "controller.sat_flag",
+    "valve.spool_u",
+    "valve.spool_state",
+    "plant.x_m",
+    "plant.v_mps",
+    "plant.pA_Pa",
+    "plant.pB_Pa",
+    "plant.rod_force_N"
+  ],
+  
+  "acceptance_criteria": [
+    {
+      "metric": "max(abs(plant.x_m - x_ref_m))",
+      "operator": "<=",
+      "value": 0.005,
+      "unit": "m",
+      "description": "稳态位置跟踪误差应小于5mm"
+    },
+    {
+      "metric": "max(abs(plant.x_m))",
+      "operator": "<=",
+      "value": 0.10,
+      "unit": "m",
+      "description": "位置不应超出行程范围"
+    },
+    {
+      "metric": "settling_time(plant.x_m, x_ref_m, 0.002)",
+      "operator": "<=",
+      "value": 0.5,
+      "unit": "s",
+      "description": "阶跃响应调节时间应小于0.5s"
+    }
+  ],
+  
+  "execution_order": ["controller", "valve", "plant"],
+  
+  "created_at": "2026-03-09T08:36:00Z"
+}

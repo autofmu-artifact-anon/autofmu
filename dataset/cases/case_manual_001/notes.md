@@ -1,0 +1,1 @@
+../../sources/cases/case_manual_001/LOG.md

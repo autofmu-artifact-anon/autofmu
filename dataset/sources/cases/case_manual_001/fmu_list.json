@@ -1,0 +1,69 @@
+{
+  "case_id": "case_manual_001",
+  "case_name": "电池热管理",
+  "description": "Battery thermal management system with electro-thermal battery model, cooling loop, and supervisory thermal controller.",
+  "fmu_count": 3,
+  "fmus": [
+    {
+      "name": "BatteryPackElectroThermal",
+      "path": "fmus/BatteryPackElectroThermal.fmu",
+      "description": "High-voltage battery pack electro-thermal coupled model with SOC, core/surface temperatures, nonlinear OCV and temperature-dependent internal resistance.",
+      "type": "Co-Simulation",
+      "fmi_version": "2.0",
+      "inputs": [
+        {"name": "current_A", "unit": "A", "description": "Battery current (positive = discharge)"},
+        {"name": "coolant_in_temp_C", "unit": "degC", "description": "Coolant inlet temperature"},
+        {"name": "coolant_flow_kgps", "unit": "kg/s", "description": "Coolant mass flow rate"},
+        {"name": "ambient_temp_C", "unit": "degC", "description": "Ambient air temperature"}
+      ],
+      "outputs": [
+        {"name": "voltage_V", "unit": "V", "description": "Pack terminal voltage"},
+        {"name": "soc", "unit": "1", "description": "State of charge"},
+        {"name": "T_core_C", "unit": "degC", "description": "Battery core temperature"},
+        {"name": "T_surface_C", "unit": "degC", "description": "Battery surface temperature"},
+        {"name": "heat_W", "unit": "W", "description": "Heat generation"}
+      ]
+    },
+    {
+      "name": "CoolingLoop",
+      "path": "fmus/CoolingLoop.fmu",
+      "description": "Simplified liquid cooling loop with pump + radiator + fan. Produces coolant inlet temperature and flow rate based on commands and heat load.",
+      "type": "Co-Simulation",
+      "fmi_version": "2.0",
+      "inputs": [
+        {"name": "pump_cmd", "unit": "0..1", "description": "Pump command (normalized)"},
+        {"name": "fan_cmd", "unit": "0..1", "description": "Radiator fan command (normalized)"},
+        {"name": "ambient_temp_C", "unit": "degC", "description": "Ambient air temperature"},
+        {"name": "T_batt_surface_C", "unit": "degC", "description": "Battery surface temperature"},
+        {"name": "heat_load_W", "unit": "W", "description": "Heat to be removed from battery"}
+      ],
+      "outputs": [
+        {"name": "coolant_in_temp_C", "unit": "degC", "description": "Coolant temperature entering battery"},
+        {"name": "coolant_flow_kgps", "unit": "kg/s", "description": "Coolant mass flow rate"},
+        {"name": "radiator_out_temp_C", "unit": "degC", "description": "Radiator outlet temperature"},
+        {"name": "pump_power_W", "unit": "W", "description": "Pump electrical power consumption"}
+      ]
+    },
+    {
+      "name": "ThermalController",
+      "path": "fmus/ThermalController.fmu",
+      "description": "Supervisory thermal controller for battery pack. Tracks driver power request but derates based on SOC, voltage, and core temperature.",
+      "type": "Co-Simulation",
+      "fmi_version": "2.0",
+      "inputs": [
+        {"name": "T_core_C", "unit": "degC", "description": "Battery core temperature"},
+        {"name": "soc", "unit": "1", "description": "Battery SOC"},
+        {"name": "voltage_V", "unit": "V", "description": "Battery terminal voltage"},
+        {"name": "driver_power_request_W", "unit": "W", "description": "Driver power request"},
+        {"name": "ambient_temp_C", "unit": "degC", "description": "Ambient temperature"}
+      ],
+      "outputs": [
+        {"name": "current_A", "unit": "A", "description": "Battery current command"},
+        {"name": "pump_cmd", "unit": "0..1", "description": "Pump command"},
+        {"name": "fan_cmd", "unit": "0..1", "description": "Fan command"},
+        {"name": "mode", "unit": "enum", "description": "Supervisory mode (0=NORMAL, 1=DERATE, 2=SHUTDOWN)"}
+      ]
+    }
+  ],
+  "created_at": "2026-03-09T01:14:00Z"
+}

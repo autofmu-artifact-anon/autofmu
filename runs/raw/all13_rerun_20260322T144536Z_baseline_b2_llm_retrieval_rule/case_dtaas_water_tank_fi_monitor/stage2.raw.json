@@ -1,0 +1,632 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_llm_fallback_0",
+        "objective": "Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.. Scenario time window 0s to 100s. Signals of interest: valve, level...",
+        "required_signals": [
+          "u",
+          "y"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "x3"
+        ],
+        "grounded_component_types": [
+          "Rti"
+        ],
+        "grounded_ports": [
+          "u",
+          "y"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_fallback_raw",
+          "generation_family": "llm",
+          "llm_fallback": true
+        }
+      },
+      {
+        "task_id": "case_structure_hint_task_0",
+        "objective": "Preserve structural signal path x1.valve -> x2.valvecontrol",
+        "required_signals": [
+          "valve",
+          "valvecontrol"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "x1",
+          "x2"
+        ],
+        "grounded_component_types": [],
+        "grounded_ports": [
+          "x1.valve",
+          "x2.valvecontrol"
+        ],
+        "task_trace": {
+          "notes": [
+            "case_structure_hints"
+          ],
+          "structure_hint": {
+            "source_component": "x1",
+            "source_signal": "valve",
+            "target_component": "x2",
+            "target_signal": "valvecontrol"
+          }
+        },
+        "diagnostics": {
+          "case_structure_hint": true,
+          "case_structure_hint_reason": "Preserve the controller-to-tank actuation path."
+        }
+      },
+      {
+        "task_id": "case_structure_hint_task_2",
+        "objective": "Preserve structural signal path x2.level -> x3.u",
+        "required_signals": [
+          "level",
+          "u"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "x2",
+          "x3"
+        ],
+        "grounded_component_types": [],
+        "grounded_ports": [
+          "x2.level",
+          "x3.u"
+        ],
+        "task_trace": {
+          "notes": [
+            "case_structure_hints"
+          ],
+          "structure_hint": {
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x3",
+            "target_signal": "u"
+          }
+        },
+        "diagnostics": {
+          "case_structure_hint": true,
+          "case_structure_hint_reason": "Expose the tank level to the RtI helper for monitoring."
+        }
+      },
+      {
+        "task_id": "case_structure_hint_task_3",
+        "objective": "Preserve structural signal path x3.y -> x4.level",
+        "required_signals": [
+          "y",
+          "level"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "x3",
+          "x4"
+        ],
+        "grounded_component_types": [],
+        "grounded_ports": [
+          "x3.y",
+          "x4.level"
+        ],
+        "task_trace": {
+          "notes": [
+            "case_structure_hints"
+          ],
+          "structure_hint": {
+            "source_component": "x3",
+            "source_signal": "y",
+            "target_component": "x4",
+            "target_signal": "level"
+          }
+        },
+        "diagnostics": {
+          "case_structure_hint": true,
+          "case_structure_hint_reason": "Deliver the monitored observable into the generated monitor FMU."
+        }
+      }
+    ],
+    "rationale": "top1_llm fallback raw task set",
+    "score": 0.85,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "llm_fallback_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "case_structure_hint_chain_0",
+        "source_component": "x1",
+        "target_component": "x2",
+        "signals": [
+          "valve",
+          "valvecontrol"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_0_seg_0",
+            "source_component": "x1",
+            "source_signal": "valve",
+            "target_component": "x2",
+            "target_signal": "valvecontrol",
+            "must_route": true,
+            "semantic_intent": "x1.valve -> x2.valvecontrol",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve the controller-to-tank actuation path."
+            }
+          }
+        ],
+        "semantic_intent": "x1.valve -> x2.valvecontrol",
+        "details": {
+          "source_signal": "valve",
+          "target_signal": "valvecontrol",
+          "source": "case_structure_hints",
+          "rationale": "Preserve the controller-to-tank actuation path."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_1",
+        "source_component": "x2",
+        "target_component": "x1",
+        "signals": [
+          "level",
+          "level"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_1_seg_0",
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x1",
+            "target_signal": "level",
+            "must_route": true,
+            "semantic_intent": "x2.level -> x1.level",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Feed the tank level back into the controller."
+            }
+          }
+        ],
+        "semantic_intent": "x2.level -> x1.level",
+        "details": {
+          "source_signal": "level",
+          "target_signal": "level",
+          "source": "case_structure_hints",
+          "rationale": "Feed the tank level back into the controller."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_2",
+        "source_component": "x2",
+        "target_component": "x3",
+        "signals": [
+          "level",
+          "u"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_2"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_2_seg_0",
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x3",
+            "target_signal": "u",
+            "must_route": true,
+            "semantic_intent": "x2.level -> x3.u",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Expose the tank level to the RtI helper for monitoring."
+            }
+          }
+        ],
+        "semantic_intent": "x2.level -> x3.u",
+        "details": {
+          "source_signal": "level",
+          "target_signal": "u",
+          "source": "case_structure_hints",
+          "rationale": "Expose the tank level to the RtI helper for monitoring."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_3",
+        "source_component": "x3",
+        "target_component": "x4",
+        "signals": [
+          "y",
+          "level"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_3"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_3_seg_0",
+            "source_component": "x3",
+            "source_signal": "y",
+            "target_component": "x4",
+            "target_signal": "level",
+            "must_route": true,
+            "semantic_intent": "x3.y -> x4.level",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Deliver the monitored observable into the generated monitor FMU."
+            }
+          }
+        ],
+        "semantic_intent": "x3.y -> x4.level",
+        "details": {
+          "source_signal": "y",
+          "target_signal": "level",
+          "source": "case_structure_hints",
+          "rationale": "Deliver the monitored observable into the generated monitor FMU."
+        }
+      }
+    ],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.0,
+      "final_score": 0.85
+    },
+    "meta": {
+      "generation_source": "llm_fallback_raw",
+      "generation_family": "llm",
+      "llm_fallback": true,
+      "fallback_component": "x3",
+      "grounding_valid": true,
+      "case_structure_hints_applied": true,
+      "case_structure_hint_chain_count": 4,
+      "case_structure_hint_task_count": 3,
+      "required_chain_count": 4
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_llm_fallback_0",
+      "task_index": 0,
+      "fmu_uid": "asset_dtaas_water_tank_fi_monitor__x1",
+      "score": 0.6590631185663575,
+      "cost": 0.34093688143364254,
+      "hard_ok": true,
+      "semantic_cost": 0.34093688143364254,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "x3"
+      ]
+    },
+    {
+      "task_id": "case_structure_hint_task_0",
+      "task_index": 1,
+      "fmu_uid": "asset_dtaas_water_tank_fi__x2",
+      "score": 0.1676804018452509,
+      "cost": 0.8323195981547491,
+      "hard_ok": true,
+      "semantic_cost": 0.8323195981547491,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "x1",
+        "x2"
+      ]
+    },
+    {
+      "task_id": "case_structure_hint_task_2",
+      "task_index": 2,
+      "fmu_uid": "asset_dtaas_water_tank_fi_monitor__x3",
+      "score": 0.2437777589260004,
+      "cost": 0.7562222410739996,
+      "hard_ok": true,
+      "semantic_cost": 0.7562222410739996,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "x2",
+        "x3"
+      ]
+    },
+    {
+      "task_id": "case_structure_hint_task_3",
+      "task_index": 3,
+      "fmu_uid": "asset_dtaas_water_tank_fi_monitor__x4",
+      "score": 0.2581213873774233,
+      "cost": 0.7418786126225767,
+      "hard_ok": true,
+      "semantic_cost": 0.7418786126225767,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "x3",
+        "x4"
+      ]
+    }
+  ],
+  "selected_fmus": [],
+  "graph": {
+    "nodes": [
+      "asset_dtaas_water_tank_fi_monitor__x1",
+      "asset_dtaas_water_tank_fi__x2",
+      "asset_dtaas_water_tank_fi_monitor__x3",
+      "asset_dtaas_water_tank_fi_monitor__x4"
+    ],
+    "port_nodes": [
+      "asset_dtaas_water_tank_fi_monitor__x1.maxlevel",
+      "asset_dtaas_water_tank_fi_monitor__x1.minlevel",
+      "asset_dtaas_water_tank_fi_monitor__x1.level",
+      "asset_dtaas_water_tank_fi_monitor__x1.valve",
+      "asset_dtaas_water_tank_fi__x2.Drain.p.e",
+      "asset_dtaas_water_tank_fi__x2.Drain.p.f",
+      "asset_dtaas_water_tank_fi__x2.Drain.r",
+      "asset_dtaas_water_tank_fi__x2.FlowSource.p.p",
+      "asset_dtaas_water_tank_fi__x2.FlowSource.p.phi",
+      "asset_dtaas_water_tank_fi__x2.FlowSource.phi",
+      "asset_dtaas_water_tank_fi__x2.FlowSource.inflow",
+      "asset_dtaas_water_tank_fi__x2.tank.Node1.p1.p",
+      "asset_dtaas_water_tank_fi__x2.tank.Node1.p2.p",
+      "asset_dtaas_water_tank_fi__x2.tank.Node1.p3.p",
+      "asset_dtaas_water_tank_fi__x2.tank.Node1.p1.phi",
+      "asset_dtaas_water_tank_fi__x2.tank.Node1.p2.phi",
+      "asset_dtaas_water_tank_fi__x2.tank.Node1.p3.phi",
+      "asset_dtaas_water_tank_fi__x2.tank.Tank.p.e",
+      "asset_dtaas_water_tank_fi__x2.tank.Tank.level",
+      "asset_dtaas_water_tank_fi__x2.tank.Tank.area",
+      "asset_dtaas_water_tank_fi__x2.tank.Tank.gravity",
+      "asset_dtaas_water_tank_fi__x2.tank.Tank.liquid_density",
+      "asset_dtaas_water_tank_fi__x2.tank.p.p",
+      "asset_dtaas_water_tank_fi__x2.tank.p.phi",
+      "asset_dtaas_water_tank_fi__x2.tank.p1.p",
+      "asset_dtaas_water_tank_fi__x2.tank.p1.phi",
+      "asset_dtaas_water_tank_fi__x2.tank.level",
+      "asset_dtaas_water_tank_fi__x2.Valve.valvecontrol",
+      "asset_dtaas_water_tank_fi__x2.Valve.powerIn.p",
+      "asset_dtaas_water_tank_fi__x2.Valve.powerIn.phi",
+      "asset_dtaas_water_tank_fi__x2.Valve.powerOut.e",
+      "asset_dtaas_water_tank_fi__x2.Valve.powerOut.f",
+      "asset_dtaas_water_tank_fi__x2.Valve.puddle",
+      "asset_dtaas_water_tank_fi__x2.valvecontrol",
+      "asset_dtaas_water_tank_fi__x2.level",
+      "asset_dtaas_water_tank_fi__x2.tank.Tank.p.f",
+      "asset_dtaas_water_tank_fi__x2.tank.Tank.volume",
+      "asset_dtaas_water_tank_fi__x2.tank.Tank.volume_initial",
+      "asset_dtaas_water_tank_fi__x2.Valve.outflow",
+      "asset_dtaas_water_tank_fi__x2.Valve.outflow_int",
+      "asset_dtaas_water_tank_fi__x2.Valve.outflow_int_initial",
+      "asset_dtaas_water_tank_fi_monitor__x3.gain.y",
+      "asset_dtaas_water_tank_fi_monitor__x3.u",
+      "asset_dtaas_water_tank_fi_monitor__x3.gain.k",
+      "asset_dtaas_water_tank_fi_monitor__x3.gain.u",
+      "asset_dtaas_water_tank_fi_monitor__x3.realToInteger.u",
+      "asset_dtaas_water_tank_fi_monitor__x3.y",
+      "asset_dtaas_water_tank_fi_monitor__x3.realToInteger.y",
+      "asset_dtaas_water_tank_fi_monitor__x4.level",
+      "asset_dtaas_water_tank_fi_monitor__x4._output",
+      "asset_dtaas_water_tank_fi_monitor__x4._soft_reset"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "x3": "asset_dtaas_water_tank_fi_monitor__x1",
+      "x1": "asset_dtaas_water_tank_fi__x2",
+      "x2": "asset_dtaas_water_tank_fi__x2",
+      "x4": "asset_dtaas_water_tank_fi_monitor__x4"
+    },
+    "required_signal_chains": [
+      {
+        "chain_id": "case_structure_hint_chain_0",
+        "source_component": "x1",
+        "target_component": "x2",
+        "signals": [
+          "valve",
+          "valvecontrol"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_0_seg_0",
+            "source_component": "x1",
+            "source_signal": "valve",
+            "target_component": "x2",
+            "target_signal": "valvecontrol",
+            "must_route": true,
+            "semantic_intent": "x1.valve -> x2.valvecontrol",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Preserve the controller-to-tank actuation path."
+            }
+          }
+        ],
+        "semantic_intent": "x1.valve -> x2.valvecontrol",
+        "details": {
+          "source_signal": "valve",
+          "target_signal": "valvecontrol",
+          "source": "case_structure_hints",
+          "rationale": "Preserve the controller-to-tank actuation path."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_1",
+        "source_component": "x2",
+        "target_component": "x1",
+        "signals": [
+          "level",
+          "level"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_1_seg_0",
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x1",
+            "target_signal": "level",
+            "must_route": true,
+            "semantic_intent": "x2.level -> x1.level",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Feed the tank level back into the controller."
+            }
+          }
+        ],
+        "semantic_intent": "x2.level -> x1.level",
+        "details": {
+          "source_signal": "level",
+          "target_signal": "level",
+          "source": "case_structure_hints",
+          "rationale": "Feed the tank level back into the controller."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_2",
+        "source_component": "x2",
+        "target_component": "x3",
+        "signals": [
+          "level",
+          "u"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_2"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_2_seg_0",
+            "source_component": "x2",
+            "source_signal": "level",
+            "target_component": "x3",
+            "target_signal": "u",
+            "must_route": true,
+            "semantic_intent": "x2.level -> x3.u",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Expose the tank level to the RtI helper for monitoring."
+            }
+          }
+        ],
+        "semantic_intent": "x2.level -> x3.u",
+        "details": {
+          "source_signal": "level",
+          "target_signal": "u",
+          "source": "case_structure_hints",
+          "rationale": "Expose the tank level to the RtI helper for monitoring."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_3",
+        "source_component": "x3",
+        "target_component": "x4",
+        "signals": [
+          "y",
+          "level"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_3"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_3_seg_0",
+            "source_component": "x3",
+            "source_signal": "y",
+            "target_component": "x4",
+            "target_signal": "level",
+            "must_route": true,
+            "semantic_intent": "x3.y -> x4.level",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Deliver the monitored observable into the generated monitor FMU."
+            }
+          }
+        ],
+        "semantic_intent": "x3.y -> x4.level",
+        "details": {
+          "source_signal": "y",
+          "target_signal": "level",
+          "source": "case_structure_hints",
+          "rationale": "Deliver the monitored observable into the generated monitor FMU."
+        }
+      }
+    ],
+    "binding_candidates": [],
+    "closure_ok": false,
+    "closure_failures": [
+      "no_structural_reasoning"
+    ],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "semantic_only_no_bindings"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "failed",
+      "closure_ok": false
+    }
+  ],
+  "final_cost": 2.671357333284968,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "failed",
+      "selected_task_set_cost": 2.671357333284968,
+      "final_cost": 2.671357333284968,
+      "selected_fmus": [
+        "asset_dtaas_water_tank_fi_monitor__x1",
+        "asset_dtaas_water_tank_fi__x2",
+        "asset_dtaas_water_tank_fi_monitor__x3",
+        "asset_dtaas_water_tank_fi_monitor__x4"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": "port_graph_closure"
+    }
+  ],
+  "selected_task_set_cost": 2.671357333284968,
+  "diagnostics": {
+    "status": "failed",
+    "stage2_variant": "semantic_retrieval_only",
+    "structural_reasoning": false,
+    "selected_task_count": 4,
+    "failure_type": "port_graph_closure"
+  }
+}

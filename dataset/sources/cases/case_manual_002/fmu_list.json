@@ -1,0 +1,64 @@
+{
+  "case_id": "case_manual_002",
+  "case_name": "倒立摆摆起与位置跟踪",
+  "description": "Cart-pole swing-up and balance control system with nonlinear plant dynamics, state estimation, and hybrid swing-up/balance controller.",
+  "fmu_count": 3,
+  "fmus": [
+    {
+      "name": "CartPolePlant",
+      "path": "fmus/CartPolePlant.fmu",
+      "description": "Nonlinear cart-pole dynamics with actuator saturation, friction, soft limits, and noisy sensors. Angle convention: theta=0 is hanging down, theta=pi is upright.",
+      "type": "Co-Simulation",
+      "fmi_version": "2.0",
+      "inputs": [
+        {"name": "force_cmd_N", "unit": "N", "description": "Motor force command"},
+        {"name": "disturbance_force_N", "unit": "N", "description": "External disturbance force"}
+      ],
+      "outputs": [
+        {"name": "x_m", "unit": "m", "description": "Cart position"},
+        {"name": "x_dot_mps", "unit": "m/s", "description": "Cart velocity"},
+        {"name": "theta_rad", "unit": "rad", "description": "Pole angle (0=down, pi=up)"},
+        {"name": "theta_dot_rps", "unit": "rad/s", "description": "Pole angular velocity"},
+        {"name": "theta_meas_rad", "unit": "rad", "description": "Measured angle (with noise)"},
+        {"name": "theta_dot_meas_rps", "unit": "rad/s", "description": "Measured angular velocity (with bias+noise)"}
+      ]
+    },
+    {
+      "name": "PoleAngleEstimator",
+      "path": "fmus/PoleAngleEstimator.fmu",
+      "description": "State estimator for pole angle and angular velocity. First-order LPF for angle with wrap-to-pi handling, bias estimation for angular velocity.",
+      "type": "Co-Simulation",
+      "fmi_version": "2.0",
+      "inputs": [
+        {"name": "theta_meas_rad", "unit": "rad", "description": "Measured angle (wrapped to [-pi,pi])"},
+        {"name": "theta_dot_meas_rps", "unit": "rad/s", "description": "Measured angular velocity (with bias)"},
+        {"name": "reset", "unit": "bool", "description": "Reset estimator state"}
+      ],
+      "outputs": [
+        {"name": "theta_hat_rad", "unit": "rad", "description": "Estimated angle"},
+        {"name": "theta_dot_hat_rps", "unit": "rad/s", "description": "Estimated angular velocity (bias removed)"},
+        {"name": "bias_hat_rps", "unit": "rad/s", "description": "Estimated angular velocity bias"}
+      ]
+    },
+    {
+      "name": "SwingUpBalanceController",
+      "path": "fmus/SwingUpBalanceController.fmu",
+      "description": "Hybrid controller with energy-based swing-up and LQR-style balance mode. Includes mode switching with hysteresis, output saturation, and anti-windup integrator.",
+      "type": "Co-Simulation",
+      "fmi_version": "2.0",
+      "inputs": [
+        {"name": "x_m", "unit": "m", "description": "Cart position"},
+        {"name": "x_dot_mps", "unit": "m/s", "description": "Cart velocity"},
+        {"name": "theta_hat_rad", "unit": "rad", "description": "Estimated pole angle"},
+        {"name": "theta_dot_hat_rps", "unit": "rad/s", "description": "Estimated angular velocity"},
+        {"name": "x_ref_m", "unit": "m", "description": "Position reference"},
+        {"name": "enable", "unit": "bool", "description": "Controller enable"}
+      ],
+      "outputs": [
+        {"name": "force_cmd_N", "unit": "N", "description": "Force command (saturated)"},
+        {"name": "mode", "unit": "enum", "description": "Control mode (0=SwingUp, 1=Balance)"}
+      ]
+    }
+  ],
+  "created_at": "2026-03-09T02:17:00Z"
+}

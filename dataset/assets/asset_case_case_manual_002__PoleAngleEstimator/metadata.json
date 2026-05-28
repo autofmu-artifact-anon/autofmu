@@ -1,0 +1,108 @@
+{
+  "asset_id": "asset_case_case_manual_002__PoleAngleEstimator",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "default_experiment": {
+    "startTime": 0,
+    "stepSize": 0.001,
+    "stopTime": 20
+  },
+  "description": "倒立摆角度/角速度估计器：对角度测量进行低通 + 对角速度测量进行偏置估计与滤波（含内部状态）。用于体现传感器处理与状态估计复杂度。",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "inputs": [
+    "theta_meas_rad",
+    "theta_dot_meas_rps",
+    "reset"
+  ],
+  "name": "PoleAngleEstimator",
+  "outputs": [
+    "theta_hat_rad",
+    "theta_dot_hat_rps",
+    "bias_hat_rps"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "角度测量（wrap 到 [-pi,pi]）",
+      "name": "theta_meas_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "角速度测量（含偏置）",
+      "name": "theta_dot_meas_rps",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "复位估计器状态",
+      "name": "reset",
+      "type": "Boolean",
+      "unit": "bool",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "估计角度",
+      "name": "theta_hat_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "估计角速度（去偏置）",
+      "name": "theta_dot_hat_rps",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "估计的角速度偏置",
+      "name": "bias_hat_rps",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "角度一阶低通时间常数",
+      "name": "theta_lpf_tau_s",
+      "type": "Real",
+      "unit": "s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "偏置自适应速率（越大越快但越噪）",
+      "name": "bias_adapt_rate",
+      "type": "Real",
+      "unit": "1/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "角度创新项限幅（防止 wrap 跳变引起偏置估计发散）",
+      "name": "innovation_clip_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "fixed"
+    }
+  ],
+  "schema": "UNIFIED_FMU_METADATA_V1"
+}

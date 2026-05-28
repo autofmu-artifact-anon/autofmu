@@ -1,0 +1,83 @@
+{
+  "case_id": "case_dtaas_three_tank",
+  "criteria": [
+    {
+      "metric": "within_range(asset_dtaas_three_tank__tank1.outPort)",
+      "notes": "Tank1 出流应保持在参考轨迹包络内。",
+      "operator": "in",
+      "signals": [
+        "asset_dtaas_three_tank__tank1.outPort"
+      ],
+      "unit": "-",
+      "value": [
+        0.0,
+        2.0
+      ]
+    },
+    {
+      "metric": "within_range(asset_dtaas_three_tank__tank1.leak)",
+      "notes": "Tank1 漏流应保持在参考轨迹包络内。",
+      "operator": "in",
+      "signals": [
+        "asset_dtaas_three_tank__tank1.leak"
+      ],
+      "unit": "-",
+      "value": [
+        0.0,
+        0.2
+      ]
+    }
+  ],
+  "decision_rule": {
+    "criteria_source": "verification_requirement.criteria",
+    "kind": "acceptance_criteria",
+    "requires_ground_truth": true
+  },
+  "derivation_basis": {
+    "expected_behavior": "The three tank instances propagate flow from tank1 to tank3 while logging level, in/out flow, leak, and derivative signals over the configured time window.",
+    "signals_of_interest": [
+      "asset_dtaas_three_tank__tank1.outPort",
+      "asset_dtaas_three_tank__tank1.leak"
+    ],
+    "source_root": "sources/dtaas_examples/case_dtaas_three_tank"
+  },
+  "judgement_policy": "acceptance_criteria_from_requirement",
+  "scenario_window": {
+    "start_time": 0,
+    "step_size": 0.5,
+    "stop_time": 10
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "der(level)": [
+      "asset_dtaas_three_tank__tank1.der(level)",
+      "der(level)"
+    ],
+    "inPort": [
+      "asset_dtaas_three_tank__tank1.inPort",
+      "inPort"
+    ],
+    "leak": [
+      "asset_dtaas_three_tank__tank1.leak",
+      "leak"
+    ],
+    "level": [
+      "asset_dtaas_three_tank__tank1.level",
+      "level"
+    ],
+    "outPort": [
+      "asset_dtaas_three_tank__tank1.outPort",
+      "outPort"
+    ]
+  },
+  "signals": [],
+  "text": "Three-Tank System Digital Twin bounded-response check. Tank1 outflow and leak signals should remain inside the canonical operating envelope over 0s to 10s.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Three-Tank System Digital Twin Verification Requirement",
+  "tolerances": {}
+}

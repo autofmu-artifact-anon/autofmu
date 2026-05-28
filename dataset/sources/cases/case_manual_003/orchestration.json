@@ -1,0 +1,164 @@
+{
+  "case_id": "case_manual_003",
+  "case_name": "倒立摆稳定",
+  "description": "倒立摆直立稳定与位置跟踪控制系统闭环仿真编排",
+  "fmi_version": "2.0",
+  "co_simulation_type": "fixed_step",
+  
+  "simulation_config": {
+    "start_time_s": 0,
+    "end_time_s": 20,
+    "step_size_s": 0.001,
+    "output_interval_s": 0.01
+  },
+  
+  "fmus": [
+    {
+      "instance_name": "controller",
+      "fmu_name": "PendulumController",
+      "fmu_path": "fmus/PendulumController.fmu",
+      "step_size_s": 0.001
+    },
+    {
+      "instance_name": "plant",
+      "fmu_name": "InvertedPendulumPlant",
+      "fmu_path": "fmus/InvertedPendulumPlant.fmu",
+      "step_size_s": 0.001
+    }
+  ],
+  
+  "connections": [
+    {
+      "from": "controller.force_cmd_N",
+      "to": "plant.force_cmd_N",
+      "description": "控制力指令传递给被控对象"
+    },
+    {
+      "from": "plant.x_m",
+      "to": "controller.x_m",
+      "description": "小车位置反馈"
+    },
+    {
+      "from": "plant.x_dot_mps",
+      "to": "controller.x_dot_mps",
+      "description": "小车速度反馈"
+    },
+    {
+      "from": "plant.theta_rad",
+      "to": "controller.theta_rad",
+      "description": "摆角反馈"
+    },
+    {
+      "from": "plant.theta_dot_radps",
+      "to": "controller.theta_dot_radps",
+      "description": "摆角速度反馈"
+    }
+  ],
+  
+  "exogenous_inputs": [
+    {
+      "name": "x_ref_m",
+      "target": "controller.x_ref_m",
+      "description": "期望位置参考",
+      "profile": [
+        {"t_s": 0, "value": 0.0},
+        {"t_s": 2, "value": 0.3},
+        {"t_s": 12, "value": 0.0}
+      ]
+    },
+    {
+      "name": "theta_ref_rad",
+      "target": "controller.theta_ref_rad",
+      "description": "期望摆角参考（通常为0）",
+      "value": 0.0
+    },
+    {
+      "name": "disturbance_N",
+      "target": "plant.disturbance_N",
+      "description": "外部扰动",
+      "profile": [
+        {"t_s": 0, "value": 0.0},
+        {"t_s": 6, "value": 5.0},
+        {"t_s": 6.2, "value": 0.0}
+      ]
+    }
+  ],
+  
+  "initial_conditions": {
+    "controller": {
+      "int_theta": 0.0,
+      "int_x": 0.0,
+      "force_act_N": 0.0
+    },
+    "plant": {
+      "x_m_state": 0.0,
+      "x_dot_mps_state": 0.0,
+      "theta_rad_state": 0.12,
+      "theta_dot_radps_state": 0.0
+    }
+  },
+  
+  "parameter_overrides": {
+    "controller": {
+      "Kp_theta": 80.0,
+      "Kd_theta": 12.0,
+      "Ki_theta": 10.0,
+      "Kp_x": 2.0,
+      "Kd_x": 2.5,
+      "Ki_x": 0.5,
+      "u_max_N": 15.0,
+      "deadzone_N": 0.3,
+      "actuator_tau_s": 0.05,
+      "antiwindup_gain": 5.0
+    },
+    "plant": {
+      "m_cart_kg": 1.0,
+      "m_pend_kg": 0.2,
+      "length_m": 0.5,
+      "g_mps2": 9.81,
+      "cart_friction_Nspm": 0.1,
+      "pend_damping_Nms": 0.02
+    }
+  },
+  
+  "logged_variables": [
+    "x_ref_m",
+    "theta_ref_rad",
+    "disturbance_N",
+    "controller.force_cmd_N",
+    "controller.int_theta",
+    "controller.int_x",
+    "plant.x_m",
+    "plant.x_dot_mps",
+    "plant.theta_rad",
+    "plant.theta_dot_radps"
+  ],
+  
+  "acceptance_criteria": [
+    {
+      "metric": "max(abs(plant.theta_rad))",
+      "operator": "<=",
+      "value": 0.35,
+      "unit": "rad",
+      "description": "全程角度不应发散"
+    },
+    {
+      "metric": "max(abs(plant.x_m))",
+      "operator": "<=",
+      "value": 1.5,
+      "unit": "m",
+      "description": "小车位置不应无限漂移"
+    },
+    {
+      "metric": "abs(plant.theta_rad) at t=10s",
+      "operator": "<=",
+      "value": 0.08,
+      "unit": "rad",
+      "description": "扰动后应能恢复到接近直立"
+    }
+  ],
+  
+  "execution_order": ["controller", "plant"],
+  
+  "created_at": "2026-03-09T05:26:00Z"
+}

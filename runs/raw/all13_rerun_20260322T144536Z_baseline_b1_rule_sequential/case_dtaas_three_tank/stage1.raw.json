@@ -1,0 +1,129 @@
+[
+  {
+    "tasks": [
+      {
+        "task_id": "task_rule_comp_0",
+        "objective": "Verify tank1: Three-Tank System Digital Twin bounded-response check. Tank1 outflow and leak signals should remain inside the canonical operating envelope over 0s to 10s.",
+        "required_signals": [
+          "inport",
+          "leak",
+          "outport"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "tank1"
+        ],
+        "grounded_component_types": [
+          "Linear"
+        ],
+        "grounded_ports": [
+          "inport",
+          "leak",
+          "outport"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "rules_component",
+          "generation_family": "rules"
+        }
+      }
+    ],
+    "rationale": "rule_template component-match task set",
+    "score": 0.85,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "rules_component",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "case_structure_hint_chain_0",
+        "source_component": "tank1",
+        "target_component": "tank2",
+        "signals": [
+          "outport",
+          "inport"
+        ],
+        "origin_task_ids": [
+          "task_rule_comp_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_0_seg_0",
+            "source_component": "tank1",
+            "source_signal": "outport",
+            "target_component": "tank2",
+            "target_signal": "inport",
+            "must_route": true,
+            "semantic_intent": "tank1.outport -> tank2.inport",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Tank1 outflow feeds Tank2 inflow in the canonical cascade."
+            }
+          }
+        ],
+        "semantic_intent": "tank1.outport -> tank2.inport",
+        "details": {
+          "source_signal": "outport",
+          "target_signal": "inport",
+          "source": "case_structure_hints",
+          "rationale": "Tank1 outflow feeds Tank2 inflow in the canonical cascade."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_1",
+        "source_component": "tank2",
+        "target_component": "tank3",
+        "signals": [
+          "outport",
+          "inport"
+        ],
+        "origin_task_ids": [
+          "task_rule_comp_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_1_seg_0",
+            "source_component": "tank2",
+            "source_signal": "outport",
+            "target_component": "tank3",
+            "target_signal": "inport",
+            "must_route": true,
+            "semantic_intent": "tank2.outport -> tank3.inport",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Tank2 outflow feeds Tank3 inflow in the canonical cascade."
+            }
+          }
+        ],
+        "semantic_intent": "tank2.outport -> tank3.inport",
+        "details": {
+          "source_signal": "outport",
+          "target_signal": "inport",
+          "source": "case_structure_hints",
+          "rationale": "Tank2 outflow feeds Tank3 inflow in the canonical cascade."
+        }
+      }
+    ],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.0,
+      "final_score": 0.85
+    },
+    "meta": {
+      "generation_source": "rules_component",
+      "generation_family": "rules",
+      "grounding_valid": true,
+      "selection_mode": "single_best_rule_template",
+      "candidate_count": 2,
+      "case_structure_hints_applied": true,
+      "case_structure_hint_chain_count": 2,
+      "case_structure_hint_task_count": 0,
+      "required_chain_count": 2
+    }
+  }
+]

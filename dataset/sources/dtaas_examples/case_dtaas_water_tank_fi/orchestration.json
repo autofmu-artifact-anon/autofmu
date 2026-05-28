@@ -1,0 +1,127 @@
+{
+  "adapters": [],
+  "case_id": "case_dtaas_water_tank_fi",
+  "connections": [
+    {
+      "source": "asset_dtaas_water_tank_fi__x1.valve",
+      "target": "asset_dtaas_water_tank_fi__x2.valvecontrol"
+    },
+    {
+      "source": "asset_dtaas_water_tank_fi__x2.level",
+      "target": "asset_dtaas_water_tank_fi__x1.level"
+    }
+  ],
+  "execution_order": [
+    "asset_dtaas_water_tank_fi__x1",
+    "asset_dtaas_water_tank_fi__x2"
+  ],
+  "extensions": {
+    "fault_injection": [
+      {
+        "configuration_relpath": "raw/data/water_tank_FI/input/wt_fault.xml",
+        "instances": {
+          "tank": "id-A"
+        }
+      }
+    ],
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_water_tank_fi__x1.maxlevel",
+        "value": 2
+      },
+      {
+        "target": "asset_dtaas_water_tank_fi__x1.minlevel",
+        "value": 1
+      }
+    ],
+    "raw_config_relpaths": [
+      "raw/digital_twins/water_tank_FI/README.md",
+      "raw/digital_twins/water_tank_FI/multimodelFI.json",
+      "raw/digital_twins/water_tank_FI/simulation-config.json",
+      "raw/common/tools/FaultInject.mabl",
+      "raw/data/water_tank_FI/input/wt_fault.xml"
+    ],
+    "runtime_io": {
+      "raw_relpaths": [
+        "raw/data/water_tank_FI/input/wt_fault.xml"
+      ],
+      "summary": ""
+    }
+  },
+  "external_inputs": [],
+  "loop_resolution": [],
+  "monitored_outputs": [],
+  "notes": [
+    "Fault injection tampers with controller output during the configured interval, causing the tank level to rise beyond the nominal operating band."
+  ],
+  "schedule": {
+    "co_simulation_type": "fixed-step",
+    "kind": "co_simulation",
+    "live_log_interval": 0,
+    "report_progress": true,
+    "start_time": 0,
+    "step_size": 0.1,
+    "stop_time": 100
+  },
+  "schema": "UNIFIED_SOLUTION_V1",
+  "selected_asset_ids": [
+    "asset_dtaas_water_tank_fi__x1",
+    "asset_dtaas_water_tank_fi__x2"
+  ],
+  "stages": [
+    {
+      "connections": [
+        {
+          "source": "asset_dtaas_water_tank_fi__x1.valve",
+          "target": "asset_dtaas_water_tank_fi__x2.valvecontrol"
+        },
+        {
+          "source": "asset_dtaas_water_tank_fi__x2.level",
+          "target": "asset_dtaas_water_tank_fi__x1.level"
+        }
+      ],
+      "execution_order": [
+        "asset_dtaas_water_tank_fi__x1",
+        "asset_dtaas_water_tank_fi__x2"
+      ],
+      "extensions": {
+        "fault_injection": {
+          "configuration_relpath": "raw/data/water_tank_FI/input/wt_fault.xml",
+          "instances": {
+            "tank": "id-A"
+          }
+        },
+        "parameter_overrides": [
+          {
+            "target": "asset_dtaas_water_tank_fi__x1.maxlevel",
+            "value": 2
+          },
+          {
+            "target": "asset_dtaas_water_tank_fi__x1.minlevel",
+            "value": 1
+          }
+        ],
+        "raw_config_relpaths": [
+          "raw/digital_twins/water_tank_FI/multimodelFI.json",
+          "raw/digital_twins/water_tank_FI/simulation-config.json"
+        ]
+      },
+      "external_inputs": [],
+      "monitored_outputs": [],
+      "schedule": {
+        "co_simulation_type": "fixed-step",
+        "kind": "co_simulation",
+        "live_log_interval": 0,
+        "report_progress": true,
+        "start_time": 0,
+        "step_size": 0.1,
+        "stop_time": 100
+      },
+      "selected_asset_ids": [
+        "asset_dtaas_water_tank_fi__x1",
+        "asset_dtaas_water_tank_fi__x2"
+      ],
+      "stage_id": "stage1"
+    }
+  ]
+}

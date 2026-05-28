@@ -1,0 +1,263 @@
+{
+  "asset_id": "asset_case_case_manual_001__BatteryPackElectroThermal",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "default_experiment": {
+    "startTime": 0,
+    "stepSize": 0.1,
+    "stopTime": 3600
+  },
+  "description": "High-voltage battery pack electro-thermal coupled model with SOC, core/surface temperatures, nonlinear OCV and temperature-dependent internal resistance.",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "inputs": [
+    "current_A",
+    "coolant_in_temp_C",
+    "coolant_flow_kgps",
+    "ambient_temp_C"
+  ],
+  "name": "BatteryPackElectroThermal",
+  "outputs": [
+    "voltage_V",
+    "soc",
+    "T_core_C",
+    "T_surface_C",
+    "heat_W"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "Battery current (A). Positive = discharge, negative = charge. Limited internally by I_max_discharge_A/I_max_charge_A.",
+      "name": "current_A",
+      "type": "Real",
+      "unit": "A",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "Coolant inlet temperature into battery cold-plate.",
+      "name": "coolant_in_temp_C",
+      "type": "Real",
+      "unit": "degC",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "Coolant mass flow rate through battery cold-plate.",
+      "name": "coolant_flow_kgps",
+      "type": "Real",
+      "unit": "kg/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "Ambient air temperature around the pack.",
+      "name": "ambient_temp_C",
+      "type": "Real",
+      "unit": "degC",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Pack terminal voltage.",
+      "name": "voltage_V",
+      "type": "Real",
+      "unit": "V",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "State of charge in [0,1].",
+      "name": "soc",
+      "type": "Real",
+      "unit": "1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Battery core temperature (lumped).",
+      "name": "T_core_C",
+      "type": "Real",
+      "unit": "degC",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Battery surface/case temperature (lumped).",
+      "name": "T_surface_C",
+      "type": "Real",
+      "unit": "degC",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Heat generation inside the pack (Joule + entropic).",
+      "name": "heat_W",
+      "type": "Real",
+      "unit": "W",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "Pack equivalent capacity.",
+      "name": "capacity_Ah",
+      "type": "Real",
+      "unit": "Ah",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Nominal pack voltage used for sanity checks and controller heuristics.",
+      "name": "V_nom_V",
+      "type": "Real",
+      "unit": "V",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "OCV(SOC) polynomial coefficients a0..a4 for OCV = sum(ai*soc^i).",
+      "name": "ocv_poly_coeff",
+      "type": "RealVector",
+      "unit": "V",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Base internal resistance at reference temperature and SOC.",
+      "name": "R0_ohm",
+      "type": "Real",
+      "unit": "ohm",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "SOC dependence gain; increases resistance when SOC is low.",
+      "name": "R_soc_gain",
+      "type": "Real",
+      "unit": "1",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Temperature coefficient: resistance decreases with higher temperature (approx).",
+      "name": "R_temp_coeff_perC",
+      "type": "Real",
+      "unit": "1/degC",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Reference temperature for resistance model.",
+      "name": "T_ref_C",
+      "type": "Real",
+      "unit": "degC",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Maximum discharge current magnitude.",
+      "name": "I_max_discharge_A",
+      "type": "Real",
+      "unit": "A",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Maximum charge current magnitude.",
+      "name": "I_max_charge_A",
+      "type": "Real",
+      "unit": "A",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Equivalent thermal mass for core.",
+      "name": "m_core_kg",
+      "type": "Real",
+      "unit": "kg",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Equivalent heat capacity for core.",
+      "name": "cp_core_JpkgK",
+      "type": "Real",
+      "unit": "J/(kg*K)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Equivalent thermal mass for surface/case.",
+      "name": "m_surface_kg",
+      "type": "Real",
+      "unit": "kg",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Equivalent heat capacity for surface.",
+      "name": "cp_surface_JpkgK",
+      "type": "Real",
+      "unit": "J/(kg*K)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Thermal resistance core->surface.",
+      "name": "R_core_to_surface_KpW",
+      "type": "Real",
+      "unit": "K/W",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Effective convection conductance from surface to ambient.",
+      "name": "hA_ambient_WpK",
+      "type": "Real",
+      "unit": "W/K",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Coolant specific heat.",
+      "name": "coolant_cp_JpkgK",
+      "type": "Real",
+      "unit": "J/(kg*K)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Base cold-plate conductance at nominal flow.",
+      "name": "hA_coolant_base_WpK",
+      "type": "Real",
+      "unit": "W/K",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Nominal coolant flow used for scaling hA with flow.",
+      "name": "flow_nom_kgps",
+      "type": "Real",
+      "unit": "kg/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Simplified entropic coefficient (pack-level). Positive => extra heat during discharge.",
+      "name": "dUdT_VpK",
+      "type": "Real",
+      "unit": "V/K",
+      "variability": "fixed"
+    }
+  ],
+  "schema": "UNIFIED_FMU_METADATA_V1"
+}

@@ -1,0 +1,89 @@
+{
+  "schema": "PROMPT_DESCRIPTION_V1",
+  "documentation_only": true,
+  "method_id": "ablation_stage3_llm_generated_script",
+  "description": "Human-readable description of the Stage-3 LLM-generated orchestration payload prompt. Runtime code does not read this file.",
+  "code_source": "baseline/stage3/llm_generated_script.py",
+  "used_by_bundle": "ablation_stage3_llm_generated_script",
+  "llm_call": {
+    "transport": "OpenAI-compatible chat completions API",
+    "default_model": "gpt-4o",
+    "model_env": "PIPELINE_LLM_MODEL",
+    "base_url_env": "PIPELINE_LLM_BASE_URL",
+    "api_key_env": "PIPELINE_LLM_API_KEY",
+    "temperature": 0.1,
+    "max_tokens": 1600
+  },
+  "system_prompt_template_lines": [
+    "You are a co-simulation orchestration payload generator.",
+    "Your task: produce a single valid JSON object defining how FMUs should be orchestrated together for co-simulation using only the provided FMU list, known ports, and scenario window.",
+    "",
+    "Return EXACTLY ONE valid JSON object. No markdown, no code fences, no prose.",
+    "",
+    "Required top-level keys:",
+    "- \"selected_asset_ids\": ordered list of FMU UIDs",
+    "- \"connections\": list of objects each with \"source\" and \"target\" (format: \"<fmu_uid>.<signal_name>\")",
+    "- \"schedule\": object with \"kind\", \"start_time\", \"stop_time\", \"step_size\", \"execution_order\"; for multi-FMU payloads also \"per_node_period\" mapping every selected asset to its step period",
+    "- \"execution_order\": ordered list of FMU UIDs defining execution sequence",
+    "",
+    "Optional keys (MUST be empty arrays for this variant):",
+    "- \"adapters\": []",
+    "- \"loop_resolution\": []",
+    "",
+    "Optional metadata:",
+    "- \"extensions\": {} (freeform dict)",
+    "- \"notes\": [] (string list)",
+    "",
+    "\"schedule.kind\" must be one of: single_fmu, co_simulation, fixed_step.",
+    "",
+    "Constraints:",
+    "- \"selected_asset_ids\" must match the provided asset list exactly and in the same order.",
+    "- Do NOT invent assets or ports outside the provided catalog.",
+    "- Do NOT use adapters or loop wrappers.",
+    "- Prefer sparse orchestration. If uncertain, return no connections and use a coarse fixed-step schedule."
+  ],
+  "user_prompt_template": {
+    "task_goal": "{task_goal}",
+    "mbse_system": "{system_name}",
+    "task_set_id": "{task_set_id}",
+    "selected_asset_ids": "{selected_asset_ids}",
+    "selected_assets": [
+      {
+        "asset_id": "{asset_id}",
+        "name": "{asset_name}",
+        "ports": "{port_catalog}",
+        "default_step_size": "{default_step_size}"
+      }
+    ],
+    "scenario_window": "{scenario_window}",
+    "required_output_shape": {
+      "selected_asset_ids": "{selected_asset_ids}",
+      "adapters": [],
+      "loop_resolution": []
+    }
+  },
+  "placeholders": {
+    "task_goal": "Current orchestration task goal from the Stage-3 caller.",
+    "system_name": "MBSE system name from the current MBSE context.",
+    "task_set_id": "Identifier of the selected task set.",
+    "selected_asset_ids": "Ordered FMU asset IDs selected by Stage 2.",
+    "asset_id": "Selected FMU UID.",
+    "asset_name": "Selected FMU display name.",
+    "port_catalog": "Object with input and output port-name lists for the selected FMU.",
+    "default_step_size": "Default step size inferred from the FMU metadata or capabilities.",
+    "scenario_window": "Start/stop/duration hints supplied in Stage-3 config."
+  },
+  "expected_response": {
+    "format": "JSON object",
+    "required_top_level_keys": [
+      "selected_asset_ids",
+      "connections",
+      "schedule",
+      "execution_order"
+    ],
+    "forced_empty_keys": [
+      "adapters",
+      "loop_resolution"
+    ]
+  }
+}

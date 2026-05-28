@@ -1,0 +1,77 @@
+{
+  "adapter_id": "adapter_chain_4_asset_dtaas_water_tank_swap__x3_asset_dtaas_water_tank_swap__x2_leak_valvecontrol",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "mapping": {
+            "false": 0.0,
+            "true": 1.0
+          },
+          "source_type": "boolean",
+          "target_type": "real",
+          "transform_kind": "mode_signal"
+        }
+      },
+      "sysml": {
+        "name": "leak"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "mapping": {
+            "false": 0.0,
+            "true": 1.0
+          },
+          "source_type": "boolean",
+          "target_type": "real",
+          "transform_kind": "mode_signal"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "valvecontrol"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_4_asset_dtaas_water_tank_swap__x3_asset_dtaas_water_tank_swap__x2_leak_valvecontrol",
+  "notes": [
+    "Boolean to Real type conversion for discrete leak signal to continuous valvecontrol input",
+    "Maps false to 0.0 and true to 1.0 per fallback transform specification",
+    "Stateless transformation with no memory requirements"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_dtaas_water_tank_swap__x3"
+    },
+    {
+      "name": "asset_dtaas_water_tank_swap__x2"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "case_id": "case_dtaas_incubator_nurv_monitor_validation",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "notes": "Requires canonical DTaaS reference execution trace.",
+      "operator": "<=",
+      "signals": [
+        "_output"
+      ],
+      "value": null
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "requires_ground_truth": true,
+    "signals": [
+      "_output"
+    ],
+    "time_column": "time"
+  },
+  "derivation_basis": {
+    "expected_behavior": "Source, anomaly-detection, energy-saver, watcher, and generated monitor FMUs execute together so that the monitor validates timely energy-saving activation after anomaly detection.",
+    "signals_of_interest": [
+      "_output"
+    ],
+    "source_root": "sources/dtaas_examples/case_dtaas_incubator_nurv_monitor_validation"
+  },
+  "judgement_policy": "behavioral_expectation_pending_execution",
+  "scenario_window": {
+    "start_time": 0,
+    "step_size": 1.0,
+    "stop_time": 300
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "_output": [
+      "_output",
+      "asset_dtaas_incubator_nurv_monitor_validation__mon._output"
+    ]
+  },
+  "signals": [
+    "_output"
+  ],
+  "text": "Incubator Digital Twin Validation with NuRV Monitor. Monitor-validation co-simulation for incubator anomaly detection and energy saver behavior.. Scenario time window 0s to 300s. Signals of interest: _output Expected ground-truth behavior: Source, anomaly-detection, energy-saver, watcher, and generated monitor FMUs execute together so that the monitor validates timely energy-saving activation after anomaly detection. A final pass/fail conclusion remains pending until a reference execution trace is normalized.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Incubator Digital Twin Validation with NuRV Monitor Verification Requirement",
+  "tolerances": {}
+}

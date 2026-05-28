@@ -1,0 +1,129 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_manual_004",
+  "selected_asset_ids": [
+    "asset_case_case_manual_004__HydraulicCylinderPlant",
+    "asset_case_case_manual_004__PositionController",
+    "asset_case_case_manual_004__SpoolValveActuator"
+  ],
+  "connections": [],
+  "external_inputs": [
+    {
+      "name": "enable",
+      "targets": [
+        "asset_case_case_manual_004__PositionController.enable"
+      ],
+      "default": null
+    },
+    {
+      "name": "load_force_N",
+      "targets": [
+        "asset_case_case_manual_004__HydraulicCylinderPlant.load_force_N"
+      ],
+      "default": null
+    },
+    {
+      "name": "x_ref_m",
+      "targets": [
+        "asset_case_case_manual_004__PositionController.x_ref_m"
+      ],
+      "default": null
+    }
+  ],
+  "initial_conditions": [
+    {
+      "name": "integrator",
+      "targets": []
+    },
+    {
+      "name": "pA_Pa",
+      "targets": [
+        "asset_case_case_manual_004__HydraulicCylinderPlant.pA_Pa"
+      ]
+    },
+    {
+      "name": "pB_Pa",
+      "targets": [
+        "asset_case_case_manual_004__HydraulicCylinderPlant.pB_Pa"
+      ]
+    },
+    {
+      "name": "spool_state",
+      "targets": []
+    },
+    {
+      "name": "v_mps",
+      "targets": [
+        "asset_case_case_manual_004__HydraulicCylinderPlant.v_mps"
+      ]
+    },
+    {
+      "name": "x_m",
+      "targets": [
+        "asset_case_case_manual_004__HydraulicCylinderPlant.x_m"
+      ]
+    }
+  ],
+  "monitored_outputs": [
+    {
+      "name": "x_m",
+      "source": "asset_case_case_manual_004__HydraulicCylinderPlant.x_m"
+    },
+    {
+      "name": "valve_cmd",
+      "source": "asset_case_case_manual_004__PositionController.valve_cmd"
+    },
+    {
+      "name": "spool_u",
+      "source": "asset_case_case_manual_004__SpoolValveActuator.spool_u"
+    },
+    {
+      "name": "pA_Pa",
+      "source": "asset_case_case_manual_004__HydraulicCylinderPlant.pA_Pa"
+    },
+    {
+      "name": "pB_Pa",
+      "source": "asset_case_case_manual_004__HydraulicCylinderPlant.pB_Pa"
+    }
+  ],
+  "schedule": {
+    "kind": "fixed_step",
+    "start_time": 0.0,
+    "stop_time": 5.0,
+    "duration": 5.0,
+    "step_size": 0.01,
+    "execution_order": [
+      "asset_case_case_manual_004__HydraulicCylinderPlant",
+      "asset_case_case_manual_004__PositionController",
+      "asset_case_case_manual_004__SpoolValveActuator"
+    ],
+    "node_order": [
+      "asset_case_case_manual_004__HydraulicCylinderPlant",
+      "asset_case_case_manual_004__PositionController",
+      "asset_case_case_manual_004__SpoolValveActuator"
+    ],
+    "warnings": [
+      "weak_stage3_fallback"
+    ],
+    "per_node_period": {
+      "asset_case_case_manual_004__HydraulicCylinderPlant": 0.01,
+      "asset_case_case_manual_004__PositionController": 0.01,
+      "asset_case_case_manual_004__SpoolValveActuator": 0.01
+    }
+  },
+  "execution_order": [
+    "asset_case_case_manual_004__HydraulicCylinderPlant",
+    "asset_case_case_manual_004__PositionController",
+    "asset_case_case_manual_004__SpoolValveActuator"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=3",
+    "task_goal=Generate the final UNIFIED_SOLUTION_V1 orchestration payload fields for 3 FMUs in HydraulicServoCylinderPositionControl without using adapters or loop wrappers.",
+    "connection_count=0",
+    "fallback_mode=weak_fixed_step",
+    "stage3_variant=llm_generated_script"
+  ],
+  "extensions": {}
+}

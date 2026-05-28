@@ -1,0 +1,212 @@
+{
+  "schema": "PROMPT_DESCRIPTION_V1",
+  "documentation_only": true,
+  "purpose": "Human-readable prompt descriptions for runtime LLM calls in pipeline/. Runtime code does not read this file.",
+  "prompt_conventions": {
+    "placeholder_style": "Placeholders are wrapped in braces, for example {role}.",
+    "rendering": "Templates shown as arrays of lines are joined with newline characters. List placeholders such as {output_contract_bullets} are rendered as one bullet per item."
+  },
+  "llm_client": {
+    "source": "pipeline/llm_client.py",
+    "transport": "OpenAI-compatible chat completions API",
+    "default_model": "gpt-5.2",
+    "model_env": "PIPELINE_LLM_MODEL",
+    "base_url_env": "PIPELINE_LLM_BASE_URL",
+    "api_key_env": "PIPELINE_LLM_API_KEY or OPENAI_API_KEY",
+    "response_format": "json_object"
+  },
+  "prompts": [
+    {
+      "id": "pipeline.shared.strict_json_system_prompt",
+      "source": "pipeline/llm_guidance.py:build_strict_json_system_prompt",
+      "kind": "system_prompt_builder",
+      "description": "Shared system-prompt scaffold used by pipeline LLM calls that require strict JSON output and grounded responses.",
+      "template_lines": [
+        "You are {role}.",
+        "Current task goal: {task_goal}",
+        "Return exactly one JSON object and no markdown.",
+        "Only use entities, signals, ports, values, and relationships that are explicitly present in the provided context.",
+        "If the context is insufficient, return the safest empty or fallback value instead of inventing information.",
+        "Output contract:",
+        "{output_contract_bullets}",
+        "Validity rules:",
+        "{validity_rules_bullets}"
+      ],
+      "placeholders": {
+        "role": "Runtime role string supplied by the stage-specific caller.",
+        "task_goal": "Runtime goal string supplied by the stage-specific caller.",
+        "output_contract_bullets": "One '- ...' bullet per required output-contract item.",
+        "validity_rules_bullets": "One '- ...' bullet per validity rule."
+      }
+    },
+    {
+      "id": "pipeline.stage1.requirement_decomposition",
+      "source": "pipeline/stage1_decomposition/decomposer.py:_generate_raw_tasksets_via_llm",
+      "kind": "stage1_decomposition",
+      "description": "Generates MBSE-grounded verification task-set candidates from a requirement and MBSE context.",
+      "uses_system_prompt_builder": "pipeline.shared.strict_json_system_prompt",
+      "system_prompt_parameters": {
+        "role": "an MBSE verification task decomposition assistant",
+        "task_goal": "Decompose the requirement into MBSE-grounded verification task sets that preserve the current requirement objective.",
+        "output_contract": [
+          "Top-level keys: \"task_goal_summary\" and \"task_sets\".",
+          "\"task_goal_summary\" must restate the current requirement objective in one short sentence.",
+          "\"task_sets\" must be a list with at most the requested number of candidates.",
+          "Each task set must contain \"rationale\", optional \"task_goal_summary\", and \"tasks\".",
+          "Each task must contain \"task_id\", \"objective\", \"required_signals\", \"acceptance_criteria\", \"operating_regime\", \"grounded_components\", \"grounded_component_types\", and \"grounded_ports\"."
+        ],
+        "validity_rules": [
+          "Do not invent components, component types, ports, or signals outside the provided MBSE context.",
+          "Every task objective must support the given requirement, not a different engineering goal.",
+          "If a field cannot be grounded to the MBSE context, return an empty list or empty object for that field.",
+          "Acceptance criteria may only contain metrics that are explicit in the requirement or directly tied to grounded signals."
+        ]
+      },
+      "user_prompt_template": {
+        "current_task_goal": "{task_goal}",
+        "requirement": "{requirement}",
+        "mbse_context": "{mbse_context_summary}",
+        "allowed_entities": {
+          "components": "{component_names}",
+          "component_types": "{component_types}",
+          "signals": "{signal_names}",
+          "ports": "{qualified_or_plain_port_names}"
+        },
+        "max_task_sets": "{max_task_sets}"
+      },
+      "runtime_parameters": {
+        "temperature": 0.35,
+        "max_tokens": 1600
+      },
+      "expected_response": {
+        "format": "JSON object",
+        "required_top_level_keys": [
+          "task_goal_summary",
+          "task_sets"
+        ]
+      }
+    },
+    {
+      "id": "pipeline.stage2.binding_tiebreaker",
+      "source": "pipeline/stage2_matching/matcher.py:_resolve_binding_ambiguity",
+      "kind": "stage2_matching",
+      "description": "Chooses one candidate when multiple FMI port-binding candidates tie on score.",
+      "uses_system_prompt_builder": "pipeline.shared.strict_json_system_prompt",
+      "system_prompt_parameters": {
+        "role": "a deterministic FMI port-binding tiebreaker",
+        "task_goal_template": "Choose exactly one port-binding candidate that realizes MBSE connection {source_component}.{source_signal} -> {target_component}.{target_signal}.",
+        "output_contract": [
+          "Top-level keys: \"task_goal_summary\", \"selected_index\", and \"reason\".",
+          "\"selected_index\" must be one of the candidate indices provided by the user.",
+          "\"reason\" must be a short explanation grounded in the provided connection and candidate port names."
+        ],
+        "validity_rules": [
+          "Do not invent new ports or indices.",
+          "Choose only from the provided candidates.",
+          "Prefer the candidate whose source and target ports best preserve the intended MBSE signal flow.",
+          "If the candidates are indistinguishable, return index 0."
+        ]
+      },
+      "user_prompt_template": {
+        "current_task_goal": "{task_goal}",
+        "system_name": "{system_name}",
+        "connection": {
+          "source_component": "{source_component}",
+          "source_signal": "{source_signal}",
+          "target_component": "{target_component}",
+          "target_signal": "{target_signal}"
+        },
+        "source_fmu": {
+          "uid": "{source_fmu_uid}",
+          "name": "{source_fmu_name}",
+          "description": "{source_fmu_description}"
+        },
+        "target_fmu": {
+          "uid": "{target_fmu_uid}",
+          "name": "{target_fmu_name}",
+          "description": "{target_fmu_description}"
+        },
+        "candidates": "{candidate_binding_list_max_6}"
+      },
+      "runtime_parameters": {
+        "temperature": 0.0,
+        "max_tokens": 300
+      },
+      "expected_response": {
+        "format": "JSON object",
+        "required_top_level_keys": [
+          "task_goal_summary",
+          "selected_index",
+          "reason"
+        ]
+      }
+    },
+    {
+      "id": "pipeline.stage3.middleware_adapter_synthesis",
+      "source": "pipeline/stage3_composition/middleware.py:_llm_adapter_payload",
+      "kind": "stage3_composition",
+      "description": "Synthesizes a minimal adapter payload for a detected discrepancy on a selected FMI connection edge.",
+      "uses_system_prompt_builder": "pipeline.shared.strict_json_system_prompt",
+      "system_prompt_parameters": {
+        "role": "an FMI middleware synthesis assistant",
+        "task_goal_template": "Synthesize the minimal valid adapter spec that repairs discrepancy {discrepancy_kind} on edge {source_fmu}.{source_signal} -> {target_fmu}.{target_signal} without changing the task intent.",
+        "output_contract": [
+          "Top-level keys: \"task_goal_summary\", \"kind\", \"transform\", \"stateful\", and \"notes\".",
+          "\"kind\" must be one of: {allowed_adapter_kinds}.",
+          "\"transform\" must be a JSON object that only contains fields supported by the discrepancy details.",
+          "\"stateful\" must be a boolean.",
+          "\"notes\" must be a short list of implementation notes."
+        ],
+        "validity_rules": [
+          "Do not invent new signals, units, dimensions, or execution semantics not present in the discrepancy details.",
+          "The adapter must solve only the current edge mismatch, not redesign the model.",
+          "If uncertain, keep the discrepancy kind and reuse the conservative fallback transform.",
+          "Return compact notes and avoid generic explanations."
+        ]
+      },
+      "user_prompt_template": {
+        "current_task_goal": "{task_goal}",
+        "mbse_system": "{system_name}",
+        "source_fmu": {
+          "uid": "{source_fmu_uid}",
+          "name": "{source_fmu_name}",
+          "description": "{source_fmu_description}"
+        },
+        "target_fmu": {
+          "uid": "{target_fmu_uid}",
+          "name": "{target_fmu_name}",
+          "description": "{target_fmu_description}"
+        },
+        "edge": {
+          "chain_id": "{chain_id}",
+          "segment_id": "{segment_id}",
+          "source_signal": "{source_signal}",
+          "target_signal": "{target_signal}",
+          "discrepancy_kind": "{discrepancy_kind}",
+          "details": "{discrepancy_details}",
+          "preservation_evidence": "{preservation_evidence}",
+          "source_port_meta": "{source_port_meta}",
+          "target_port_meta": "{target_port_meta}",
+          "local_mbse_context": "{local_mbse_context}",
+          "binding_score_breakdown": "{binding_score_breakdown}"
+        },
+        "allowed_kinds": "{allowed_adapter_kinds}",
+        "fallback_transform": "{fallback_transform}"
+      },
+      "runtime_parameters": {
+        "temperature": 0.15,
+        "max_tokens": 900
+      },
+      "expected_response": {
+        "format": "JSON object",
+        "required_top_level_keys": [
+          "task_goal_summary",
+          "kind",
+          "transform",
+          "stateful",
+          "notes"
+        ]
+      }
+    }
+  ]
+}

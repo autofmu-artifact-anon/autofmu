@@ -1,0 +1,73 @@
+{
+  "adapter_id": "adapter_chain_2_asset_case_case_manual_004__HydraulicCylinderPlant_asset_case_case_manual_004__SpoolValveActuator_x_m_valve_cmd",
+  "mappings": [
+    {
+      "direction": "in",
+      "op": {
+        "kind": "identity",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "m",
+          "target_unit": "-1..1",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "sysml": {
+        "name": "x_m"
+      },
+      "target": {
+        "name": "input"
+      }
+    },
+    {
+      "direction": "out",
+      "op": {
+        "kind": "derived",
+        "params": {
+          "offset": 0.0,
+          "scale": 1.0,
+          "source_unit": "m",
+          "target_unit": "-1..1",
+          "transform_kind": "unit_transform"
+        }
+      },
+      "source": {
+        "name": "output"
+      },
+      "sysml": {
+        "name": "valve_cmd"
+      }
+    }
+  ],
+  "model_name": "adapter_chain_2_asset_case_case_manual_004__HydraulicCylinderPlant_asset_case_case_manual_004__SpoolValveActuator_x_m_valve_cmd",
+  "notes": [
+    "Source signal x_m is position in meters (0..stroke), target valve_cmd expects normalized command (-1..1)",
+    "Semantic intent mismatch detected: required_target_signal is x_meas_m but actual target is valve_cmd",
+    "Using conservative fallback transform with scale=1.0, offset=0.0 as no physical conversion context available"
+  ],
+  "operators_used": [
+    "derived",
+    "identity"
+  ],
+  "source_fmus": [
+    {
+      "name": "asset_case_case_manual_004__HydraulicCylinderPlant"
+    },
+    {
+      "name": "asset_case_case_manual_004__SpoolValveActuator"
+    }
+  ],
+  "variables": [
+    {
+      "causality": "input",
+      "fmi_type": "Real",
+      "name": "input"
+    },
+    {
+      "causality": "output",
+      "fmi_type": "Real",
+      "name": "output"
+    }
+  ]
+}

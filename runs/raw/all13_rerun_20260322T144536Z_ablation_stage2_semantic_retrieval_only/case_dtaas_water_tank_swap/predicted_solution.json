@@ -1,0 +1,69 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_water_tank_swap",
+  "selected_asset_ids": [
+    "asset_dtaas_water_tank_swap__x4"
+  ],
+  "connections": [],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "valve",
+      "source": "asset_dtaas_water_tank_swap__x4.valve"
+    },
+    {
+      "name": "level"
+    },
+    {
+      "name": "leak"
+    }
+  ],
+  "schedule": {
+    "kind": "multi_rate",
+    "base_tick": 0.01,
+    "duration": 100.0,
+    "per_node_period": {
+      "asset_dtaas_water_tank_swap__x4": 0.01
+    },
+    "per_edge_hold_policy": [],
+    "loop_wrappers": [],
+    "materialized": false,
+    "warnings": [],
+    "base_tick_method": "microgrid_gcd",
+    "execution_plan": [],
+    "async_edges": [],
+    "start_time": 0.0,
+    "stop_time": 100.0,
+    "communication_point_count": 10001
+  },
+  "execution_order": [
+    "asset_dtaas_water_tank_swap__x4"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=1",
+    "case_extensions_extracted"
+  ],
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_water_tank_swap__x4.maxlevel",
+        "value": 2
+      },
+      {
+        "target": "asset_dtaas_water_tank_swap__x4.minlevel",
+        "value": 1
+      }
+    ],
+    "fault_injection": [
+      {
+        "configuration_relpath": "raw/digital_twins/water_tank_swap/wt_fault.xml",
+        "instances": {
+          "tank": "id-A"
+        }
+      }
+    ]
+  }
+}

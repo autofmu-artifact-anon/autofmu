@@ -1,0 +1,244 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fmu-benchmark/schemas/fmu_metadata.schema.json",
+  "title": "FMU Metadata Schema",
+  "description": "Schema for FMU metadata files in the FMU benchmark dataset",
+  "type": "object",
+  "required": ["dataset_id", "source_repo", "fmi", "implementation", "variables", "interface"],
+  "properties": {
+    "dataset_id": {
+      "type": "string",
+      "description": "Unique identifier for this FMU in the dataset",
+      "pattern": "^fmu-[0-9]{6}$"
+    },
+    "source_repo": {
+      "type": "string",
+      "description": "Name of the source repository"
+    },
+    "source_path": {
+      "type": "string",
+      "description": "Relative path within source repository"
+    },
+    "source_commit": {
+      "type": "string",
+      "description": "Git commit hash of the source"
+    },
+    "fmi": {
+      "type": "object",
+      "required": ["fmiVersion", "fmiTypes", "modelName", "guid"],
+      "properties": {
+        "fmiVersion": {
+          "type": "string",
+          "enum": ["1.0", "2.0", "3.0"]
+        },
+        "fmiTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["ModelExchange", "CoSimulation", "ScheduledExecution"]
+          },
+          "minItems": 1
+        },
+        "modelName": {
+          "type": "string"
+        },
+        "guid": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "generationTool": {
+          "type": "string"
+        },
+        "generationDateAndTime": {
+          "type": "string"
+        },
+        "variableNamingConvention": {
+          "type": "string",
+          "enum": ["flat", "structured"]
+        },
+        "numberOfEventIndicators": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "defaultExperiment": {
+          "type": "object",
+          "properties": {
+            "startTime": {"type": "number"},
+            "stopTime": {"type": "number"},
+            "stepSize": {"type": "number"},
+            "tolerance": {"type": "number"}
+          }
+        }
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "required": ["platforms"],
+      "properties": {
+        "platforms": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "modelExchange": {
+          "type": "object",
+          "properties": {
+            "modelIdentifier": {"type": "string"},
+            "needsExecutionTool": {"type": "boolean"},
+            "completedIntegratorStepNotNeeded": {"type": "boolean"},
+            "canBeInstantiatedOnlyOncePerProcess": {"type": "boolean"},
+            "canNotUseMemoryManagementFunctions": {"type": "boolean"},
+            "canGetAndSetFMUstate": {"type": "boolean"},
+            "canSerializeFMUstate": {"type": "boolean"},
+            "providesDirectionalDerivative": {"type": "boolean"},
+            "providesDirectionalDerivatives": {"type": "boolean"},
+            "providesAdjointDerivatives": {"type": "boolean"},
+            "providesPerElementDependencies": {"type": "boolean"}
+          }
+        },
+        "coSimulation": {
+          "type": "object",
+          "properties": {
+            "modelIdentifier": {"type": "string"},
+            "needsExecutionTool": {"type": "boolean"},
+            "canHandleVariableCommunicationStepSize": {"type": "boolean"},
+            "canInterpolateInputs": {"type": "boolean"},
+            "maxOutputDerivativeOrder": {"type": "integer"},
+            "canRunAsynchronuously": {"type": "boolean"},
+            "canBeInstantiatedOnlyOncePerProcess": {"type": "boolean"},
+            "canNotUseMemoryManagementFunctions": {"type": "boolean"},
+            "canGetAndSetFMUstate": {"type": "boolean"},
+            "canSerializeFMUstate": {"type": "boolean"},
+            "providesDirectionalDerivative": {"type": "boolean"},
+            "providesDirectionalDerivatives": {"type": "boolean"},
+            "providesAdjointDerivatives": {"type": "boolean"},
+            "providesPerElementDependencies": {"type": "boolean"},
+            "canReturnEarlyAfterIntermediateUpdate": {"type": "boolean"},
+            "providesIntermediateUpdate": {"type": "boolean"},
+            "mightReturnEarlyFromDoStep": {"type": "boolean"},
+            "canProvideMaxStepSize": {"type": "boolean"},
+            "fixedInternalStepSize": {"type": "number"},
+            "recommendedIntermediateInputSmoothness": {"type": "integer"}
+          }
+        },
+        "scheduledExecution": {
+          "type": "object",
+          "properties": {
+            "modelIdentifier": {"type": "string"},
+            "needsExecutionTool": {"type": "boolean"},
+            "canBeInstantiatedOnlyOncePerProcess": {"type": "boolean"},
+            "canNotUseMemoryManagementFunctions": {"type": "boolean"},
+            "canGetAndSetFMUstate": {"type": "boolean"},
+            "canSerializeFMUstate": {"type": "boolean"},
+            "providesDirectionalDerivative": {"type": "boolean"},
+            "providesDirectionalDerivatives": {"type": "boolean"},
+            "providesAdjointDerivatives": {"type": "boolean"},
+            "providesPerElementDependencies": {"type": "boolean"}
+          }
+        }
+      }
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "valueReference", "causality", "variability", "type"],
+        "properties": {
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "valueReference": {"type": "integer"},
+          "causality": {
+            "type": "string",
+            "enum": ["parameter", "calculatedParameter", "input", "output", "local", "independent", "structuralParameter"]
+          },
+          "variability": {
+            "type": "string",
+            "enum": ["constant", "fixed", "tunable", "discrete", "continuous"]
+          },
+          "initial": {
+            "type": "string",
+            "enum": ["exact", "approx", "calculated"]
+          },
+          "type": {
+            "type": "string",
+            "enum": ["Real", "Integer", "Boolean", "String", "Enumeration", "Float32", "Float64", "Int8", "Int16", "Int32", "Int64", "UInt8", "UInt16", "UInt32", "UInt64", "Binary", "Clock"]
+          },
+          "unit": {"type": "string"},
+          "displayUnit": {"type": "string"},
+          "start": {},
+          "min": {"type": "number"},
+          "max": {"type": "number"},
+          "nominal": {"type": "number"},
+          "derivative": {"type": "integer"},
+          "reinit": {"type": "boolean"},
+          "dimensions": {
+            "type": "array",
+            "items": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "interface": {
+      "type": "object",
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "outputs": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "parameters": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "states": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "calculatedParameters": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "locals": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "test": {
+      "type": "object",
+      "properties": {
+        "hasReferenceInput": {"type": "boolean"},
+        "hasReferenceOutput": {"type": "boolean"},
+        "referenceInputFile": {"type": "string"},
+        "referenceOutputFile": {"type": "string"},
+        "simulationOptionsFile": {"type": "string"}
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "fmiCompliance": {
+          "type": "string",
+          "enum": ["passed", "failed", "warning", "not_checked"]
+        },
+        "complianceTool": {"type": "string"},
+        "complianceToolVersion": {"type": "string"},
+        "validationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "issues": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "asset_id": "asset_case_case_manual_003__PendulumController",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "default_experiment": {
+    "startTime": 0.0,
+    "stepSize": 0.01,
+    "stopTime": 1.0
+  },
+  "description": "倒立摆小车控制器：角度+位置反馈，包含两个积分状态、执行器一阶滞后，以及非线性饱和/死区/抗积分饱和。",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "inputs": [
+    "x_ref_m",
+    "theta_ref_rad",
+    "x_m",
+    "x_dot_mps",
+    "theta_rad",
+    "theta_dot_radps"
+  ],
+  "name": "PendulumController",
+  "outputs": [
+    "force_cmd_N"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "期望位置",
+      "name": "x_ref_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "期望摆角（通常为0，竖直向上）",
+      "name": "theta_ref_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "测得小车位置",
+      "name": "x_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "测得小车速度",
+      "name": "x_dot_mps",
+      "type": "Real",
+      "unit": "m/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "测得摆角",
+      "name": "theta_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "测得摆角速度",
+      "name": "theta_dot_radps",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "输出给小车的水平力指令（经过执行器滞后 + 饱和 + 死区）",
+      "name": "force_cmd_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "摆角比例增益",
+      "name": "Kp_theta",
+      "type": "Real",
+      "unit": "N/rad",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "摆角微分增益",
+      "name": "Kd_theta",
+      "type": "Real",
+      "unit": "N/(rad/s)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "摆角积分增益",
+      "name": "Ki_theta",
+      "type": "Real",
+      "unit": "N/(rad·s)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "位置比例增益",
+      "name": "Kp_x",
+      "type": "Real",
+      "unit": "N/m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "位置微分增益",
+      "name": "Kd_x",
+      "type": "Real",
+      "unit": "N/(m/s)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "位置积分增益",
+      "name": "Ki_x",
+      "type": "Real",
+      "unit": "N/(m·s)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "最大输出力（饱和上限）",
+      "name": "u_max_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "死区阈值：|u|<deadzone 时输出置零",
+      "name": "deadzone_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "执行器一阶滞后时间常数",
+      "name": "actuator_tau_s",
+      "type": "Real",
+      "unit": "s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "抗积分饱和回算增益（back-calculation）",
+      "name": "antiwindup_gain",
+      "type": "Real",
+      "unit": "1/s",
+      "variability": "fixed"
+    }
+  ],
+  "schema": "UNIFIED_FMU_METADATA_V1"
+}

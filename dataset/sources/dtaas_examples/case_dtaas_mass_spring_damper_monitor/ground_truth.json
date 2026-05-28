@@ -1,0 +1,122 @@
+{
+  "correct_connections": [
+    {
+      "from": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+      "to": "asset_dtaas_mass_spring_damper_monitor__msd2.x1"
+    },
+    {
+      "from": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+      "to": "asset_dtaas_mass_spring_damper_monitor__rti1.u"
+    },
+    {
+      "from": "asset_dtaas_mass_spring_damper_monitor__rti1.y",
+      "to": "asset_dtaas_mass_spring_damper_monitor__m2.x1"
+    },
+    {
+      "from": "asset_dtaas_mass_spring_damper_monitor__msd1.v1",
+      "to": "asset_dtaas_mass_spring_damper_monitor__msd2.v1"
+    },
+    {
+      "from": "asset_dtaas_mass_spring_damper_monitor__msd2.fk",
+      "to": "asset_dtaas_mass_spring_damper_monitor__msd1.fk"
+    },
+    {
+      "from": "asset_dtaas_mass_spring_damper_monitor__msd2.x2",
+      "to": "asset_dtaas_mass_spring_damper_monitor__rti2.u"
+    },
+    {
+      "from": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+      "to": "asset_dtaas_mass_spring_damper_monitor__m2.x2"
+    }
+  ],
+  "correct_fmus": [
+    "fmu_msd1",
+    "fmu_msd2",
+    "fmu_m2",
+    "fmu_rti1",
+    "fmu_rti2"
+  ],
+  "expected_behavior": "The monitor observes the displacement relationship between the two masses through RtI helper FMUs and remains non-violating for the bundled scenario.",
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.c2",
+        "value": 1.0
+      },
+      {
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.cc",
+        "value": 1.0
+      },
+      {
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.d2",
+        "value": 1.0
+      },
+      {
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.dc",
+        "value": 1.0
+      },
+      {
+        "target": "asset_dtaas_mass_spring_damper_monitor__msd2.m2",
+        "value": 1.0
+      }
+    ],
+    "raw_config_relpaths": [
+      "raw/digital_twins/mass-spring-damper-monitor/README.md",
+      "raw/digital_twins/mass-spring-damper-monitor/cosim.json",
+      "raw/digital_twins/mass-spring-damper-monitor/time.json",
+      "raw/digital_twins/mass-spring-damper-monitor/model/m2.smv",
+      "raw/digital_twins/mass-spring-damper-monitor/model/observables_m2.list"
+    ]
+  },
+  "stages": [
+    {
+      "connections": [
+        {
+          "source": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+          "target": "asset_dtaas_mass_spring_damper_monitor__msd2.x1"
+        },
+        {
+          "source": "asset_dtaas_mass_spring_damper_monitor__msd1.x1",
+          "target": "asset_dtaas_mass_spring_damper_monitor__rti1.u"
+        },
+        {
+          "source": "asset_dtaas_mass_spring_damper_monitor__rti1.y",
+          "target": "asset_dtaas_mass_spring_damper_monitor__m2.x1"
+        },
+        {
+          "source": "asset_dtaas_mass_spring_damper_monitor__msd1.v1",
+          "target": "asset_dtaas_mass_spring_damper_monitor__msd2.v1"
+        },
+        {
+          "source": "asset_dtaas_mass_spring_damper_monitor__msd2.fk",
+          "target": "asset_dtaas_mass_spring_damper_monitor__msd1.fk"
+        },
+        {
+          "source": "asset_dtaas_mass_spring_damper_monitor__msd2.x2",
+          "target": "asset_dtaas_mass_spring_damper_monitor__rti2.u"
+        },
+        {
+          "source": "asset_dtaas_mass_spring_damper_monitor__rti2.y",
+          "target": "asset_dtaas_mass_spring_damper_monitor__m2.x2"
+        }
+      ],
+      "schedule": {
+        "co_simulation_type": "fixed-step",
+        "kind": "co_simulation",
+        "live_log_interval": 0,
+        "report_progress": true,
+        "start_time": 0,
+        "step_size": 0.001,
+        "stop_time": 10
+      },
+      "selected_asset_ids": [
+        "asset_dtaas_mass_spring_damper_monitor__msd1",
+        "asset_dtaas_mass_spring_damper_monitor__msd2",
+        "asset_dtaas_mass_spring_damper_monitor__m2",
+        "asset_dtaas_mass_spring_damper_monitor__rti1",
+        "asset_dtaas_mass_spring_damper_monitor__rti2"
+      ],
+      "stage_id": "stage1"
+    }
+  ]
+}

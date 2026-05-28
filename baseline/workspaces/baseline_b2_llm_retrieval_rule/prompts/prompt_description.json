@@ -1,0 +1,61 @@
+{
+  "schema": "PROMPT_DESCRIPTION_V1",
+  "documentation_only": true,
+  "method_id": "baseline_b2_llm_retrieval_rule",
+  "description": "Human-readable description of the only LLM prompt used by this bundle. Stage 1 uses top-1 LLM decomposition; Stage 2 and Stage 3 are non-LLM baseline stages.",
+  "code_source": "baseline/stage1/top1_llm.py",
+  "used_by_bundle": "baseline_b2_llm_retrieval_rule",
+  "llm_call": {
+    "transport": "OpenAI-compatible chat completions API",
+    "default_model": "gpt-4o",
+    "model_env": "PIPELINE_LLM_MODEL",
+    "base_url_env": "PIPELINE_LLM_BASE_URL",
+    "api_key_env": "PIPELINE_LLM_API_KEY",
+    "temperature": 0.3,
+    "max_tokens": 4096
+  },
+  "system_prompt_template_lines": [
+    "You are a verification engineer. Given a verification requirement and a list of MBSE system components, decompose the requirement into a set of simulation sub-tasks.",
+    "",
+    "Return a JSON array of task objects. Each task object MUST have:",
+    "  \"task_id\": string (e.g. \"task_0\"),",
+    "  \"objective\": string (what to verify),",
+    "  \"required_signals\": [list of signal/port names],",
+    "  \"grounded_components\": [list of component names from the MBSE model],",
+    "  \"grounded_component_types\": [list of component types],",
+    "  \"grounded_ports\": [list of port names],",
+    "  \"acceptance_criteria\": [{\"metric\": str, \"operator\": str, \"value\": number, \"unit\": str}],",
+    "  \"operating_regime\": {\"start_time\": number or null, \"end_time\": number or null, \"description\": str} or null",
+    "",
+    "Return ONLY the JSON array, no markdown fencing or extra text."
+  ],
+  "user_prompt_template_lines": [
+    "Requirement:",
+    "{requirement}",
+    "",
+    "MBSE System: {system_name}",
+    "Components:",
+    "{components_desc}",
+    "",
+    "Decompose this into verification sub-tasks."
+  ],
+  "placeholders": {
+    "requirement": "Raw verification requirement string for the current case.",
+    "system_name": "MBSE system name from the current MBSE context.",
+    "components_desc": "One line per component: '- {component_name} (type={component_type}, ports=[{port_names}])'."
+  },
+  "expected_response": {
+    "format": "JSON array",
+    "item_type": "task object",
+    "required_task_keys": [
+      "task_id",
+      "objective",
+      "required_signals",
+      "grounded_components",
+      "grounded_component_types",
+      "grounded_ports",
+      "acceptance_criteria",
+      "operating_regime"
+    ]
+  }
+}

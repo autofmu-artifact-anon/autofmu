@@ -1,0 +1,23 @@
+{
+  "name": "PoleAngleEstimator",
+  "description": "倒立摆角度/角速度估计器：对角度测量进行低通 + 对角速度测量进行偏置估计与滤波（含内部状态）。用于体现传感器处理与状态估计复杂度。",
+  "inputs": [
+    {"name": "theta_meas_rad", "type": "Real", "unit": "rad", "description": "角度测量（wrap 到 [-pi,pi]）"},
+    {"name": "theta_dot_meas_rps", "type": "Real", "unit": "rad/s", "description": "角速度测量（含偏置）"},
+    {"name": "reset", "type": "Boolean", "unit": "bool", "description": "复位估计器状态"}
+  ],
+  "outputs": [
+    {"name": "theta_hat_rad", "type": "Real", "unit": "rad", "description": "估计角度"},
+    {"name": "theta_dot_hat_rps", "type": "Real", "unit": "rad/s", "description": "估计角速度（去偏置）"},
+    {"name": "bias_hat_rps", "type": "Real", "unit": "rad/s", "description": "估计的角速度偏置"}
+  ],
+  "parameters": [
+    {"name": "theta_lpf_tau_s", "type": "Real", "default": 0.05, "unit": "s", "description": "角度一阶低通时间常数"},
+    {"name": "bias_adapt_rate", "type": "Real", "default": 0.8, "unit": "1/s", "description": "偏置自适应速率（越大越快但越噪）"},
+    {"name": "innovation_clip_rad", "type": "Real", "default": 0.3, "unit": "rad", "description": "角度创新项限幅（防止 wrap 跳变引起偏置估计发散）"}
+  ],
+  "states": [
+    {"name": "theta_hat_rad", "derivative": "d_theta_hat_dt"},
+    {"name": "bias_hat_rps", "derivative": "d_bias_hat_dt"}
+  ]
+}

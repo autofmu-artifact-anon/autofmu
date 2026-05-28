@@ -1,0 +1,1 @@
+../../sources/dtaas_examples/case_dtaas_mass_spring_damper_monitor/system.sysml

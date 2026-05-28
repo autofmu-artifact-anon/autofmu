@@ -1,0 +1,70 @@
+{
+  "case_id": "case_dtaas_drobotti_rmqfmu",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "notes": "Requires canonical DTaaS reference execution trace.",
+      "operator": "<=",
+      "signals": [
+        "distance",
+        "xpos",
+        "ypos"
+      ],
+      "value": null
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "requires_ground_truth": true,
+    "signals": [
+      "distance",
+      "xpos",
+      "ypos"
+    ],
+    "time_column": "time"
+  },
+  "derivation_basis": {
+    "expected_behavior": "The RabbitMQ FMU receives playback robot coordinates and forwards the computed distance back to the consumer during fixed-step co-simulation.",
+    "signals_of_interest": [
+      "distance",
+      "xpos",
+      "ypos"
+    ],
+    "source_root": "sources/dtaas_examples/case_dtaas_drobotti_rmqfmu"
+  },
+  "judgement_policy": "behavioral_expectation_pending_execution",
+  "scenario_window": {
+    "start_time": 0,
+    "step_size": 0.1,
+    "stop_time": 10
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "distance": [
+      "distance",
+      "asset_dtaas_drobotti_rmqfmu__distance.distance"
+    ],
+    "xpos": [
+      "xpos",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.xpos"
+    ],
+    "ypos": [
+      "ypos",
+      "asset_dtaas_drobotti_rmqfmu__rbmq.ypos"
+    ]
+  },
+  "signals": [
+    "distance",
+    "xpos",
+    "ypos"
+  ],
+  "text": "Desktop Robotti with RabbitMQ. RabbitMQ-backed co-simulation between a communication FMU and a distance-computation FMU.. Scenario time window 0s to 10s. Signals of interest: distance, xpos, ypos Expected ground-truth behavior: The RabbitMQ FMU receives playback robot coordinates and forwards the computed distance back to the consumer during fixed-step co-simulation. A final pass/fail conclusion remains pending until a reference execution trace is normalized.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Desktop Robotti with RabbitMQ Verification Requirement",
+  "tolerances": {}
+}

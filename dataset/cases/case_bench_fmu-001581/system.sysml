@@ -1,0 +1,1 @@
+../../sources/fmu-benchmark-mini/fmus/2.0/me/linux64/MapleSim/2015.1/ControlledTemperature/ControlledTemperature.sysml

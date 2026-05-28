@@ -1,0 +1,188 @@
+{
+  "adapters": [],
+  "case_id": "case_dtaas_water_tank_fi_monitor",
+  "connections": [
+    {
+      "source": "asset_dtaas_water_tank_fi_monitor__x1.valve",
+      "target": "asset_dtaas_water_tank_fi_monitor__x2.valvecontrol"
+    },
+    {
+      "source": "asset_dtaas_water_tank_fi_monitor__x2.level",
+      "target": "asset_dtaas_water_tank_fi_monitor__x1.level"
+    },
+    {
+      "source": "asset_dtaas_water_tank_fi_monitor__x2.level",
+      "target": "asset_dtaas_water_tank_fi_monitor__x3.u"
+    },
+    {
+      "source": "asset_dtaas_water_tank_fi_monitor__x3.y",
+      "target": "asset_dtaas_water_tank_fi_monitor__x4.level"
+    }
+  ],
+  "execution_order": [
+    "asset_dtaas_water_tank_fi_monitor__x1",
+    "asset_dtaas_water_tank_fi_monitor__x2",
+    "asset_dtaas_water_tank_fi_monitor__x3",
+    "asset_dtaas_water_tank_fi_monitor__x4"
+  ],
+  "extensions": {
+    "fault_injection": [
+      {
+        "configuration_relpath": "raw/digital_twins/water_tank_FI_monitor/wt_fault.xml",
+        "instances": {
+          "tank": "id-A"
+        }
+      }
+    ],
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_water_tank_fi_monitor__x1.maxlevel",
+        "value": 2
+      },
+      {
+        "target": "asset_dtaas_water_tank_fi_monitor__x1.minlevel",
+        "value": 1
+      }
+    ],
+    "raw_config_relpaths": [
+      "raw/digital_twins/water_tank_FI_monitor/README.md",
+      "raw/digital_twins/water_tank_FI_monitor/multimodelFI.json",
+      "raw/digital_twins/water_tank_FI_monitor/simulation-config.json",
+      "raw/digital_twins/water_tank_FI_monitor/wt_fault.xml",
+      "raw/digital_twins/water_tank_FI_monitor/model/m1.smv",
+      "raw/digital_twins/water_tank_FI_monitor/model/observables_m1.list",
+      "raw/common/tools/FaultInject.mabl"
+    ],
+    "runtime_io": {
+      "raw_relpaths": [],
+      "summary": ""
+    }
+  },
+  "external_inputs": [],
+  "loop_resolution": [],
+  "monitored_outputs": [
+    {
+      "name": "valve",
+      "source": "asset_dtaas_water_tank_fi_monitor__x1.valve"
+    },
+    {
+      "name": "level",
+      "source": "asset_dtaas_water_tank_fi_monitor__x2.level"
+    },
+    {
+      "name": "y",
+      "source": "asset_dtaas_water_tank_fi_monitor__x3.y"
+    },
+    {
+      "name": "_output",
+      "source": "asset_dtaas_water_tank_fi_monitor__x4._output"
+    }
+  ],
+  "notes": [
+    "The injected controller fault drives the tank level beyond the monitor threshold and the generated monitor verdict transitions to violation for the bundled scenario."
+  ],
+  "schedule": {
+    "co_simulation_type": "fixed-step",
+    "kind": "co_simulation",
+    "live_log_interval": 0,
+    "report_progress": true,
+    "start_time": 0,
+    "step_size": 0.1,
+    "stop_time": 100
+  },
+  "schema": "UNIFIED_SOLUTION_V1",
+  "selected_asset_ids": [
+    "asset_dtaas_water_tank_fi_monitor__x1",
+    "asset_dtaas_water_tank_fi_monitor__x2",
+    "asset_dtaas_water_tank_fi_monitor__x3",
+    "asset_dtaas_water_tank_fi_monitor__x4"
+  ],
+  "stages": [
+    {
+      "connections": [
+        {
+          "source": "asset_dtaas_water_tank_fi_monitor__x1.valve",
+          "target": "asset_dtaas_water_tank_fi_monitor__x2.valvecontrol"
+        },
+        {
+          "source": "asset_dtaas_water_tank_fi_monitor__x2.level",
+          "target": "asset_dtaas_water_tank_fi_monitor__x1.level"
+        },
+        {
+          "source": "asset_dtaas_water_tank_fi_monitor__x2.level",
+          "target": "asset_dtaas_water_tank_fi_monitor__x3.u"
+        },
+        {
+          "source": "asset_dtaas_water_tank_fi_monitor__x3.y",
+          "target": "asset_dtaas_water_tank_fi_monitor__x4.level"
+        }
+      ],
+      "execution_order": [
+        "asset_dtaas_water_tank_fi_monitor__x1",
+        "asset_dtaas_water_tank_fi_monitor__x2",
+        "asset_dtaas_water_tank_fi_monitor__x3",
+        "asset_dtaas_water_tank_fi_monitor__x4"
+      ],
+      "extensions": {
+        "fault_injection": {
+          "configuration_relpath": "raw/digital_twins/water_tank_FI_monitor/wt_fault.xml",
+          "instances": {
+            "tank": "id-A"
+          }
+        },
+        "parameter_overrides": [
+          {
+            "target": "asset_dtaas_water_tank_fi_monitor__x1.maxlevel",
+            "value": 2
+          },
+          {
+            "target": "asset_dtaas_water_tank_fi_monitor__x1.minlevel",
+            "value": 1
+          }
+        ],
+        "raw_config_relpaths": [
+          "raw/digital_twins/water_tank_FI_monitor/multimodelFI.json",
+          "raw/digital_twins/water_tank_FI_monitor/simulation-config.json",
+          "raw/digital_twins/water_tank_FI_monitor/wt_fault.xml",
+          "raw/digital_twins/water_tank_FI_monitor/model/m1.smv",
+          "raw/digital_twins/water_tank_FI_monitor/model/observables_m1.list"
+        ]
+      },
+      "external_inputs": [],
+      "monitored_outputs": [
+        {
+          "name": "valve",
+          "source": "asset_dtaas_water_tank_fi_monitor__x1.valve"
+        },
+        {
+          "name": "level",
+          "source": "asset_dtaas_water_tank_fi_monitor__x2.level"
+        },
+        {
+          "name": "y",
+          "source": "asset_dtaas_water_tank_fi_monitor__x3.y"
+        },
+        {
+          "name": "_output",
+          "source": "asset_dtaas_water_tank_fi_monitor__x4._output"
+        }
+      ],
+      "schedule": {
+        "co_simulation_type": "fixed-step",
+        "kind": "co_simulation",
+        "live_log_interval": 0,
+        "report_progress": true,
+        "start_time": 0,
+        "step_size": 0.1,
+        "stop_time": 100
+      },
+      "selected_asset_ids": [
+        "asset_dtaas_water_tank_fi_monitor__x1",
+        "asset_dtaas_water_tank_fi_monitor__x2",
+        "asset_dtaas_water_tank_fi_monitor__x3",
+        "asset_dtaas_water_tank_fi_monitor__x4"
+      ],
+      "stage_id": "stage1"
+    }
+  ]
+}

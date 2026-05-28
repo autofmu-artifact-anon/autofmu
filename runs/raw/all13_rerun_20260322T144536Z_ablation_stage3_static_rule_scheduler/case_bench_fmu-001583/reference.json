@@ -1,0 +1,213 @@
+{
+  "case_id": "case_bench_fmu-001583",
+  "retrieval_reference": {
+    "acceptable_asset_sets": [
+      [
+        "asset_bench_fmu-001571"
+      ],
+      [
+        "asset_bench_fmu-001574"
+      ],
+      [
+        "asset_bench_fmu-001577"
+      ],
+      [
+        "asset_bench_fmu-001580"
+      ],
+      [
+        "asset_bench_fmu-001583"
+      ],
+      [
+        "asset_bench_fmu-001588"
+      ],
+      [
+        "asset_bench_fmu-001591"
+      ],
+      [
+        "asset_bench_fmu-001594"
+      ],
+      [
+        "asset_bench_fmu-002304"
+      ],
+      [
+        "asset_bench_fmu-002307"
+      ],
+      [
+        "asset_bench_fmu-002310"
+      ],
+      [
+        "asset_bench_fmu-002313"
+      ],
+      [
+        "asset_bench_fmu-002316"
+      ],
+      [
+        "asset_bench_fmu-002321"
+      ],
+      [
+        "asset_bench_fmu-002324"
+      ],
+      [
+        "asset_bench_fmu-002327"
+      ]
+    ],
+    "case_id": "case_bench_fmu-001583",
+    "equivalence_class_id": "bench_eq_4946c487adf1",
+    "equivalence_reason": "benchmark requirement text does not distinguish identical model/interface variants",
+    "oracle_mode": "equivalence_class",
+    "schema": "CASE_RETRIEVAL_REFERENCE_V1"
+  },
+  "solution": {
+    "adapters": [],
+    "case_id": "case_bench_fmu-001583",
+    "connections": [],
+    "execution_order": [
+      "asset_bench_fmu-001583"
+    ],
+    "external_inputs": [],
+    "loop_resolution": [],
+    "monitored_outputs": [
+      {
+        "name": "outputs",
+        "source": "asset_bench_fmu-001583.outputs"
+      }
+    ],
+    "notes": [
+      "Auto-generated single-FMU benchmark solution."
+    ],
+    "schedule": {
+      "kind": "single_fmu",
+      "start_time": 0.0,
+      "step_size": 0.0,
+      "stop_time": 0.1
+    },
+    "schema": "UNIFIED_SOLUTION_V1",
+    "selected_asset_ids": [
+      "asset_bench_fmu-001583"
+    ]
+  },
+  "verification_requirement": {
+    "case_id": "case_bench_fmu-001583",
+    "criteria": [
+      {
+        "metric": "trajectory_match",
+        "operator": "<=",
+        "signals": [
+          "outputs"
+        ],
+        "value": 1e-05
+      }
+    ],
+    "decision_rule": {
+      "kind": "trajectory_tolerance",
+      "signals": [
+        "outputs"
+      ],
+      "time_column": "time",
+      "tolerance": 1e-05
+    },
+    "derivation_basis": {
+      "ground_truth_source": "Rectifier_ref.csv",
+      "input_source": "",
+      "signals": [
+        "outputs"
+      ],
+      "source_root": "sources/fmu-benchmark-mini/fmus/2.0/me/linux64/MapleSim/2015.1/Rectifier",
+      "source_type": "benchmark_single_fmu_case"
+    },
+    "judgement_policy": "trajectory_match",
+    "scenario_window": {
+      "start_time": 0.0,
+      "step_size": 0.0,
+      "stop_time": 0.1
+    },
+    "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+    "signal_aliases": {
+      "outputs": [
+        "outputs"
+      ]
+    },
+    "signals": [
+      "outputs"
+    ],
+    "text": "Run the benchmark FMU Rectifier under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs outputs.",
+    "time_column_aliases": [
+      "time",
+      "TIME",
+      "Time",
+      "t"
+    ],
+    "title": "Verify benchmark FMU Rectifier",
+    "tolerances": {
+      "trajectory_match": 1e-05
+    }
+  },
+  "verification_result": {
+    "case_id": "case_bench_fmu-001583",
+    "conclusion": "pass",
+    "evidence_basis": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "source_kind": "benchmark_ref_csv"
+    },
+    "missing_requirements": [],
+    "schema": "CASE_VERIFICATION_RESULT_V1",
+    "status": "available",
+    "summary": "The normalized benchmark case ships with an archived reference trajectory from the source dataset; that trajectory is treated as the ground-truth verification outcome for the reference model.",
+    "supports_decision_accuracy": true
+  },
+  "trajectory_manifest": {
+    "case_id": "case_bench_fmu-001583",
+    "column_aliases": {
+      "time": [
+        "time",
+        "TIME",
+        "Time",
+        "t"
+      ]
+    },
+    "ground_truth_relpath": "ground_truth_trajectory.csv",
+    "input_relpath": "",
+    "reference_generation_method": "benchmark_ref_csv",
+    "schema": "CASE_TRAJECTORY_MANIFEST_V1",
+    "signal_aliases": {
+      "outputs": [
+        "outputs"
+      ]
+    },
+    "signal_columns": [
+      "outputs"
+    ],
+    "source_kind": "benchmark_ref_csv",
+    "stage_segments": [],
+    "supports_numerical_fidelity": true,
+    "time_column": "time"
+  },
+  "ground_truth_trajectory_path": "dataset/sources/fmu-benchmark-mini/fmus/2.0/me/linux64/MapleSim/2015.1/Rectifier/Rectifier_ref.csv",
+  "input_trajectory_path": null,
+  "declared_scenario_window": {
+    "start_time": 0.0,
+    "stop_time": 0.1,
+    "step_size": 0.0
+  },
+  "declared_initial_conditions": {},
+  "supports_execution_metrics": true,
+  "supports_numerical_fidelity": true,
+  "supports_decision_accuracy": true,
+  "metadata": {
+    "source_type": "benchmark_single_fmu_case",
+    "expected_behavior": "Ground-truth trajectory available via benchmark_ref_csv.",
+    "title": "Rectifier",
+    "evaluation_artifacts": {
+      "ground_truth_trajectory_relpath": "ground_truth_trajectory.csv",
+      "input_trajectory_relpath": "",
+      "retrieval_reference_relpath": "retrieval_reference.json",
+      "supports_decision_accuracy": true,
+      "supports_execution_metrics": true,
+      "supports_numerical_fidelity": true,
+      "trajectory_manifest_relpath": "trajectory_manifest.json",
+      "verification_requirement_relpath": "verification_requirement.json",
+      "verification_result_relpath": "verification_result.json"
+    }
+  }
+}

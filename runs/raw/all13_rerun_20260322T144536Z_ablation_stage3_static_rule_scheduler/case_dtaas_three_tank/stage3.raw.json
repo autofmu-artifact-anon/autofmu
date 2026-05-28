@@ -1,0 +1,1849 @@
+{
+  "graph_augmented": {
+    "nodes": [
+      "asset_dtaas_three_tank__tank1",
+      "asset_dtaas_three_tank__tank3"
+    ],
+    "port_nodes": [
+      "asset_dtaas_three_tank__tank1.level",
+      "asset_dtaas_three_tank__tank1.der(level)",
+      "asset_dtaas_three_tank__tank1.inPort",
+      "asset_dtaas_three_tank__tank1.leak",
+      "asset_dtaas_three_tank__tank1.outPort",
+      "asset_dtaas_three_tank__tank3.level",
+      "asset_dtaas_three_tank__tank3.der(level)",
+      "asset_dtaas_three_tank__tank3.inPort",
+      "asset_dtaas_three_tank__tank3.leak",
+      "asset_dtaas_three_tank__tank3.outPort"
+    ],
+    "bindings": [
+      {
+        "source_fmu": "asset_dtaas_three_tank__tank1",
+        "source_signal": "outPort",
+        "target_fmu": "asset_dtaas_three_tank__tank3",
+        "target_signal": "inPort",
+        "score": 0.92,
+        "chain_id": "chain_1",
+        "segment_id": "chain_1_seg_0",
+        "selected_by": "score",
+        "score_breakdown": {
+          "source_name": 1.0,
+          "target_name": 1.0,
+          "intent": 0.0,
+          "unit_match": 1.0,
+          "type_match": 1.0,
+          "total": 0.92
+        },
+        "reasons": [
+          "mapped_from=outport->inport"
+        ]
+      }
+    ],
+    "component_to_fmu": {
+      "tank1": "asset_dtaas_three_tank__tank1",
+      "tank2": "asset_dtaas_three_tank__tank1",
+      "tank3": "asset_dtaas_three_tank__tank3"
+    },
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "tank1",
+        "target_component": "tank2",
+        "signals": [
+          "outport",
+          "inport"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "tank1",
+            "source_signal": "outport",
+            "target_component": "tank2",
+            "target_signal": "inport",
+            "must_route": true,
+            "semantic_intent": "tank1.outport -> tank2.inport",
+            "adjacency_evidence": {
+              "source_component": "tank1",
+              "target_component": "tank2"
+            }
+          }
+        ],
+        "semantic_intent": "tank1.outport -> tank2.inport",
+        "details": {
+          "source_signal": "outport",
+          "target_signal": "inport"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "tank2",
+        "target_component": "tank3",
+        "signals": [
+          "outport",
+          "inport"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "tank2",
+            "source_signal": "outport",
+            "target_component": "tank3",
+            "target_signal": "inport",
+            "must_route": true,
+            "semantic_intent": "tank2.outport -> tank3.inport",
+            "adjacency_evidence": {
+              "source_component": "tank2",
+              "target_component": "tank3"
+            }
+          }
+        ],
+        "semantic_intent": "tank2.outport -> tank3.inport",
+        "details": {
+          "source_signal": "outport",
+          "target_signal": "inport"
+        }
+      }
+    ],
+    "binding_candidates": [
+      {
+        "chain_id": "chain_0",
+        "segment_id": "chain_0_seg_0",
+        "semantic_intent": "tank1.outport -> tank2.inport",
+        "source_component": "tank1",
+        "target_component": "tank2",
+        "route_blocker_histogram": {},
+        "candidates": []
+      },
+      {
+        "chain_id": "chain_1",
+        "segment_id": "chain_1_seg_0",
+        "semantic_intent": "tank2.outport -> tank3.inport",
+        "source_component": "tank2",
+        "target_component": "tank3",
+        "source_fmu": "asset_dtaas_three_tank__tank1",
+        "target_fmu": "asset_dtaas_three_tank__tank3",
+        "candidates": [
+          {
+            "source_signal": "outPort",
+            "target_signal": "inPort",
+            "score": 0.92,
+            "score_breakdown": {
+              "source_name": 1.0,
+              "target_name": 1.0,
+              "intent": 0.0,
+              "unit_match": 1.0,
+              "type_match": 1.0,
+              "total": 0.92
+            },
+            "preserves_signal_path": true,
+            "routeable": true,
+            "route_status": "routeable_exact",
+            "route_decision": "bind_direct",
+            "route_blockers": [],
+            "hard_failure_kind": null,
+            "discrepancy_kind": null,
+            "deferred_discrepancy": false,
+            "deferred_discrepancy_kind": null,
+            "discrepancy_axes": [],
+            "preservation_evidence": {
+              "preserves": true,
+              "decision": "preserve",
+              "causality_ok": true,
+              "topology_ok": true,
+              "source_name_score": 1.0,
+              "target_name_score": 1.0,
+              "intent_score": 0.0,
+              "source_token_overlap": [],
+              "target_token_overlap": [],
+              "exact_source_match": true,
+              "exact_target_match": true,
+              "reasons": [
+                "exact_source_signal_match",
+                "exact_target_signal_match"
+              ]
+            }
+          },
+          {
+            "source_signal": "leak",
+            "target_signal": "inPort",
+            "score": 0.49999999999999994,
+            "score_breakdown": {
+              "source_name": 0.0,
+              "target_name": 1.0,
+              "intent": 0.0,
+              "unit_match": 1.0,
+              "type_match": 1.0,
+              "total": 0.49999999999999994
+            },
+            "preserves_signal_path": true,
+            "routeable": true,
+            "route_status": "routeable_exact",
+            "route_decision": "bind_direct",
+            "route_blockers": [],
+            "hard_failure_kind": null,
+            "discrepancy_kind": null,
+            "deferred_discrepancy": false,
+            "deferred_discrepancy_kind": null,
+            "discrepancy_axes": [],
+            "preservation_evidence": {
+              "preserves": true,
+              "decision": "preserve",
+              "causality_ok": true,
+              "topology_ok": true,
+              "source_name_score": 0.0,
+              "target_name_score": 1.0,
+              "intent_score": 0.0,
+              "source_token_overlap": [],
+              "target_token_overlap": [],
+              "exact_source_match": false,
+              "exact_target_match": true,
+              "reasons": [
+                "exact_target_signal_match"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "status": "ok",
+      "binding_count": 1,
+      "chain_count": 2,
+      "routing_failure_count": 0,
+      "discrepancy_count": 0,
+      "stage3_variant": "static_rule_scheduler",
+      "schedule_family": "chain",
+      "global_optimization": false,
+      "adapter_generation": false,
+      "strict_chain_only": true
+    }
+  },
+  "adapters": [],
+  "schedule": {
+    "base_tick": 0.01,
+    "duration": 1.0,
+    "per_node_period": {
+      "asset_dtaas_three_tank__tank1": 0.01,
+      "asset_dtaas_three_tank__tank3": 0.01
+    },
+    "per_edge_hold_policy": [],
+    "loop_wrappers": [],
+    "warnings": [],
+    "base_tick_method": "max_default_step",
+    "materialized": true,
+    "communication_point_count": 101,
+    "family": "chain",
+    "node_order": [
+      "asset_dtaas_three_tank__tank1",
+      "asset_dtaas_three_tank__tank3"
+    ],
+    "fmu_steps": {
+      "asset_dtaas_three_tank__tank1": 0.01,
+      "asset_dtaas_three_tank__tank3": 0.01
+    }
+  },
+  "loop_resolution": [],
+  "simulation_config": {
+    "step_size": 0.01,
+    "duration": 1.0,
+    "fmus": [
+      {
+        "uid": "asset_dtaas_three_tank__tank1",
+        "name": "tank1",
+        "description": "tank1 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+        "path": "dataset/assets/asset_dtaas_three_tank__tank1/model.fmu",
+        "fmi_version": "2.0",
+        "fmi_types": [
+          "CoSimulation",
+          "ModelExchange"
+        ],
+        "ports": [
+          {
+            "name": "level",
+            "causality": "local",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "der(level)",
+            "causality": "local",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "inPort",
+            "causality": "input",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "leak",
+            "causality": "output",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "outPort",
+            "causality": "output",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          }
+        ],
+        "inputs": [
+          "inPort"
+        ],
+        "outputs": [
+          "leak",
+          "outPort"
+        ],
+        "tags": [
+          "three_tank",
+          "multi_instance",
+          "twin_manager"
+        ],
+        "capabilities": {
+          "needs_execution_tool": false,
+          "can_handle_variable_communication_step_size": true,
+          "can_interpolate_inputs": false,
+          "can_run_asynchronously": false,
+          "can_be_instantiated_only_once_per_process": false,
+          "provides_directional_derivatives": false,
+          "fixed_internal_step_size": null
+        },
+        "meta": {
+          "asset_dir": "dataset/assets/asset_dtaas_three_tank__tank1",
+          "asset_json": {
+            "asset_id": "asset_dtaas_three_tank__tank1",
+            "backend_kind": "native_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": false,
+              "provides_directional_derivatives": false
+            },
+            "case_origin": [
+              "case_dtaas_three_tank"
+            ],
+            "default_experiment": {
+              "startTime": 0.0,
+              "stopTime": 1.0,
+              "tolerance": 1e-06
+            },
+            "description": "tank1 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+            "description_relpath": "description.md",
+            "fmi_types": [
+              "CoSimulation",
+              "ModelExchange"
+            ],
+            "fmi_version": "2.0",
+            "fmu_relpath": "model.fmu",
+            "ground_truth_only": false,
+            "inputs": [
+              "inPort"
+            ],
+            "library_visible": true,
+            "metadata_relpath": "metadata.json",
+            "name": "tank1",
+            "outputs": [
+              "leak",
+              "outPort"
+            ],
+            "ports": [
+              {
+                "causality": "local",
+                "description": "",
+                "name": "level",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "local",
+                "description": "",
+                "name": "der(level)",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "inPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "leak",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "outPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              }
+            ],
+            "provenance": {
+              "base_model_name": "Linear",
+              "example_path": "digital_twins/three-tank",
+              "example_slug": "three_tank",
+              "generated": false,
+              "workspace_path": "models/three-tank/Linear.fmu"
+            },
+            "schema": "UNIFIED_ASSET_V1",
+            "source_id": "case_dtaas_three_tank::tank1",
+            "source_type": "dtaas_example_fmu",
+            "tags": [
+              "three_tank",
+              "multi_instance",
+              "twin_manager"
+            ]
+          },
+          "metadata_json": {
+            "asset_id": "asset_dtaas_three_tank__tank1",
+            "backend_kind": "native_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": false,
+              "provides_directional_derivatives": false
+            },
+            "default_experiment": {
+              "startTime": 0.0,
+              "stopTime": 1.0,
+              "tolerance": 1e-06
+            },
+            "description": "tank1 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+            "fmi_types": [
+              "CoSimulation",
+              "ModelExchange"
+            ],
+            "fmi_version": "2.0",
+            "inputs": [
+              "inPort"
+            ],
+            "name": "tank1",
+            "outputs": [
+              "leak",
+              "outPort"
+            ],
+            "ports": [
+              {
+                "causality": "local",
+                "description": "",
+                "name": "level",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "local",
+                "description": "",
+                "name": "der(level)",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "inPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "leak",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "outPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              }
+            ],
+            "schema": "UNIFIED_FMU_METADATA_V1"
+          },
+          "default_experiment": {
+            "startTime": 0.0,
+            "stopTime": 1.0,
+            "tolerance": 1e-06
+          },
+          "source_type": "dtaas_example_fmu"
+        }
+      },
+      {
+        "uid": "asset_dtaas_three_tank__tank3",
+        "name": "tank3",
+        "description": "tank3 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+        "path": "dataset/assets/asset_dtaas_three_tank__tank3/model.fmu",
+        "fmi_version": "2.0",
+        "fmi_types": [
+          "CoSimulation",
+          "ModelExchange"
+        ],
+        "ports": [
+          {
+            "name": "level",
+            "causality": "local",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "der(level)",
+            "causality": "local",
+            "variability": "continuous",
+            "type": "Real",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "inPort",
+            "causality": "input",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "leak",
+            "causality": "output",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          },
+          {
+            "name": "outPort",
+            "causality": "output",
+            "variability": "discrete",
+            "type": "Integer",
+            "unit": "",
+            "description": "",
+            "dimensions": []
+          }
+        ],
+        "inputs": [
+          "inPort"
+        ],
+        "outputs": [
+          "leak",
+          "outPort"
+        ],
+        "tags": [
+          "three_tank",
+          "multi_instance",
+          "twin_manager"
+        ],
+        "capabilities": {
+          "needs_execution_tool": false,
+          "can_handle_variable_communication_step_size": true,
+          "can_interpolate_inputs": false,
+          "can_run_asynchronously": false,
+          "can_be_instantiated_only_once_per_process": false,
+          "provides_directional_derivatives": false,
+          "fixed_internal_step_size": null
+        },
+        "meta": {
+          "asset_dir": "dataset/assets/asset_dtaas_three_tank__tank3",
+          "asset_json": {
+            "asset_id": "asset_dtaas_three_tank__tank3",
+            "backend_kind": "native_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": false,
+              "provides_directional_derivatives": false
+            },
+            "case_origin": [
+              "case_dtaas_three_tank"
+            ],
+            "default_experiment": {
+              "startTime": 0.0,
+              "stopTime": 1.0,
+              "tolerance": 1e-06
+            },
+            "description": "tank3 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+            "description_relpath": "description.md",
+            "fmi_types": [
+              "CoSimulation",
+              "ModelExchange"
+            ],
+            "fmi_version": "2.0",
+            "fmu_relpath": "model.fmu",
+            "ground_truth_only": false,
+            "inputs": [
+              "inPort"
+            ],
+            "library_visible": true,
+            "metadata_relpath": "metadata.json",
+            "name": "tank3",
+            "outputs": [
+              "leak",
+              "outPort"
+            ],
+            "ports": [
+              {
+                "causality": "local",
+                "description": "",
+                "name": "level",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "local",
+                "description": "",
+                "name": "der(level)",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "inPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "leak",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "outPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              }
+            ],
+            "provenance": {
+              "base_model_name": "Linear",
+              "example_path": "digital_twins/three-tank",
+              "example_slug": "three_tank",
+              "generated": false,
+              "workspace_path": "models/three-tank/Linear.fmu"
+            },
+            "schema": "UNIFIED_ASSET_V1",
+            "source_id": "case_dtaas_three_tank::tank3",
+            "source_type": "dtaas_example_fmu",
+            "tags": [
+              "three_tank",
+              "multi_instance",
+              "twin_manager"
+            ]
+          },
+          "metadata_json": {
+            "asset_id": "asset_dtaas_three_tank__tank3",
+            "backend_kind": "native_fmu",
+            "capabilities": {
+              "can_be_instantiated_only_once_per_process": false,
+              "can_handle_variable_communication_step_size": true,
+              "can_interpolate_inputs": false,
+              "can_run_asynchronously": false,
+              "fixed_internal_step_size": null,
+              "needs_execution_tool": false,
+              "provides_directional_derivatives": false
+            },
+            "default_experiment": {
+              "startTime": 0.0,
+              "stopTime": 1.0,
+              "tolerance": 1e-06
+            },
+            "description": "tank3 instance of Linear in Three-Tank System Digital Twin. Cascade of three tank instances built from the same FMU and orchestrated through Maestro/TwinManager.",
+            "fmi_types": [
+              "CoSimulation",
+              "ModelExchange"
+            ],
+            "fmi_version": "2.0",
+            "inputs": [
+              "inPort"
+            ],
+            "name": "tank3",
+            "outputs": [
+              "leak",
+              "outPort"
+            ],
+            "ports": [
+              {
+                "causality": "local",
+                "description": "",
+                "name": "level",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "local",
+                "description": "",
+                "name": "der(level)",
+                "type": "Real",
+                "unit": "",
+                "variability": "continuous"
+              },
+              {
+                "causality": "input",
+                "description": "",
+                "name": "inPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "leak",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              },
+              {
+                "causality": "output",
+                "description": "",
+                "name": "outPort",
+                "type": "Integer",
+                "unit": "",
+                "variability": "discrete"
+              }
+            ],
+            "schema": "UNIFIED_FMU_METADATA_V1"
+          },
+          "default_experiment": {
+            "startTime": 0.0,
+            "stopTime": 1.0,
+            "tolerance": 1e-06
+          },
+          "source_type": "dtaas_example_fmu"
+        }
+      }
+    ],
+    "connections": [
+      {
+        "source": "asset_dtaas_three_tank__tank1.outPort",
+        "target": "asset_dtaas_three_tank__tank3.inPort",
+        "kind": "direct",
+        "selected_by": "score",
+        "rule_family": "chain"
+      }
+    ],
+    "scheduler": {
+      "base_tick": 0.01,
+      "per_node_period": {
+        "asset_dtaas_three_tank__tank1": 0.01,
+        "asset_dtaas_three_tank__tank3": 0.01
+      },
+      "communication_grid": [
+        0.0,
+        0.01,
+        0.02,
+        0.03,
+        0.04,
+        0.05,
+        0.06,
+        0.07,
+        0.08,
+        0.09,
+        0.1,
+        0.11,
+        0.12,
+        0.13,
+        0.14,
+        0.15,
+        0.16,
+        0.17,
+        0.18,
+        0.19,
+        0.2,
+        0.21,
+        0.22,
+        0.23,
+        0.24,
+        0.25,
+        0.26,
+        0.27,
+        0.28,
+        0.29,
+        0.3,
+        0.31,
+        0.32,
+        0.33,
+        0.34,
+        0.35,
+        0.36,
+        0.37,
+        0.38,
+        0.39,
+        0.4,
+        0.41,
+        0.42,
+        0.43,
+        0.44,
+        0.45,
+        0.46,
+        0.47,
+        0.48,
+        0.49,
+        0.5,
+        0.51,
+        0.52,
+        0.53,
+        0.54,
+        0.55,
+        0.56,
+        0.57,
+        0.58,
+        0.59,
+        0.6,
+        0.61,
+        0.62,
+        0.63,
+        0.64,
+        0.65,
+        0.66,
+        0.67,
+        0.68,
+        0.69,
+        0.7,
+        0.71,
+        0.72,
+        0.73,
+        0.74,
+        0.75,
+        0.76,
+        0.77,
+        0.78,
+        0.79,
+        0.8,
+        0.81,
+        0.82,
+        0.83,
+        0.84,
+        0.85,
+        0.86,
+        0.87,
+        0.88,
+        0.89,
+        0.9,
+        0.91,
+        0.92,
+        0.93,
+        0.94,
+        0.95,
+        0.96,
+        0.97,
+        0.98,
+        0.99,
+        1.0
+      ],
+      "execution_plan": [
+        {
+          "time": 0.0,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.01,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.02,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.03,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.04,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.05,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.06,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.07,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.08,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.09,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.1,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.11,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.12,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.13,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.14,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.15,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.16,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.17,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.18,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.19,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.2,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.21,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.22,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.23,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.24,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.25,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.26,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.27,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.28,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.29,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.3,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.31,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.32,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.33,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.34,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.35,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.36,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.37,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.38,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.39,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.4,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.41,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.42,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.43,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.44,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.45,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.46,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.47,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.48,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.49,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.5,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.51,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.52,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.53,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.54,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.55,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.56,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.57,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.58,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.59,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.6,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.61,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.62,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.63,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.64,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.65,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.66,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.67,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.68,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.69,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.7,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.71,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.72,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.73,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.74,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.75,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.76,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.77,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.78,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.79,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.8,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.81,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.82,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.83,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.84,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.85,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.86,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.87,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.88,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.89,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.9,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.91,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.92,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.93,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.94,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.95,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.96,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.97,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.98,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 0.99,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        },
+        {
+          "time": 1.0,
+          "active_nodes": [
+            "asset_dtaas_three_tank__tank1",
+            "asset_dtaas_three_tank__tank3"
+          ],
+          "family": "chain",
+          "requires_fixed_point_iteration": false
+        }
+      ],
+      "materialized": true,
+      "family": "chain",
+      "node_order": [
+        "asset_dtaas_three_tank__tank1",
+        "asset_dtaas_three_tank__tank3"
+      ],
+      "connection_order": [
+        "asset_dtaas_three_tank__tank1.outPort->asset_dtaas_three_tank__tank3.inPort"
+      ],
+      "deterministic": true,
+      "start_time": 0.0,
+      "stop_time": 1.0,
+      "communication_point_count": 101
+    },
+    "meta": {
+      "method_name": "ablation_stage3_static_rule_scheduler",
+      "workspace_root": "./baseline/workspaces/ablation_stage3_static_rule_scheduler",
+      "schedule_family": "chain",
+      "selected_task_set_id": "taskset_1",
+      "selected_asset_ids": [
+        "asset_dtaas_three_tank__tank1",
+        "asset_dtaas_three_tank__tank3"
+      ],
+      "connection_order": [
+        "asset_dtaas_three_tank__tank1.outPort->asset_dtaas_three_tank__tank3.inPort"
+      ],
+      "adapters": []
+    }
+  },
+  "diagnostics": {
+    "stage3_variant": "static_rule_scheduler",
+    "schedule_family": "chain",
+    "binding_count": 1,
+    "validation_issues": [],
+    "deterministic": true,
+    "global_optimization": false,
+    "strict_chain_only": true
+  }
+}

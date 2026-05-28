@@ -1,0 +1,81 @@
+[
+  {
+    "tasks": [
+      {
+        "task_id": "task_0",
+        "objective": "Run UART FMU under default experiment and verify trajectory match for all monitored outputs against archived ground-truth",
+        "required_signals": [
+          "prdata",
+          "stx",
+          "dtrn",
+          "rtsn",
+          "out1n",
+          "out2n",
+          "txrdyn",
+          "rxrdyn",
+          "irq",
+          "b_clk"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "RMSE",
+            "operator": "<",
+            "value": 1e-06,
+            "unit": "normalized",
+            "notes": ""
+          },
+          {
+            "metric": "max_absolute_error",
+            "operator": "<",
+            "value": 0.0001,
+            "unit": "normalized",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": null,
+          "end_time": null,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": "Default experiment settings defined in FMU benchmark configuration"
+        },
+        "grounded_components": [
+          "UART"
+        ],
+        "grounded_component_types": [
+          "UART"
+        ],
+        "grounded_ports": [
+          "output"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_raw",
+          "generation_family": "llm"
+        }
+      }
+    ],
+    "rationale": "top1_llm single candidate from LLM",
+    "score": 1.0,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "llm_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.15,
+      "final_score": 1.0
+    },
+    "meta": {
+      "generation_source": "llm_raw",
+      "generation_family": "llm",
+      "grounding_valid": true
+    }
+  }
+]

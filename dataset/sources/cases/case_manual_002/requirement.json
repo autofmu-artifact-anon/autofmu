@@ -1,0 +1,84 @@
+{
+  "id": "REQ-CARTPOLE-001",
+  "title": "倒立摆摆起与位置跟踪",
+  "description": "从下垂初始状态摆起到倒立附近并稳定，且在外扰作用下保持倒立，同时将小车位置跟踪到给定参考。",
+  "scenario": {
+    "t_start_s": 0,
+    "t_end_s": 20,
+    "inputs": {
+      "enable": true,
+      "x_ref_m_profile": [
+        {"t_s": 0, "value_m": 0.0},
+        {"t_s": 8, "value_m": 0.0},
+        {"t_s": 12, "value_m": 0.2},
+        {"t_s": 16, "value_m": -0.1}
+      ],
+      "disturbance_force_N_profile": [
+        {"t_s": 0, "value_N": 0.0},
+        {"t_s": 10, "value_N": 2.0},
+        {"t_s": 10.3, "value_N": 0.0},
+        {"t_s": 14, "value_N": -2.5},
+        {"t_s": 14.2, "value_N": 0.0}
+      ],
+      "reset": false
+    },
+    "initial_conditions": {
+      "x_m": 0.0,
+      "x_dot_mps": 0.0,
+      "theta_rad": 0.0,
+      "theta_dot_rps": 0.0,
+      "theta_bias_rps": 0.05
+    }
+  },
+  "acceptance_criteria": [
+    {
+      "metric": "max(abs(wrap_to_pi(theta_hat_rad - 3.1415926535)))_after_t=8s",
+      "operator": "<=",
+      "value": 0.25,
+      "unit": "rad",
+      "notes": "8s 后应进入倒立附近并保持（允许小范围摆动）。"
+    },
+    {
+      "metric": "max(abs(theta_dot_hat_rps))_after_t=8s",
+      "operator": "<=",
+      "value": 6.0,
+      "unit": "rad/s",
+      "notes": "倒立稳定后角速度不应持续过大。"
+    },
+    {
+      "metric": "max(abs(x_m - x_ref_m))_after_t=14s",
+      "operator": "<=",
+      "value": 0.08,
+      "unit": "m",
+      "notes": "位置参考变更后应在可接受范围内跟踪（控制器含积分项）。"
+    },
+    {
+      "metric": "within_range(force_cmd_N)",
+      "operator": "in",
+      "value": [-15.0, 15.0],
+      "unit": "N"
+    },
+    {
+      "metric": "within_range(x_m)",
+      "operator": "in",
+      "value": [-0.5, 0.5],
+      "unit": "m",
+      "notes": "避免撞限位（软限位/饱和会使该约束可用于发现连接/符号错误）。"
+    }
+  ],
+  "signals_of_interest": [
+    "x_ref_m",
+    "x_m",
+    "x_dot_mps",
+    "theta_rad",
+    "theta_dot_rps",
+    "theta_meas_rad",
+    "theta_dot_meas_rps",
+    "theta_hat_rad",
+    "theta_dot_hat_rps",
+    "bias_hat_rps",
+    "force_cmd_N",
+    "mode",
+    "disturbance_force_N"
+  ]
+}

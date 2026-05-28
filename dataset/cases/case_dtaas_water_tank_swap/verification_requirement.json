@@ -1,0 +1,69 @@
+{
+  "case_id": "case_dtaas_water_tank_swap",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "notes": "Requires canonical DTaaS reference execution trace.",
+      "operator": "<=",
+      "signals": [
+        "valve",
+        "level",
+        "leak"
+      ],
+      "value": null
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "requires_ground_truth": true,
+    "signals": [
+      "valve",
+      "level",
+      "leak"
+    ],
+    "time_column": "time"
+  },
+  "derivation_basis": {
+    "expected_behavior": "Stage 1 executes the nominal water-tank co-simulation with injected faults, and stage 2 introduces leak detection plus runtime swap to the leak controller when the swap condition is satisfied.",
+    "signals_of_interest": [
+      "valve",
+      "level",
+      "leak"
+    ],
+    "source_root": "sources/dtaas_examples/case_dtaas_water_tank_swap"
+  },
+  "judgement_policy": "behavioral_expectation_pending_execution",
+  "scenario_window": {
+    "start_time": 0,
+    "stop_time": 100
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "leak": [
+      "leak",
+      "asset_dtaas_water_tank_swap__x3.leak"
+    ],
+    "level": [
+      "level",
+      "asset_dtaas_water_tank_swap__x2.level"
+    ],
+    "valve": [
+      "valve",
+      "asset_dtaas_water_tank_swap__x4.valve"
+    ]
+  },
+  "signals": [
+    "valve",
+    "level",
+    "leak"
+  ],
+  "text": "Water Tank Model Swap. Two-stage water-tank scenario with fault injection followed by dynamic controller swap.. Signals of interest: valve, level, leak Expected ground-truth behavior: Stage 1 executes the nominal water-tank co-simulation with injected faults, and stage 2 introduces leak detection plus runtime swap to the leak controller when the swap condition is satisfied. A final pass/fail conclusion remains pending until a reference execution trace is normalized.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Water Tank Model Swap Verification Requirement",
+  "tolerances": {}
+}

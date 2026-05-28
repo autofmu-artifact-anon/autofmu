@@ -1,0 +1,965 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_neighborhood_0",
+        "objective": "Verify neighborhood behavior around input: Run the benchmark FMU CoupledClutches_fmi2_Ida and verify the coupled-clutch transient with acceptance criteria: initial shaft speeds at t=0.0s remain at the archived values and terminal shaft spee...",
+        "required_signals": [],
+        "acceptance_criteria": [
+          {
+            "metric": "initial shaft speeds at t",
+            "operator": "=",
+            "value": 0.0,
+            "unit": "s",
+            "notes": ""
+          },
+          {
+            "metric": "remain at the archived values and terminal shaft speeds at t",
+            "operator": "=",
+            "value": 1.0,
+            "unit": "s",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": null,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": ""
+        },
+        "grounded_components": [
+          "input"
+        ],
+        "grounded_component_types": [
+          "InputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": true,
+          "anchor_score": 0.0,
+          "anchor_reasons": [
+            "fallback_first_component"
+          ]
+        }
+      }
+    ],
+    "rationale": "heuristic neighborhood raw task set",
+    "score": 0.65,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "heuristic_neighborhood_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 0.0,
+      "criteria_bonus": 0.15,
+      "final_score": 0.65
+    },
+    "meta": {
+      "generation_source": "heuristic_neighborhood_raw",
+      "generation_family": "heuristic",
+      "seed_components": [
+        "input"
+      ],
+      "expanded_components": [
+        "input"
+      ],
+      "anchor_trace": {
+        "input": {
+          "score": 0.0,
+          "reasons": [
+            "fallback_first_component"
+          ]
+        },
+        "output": {
+          "score": 0.0,
+          "reasons": []
+        }
+      },
+      "grounding_valid": true,
+      "selection_mode": "single_heuristic_neighborhood"
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_neighborhood_0",
+      "task_index": 0,
+      "fmu_uid": "asset_case_case_manual_001__ThermalController",
+      "score": 0.0,
+      "cost": 2.4740368675395406,
+      "hard_ok": true,
+      "semantic_cost": 0.948073735079081,
+      "hard_mask_value": 4.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "greedy_hybrid",
+        "sig_partial=2"
+      ],
+      "grounded_components": [
+        "input"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_case_case_manual_001__ThermalController",
+      "name": "ThermalController",
+      "description": "Supervisory thermal controller for battery pack. Tracks driver power request but derates based on SOC, voltage, and core temperature. Commands battery current, pump and fan. Includes integral action and hysteresis mode switching.",
+      "path": "dataset/assets/asset_case_case_manual_001__ThermalController/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "Co-Simulation"
+      ],
+      "ports": [
+        {
+          "name": "T_core_C",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Battery core temperature.",
+          "dimensions": []
+        },
+        {
+          "name": "soc",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "1",
+          "description": "Battery SOC.",
+          "dimensions": []
+        },
+        {
+          "name": "voltage_V",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "V",
+          "description": "Battery terminal voltage.",
+          "dimensions": []
+        },
+        {
+          "name": "driver_power_request_W",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "W",
+          "description": "Requested traction electrical power from driver (positive demand).",
+          "dimensions": []
+        },
+        {
+          "name": "ambient_temp_C",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Ambient temperature (used for feedforward cooling).",
+          "dimensions": []
+        },
+        {
+          "name": "current_A",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "A",
+          "description": "Battery current command. Positive discharge.",
+          "dimensions": []
+        },
+        {
+          "name": "pump_cmd",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "0..1",
+          "description": "Pump command.",
+          "dimensions": []
+        },
+        {
+          "name": "fan_cmd",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "0..1",
+          "description": "Fan command.",
+          "dimensions": []
+        },
+        {
+          "name": "mode",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Integer",
+          "unit": "enum",
+          "description": "Supervisory mode: 0=NORMAL, 1=DERATE, 2=SHUTDOWN.",
+          "dimensions": []
+        },
+        {
+          "name": "T_set_C",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Desired core temperature target.",
+          "dimensions": []
+        },
+        {
+          "name": "T_derate_on_C",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Temperature threshold to enter DERATE.",
+          "dimensions": []
+        },
+        {
+          "name": "T_derate_off_C",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Temperature threshold to exit DERATE (hysteresis).",
+          "dimensions": []
+        },
+        {
+          "name": "T_shutdown_on_C",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Temperature threshold to enter SHUTDOWN.",
+          "dimensions": []
+        },
+        {
+          "name": "T_shutdown_off_C",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Temperature threshold to exit SHUTDOWN (hysteresis).",
+          "dimensions": []
+        },
+        {
+          "name": "I_max_A",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "A",
+          "description": "Maximum discharge current command.",
+          "dimensions": []
+        },
+        {
+          "name": "I_min_A",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "A",
+          "description": "Minimum discharge current command (no regen in this scenario).",
+          "dimensions": []
+        },
+        {
+          "name": "soc_min",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "1",
+          "description": "SOC lower limit for allowing power.",
+          "dimensions": []
+        },
+        {
+          "name": "V_min_V",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "V",
+          "description": "Voltage lower limit for allowing power.",
+          "dimensions": []
+        },
+        {
+          "name": "kP_current",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "A/W",
+          "description": "Proportional gain mapping requested power to current via I=P/V * kP_current.",
+          "dimensions": []
+        },
+        {
+          "name": "kP_cool",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "1/degC",
+          "description": "Proportional cooling gain.",
+          "dimensions": []
+        },
+        {
+          "name": "kI_cool",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "1/(degC*s)",
+          "description": "Integral cooling gain.",
+          "dimensions": []
+        },
+        {
+          "name": "int_clamp",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "1",
+          "description": "Clamp for integral term magnitude.",
+          "dimensions": []
+        },
+        {
+          "name": "ambient_ff_gain",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "1/degC",
+          "description": "Ambient temperature feedforward for cooling (more cooling at high ambient).",
+          "dimensions": []
+        }
+      ],
+      "inputs": [
+        "T_core_C",
+        "soc",
+        "voltage_V",
+        "driver_power_request_W",
+        "ambient_temp_C"
+      ],
+      "outputs": [
+        "current_A",
+        "pump_cmd",
+        "fan_cmd",
+        "mode"
+      ],
+      "tags": [
+        "case_manual_001",
+        "manual_case"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_case_case_manual_001__ThermalController",
+        "asset_json": {
+          "asset_id": "asset_case_case_manual_001__ThermalController",
+          "backend_kind": "python_source_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_manual_001"
+          ],
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 3600
+          },
+          "description": "Supervisory thermal controller for battery pack. Tracks driver power request but derates based on SOC, voltage, and core temperature. Commands battery current, pump and fan. Includes integral action and hysteresis mode switching.",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "Co-Simulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [
+            "T_core_C",
+            "soc",
+            "voltage_V",
+            "driver_power_request_W",
+            "ambient_temp_C"
+          ],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "ThermalController",
+          "outputs": [
+            "current_A",
+            "pump_cmd",
+            "fan_cmd",
+            "mode"
+          ],
+          "ports": [
+            {
+              "causality": "input",
+              "description": "Battery core temperature.",
+              "name": "T_core_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Battery SOC.",
+              "name": "soc",
+              "type": "Real",
+              "unit": "1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Battery terminal voltage.",
+              "name": "voltage_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Requested traction electrical power from driver (positive demand).",
+              "name": "driver_power_request_W",
+              "type": "Real",
+              "unit": "W",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Ambient temperature (used for feedforward cooling).",
+              "name": "ambient_temp_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Battery current command. Positive discharge.",
+              "name": "current_A",
+              "type": "Real",
+              "unit": "A",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Pump command.",
+              "name": "pump_cmd",
+              "type": "Real",
+              "unit": "0..1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Fan command.",
+              "name": "fan_cmd",
+              "type": "Real",
+              "unit": "0..1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Supervisory mode: 0=NORMAL, 1=DERATE, 2=SHUTDOWN.",
+              "name": "mode",
+              "type": "Integer",
+              "unit": "enum",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "Desired core temperature target.",
+              "name": "T_set_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Temperature threshold to enter DERATE.",
+              "name": "T_derate_on_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Temperature threshold to exit DERATE (hysteresis).",
+              "name": "T_derate_off_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Temperature threshold to enter SHUTDOWN.",
+              "name": "T_shutdown_on_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Temperature threshold to exit SHUTDOWN (hysteresis).",
+              "name": "T_shutdown_off_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Maximum discharge current command.",
+              "name": "I_max_A",
+              "type": "Real",
+              "unit": "A",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Minimum discharge current command (no regen in this scenario).",
+              "name": "I_min_A",
+              "type": "Real",
+              "unit": "A",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "SOC lower limit for allowing power.",
+              "name": "soc_min",
+              "type": "Real",
+              "unit": "1",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Voltage lower limit for allowing power.",
+              "name": "V_min_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Proportional gain mapping requested power to current via I=P/V * kP_current.",
+              "name": "kP_current",
+              "type": "Real",
+              "unit": "A/W",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Proportional cooling gain.",
+              "name": "kP_cool",
+              "type": "Real",
+              "unit": "1/degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Integral cooling gain.",
+              "name": "kI_cool",
+              "type": "Real",
+              "unit": "1/(degC*s)",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Clamp for integral term magnitude.",
+              "name": "int_clamp",
+              "type": "Real",
+              "unit": "1",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Ambient temperature feedforward for cooling (more cooling at high ambient).",
+              "name": "ambient_ff_gain",
+              "type": "Real",
+              "unit": "1/degC",
+              "variability": "fixed"
+            }
+          ],
+          "provenance": {
+            "case_id": "case_manual_001",
+            "legacy_fmu_list_entry": {
+              "description": "Supervisory thermal controller for battery pack. Tracks driver power request but derates based on SOC, voltage, and core temperature.",
+              "fmi_version": "2.0",
+              "inputs": [
+                {
+                  "description": "Battery core temperature",
+                  "name": "T_core_C",
+                  "unit": "degC"
+                },
+                {
+                  "description": "Battery SOC",
+                  "name": "soc",
+                  "unit": "1"
+                },
+                {
+                  "description": "Battery terminal voltage",
+                  "name": "voltage_V",
+                  "unit": "V"
+                },
+                {
+                  "description": "Driver power request",
+                  "name": "driver_power_request_W",
+                  "unit": "W"
+                },
+                {
+                  "description": "Ambient temperature",
+                  "name": "ambient_temp_C",
+                  "unit": "degC"
+                }
+              ],
+              "name": "ThermalController",
+              "outputs": [
+                {
+                  "description": "Battery current command",
+                  "name": "current_A",
+                  "unit": "A"
+                },
+                {
+                  "description": "Pump command",
+                  "name": "pump_cmd",
+                  "unit": "0..1"
+                },
+                {
+                  "description": "Fan command",
+                  "name": "fan_cmd",
+                  "unit": "0..1"
+                },
+                {
+                  "description": "Supervisory mode (0=NORMAL, 1=DERATE, 2=SHUTDOWN)",
+                  "name": "mode",
+                  "unit": "enum"
+                }
+              ],
+              "path": "fmus/ThermalController.fmu",
+              "type": "Co-Simulation"
+            }
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "case_manual_001::ThermalController",
+          "source_type": "manual_case_fmu",
+          "tags": [
+            "case_manual_001",
+            "manual_case"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_case_case_manual_001__ThermalController",
+          "backend_kind": "python_source_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 3600
+          },
+          "description": "Supervisory thermal controller for battery pack. Tracks driver power request but derates based on SOC, voltage, and core temperature. Commands battery current, pump and fan. Includes integral action and hysteresis mode switching.",
+          "fmi_types": [
+            "Co-Simulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [
+            "T_core_C",
+            "soc",
+            "voltage_V",
+            "driver_power_request_W",
+            "ambient_temp_C"
+          ],
+          "name": "ThermalController",
+          "outputs": [
+            "current_A",
+            "pump_cmd",
+            "fan_cmd",
+            "mode"
+          ],
+          "ports": [
+            {
+              "causality": "input",
+              "description": "Battery core temperature.",
+              "name": "T_core_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Battery SOC.",
+              "name": "soc",
+              "type": "Real",
+              "unit": "1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Battery terminal voltage.",
+              "name": "voltage_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Requested traction electrical power from driver (positive demand).",
+              "name": "driver_power_request_W",
+              "type": "Real",
+              "unit": "W",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Ambient temperature (used for feedforward cooling).",
+              "name": "ambient_temp_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Battery current command. Positive discharge.",
+              "name": "current_A",
+              "type": "Real",
+              "unit": "A",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Pump command.",
+              "name": "pump_cmd",
+              "type": "Real",
+              "unit": "0..1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Fan command.",
+              "name": "fan_cmd",
+              "type": "Real",
+              "unit": "0..1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Supervisory mode: 0=NORMAL, 1=DERATE, 2=SHUTDOWN.",
+              "name": "mode",
+              "type": "Integer",
+              "unit": "enum",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "Desired core temperature target.",
+              "name": "T_set_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Temperature threshold to enter DERATE.",
+              "name": "T_derate_on_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Temperature threshold to exit DERATE (hysteresis).",
+              "name": "T_derate_off_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Temperature threshold to enter SHUTDOWN.",
+              "name": "T_shutdown_on_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Temperature threshold to exit SHUTDOWN (hysteresis).",
+              "name": "T_shutdown_off_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Maximum discharge current command.",
+              "name": "I_max_A",
+              "type": "Real",
+              "unit": "A",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Minimum discharge current command (no regen in this scenario).",
+              "name": "I_min_A",
+              "type": "Real",
+              "unit": "A",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "SOC lower limit for allowing power.",
+              "name": "soc_min",
+              "type": "Real",
+              "unit": "1",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Voltage lower limit for allowing power.",
+              "name": "V_min_V",
+              "type": "Real",
+              "unit": "V",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Proportional gain mapping requested power to current via I=P/V * kP_current.",
+              "name": "kP_current",
+              "type": "Real",
+              "unit": "A/W",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Proportional cooling gain.",
+              "name": "kP_cool",
+              "type": "Real",
+              "unit": "1/degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Integral cooling gain.",
+              "name": "kI_cool",
+              "type": "Real",
+              "unit": "1/(degC*s)",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Clamp for integral term magnitude.",
+              "name": "int_clamp",
+              "type": "Real",
+              "unit": "1",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Ambient temperature feedforward for cooling (more cooling at high ambient).",
+              "name": "ambient_ff_gain",
+              "type": "Real",
+              "unit": "1/degC",
+              "variability": "fixed"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0,
+          "stepSize": 0.1,
+          "stopTime": 3600
+        },
+        "source_type": "manual_case_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_case_case_manual_001__ThermalController"
+    ],
+    "port_nodes": [
+      "asset_case_case_manual_001__ThermalController.T_core_C",
+      "asset_case_case_manual_001__ThermalController.soc",
+      "asset_case_case_manual_001__ThermalController.voltage_V",
+      "asset_case_case_manual_001__ThermalController.driver_power_request_W",
+      "asset_case_case_manual_001__ThermalController.ambient_temp_C",
+      "asset_case_case_manual_001__ThermalController.current_A",
+      "asset_case_case_manual_001__ThermalController.pump_cmd",
+      "asset_case_case_manual_001__ThermalController.fan_cmd",
+      "asset_case_case_manual_001__ThermalController.mode",
+      "asset_case_case_manual_001__ThermalController.T_set_C",
+      "asset_case_case_manual_001__ThermalController.T_derate_on_C",
+      "asset_case_case_manual_001__ThermalController.T_derate_off_C",
+      "asset_case_case_manual_001__ThermalController.T_shutdown_on_C",
+      "asset_case_case_manual_001__ThermalController.T_shutdown_off_C",
+      "asset_case_case_manual_001__ThermalController.I_max_A",
+      "asset_case_case_manual_001__ThermalController.I_min_A",
+      "asset_case_case_manual_001__ThermalController.soc_min",
+      "asset_case_case_manual_001__ThermalController.V_min_V",
+      "asset_case_case_manual_001__ThermalController.kP_current",
+      "asset_case_case_manual_001__ThermalController.kP_cool",
+      "asset_case_case_manual_001__ThermalController.kI_cool",
+      "asset_case_case_manual_001__ThermalController.int_clamp",
+      "asset_case_case_manual_001__ThermalController.ambient_ff_gain"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "input": "asset_case_case_manual_001__ThermalController"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "hybrid_name_semantic_match"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 2.4740368675395406,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 2.4740368675395406,
+      "final_cost": 2.4740368675395406,
+      "selected_fmus": [
+        "asset_case_case_manual_001__ThermalController"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 2.4740368675395406,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "greedy_hybrid",
+    "repair_used": false,
+    "repair_attempted": false,
+    "repair_succeeded": false,
+    "failure_type": "",
+    "semantic_weight": 0.5,
+    "structural_weight": 0.5
+  }
+}

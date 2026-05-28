@@ -1,0 +1,165 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_manual_005",
+  "selected_asset_ids": [
+    "asset_case_case_manual_001__ThermalController",
+    "asset_case_case_manual_005__CoolantLoopPlant",
+    "asset_case_case_manual_005__BatteryPackPlant"
+  ],
+  "connections": [
+    {
+      "source": "asset_case_case_manual_005__BatteryPackPlant.soc",
+      "target": "asset_case_case_manual_001__ThermalController.soc",
+      "kind": "direct",
+      "chain_id": "",
+      "segment_id": ""
+    },
+    {
+      "source": "asset_case_case_manual_001__ThermalController.pump_cmd",
+      "target": "asset_case_case_manual_005__CoolantLoopPlant.pump_cmd",
+      "kind": "direct",
+      "chain_id": "",
+      "segment_id": ""
+    }
+  ],
+  "external_inputs": [
+    {
+      "name": "ambient_temp_C",
+      "targets": [
+        "asset_case_case_manual_005__CoolantLoopPlant.ambient_temp_C"
+      ],
+      "default": null
+    },
+    {
+      "name": "enable",
+      "targets": [],
+      "default": null
+    },
+    {
+      "name": "i_load_A",
+      "targets": [
+        "asset_case_case_manual_005__BatteryPackPlant.i_load_A"
+      ],
+      "default": null
+    },
+    {
+      "name": "temp_ref_C",
+      "targets": [],
+      "default": null
+    }
+  ],
+  "initial_conditions": [
+    {
+      "name": "coolant_temp_C",
+      "targets": [
+        "asset_case_case_manual_005__CoolantLoopPlant.coolant_temp_C"
+      ]
+    },
+    {
+      "name": "integrator",
+      "targets": []
+    },
+    {
+      "name": "pump_state",
+      "targets": []
+    },
+    {
+      "name": "soc",
+      "targets": [
+        "asset_case_case_manual_005__BatteryPackPlant.soc"
+      ]
+    },
+    {
+      "name": "temp_cell_C",
+      "targets": [
+        "asset_case_case_manual_005__BatteryPackPlant.temp_cell_C"
+      ]
+    },
+    {
+      "name": "u_cmd_state",
+      "targets": []
+    }
+  ],
+  "monitored_outputs": [
+    {
+      "name": "temp_cell_C",
+      "source": "asset_case_case_manual_005__BatteryPackPlant.temp_cell_C"
+    },
+    {
+      "name": "pump_cmd",
+      "source": "asset_case_case_manual_001__ThermalController.pump_cmd"
+    },
+    {
+      "name": "soc",
+      "source": "asset_case_case_manual_005__BatteryPackPlant.soc"
+    },
+    {
+      "name": "v_term_V",
+      "source": "asset_case_case_manual_005__BatteryPackPlant.v_term_V"
+    }
+  ],
+  "schedule": {
+    "kind": "multi_rate",
+    "base_tick": 0.01,
+    "duration": 3600.0,
+    "per_node_period": {
+      "asset_case_case_manual_001__ThermalController": 0.1,
+      "asset_case_case_manual_005__CoolantLoopPlant": 0.01,
+      "asset_case_case_manual_005__BatteryPackPlant": 0.01
+    },
+    "per_edge_hold_policy": [
+      {
+        "source": "asset_case_case_manual_005__BatteryPackPlant.soc",
+        "target": "asset_case_case_manual_001__ThermalController.soc",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 0.1,
+        "async": true
+      },
+      {
+        "source": "asset_case_case_manual_001__ThermalController.pump_cmd",
+        "target": "asset_case_case_manual_005__CoolantLoopPlant.pump_cmd",
+        "policy": "zoh",
+        "source_period": 0.1,
+        "target_period": 0.01,
+        "async": true
+      }
+    ],
+    "loop_wrappers": [],
+    "materialized": false,
+    "warnings": [],
+    "base_tick_method": "microgrid_gcd",
+    "execution_plan": [],
+    "async_edges": [
+      {
+        "source": "asset_case_case_manual_005__BatteryPackPlant.soc",
+        "target": "asset_case_case_manual_001__ThermalController.soc",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 0.1,
+        "async": true
+      },
+      {
+        "source": "asset_case_case_manual_001__ThermalController.pump_cmd",
+        "target": "asset_case_case_manual_005__CoolantLoopPlant.pump_cmd",
+        "policy": "zoh",
+        "source_period": 0.1,
+        "target_period": 0.01,
+        "async": true
+      }
+    ],
+    "start_time": 0.0,
+    "stop_time": 3600.0,
+    "communication_point_count": 360001
+  },
+  "execution_order": [
+    "asset_case_case_manual_001__ThermalController",
+    "asset_case_case_manual_005__CoolantLoopPlant",
+    "asset_case_case_manual_005__BatteryPackPlant"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=3"
+  ]
+}

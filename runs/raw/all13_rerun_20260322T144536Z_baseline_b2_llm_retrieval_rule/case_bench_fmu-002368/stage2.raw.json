@@ -1,0 +1,357 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_llm_fallback_0",
+        "objective": "Run the benchmark FMU WaterTank.TestSingleWaterTank under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs tank.val...",
+        "required_signals": [],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "output"
+        ],
+        "grounded_component_types": [
+          "OutputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_fallback_raw",
+          "generation_family": "llm",
+          "llm_fallback": true
+        }
+      }
+    ],
+    "rationale": "top1_llm fallback raw task set",
+    "score": 0.5,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "llm_fallback_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 0.0,
+      "criteria_bonus": 0.0,
+      "final_score": 0.5
+    },
+    "meta": {
+      "generation_source": "llm_fallback_raw",
+      "generation_family": "llm",
+      "llm_fallback": true,
+      "fallback_component": "output",
+      "grounding_valid": true
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_llm_fallback_0",
+      "task_index": 0,
+      "fmu_uid": "asset_dtaas_water_tank_fi_monitor__x1",
+      "score": 0.1705691088336595,
+      "cost": 0.8294308911663405,
+      "hard_ok": true,
+      "semantic_cost": 0.8294308911663405,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "output"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_dtaas_water_tank_fi_monitor__x1",
+      "name": "x1",
+      "description": "x1 instance of tankcontroller in Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.",
+      "path": "dataset/assets/asset_dtaas_water_tank_fi_monitor__x1/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "CoSimulation"
+      ],
+      "ports": [
+        {
+          "name": "maxlevel",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "the max tank level",
+          "dimensions": []
+        },
+        {
+          "name": "minlevel",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": "the min tank level",
+          "dimensions": []
+        },
+        {
+          "name": "level",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "the tank level",
+          "dimensions": []
+        },
+        {
+          "name": "valve",
+          "causality": "output",
+          "variability": "discrete",
+          "type": "Boolean",
+          "unit": "",
+          "description": "the tank valve state",
+          "dimensions": []
+        }
+      ],
+      "inputs": [
+        "level"
+      ],
+      "outputs": [
+        "valve"
+      ],
+      "tags": [
+        "water_tank_fi_monitor",
+        "fault_injection",
+        "monitor",
+        "generated_fmu"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_dtaas_water_tank_fi_monitor__x1",
+        "asset_json": {
+          "asset_id": "asset_dtaas_water_tank_fi_monitor__x1",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_dtaas_water_tank_fi_monitor"
+          ],
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 100
+          },
+          "description": "x1 instance of tankcontroller in Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [
+            "level"
+          ],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "x1",
+          "outputs": [
+            "valve"
+          ],
+          "ports": [
+            {
+              "causality": "parameter",
+              "description": "the max tank level",
+              "name": "maxlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "the min tank level",
+              "name": "minlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "input",
+              "description": "the tank level",
+              "name": "level",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "the tank valve state",
+              "name": "valve",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            }
+          ],
+          "provenance": {
+            "base_model_name": "tankcontroller",
+            "example_path": "digital_twins/water_tank_FI_monitor",
+            "example_slug": "water_tank_fi_monitor",
+            "generated": false,
+            "workspace_path": "models/watertankcontroller-c.fmu"
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "case_dtaas_water_tank_fi_monitor::x1",
+          "source_type": "dtaas_example_fmu",
+          "tags": [
+            "water_tank_fi_monitor",
+            "fault_injection",
+            "monitor",
+            "generated_fmu"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_dtaas_water_tank_fi_monitor__x1",
+          "backend_kind": "native_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "fixed_internal_step_size": null,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 100
+          },
+          "description": "x1 instance of tankcontroller in Water Tank Fault Injection with Monitor. Water-tank fault-injection example extended with a generated monitor FMU and RtI helper.",
+          "fmi_types": [
+            "CoSimulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [
+            "level"
+          ],
+          "name": "x1",
+          "outputs": [
+            "valve"
+          ],
+          "ports": [
+            {
+              "causality": "parameter",
+              "description": "the max tank level",
+              "name": "maxlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "the min tank level",
+              "name": "minlevel",
+              "type": "Real",
+              "unit": "",
+              "variability": "fixed"
+            },
+            {
+              "causality": "input",
+              "description": "the tank level",
+              "name": "level",
+              "type": "Real",
+              "unit": "",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "the tank valve state",
+              "name": "valve",
+              "type": "Boolean",
+              "unit": "",
+              "variability": "discrete"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0,
+          "stepSize": 0.1,
+          "stopTime": 100
+        },
+        "source_type": "dtaas_example_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_dtaas_water_tank_fi_monitor__x1"
+    ],
+    "port_nodes": [
+      "asset_dtaas_water_tank_fi_monitor__x1.maxlevel",
+      "asset_dtaas_water_tank_fi_monitor__x1.minlevel",
+      "asset_dtaas_water_tank_fi_monitor__x1.level",
+      "asset_dtaas_water_tank_fi_monitor__x1.valve"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "output": "asset_dtaas_water_tank_fi_monitor__x1"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "semantic_only_no_bindings"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 0.8294308911663405,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 0.8294308911663405,
+      "final_cost": 0.8294308911663405,
+      "selected_fmus": [
+        "asset_dtaas_water_tank_fi_monitor__x1"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 0.8294308911663405,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "semantic_retrieval_only",
+    "structural_reasoning": false,
+    "selected_task_count": 1,
+    "failure_type": ""
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "case_id": "case_bench_fmu-001582",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "operator": "<=",
+      "signals": [
+        "outputs[1]",
+        "outputs[2]",
+        "outputs[3]",
+        "outputs[4]"
+      ],
+      "value": 1e-05
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "signals": [
+      "outputs[1]",
+      "outputs[2]",
+      "outputs[3]",
+      "outputs[4]"
+    ],
+    "time_column": "time",
+    "tolerance": 1e-05
+  },
+  "derivation_basis": {
+    "ground_truth_source": "CoupledClutches_ref.csv",
+    "input_source": "CoupledClutches_in.csv",
+    "signals": [
+      "outputs[1]",
+      "outputs[2]",
+      "outputs[3]",
+      "outputs[4]"
+    ],
+    "source_root": "sources/fmu-benchmark-mini/fmus/2.0/me/linux64/MapleSim/2015.1/CoupledClutches",
+    "source_type": "benchmark_single_fmu_case"
+  },
+  "judgement_policy": "trajectory_match",
+  "scenario_window": {
+    "start_time": 0.0,
+    "step_size": 0.0,
+    "stop_time": 1.5
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "outputs[1]": [
+      "outputs[1]"
+    ],
+    "outputs[2]": [
+      "outputs[2]"
+    ],
+    "outputs[3]": [
+      "outputs[3]"
+    ],
+    "outputs[4]": [
+      "outputs[4]"
+    ]
+  },
+  "signals": [
+    "outputs[1]",
+    "outputs[2]",
+    "outputs[3]",
+    "outputs[4]"
+  ],
+  "text": "Run the benchmark FMU CoupledClutches under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs outputs[1], outputs[2], outputs[3], outputs[4].",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Verify benchmark FMU CoupledClutches",
+  "tolerances": {
+    "trajectory_match": 1e-05
+  }
+}

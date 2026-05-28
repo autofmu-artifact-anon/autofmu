@@ -1,0 +1,97 @@
+{
+  "case_id": "case_manual_004",
+  "case_name": "电液伺服系统",
+  "fmus": [
+    {
+      "name": "PositionController",
+      "description": "液压轴位置控制器(PI+速度阻尼+饱和与抗饱和)",
+      "inputs": [
+        {"name": "x_ref_m", "type": "Real", "unit": "m", "description": "位置参考"},
+        {"name": "x_meas_m", "type": "Real", "unit": "m", "description": "测量位置"},
+        {"name": "v_meas_mps", "type": "Real", "unit": "m/s", "description": "测量速度"},
+        {"name": "enable", "type": "Boolean", "unit": "-", "description": "闭环控制使能"}
+      ],
+      "outputs": [
+        {"name": "valve_cmd", "type": "Real", "unit": "-1..1", "description": "归一化阀指令"},
+        {"name": "sat_flag", "type": "Boolean", "unit": "-", "description": "饱和标志(诊断用)"}
+      ],
+      "parameters": [
+        {"name": "Kp", "type": "Real", "default": 18.0, "unit": "1/s", "description": "比例增益"},
+        {"name": "Ki", "type": "Real", "default": 35.0, "unit": "1/s^2", "description": "积分增益"},
+        {"name": "Kv", "type": "Real", "default": 3.0, "unit": "s/m", "description": "速度反馈增益(阻尼)"},
+        {"name": "u_min", "type": "Real", "default": -1.0, "unit": "-", "description": "最小指令"},
+        {"name": "u_max", "type": "Real", "default": 1.0, "unit": "-", "description": "最大指令"},
+        {"name": "integrator_limit", "type": "Real", "default": 0.5, "unit": "-", "description": "积分器限幅"},
+        {"name": "aw_gain", "type": "Real", "default": 8.0, "unit": "1/s", "description": "抗饱和增益"},
+        {"name": "deadband_m", "type": "Real", "default": 0.0002, "unit": "m", "description": "误差死区"}
+      ],
+      "states": [
+        {"name": "i_state", "description": "积分器内部状态"}
+      ],
+      "fmu_path": "fmus/PositionController.fmu"
+    },
+    {
+      "name": "SpoolValveActuator",
+      "description": "阀芯执行器，包含死区、一阶动态和速率限制",
+      "inputs": [
+        {"name": "valve_cmd", "type": "Real", "unit": "-1..1", "description": "归一化阀指令"}
+      ],
+      "outputs": [
+        {"name": "spool_u", "type": "Real", "unit": "-1..1", "description": "归一化阀芯开度(动态后)"}
+      ],
+      "parameters": [
+        {"name": "tau_s", "type": "Real", "default": 0.03, "unit": "s", "description": "一阶时间常数"},
+        {"name": "deadzone", "type": "Real", "default": 0.05, "unit": "-", "description": "指令死区"},
+        {"name": "rate_limit_per_s", "type": "Real", "default": 25.0, "unit": "1/s", "description": "最大|d(spool_u)/dt|"},
+        {"name": "u_min", "type": "Real", "default": -1.0, "unit": "-", "description": "最小阀芯位置"},
+        {"name": "u_max", "type": "Real", "default": 1.0, "unit": "-", "description": "最大阀芯位置"}
+      ],
+      "states": [
+        {"name": "spool_state", "description": "内部阀芯位置状态"}
+      ],
+      "fmu_path": "fmus/SpoolValveActuator.fmu"
+    },
+    {
+      "name": "HydraulicCylinderPlant",
+      "description": "双作用液压缸+运动台架，非线性节流流动、压力动态和摩擦",
+      "inputs": [
+        {"name": "spool_u", "type": "Real", "unit": "-1..1", "description": "归一化阀芯开度，正值为伸出"},
+        {"name": "load_force_N", "type": "Real", "unit": "N", "description": "外部负载力(正值阻碍伸出)"}
+      ],
+      "outputs": [
+        {"name": "x_m", "type": "Real", "unit": "m", "description": "活塞杆位置(0..行程)"},
+        {"name": "v_mps", "type": "Real", "unit": "m/s", "description": "活塞杆速度"},
+        {"name": "pA_Pa", "type": "Real", "unit": "Pa", "description": "A腔压力"},
+        {"name": "pB_Pa", "type": "Real", "unit": "Pa", "description": "B腔压力"},
+        {"name": "rod_force_N", "type": "Real", "unit": "N", "description": "活塞杆上的净液压力"}
+      ],
+      "parameters": [
+        {"name": "stroke_m", "type": "Real", "default": 0.10, "unit": "m", "description": "缸行程"},
+        {"name": "m_kg", "type": "Real", "default": 12.0, "unit": "kg", "description": "运动质量"},
+        {"name": "A_A_m2", "type": "Real", "default": 0.0012, "unit": "m^2", "description": "A腔有效面积"},
+        {"name": "A_B_m2", "type": "Real", "default": 0.0010, "unit": "m^2", "description": "B腔有效面积"},
+        {"name": "p_supply_Pa", "type": "Real", "default": 2.0e7, "unit": "Pa", "description": "供油压力"},
+        {"name": "p_tank_Pa", "type": "Real", "default": 2.0e5, "unit": "Pa", "description": "回油压力"},
+        {"name": "F_coulomb_N", "type": "Real", "default": 250.0, "unit": "N", "description": "库仑摩擦力"},
+        {"name": "b_visc_Nspm", "type": "Real", "default": 900.0, "unit": "N*s/m", "description": "粘性摩擦系数"}
+      ],
+      "states": [
+        {"name": "x_m", "description": "活塞杆位置"},
+        {"name": "v_mps", "description": "活塞杆速度"},
+        {"name": "pA_Pa", "description": "A腔压力"},
+        {"name": "pB_Pa", "description": "B腔压力"}
+      ],
+      "fmu_path": "fmus/HydraulicCylinderPlant.fmu"
+    }
+  ],
+  "total_fmus": 3,
+  "signal_flow": {
+    "controller_to_valve": "controller.valve_cmd -> valve.valve_cmd",
+    "valve_to_plant": "valve.spool_u -> plant.spool_u",
+    "plant_to_controller": [
+      "plant.x_m -> controller.x_meas_m",
+      "plant.v_mps -> controller.v_meas_mps"
+    ]
+  },
+  "created_at": "2026-03-09T08:36:00Z"
+}

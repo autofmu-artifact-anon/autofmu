@@ -1,0 +1,203 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_0",
+        "objective": "Verify that the x_coor output trajectory from the Arenstorf FMU matches the archived ground-truth trajectory under default experiment conditions",
+        "required_signals": [
+          "x_coor"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "rmse",
+            "operator": "<=",
+            "value": 1e-06,
+            "unit": "dimensionless",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": 0,
+          "end_time": null,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": "Default experiment duration for Arenstorf orbit benchmark"
+        },
+        "grounded_components": [
+          "outputPort"
+        ],
+        "grounded_component_types": [
+          "OutputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_raw",
+          "generation_family": "llm"
+        }
+      },
+      {
+        "task_id": "task_1",
+        "objective": "Verify that the y_coor output trajectory from the Arenstorf FMU matches the archived ground-truth trajectory under default experiment conditions",
+        "required_signals": [
+          "y_coor"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "rmse",
+            "operator": "<=",
+            "value": 1e-06,
+            "unit": "dimensionless",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": {
+          "start_time": 0,
+          "end_time": null,
+          "inputs": {},
+          "initial_conditions": {},
+          "assumptions": [],
+          "description": "Default experiment duration for Arenstorf orbit benchmark"
+        },
+        "grounded_components": [
+          "outputPort"
+        ],
+        "grounded_component_types": [
+          "OutputPort"
+        ],
+        "grounded_ports": [],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "llm_raw",
+          "generation_family": "llm"
+        }
+      }
+    ],
+    "rationale": "top1_llm single candidate from LLM",
+    "score": 0.65,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "llm_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 0.0,
+      "criteria_bonus": 0.15,
+      "final_score": 0.65
+    },
+    "meta": {
+      "generation_source": "llm_raw",
+      "generation_family": "llm",
+      "grounding_valid": true
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_0",
+      "task_index": 0,
+      "fmu_uid": "asset_bench_fmu-001292",
+      "score": 0.1588088701742617,
+      "cost": 0.8411911298257383,
+      "hard_ok": true,
+      "semantic_cost": 0.8411911298257383,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "outputPort"
+      ]
+    },
+    {
+      "task_id": "task_1",
+      "task_index": 1,
+      "fmu_uid": "asset_bench_fmu-001280",
+      "score": 0.11596985796542314,
+      "cost": 0.8840301420345769,
+      "hard_ok": true,
+      "semantic_cost": 0.8840301420345769,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "semantic_retrieval_only"
+      ],
+      "grounded_components": [
+        "outputPort"
+      ]
+    }
+  ],
+  "selected_fmus": [],
+  "graph": {
+    "nodes": [
+      "asset_bench_fmu-001292",
+      "asset_bench_fmu-001280"
+    ],
+    "port_nodes": [
+      "asset_bench_fmu-001292.x",
+      "asset_bench_fmu-001292.der(x)",
+      "asset_bench_fmu-001292.k",
+      "asset_bench_fmu-001280.h",
+      "asset_bench_fmu-001280.v",
+      "asset_bench_fmu-001280.g",
+      "asset_bench_fmu-001280.e",
+      "asset_bench_fmu-001280.v_min"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "outputPort": "asset_bench_fmu-001292"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": false,
+    "closure_failures": [
+      "no_structural_reasoning"
+    ],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "semantic_only_no_bindings"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "failed",
+      "closure_ok": false
+    }
+  ],
+  "final_cost": 1.725221271860315,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "failed",
+      "selected_task_set_cost": 1.725221271860315,
+      "final_cost": 1.725221271860315,
+      "selected_fmus": [
+        "asset_bench_fmu-001292",
+        "asset_bench_fmu-001280"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": "port_graph_closure"
+    }
+  ],
+  "selected_task_set_cost": 1.725221271860315,
+  "diagnostics": {
+    "status": "failed",
+    "stage2_variant": "semantic_retrieval_only",
+    "structural_reasoning": false,
+    "selected_task_count": 2,
+    "failure_type": "port_graph_closure"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "asset_id": "asset_dtaas_incubator_nurv_monitor_validation__wtc",
+  "backend_kind": "native_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": true,
+    "can_run_asynchronously": false,
+    "fixed_internal_step_size": null,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "default_experiment": {
+    "startTime": 0.0,
+    "stopTime": 1.0,
+    "tolerance": 1e-06
+  },
+  "description": "wtc instance of Watcher in Incubator Digital Twin Validation with NuRV Monitor. Monitor-validation co-simulation for incubator anomaly detection and energy saver behavior.",
+  "fmi_types": [
+    "CoSimulation",
+    "ModelExchange"
+  ],
+  "fmi_version": "2.0",
+  "inputs": [
+    "desired_temperature"
+  ],
+  "name": "wtc",
+  "outputs": [
+    "energy_saving"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "",
+      "name": "desired_temperature",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "Constant output value",
+      "name": "const.k",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "calculatedParameter",
+      "description": "Connector of Real output signal",
+      "name": "const.y",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "calculatedParameter",
+      "description": "Connector of second Real input signal",
+      "name": "lessEqual.u2",
+      "type": "Real",
+      "unit": "",
+      "variability": "fixed"
+    },
+    {
+      "causality": "local",
+      "description": "Connector of first Real input signal",
+      "name": "lessEqual.u1",
+      "type": "Real",
+      "unit": "",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "",
+      "name": "energy_saving",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    },
+    {
+      "causality": "local",
+      "description": "Connector of Boolean output signal",
+      "name": "lessEqual.y",
+      "type": "Boolean",
+      "unit": "",
+      "variability": "discrete"
+    }
+  ],
+  "schema": "UNIFIED_FMU_METADATA_V1"
+}

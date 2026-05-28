@@ -1,0 +1,205 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_incubator_nurv_monitor_validation",
+  "selected_asset_ids": [
+    "asset_dtaas_incubator_nurv_monitor_validation__ad",
+    "asset_dtaas_incubator_nurv_monitor_validation__es",
+    "asset_dtaas_incubator_nurv_monitor_validation__mon",
+    "asset_dtaas_incubator_nurv_monitor_validation__src",
+    "asset_dtaas_incubator_nurv_monitor_validation__wtc"
+  ],
+  "connections": [
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__src.sensor_data",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.sensor_data",
+      "kind": "direct",
+      "chain_id": "ica_chain_0",
+      "segment_id": "ica_seg_0"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__src.error_threshold",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.error_threshold",
+      "kind": "direct",
+      "chain_id": "ica_chain_1",
+      "segment_id": "ica_seg_1"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__src.kalman_input",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.kalman_input",
+      "kind": "direct",
+      "chain_id": "ica_chain_2",
+      "segment_id": "ica_seg_2"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__ad.verdict",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__es.lid_open",
+      "kind": "direct",
+      "chain_id": "ica_chain_3",
+      "segment_id": "ica_seg_3"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__ad.verdict",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__mon.anomaly",
+      "kind": "direct",
+      "chain_id": "ica_chain_4",
+      "segment_id": "ica_seg_4"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__es.ctrl_desired_temperature",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__wtc.desired_temperature",
+      "kind": "direct",
+      "chain_id": "ica_chain_5",
+      "segment_id": "ica_seg_5"
+    },
+    {
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__wtc.energy_saving",
+      "target": "asset_dtaas_incubator_nurv_monitor_validation__mon.energy_saving",
+      "kind": "direct",
+      "chain_id": "ica_chain_6",
+      "segment_id": "ica_seg_6"
+    }
+  ],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "_output",
+      "source": "asset_dtaas_incubator_nurv_monitor_validation__mon._output"
+    }
+  ],
+  "schedule": {
+    "kind": "multi_rate",
+    "base_tick": 0.01,
+    "duration": 300.0,
+    "per_node_period": {
+      "asset_dtaas_incubator_nurv_monitor_validation__ad": 1.0,
+      "asset_dtaas_incubator_nurv_monitor_validation__es": 1.0,
+      "asset_dtaas_incubator_nurv_monitor_validation__mon": 1.0,
+      "asset_dtaas_incubator_nurv_monitor_validation__src": 0.01,
+      "asset_dtaas_incubator_nurv_monitor_validation__wtc": 0.01
+    },
+    "per_edge_hold_policy": [
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__src.sensor_data",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.sensor_data",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 1.0,
+        "async": true
+      },
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__src.error_threshold",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.error_threshold",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 1.0,
+        "async": true
+      },
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__src.kalman_input",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.kalman_input",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 1.0,
+        "async": true
+      },
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__ad.verdict",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__es.lid_open",
+        "policy": "direct",
+        "source_period": 1.0,
+        "target_period": 1.0,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__ad.verdict",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__mon.anomaly",
+        "policy": "direct",
+        "source_period": 1.0,
+        "target_period": 1.0,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__es.ctrl_desired_temperature",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__wtc.desired_temperature",
+        "policy": "zoh",
+        "source_period": 1.0,
+        "target_period": 0.01,
+        "async": true
+      },
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__wtc.energy_saving",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__mon.energy_saving",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 1.0,
+        "async": true
+      }
+    ],
+    "loop_wrappers": [],
+    "materialized": false,
+    "warnings": [
+      "fallback_step_size_for_asset_dtaas_incubator_nurv_monitor_validation__src=0.01",
+      "fallback_step_size_for_asset_dtaas_incubator_nurv_monitor_validation__wtc=0.01"
+    ],
+    "base_tick_method": "microgrid_gcd",
+    "execution_plan": [],
+    "async_edges": [
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__src.sensor_data",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.sensor_data",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 1.0,
+        "async": true
+      },
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__src.error_threshold",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.error_threshold",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 1.0,
+        "async": true
+      },
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__src.kalman_input",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__ad.kalman_input",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 1.0,
+        "async": true
+      },
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__es.ctrl_desired_temperature",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__wtc.desired_temperature",
+        "policy": "zoh",
+        "source_period": 1.0,
+        "target_period": 0.01,
+        "async": true
+      },
+      {
+        "source": "asset_dtaas_incubator_nurv_monitor_validation__wtc.energy_saving",
+        "target": "asset_dtaas_incubator_nurv_monitor_validation__mon.energy_saving",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 1.0,
+        "async": true
+      }
+    ],
+    "start_time": 0.0,
+    "stop_time": 300.0,
+    "communication_point_count": 30001
+  },
+  "execution_order": [
+    "asset_dtaas_incubator_nurv_monitor_validation__ad",
+    "asset_dtaas_incubator_nurv_monitor_validation__src",
+    "asset_dtaas_incubator_nurv_monitor_validation__es",
+    "asset_dtaas_incubator_nurv_monitor_validation__mon",
+    "asset_dtaas_incubator_nurv_monitor_validation__wtc"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=5"
+  ]
+}

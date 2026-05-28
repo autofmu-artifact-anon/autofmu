@@ -1,0 +1,223 @@
+{
+  "schema": "EVALUATOR_CASE_METRICS_V2",
+  "retrieval": {
+    "top_k": 5,
+    "oracle_mode": "exact_asset_set",
+    "equivalence_class_id": "",
+    "acceptable_asset_set_count": 1,
+    "acceptable_asset_sets": [
+      [
+        "asset_case_case_manual_002__CartPolePlant",
+        "asset_case_case_manual_002__PoleAngleEstimator",
+        "asset_case_case_manual_002__SwingUpBalanceController"
+      ]
+    ],
+    "top1_asset_ids": [
+      "asset_case_case_manual_002__CartPolePlant",
+      "asset_case_case_manual_002__PoleAngleEstimator",
+      "asset_case_case_manual_003__PendulumController"
+    ],
+    "candidate_asset_sets": [
+      [
+        "asset_case_case_manual_002__CartPolePlant",
+        "asset_case_case_manual_002__PoleAngleEstimator",
+        "asset_case_case_manual_003__PendulumController"
+      ]
+    ],
+    "top1_hit": false,
+    "topk_hit": false
+  },
+  "execution": {
+    "supported": true,
+    "success": true,
+    "backend": "mixed_cosim",
+    "execution_time_seconds": 49.05820652004331,
+    "generated_trajectory_path": "runs/raw/all13_rerun_20260322T144536Z_ablation_stage1_heuristic_neighborhood/case_manual_002/generated_trajectory.csv",
+    "error": null,
+    "warnings": []
+  },
+  "numerical_fidelity": {
+    "supported": true,
+    "mae": 50.82921219149054,
+    "rmse": 100.6648655501563,
+    "nrmse": 0.6362921284057228,
+    "max_abs_error": 323.6084530391449,
+    "aligned_sample_count": 20001,
+    "signal_count": 6,
+    "signals": [
+      "x_m",
+      "theta_rad",
+      "theta_hat_rad",
+      "bias_hat_rps",
+      "force_cmd_N",
+      "mode"
+    ],
+    "generated_time_column": "time",
+    "reference_time_column": "time",
+    "generated_signal_map": {
+      "x_m": "x_m",
+      "theta_rad": "theta_rad",
+      "theta_hat_rad": "theta_hat_rad",
+      "bias_hat_rps": "bias_hat_rps",
+      "force_cmd_N": "force_cmd_N",
+      "x_dot_mps": "x_dot_mps",
+      "theta_dot_rps": "theta_dot_rps",
+      "theta_meas_rad": "theta_meas_rad",
+      "theta_dot_meas_rps": "theta_dot_meas_rps",
+      "theta_dot_hat_rps": "theta_dot_hat_rps"
+    },
+    "reference_signal_map": {
+      "x_m": "x_m",
+      "theta_rad": "theta_rad",
+      "theta_hat_rad": "theta_hat_rad",
+      "bias_hat_rps": "bias_hat_rps",
+      "force_cmd_N": "force_cmd_N",
+      "mode": "mode"
+    },
+    "unresolved_generated_signals": [
+      "mode"
+    ],
+    "unresolved_reference_signals": [
+      "x_dot_mps",
+      "theta_dot_rps",
+      "theta_meas_rad",
+      "theta_dot_meas_rps",
+      "theta_dot_hat_rps"
+    ],
+    "nrmse_common_only": 0.5635505540868674,
+    "common_signal_count": 5,
+    "missing_signal_count": 1,
+    "common_signals": [
+      "x_m",
+      "theta_rad",
+      "theta_hat_rad",
+      "bias_hat_rps",
+      "force_cmd_N"
+    ],
+    "missing_signals": [
+      "mode"
+    ]
+  },
+  "decision": {
+    "supported": false,
+    "predicted_conclusion": "unknown",
+    "reference_conclusion": "pass",
+    "passed": null,
+    "correct": null,
+    "evidence": {
+      "rule_kind": "acceptance_criteria",
+      "supported": false,
+      "conclusion": "unknown",
+      "criterion_results": [
+        {
+          "metric": "within_range(force_cmd_N)",
+          "operator": "in",
+          "expected": [
+            -15.0,
+            15.0
+          ],
+          "observed": [
+            -14.999999992531883,
+            14.999999999999957
+          ],
+          "passed": true,
+          "error": ""
+        },
+        {
+          "metric": "within_range(x_m)",
+          "operator": "in",
+          "expected": [
+            -0.8,
+            0.8
+          ],
+          "observed": [
+            -1.8664973852388054,
+            1.8904091191629175
+          ],
+          "passed": false,
+          "error": ""
+        },
+        {
+          "metric": "within_range(mode)",
+          "operator": "in",
+          "expected": [
+            0.0,
+            1.0
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "unresolved_expression"
+        },
+        {
+          "metric": "abs(bias_hat_rps - -4.3109201386) at t=20.0s",
+          "operator": "<=",
+          "expected": 0.01,
+          "observed": 4.045372188182071,
+          "passed": false,
+          "error": ""
+        },
+        {
+          "metric": "abs(x_m - 0.52) at t=20.0s",
+          "operator": "<=",
+          "expected": 0.15,
+          "observed": 1.9551934310930719,
+          "passed": false,
+          "error": ""
+        },
+        {
+          "metric": "abs(theta_hat_rad - theta_rad) at t=20.0s",
+          "operator": "<=",
+          "expected": 2.0,
+          "observed": 0.7902182423176569,
+          "passed": true,
+          "error": ""
+        }
+      ],
+      "unsupported_criteria": [
+        "within_range(mode)"
+      ],
+      "time_coverage": {
+        "observed_start_time": 0.0,
+        "observed_stop_time": 20.0,
+        "declared_start_time": 0,
+        "declared_stop_time": 20,
+        "sample_count": 20001
+      },
+      "initial_condition_results": [
+        {
+          "signal": "theta_dot_rps",
+          "expected": 0.0,
+          "observed": 0.0,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        },
+        {
+          "signal": "theta_rad",
+          "expected": 0.0,
+          "observed": 0.0,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        },
+        {
+          "signal": "x_dot_mps",
+          "expected": 0.0,
+          "observed": 0.0,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        },
+        {
+          "signal": "x_m",
+          "expected": 0.0,
+          "observed": 0.0,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        }
+      ],
+      "coverage_failures": []
+    }
+  }
+}

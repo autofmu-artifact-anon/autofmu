@@ -1,0 +1,107 @@
+{
+  "schema": "EVALUATOR_CASE_METRICS_V2",
+  "retrieval": {
+    "top_k": 5,
+    "oracle_mode": "exact_asset_set",
+    "equivalence_class_id": "",
+    "acceptable_asset_set_count": 1,
+    "acceptable_asset_sets": [
+      [
+        "asset_dtaas_three_tank__tank1",
+        "asset_dtaas_three_tank__tank2",
+        "asset_dtaas_three_tank__tank3"
+      ]
+    ],
+    "top1_asset_ids": [
+      "asset_dtaas_three_tank__tank1"
+    ],
+    "candidate_asset_sets": [
+      [
+        "asset_dtaas_three_tank__tank1"
+      ],
+      [
+        "asset_dtaas_three_tank__tank2"
+      ],
+      [
+        "asset_dtaas_three_tank__tank1",
+        "asset_dtaas_three_tank__tank2"
+      ]
+    ],
+    "top1_hit": false,
+    "topk_hit": false
+  },
+  "execution": {
+    "supported": true,
+    "success": true,
+    "backend": "fmpy_cosimulation",
+    "execution_time_seconds": 0.34334138315171003,
+    "generated_trajectory_path": "runs/raw/all13_rerun_20260322T144536Z_ablation_stage2_greedy_hybrid/case_dtaas_three_tank/generated_trajectory.csv",
+    "error": null,
+    "warnings": []
+  },
+  "numerical_fidelity": {
+    "supported": true,
+    "mae": null,
+    "rmse": null,
+    "nrmse": null,
+    "max_abs_error": null,
+    "aligned_sample_count": 0,
+    "signal_count": 0,
+    "signals": [],
+    "generated_time_column": "time",
+    "reference_time_column": "time",
+    "generated_signal_map": {},
+    "reference_signal_map": {},
+    "unresolved_generated_signals": [],
+    "unresolved_reference_signals": []
+  },
+  "decision": {
+    "supported": false,
+    "predicted_conclusion": "unknown",
+    "reference_conclusion": "pass",
+    "passed": null,
+    "correct": null,
+    "evidence": {
+      "rule_kind": "acceptance_criteria",
+      "supported": false,
+      "conclusion": "unknown",
+      "criterion_results": [
+        {
+          "metric": "within_range(asset_dtaas_three_tank__tank1.outPort)",
+          "operator": "in",
+          "expected": [
+            0.0,
+            2.0
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "unresolved_expression"
+        },
+        {
+          "metric": "within_range(asset_dtaas_three_tank__tank1.leak)",
+          "operator": "in",
+          "expected": [
+            0.0,
+            0.2
+          ],
+          "observed": null,
+          "passed": false,
+          "error": "unresolved_expression"
+        }
+      ],
+      "unsupported_criteria": [
+        "within_range(asset_dtaas_three_tank__tank1.outPort)",
+        "within_range(asset_dtaas_three_tank__tank1.leak)"
+      ],
+      "time_coverage": {
+        "observed_start_time": 0.0,
+        "observed_stop_time": 10.0,
+        "declared_start_time": 0,
+        "declared_stop_time": 10,
+        "sample_count": 1001
+      },
+      "initial_condition_results": [],
+      "coverage_failures": []
+    }
+  }
+}

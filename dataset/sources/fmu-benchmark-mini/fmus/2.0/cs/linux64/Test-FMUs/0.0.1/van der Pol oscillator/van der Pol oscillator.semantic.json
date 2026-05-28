@@ -1,0 +1,392 @@
+{
+  "version": "0.1.0",
+  "timestamp": "2025-12-12T10:28:58Z",
+  "file": "/root/mbse_val/fmu-benchmark-mini/fmus/2.0/cs/linux64/Test-FMUs/0.0.1/van der Pol oscillator/van der Pol oscillator.fmu",
+  "metadata_summary": {
+    "fmi": {
+      "fmiVersion": "2.0",
+      "fmiTypes": [
+        "ModelExchange",
+        "CoSimulation"
+      ],
+      "modelName": "van der Pol oscillator",
+      "guid": "{8c4e810f-3da3-4a00-8276-176fa3c9f000}",
+      "description": "",
+      "author": "",
+      "generationTool": "",
+      "generationDateAndTime": "",
+      "variableNamingConvention": "flat",
+      "numberOfEventIndicators": 0,
+      "defaultExperiment": {
+        "startTime": 0.0,
+        "stopTime": 20.0
+      }
+    },
+    "implementation": {
+      "platforms": [
+        "linux64",
+        "c-code"
+      ],
+      "modelExchange": {
+        "modelIdentifier": "VanDerPol"
+      },
+      "coSimulation": {
+        "modelIdentifier": "VanDerPol",
+        "canHandleVariableCommunicationStepSize": true
+      }
+    }
+  },
+  "variables": {
+    "all": [
+      {
+        "name": "x0",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 2.0,
+        "description": "the first state",
+        "writable": false
+      },
+      {
+        "name": "der(x0)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": null,
+        "writable": false
+      },
+      {
+        "name": "x1",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 0.0,
+        "description": "the second state",
+        "writable": false
+      },
+      {
+        "name": "der(x1)",
+        "causality": "local",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": null,
+        "description": null,
+        "writable": false
+      },
+      {
+        "name": "mu",
+        "causality": "parameter",
+        "variability": "fixed",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 1.0,
+        "description": null,
+        "writable": true
+      }
+    ],
+    "inputs": [],
+    "outputs_observed": [
+      {
+        "name": "x0",
+        "valueReference": 0,
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "description": "the first state",
+        "initial": "exact",
+        "start": 2.0
+      },
+      {
+        "name": "x1",
+        "valueReference": 2,
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "description": "the second state",
+        "initial": "exact",
+        "start": 0.0
+      }
+    ]
+  },
+  "probe_config": {
+    "start_time": 0.0,
+    "stop_time": 20.0,
+    "step_size": 0.1,
+    "scenarios": [
+      {
+        "kind": "step",
+        "start_time": 0.0,
+        "stop_time": 20.0,
+        "step_size": 0.1,
+        "seed": 0
+      },
+      {
+        "kind": "ramp",
+        "start_time": 0.0,
+        "stop_time": 20.0,
+        "step_size": 0.1,
+        "seed": 0
+      },
+      {
+        "kind": "sine",
+        "start_time": 0.0,
+        "stop_time": 20.0,
+        "step_size": 0.1,
+        "seed": 0
+      }
+    ],
+    "selected_inputs": [],
+    "selected_outputs": [
+      "x0",
+      "x1"
+    ],
+    "narrative": "Generic excitation on representative inputs (step/ramp/sine)."
+  },
+  "features": {
+    "x0": {
+      "variable_meta": {
+        "name": "x0",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 2.0
+      },
+      "basic_stats": {
+        "mean": -0.09595997872260764,
+        "variance": 2.3742644436271956,
+        "std": 1.5408648362615054,
+        "min": -2.216465583186955,
+        "max": 2.2164918374944738,
+        "peak_to_peak": 4.432957420681429,
+        "first": 2.0,
+        "last": -0.6965862543320553
+      },
+      "steady_state": -1.5644423484235026,
+      "step_metrics": {
+        "baseline": 1.4714729866282312,
+        "final": -1.5644423484235026,
+        "amplitude": -3.035915335051734,
+        "rise_time": 1.3000000000000003,
+        "overshoot_ratio": 0.21476990060802917,
+        "settling_time": null,
+        "steady_slope": -0.47841282800051466
+      },
+      "spectral_metrics": {
+        "dominant_frequency_hz": 0.1492537313432841,
+        "dominant_power_ratio": 0.6073844154803514,
+        "spectral_centroid_hz": 0.14369248385768682,
+        "spectral_bandwidth_hz": 0.052182528013756495,
+        "low_freq_energy_ratio": 0.3006932084593701
+      },
+      "lag_phase": {},
+      "stability_flags": {
+        "diverged": false,
+        "saturated": false,
+        "jump_count": 0
+      },
+      "behavior_labels": [
+        "integrator-like",
+        "oscillatory"
+      ],
+      "ramp_basic_stats": {
+        "mean": -0.09595997872260764,
+        "variance": 2.3742644436271956,
+        "std": 1.5408648362615054,
+        "min": -2.216465583186955,
+        "max": 2.2164918374944738,
+        "peak_to_peak": 4.432957420681429,
+        "first": 2.0,
+        "last": -0.6965862543320553
+      }
+    },
+    "x1": {
+      "variable_meta": {
+        "name": "x1",
+        "causality": "output",
+        "variability": "continuous",
+        "type": "Real",
+        "unit": null,
+        "min": null,
+        "max": null,
+        "nominal": null,
+        "start": 0.0
+      },
+      "basic_stats": {
+        "mean": -0.12700037691215305,
+        "variance": 1.9595636242663543,
+        "std": 1.3998441428481796,
+        "min": -2.813772625875042,
+        "max": 2.804433926555312,
+        "peak_to_peak": 5.618206552430355,
+        "first": 0.0,
+        "last": 1.438786783977331
+      },
+      "steady_state": 0.8123428476810141,
+      "step_metrics": {
+        "baseline": -0.7893124466874977,
+        "final": 0.8123428476810141,
+        "amplitude": 1.6016552943685118,
+        "rise_time": 4.3,
+        "overshoot_ratio": 1.2437701706968878,
+        "settling_time": null,
+        "steady_slope": 1.0379823576061649
+      },
+      "spectral_metrics": {
+        "dominant_frequency_hz": 0.1492537313432841,
+        "dominant_power_ratio": 0.5118413716637287,
+        "spectral_centroid_hz": 0.1968439048433381,
+        "spectral_bandwidth_hz": 0.14276833465657973,
+        "low_freq_energy_ratio": 0.7629923812099931
+      },
+      "lag_phase": {},
+      "stability_flags": {
+        "diverged": false,
+        "saturated": false,
+        "jump_count": 0
+      },
+      "behavior_labels": [
+        "integrator-like",
+        "oscillatory"
+      ],
+      "ramp_basic_stats": {
+        "mean": -0.12700037691215305,
+        "variance": 1.9595636242663543,
+        "std": 1.3998441428481796,
+        "min": -2.813772625875042,
+        "max": 2.804433926555312,
+        "peak_to_peak": 5.618206552430355,
+        "first": 0.0,
+        "last": 1.438786783977331
+      }
+    }
+  },
+  "fmu_profile": {
+    "num_inputs": 0,
+    "num_outputs_observed": 2,
+    "outputs_source": "outputs",
+    "continuous_ratio": 0.8,
+    "recommended_step_size_range": [
+      0.16749999999999943,
+      0.6699999999999977
+    ],
+    "typical_dynamic_labels": [
+      "integrator-like",
+      "oscillatory"
+    ]
+  },
+  "llm_guidance": {
+    "prompt": {
+      "task": "Propose a reasonable reproducible usage scenario for probing FMU behavior.",
+      "constraints": [
+        "Return JSON only.",
+        "Select up to 3 representative inputs and up to 5 representative outputs by exact name.",
+        "Scenario must include step, ramp, sine excitations.",
+        "Do not invent variables not in the list."
+      ],
+      "model_info": {
+        "fmiVersion": "2.0",
+        "fmiTypes": [
+          "ModelExchange",
+          "CoSimulation"
+        ],
+        "modelName": "van der Pol oscillator",
+        "guid": "{8c4e810f-3da3-4a00-8276-176fa3c9f000}",
+        "description": "",
+        "author": "",
+        "generationTool": "",
+        "generationDateAndTime": "",
+        "variableNamingConvention": "flat",
+        "numberOfEventIndicators": 0,
+        "defaultExperiment": {
+          "startTime": 0.0,
+          "stopTime": 20.0
+        }
+      },
+      "variables": [
+        {
+          "name": "x0",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "the first state"
+        },
+        {
+          "name": "der(x0)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": ""
+        },
+        {
+          "name": "x1",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": "the second state"
+        },
+        {
+          "name": "der(x1)",
+          "causality": "local",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "",
+          "description": ""
+        },
+        {
+          "name": "mu",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "",
+          "description": ""
+        }
+      ],
+      "output_schema": {
+        "inputs": [
+          "..."
+        ],
+        "outputs": [
+          "..."
+        ],
+        "narrative": "short scenario description"
+      }
+    },
+    "raw_response": "```json\n{\n  \"inputs\": [\n    \"mu\",\n    \"x0\",\n    \"x1\"\n  ],\n  \"outputs\": [\n    \"x0\",\n    \"x1\",\n    \"der(x0)\",\n    \"der(x1)\",\n    \"mu\"\n  ],\n  \"narrative\": \"The scenario investigates the dynamic behavior of the Van der Pol oscillator under different excitations. The input excitations include a step function for 'mu', a ramp input for 'x0', and a sine input for 'x1'. The goal is to probe the system's response over a 20-second period, focusing on how the states 'x0' and 'x1' evolve, as well as the derivatives 'der(x0)' and 'der(x1)'. By applying different excitations, this test aims to observe the nonlinear behavior of the system and its response to gradual and periodic disturbances.\"\n}\n```"
+  },
+  "log_summary": {
+    "scenario_status": {
+      "step": "ok",
+      "ramp": "ok",
+      "sine": "ok"
+    },
+    "scenario_errors": {},
+    "elapsed_sec": 9.323933601379395
+  }
+}

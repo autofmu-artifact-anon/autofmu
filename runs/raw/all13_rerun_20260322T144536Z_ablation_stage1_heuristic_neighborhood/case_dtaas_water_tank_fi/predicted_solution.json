@@ -1,0 +1,381 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_water_tank_fi",
+  "selected_asset_ids": [
+    "asset_dtaas_water_tank_fi__x1",
+    "asset_dtaas_water_tank_fi__x2"
+  ],
+  "connections": [
+    {
+      "source": "asset_dtaas_water_tank_fi__x1.valve",
+      "target": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+      "kind": "adapter_in",
+      "adapter_id": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol",
+      "transform_kind": "mode_signal",
+      "chain_id": "chain_0",
+      "segment_id": "chain_0_seg_0"
+    },
+    {
+      "source": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output",
+      "target": "asset_dtaas_water_tank_fi__x2.valvecontrol",
+      "kind": "adapter_out",
+      "adapter_id": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol",
+      "transform_kind": "mode_signal",
+      "chain_id": "chain_0",
+      "segment_id": "chain_0_seg_0"
+    },
+    {
+      "source": "asset_dtaas_water_tank_fi__x2.level",
+      "target": "asset_dtaas_water_tank_fi__x1.level",
+      "kind": "direct",
+      "chain_id": "chain_1",
+      "segment_id": "chain_1_seg_0"
+    }
+  ],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "valve",
+      "source": "asset_dtaas_water_tank_fi__x1.valve"
+    },
+    {
+      "name": "level",
+      "source": "asset_dtaas_water_tank_fi__x2.level"
+    }
+  ],
+  "schedule": {
+    "kind": "multi_rate",
+    "base_tick": 0.01,
+    "duration": 100.0,
+    "per_node_period": {
+      "asset_dtaas_water_tank_fi__x1": 0.1,
+      "asset_dtaas_water_tank_fi__x2": 0.01,
+      "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol": 0.01
+    },
+    "per_edge_hold_policy": [
+      {
+        "source": "asset_dtaas_water_tank_fi__x1.valve",
+        "target": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+        "policy": "zoh",
+        "source_period": 0.1,
+        "target_period": 0.01,
+        "async": true
+      },
+      {
+        "source": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output",
+        "target": "asset_dtaas_water_tank_fi__x2.valvecontrol",
+        "policy": "direct",
+        "source_period": 0.01,
+        "target_period": 0.01,
+        "async": false
+      },
+      {
+        "source": "asset_dtaas_water_tank_fi__x2.level",
+        "target": "asset_dtaas_water_tank_fi__x1.level",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 0.1,
+        "async": true
+      }
+    ],
+    "loop_wrappers": [
+      {
+        "loop_id": "loop_0",
+        "nodes": [
+          "asset_dtaas_water_tank_fi__x1",
+          "asset_dtaas_water_tank_fi__x2",
+          "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol"
+        ],
+        "node_order": [
+          "asset_dtaas_water_tank_fi__x1",
+          "asset_dtaas_water_tank_fi__x2",
+          "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol"
+        ],
+        "iteration_order": [
+          {
+            "step_index": 0,
+            "node": "asset_dtaas_water_tank_fi__x1",
+            "reads": [
+              "asset_dtaas_water_tank_fi__x2.level"
+            ],
+            "writes": [
+              "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input"
+            ]
+          },
+          {
+            "step_index": 1,
+            "node": "asset_dtaas_water_tank_fi__x2",
+            "reads": [
+              "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output"
+            ],
+            "writes": [
+              "asset_dtaas_water_tank_fi__x1.level"
+            ]
+          },
+          {
+            "step_index": 2,
+            "node": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol",
+            "reads": [
+              "asset_dtaas_water_tank_fi__x1.valve"
+            ],
+            "writes": [
+              "asset_dtaas_water_tank_fi__x2.valvecontrol"
+            ]
+          }
+        ],
+        "boundary_variables": [
+          "asset_dtaas_water_tank_fi__x1.valve->adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+          "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output->asset_dtaas_water_tank_fi__x2.valvecontrol",
+          "asset_dtaas_water_tank_fi__x2.level->asset_dtaas_water_tank_fi__x1.level"
+        ],
+        "boundary_reads": [
+          "asset_dtaas_water_tank_fi__x1.valve",
+          "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output",
+          "asset_dtaas_water_tank_fi__x2.level"
+        ],
+        "boundary_writes": [
+          "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+          "asset_dtaas_water_tank_fi__x2.valvecontrol",
+          "asset_dtaas_water_tank_fi__x1.level"
+        ],
+        "convergence_signals": [
+          "asset_dtaas_water_tank_fi__x1.valve->adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+          "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output->asset_dtaas_water_tank_fi__x2.valvecontrol",
+          "asset_dtaas_water_tank_fi__x2.level->asset_dtaas_water_tank_fi__x1.level"
+        ],
+        "method": "gauss_seidel",
+        "tol": 1e-06,
+        "max_iters": 20,
+        "initial_guess_policy": "last_communication_value",
+        "convergence_check": {
+          "norm": "linf",
+          "signals": [
+            "asset_dtaas_water_tank_fi__x1.valve->adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+            "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output->asset_dtaas_water_tank_fi__x2.valvecontrol",
+            "asset_dtaas_water_tank_fi__x2.level->asset_dtaas_water_tank_fi__x1.level"
+          ],
+          "tol": 1e-06
+        },
+        "runtime_policy": {
+          "kind": "fixed_point_iteration",
+          "iterate_until_converged": true,
+          "fail_on_nonconvergence": false,
+          "fallback": "accept_last_iterate"
+        }
+      }
+    ],
+    "materialized": false,
+    "warnings": [],
+    "base_tick_method": "microgrid_gcd",
+    "execution_plan": [],
+    "async_edges": [
+      {
+        "source": "asset_dtaas_water_tank_fi__x1.valve",
+        "target": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+        "policy": "zoh",
+        "source_period": 0.1,
+        "target_period": 0.01,
+        "async": true
+      },
+      {
+        "source": "asset_dtaas_water_tank_fi__x2.level",
+        "target": "asset_dtaas_water_tank_fi__x1.level",
+        "policy": "zoh",
+        "source_period": 0.01,
+        "target_period": 0.1,
+        "async": true
+      }
+    ],
+    "start_time": 0.0,
+    "stop_time": 100.0,
+    "communication_point_count": 10001
+  },
+  "execution_order": [
+    "asset_dtaas_water_tank_fi__x1",
+    "asset_dtaas_water_tank_fi__x2"
+  ],
+  "adapters": [
+    {
+      "adapter_id": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol",
+      "kind": "mode_signal_adapter",
+      "source": "asset_dtaas_water_tank_fi__x1.valve",
+      "target": "asset_dtaas_water_tank_fi__x2.valvecontrol",
+      "transform": {
+        "transform_kind": "mode_signal",
+        "source_type": "boolean",
+        "target_type": "real",
+        "mapping": {
+          "false": 0.0,
+          "true": 1.0
+        }
+      },
+      "stateful": false,
+      "artifact_kind": "proxy_fmu",
+      "artifact_path": "pipeline/resources/generated_adapters/AdapterFMUs/adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.fmu",
+      "inserted_node_id": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol",
+      "io_contract": {
+        "inputs": [
+          {
+            "name": "input",
+            "channel_index": 0,
+            "signal_name": "valve",
+            "endpoint": "asset_dtaas_water_tank_fi__x1",
+            "port_meta": {
+              "name": "valve",
+              "causality": "output",
+              "variability": "discrete",
+              "type": "Boolean",
+              "unit": "",
+              "description": "the tank valve state",
+              "dimensions": []
+            },
+            "dtype": "Boolean",
+            "unit": "",
+            "dimensions": [],
+            "semantic_role": "primary"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "output",
+            "channel_index": 0,
+            "signal_name": "valvecontrol",
+            "endpoint": "asset_dtaas_water_tank_fi__x2",
+            "port_meta": {
+              "name": "valvecontrol",
+              "causality": "input",
+              "variability": "continuous",
+              "type": "Real",
+              "unit": "",
+              "description": "",
+              "dimensions": []
+            },
+            "dtype": "Real",
+            "unit": "",
+            "dimensions": [],
+            "semantic_role": "primary"
+          }
+        ],
+        "stateful": false,
+        "transform_kind": "mode_signal"
+      },
+      "generation_source": "llm",
+      "notes": [
+        "Boolean to Real conversion for valve control signal",
+        "Maps discrete Boolean valve state to continuous Real valvecontrol input",
+        "Stateless mapping: false→0.0, true→1.0"
+      ]
+    }
+  ],
+  "loop_resolution": [
+    {
+      "loop_id": "loop_0",
+      "nodes": [
+        "asset_dtaas_water_tank_fi__x1",
+        "asset_dtaas_water_tank_fi__x2",
+        "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol"
+      ],
+      "node_order": [
+        "asset_dtaas_water_tank_fi__x1",
+        "asset_dtaas_water_tank_fi__x2",
+        "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol"
+      ],
+      "iteration_order": [
+        {
+          "step_index": 0,
+          "node": "asset_dtaas_water_tank_fi__x1",
+          "reads": [
+            "asset_dtaas_water_tank_fi__x2.level"
+          ],
+          "writes": [
+            "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input"
+          ]
+        },
+        {
+          "step_index": 1,
+          "node": "asset_dtaas_water_tank_fi__x2",
+          "reads": [
+            "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output"
+          ],
+          "writes": [
+            "asset_dtaas_water_tank_fi__x1.level"
+          ]
+        },
+        {
+          "step_index": 2,
+          "node": "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol",
+          "reads": [
+            "asset_dtaas_water_tank_fi__x1.valve"
+          ],
+          "writes": [
+            "asset_dtaas_water_tank_fi__x2.valvecontrol"
+          ]
+        }
+      ],
+      "boundary_variables": [
+        "asset_dtaas_water_tank_fi__x1.valve->adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+        "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output->asset_dtaas_water_tank_fi__x2.valvecontrol",
+        "asset_dtaas_water_tank_fi__x2.level->asset_dtaas_water_tank_fi__x1.level"
+      ],
+      "boundary_reads": [
+        "asset_dtaas_water_tank_fi__x1.valve",
+        "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output",
+        "asset_dtaas_water_tank_fi__x2.level"
+      ],
+      "boundary_writes": [
+        "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+        "asset_dtaas_water_tank_fi__x2.valvecontrol",
+        "asset_dtaas_water_tank_fi__x1.level"
+      ],
+      "convergence_signals": [
+        "asset_dtaas_water_tank_fi__x1.valve->adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+        "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output->asset_dtaas_water_tank_fi__x2.valvecontrol",
+        "asset_dtaas_water_tank_fi__x2.level->asset_dtaas_water_tank_fi__x1.level"
+      ],
+      "method": "gauss_seidel",
+      "tol": 1e-06,
+      "max_iters": 20,
+      "initial_guess_policy": "last_communication_value",
+      "convergence_check": {
+        "norm": "linf",
+        "signals": [
+          "asset_dtaas_water_tank_fi__x1.valve->adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.input",
+          "adapter_chain_0_asset_dtaas_water_tank_fi__x1_asset_dtaas_water_tank_fi__x2_valve_valvecontrol.output->asset_dtaas_water_tank_fi__x2.valvecontrol",
+          "asset_dtaas_water_tank_fi__x2.level->asset_dtaas_water_tank_fi__x1.level"
+        ],
+        "tol": 1e-06
+      },
+      "runtime_policy": {
+        "kind": "fixed_point_iteration",
+        "iterate_until_converged": true,
+        "fail_on_nonconvergence": false,
+        "fallback": "accept_last_iterate"
+      }
+    }
+  ],
+  "notes": [
+    "selected_fmu_count=2",
+    "case_extensions_extracted"
+  ],
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_water_tank_fi__x1.maxlevel",
+        "value": 2
+      },
+      {
+        "target": "asset_dtaas_water_tank_fi__x1.minlevel",
+        "value": 1
+      }
+    ],
+    "fault_injection": [
+      {
+        "configuration_relpath": "raw/data/water_tank_FI/input/wt_fault.xml",
+        "instances": {
+          "tank": "id-A"
+        }
+      }
+    ]
+  }
+}

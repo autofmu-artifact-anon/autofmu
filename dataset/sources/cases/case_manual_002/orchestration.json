@@ -1,0 +1,139 @@
+{
+  "case_id": "case_manual_002",
+  "case_name": "倒立摆摆起与位置跟踪",
+  "description": "Cart-pole swing-up and balance control with state estimation. Energy-based swing-up transitions to LQR-style balance control.",
+  "fmi_version": "2.0",
+  "co_simulation": {
+    "step_size": 0.001,
+    "start_time": 0,
+    "stop_time": 20
+  },
+  "fmus": [
+    {
+      "name": "CartPolePlant",
+      "path": "fmus/CartPolePlant.fmu",
+      "step_size": 0.001
+    },
+    {
+      "name": "PoleAngleEstimator",
+      "path": "fmus/PoleAngleEstimator.fmu",
+      "step_size": 0.001
+    },
+    {
+      "name": "SwingUpBalanceController",
+      "path": "fmus/SwingUpBalanceController.fmu",
+      "step_size": 0.001
+    }
+  ],
+  "connections": [
+    {
+      "source": "SwingUpBalanceController.force_cmd_N",
+      "target": "CartPolePlant.force_cmd_N",
+      "description": "Force command from controller to cart"
+    },
+    {
+      "source": "CartPolePlant.x_m",
+      "target": "SwingUpBalanceController.x_m",
+      "description": "Cart position feedback to controller"
+    },
+    {
+      "source": "CartPolePlant.x_dot_mps",
+      "target": "SwingUpBalanceController.x_dot_mps",
+      "description": "Cart velocity feedback to controller"
+    },
+    {
+      "source": "CartPolePlant.theta_meas_rad",
+      "target": "PoleAngleEstimator.theta_meas_rad",
+      "description": "Measured angle to estimator"
+    },
+    {
+      "source": "CartPolePlant.theta_dot_meas_rps",
+      "target": "PoleAngleEstimator.theta_dot_meas_rps",
+      "description": "Measured angular velocity to estimator"
+    },
+    {
+      "source": "PoleAngleEstimator.theta_hat_rad",
+      "target": "SwingUpBalanceController.theta_hat_rad",
+      "description": "Estimated angle to controller"
+    },
+    {
+      "source": "PoleAngleEstimator.theta_dot_hat_rps",
+      "target": "SwingUpBalanceController.theta_dot_hat_rps",
+      "description": "Estimated angular velocity to controller"
+    }
+  ],
+  "external_inputs": [
+    {
+      "name": "x_ref_m",
+      "target": "SwingUpBalanceController.x_ref_m",
+      "default": 0.0,
+      "unit": "m",
+      "description": "Cart position reference"
+    },
+    {
+      "name": "enable",
+      "target": "SwingUpBalanceController.enable",
+      "default": true,
+      "unit": "bool",
+      "description": "Controller enable signal"
+    },
+    {
+      "name": "reset",
+      "target": "PoleAngleEstimator.reset",
+      "default": false,
+      "unit": "bool",
+      "description": "Estimator reset signal"
+    },
+    {
+      "name": "disturbance_force_N",
+      "target": "CartPolePlant.disturbance_force_N",
+      "default": 0.0,
+      "unit": "N",
+      "description": "External disturbance force on cart"
+    }
+  ],
+  "monitored_outputs": [
+    {
+      "name": "x_m",
+      "source": "CartPolePlant.x_m",
+      "unit": "m",
+      "description": "Cart position"
+    },
+    {
+      "name": "theta_rad",
+      "source": "CartPolePlant.theta_rad",
+      "unit": "rad",
+      "description": "Pole angle (0=down, pi=upright)"
+    },
+    {
+      "name": "theta_hat_rad",
+      "source": "PoleAngleEstimator.theta_hat_rad",
+      "unit": "rad",
+      "description": "Estimated pole angle"
+    },
+    {
+      "name": "bias_hat_rps",
+      "source": "PoleAngleEstimator.bias_hat_rps",
+      "unit": "rad/s",
+      "description": "Estimated angular velocity bias"
+    },
+    {
+      "name": "force_cmd_N",
+      "source": "SwingUpBalanceController.force_cmd_N",
+      "unit": "N",
+      "description": "Force command"
+    },
+    {
+      "name": "mode",
+      "source": "SwingUpBalanceController.mode",
+      "unit": "enum",
+      "description": "Controller mode (0=SwingUp, 1=Balance)"
+    }
+  ],
+  "execution_order": [
+    "SwingUpBalanceController",
+    "PoleAngleEstimator",
+    "CartPolePlant"
+  ],
+  "created_at": "2026-03-09T02:17:00Z"
+}

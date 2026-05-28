@@ -1,0 +1,119 @@
+{
+  "case_id": "case_bench_fmu-002351",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "operator": "<=",
+      "signals": [
+        "prdata",
+        "stx",
+        "dtrn",
+        "rtsn",
+        "out1n",
+        "out2n",
+        "txrdyn",
+        "rxrdyn",
+        "irq",
+        "b_clk"
+      ],
+      "value": 0.0
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "signals": [
+      "prdata",
+      "stx",
+      "dtrn",
+      "rtsn",
+      "out1n",
+      "out2n",
+      "txrdyn",
+      "rxrdyn",
+      "irq",
+      "b_clk"
+    ],
+    "time_column": "time",
+    "tolerance": 0.0
+  },
+  "derivation_basis": {
+    "ground_truth_source": "uart_ref.csv",
+    "input_source": "uart_in.csv",
+    "signals": [
+      "prdata",
+      "stx",
+      "dtrn",
+      "rtsn",
+      "out1n",
+      "out2n",
+      "txrdyn",
+      "rxrdyn",
+      "irq",
+      "b_clk"
+    ],
+    "source_root": "sources/fmu-benchmark-mini/fmus/2.0/cs/linux64/EDALab_HIFSuite/2017.05_antlia/uart",
+    "source_type": "benchmark_single_fmu_case"
+  },
+  "judgement_policy": "trajectory_match",
+  "scenario_window": {
+    "start_time": 0.0,
+    "step_size": 0.001,
+    "stop_time": 10
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "b_clk": [
+      "b_clk"
+    ],
+    "dtrn": [
+      "dtrn"
+    ],
+    "irq": [
+      "irq"
+    ],
+    "out1n": [
+      "out1n"
+    ],
+    "out2n": [
+      "out2n"
+    ],
+    "prdata": [
+      "prdata"
+    ],
+    "rtsn": [
+      "rtsn"
+    ],
+    "rxrdyn": [
+      "rxrdyn"
+    ],
+    "stx": [
+      "stx"
+    ],
+    "txrdyn": [
+      "txrdyn"
+    ]
+  },
+  "signals": [
+    "prdata",
+    "stx",
+    "dtrn",
+    "rtsn",
+    "out1n",
+    "out2n",
+    "txrdyn",
+    "rxrdyn",
+    "irq",
+    "b_clk"
+  ],
+  "text": "Run the benchmark FMU uart under the default experiment and verify that the generated trajectory matches the archived ground-truth trajectory for monitored outputs prdata, stx, dtrn, rtsn, out1n, out2n, txrdyn, rxrdyn, irq, b_clk.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Verify benchmark FMU uart",
+  "tolerances": {
+    "trajectory_match": 0.0
+  }
+}

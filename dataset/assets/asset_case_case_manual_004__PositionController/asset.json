@@ -1,0 +1,274 @@
+{
+  "asset_id": "asset_case_case_manual_004__PositionController",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "case_origin": [
+    "case_manual_004"
+  ],
+  "default_experiment": {
+    "startTime": 0.0,
+    "stepSize": 0.01,
+    "stopTime": 1.0
+  },
+  "description": "Hydraulic axis position controller (PI + velocity damping + saturation & anti-windup).",
+  "description_relpath": "description.md",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "fmu_relpath": "model.fmu",
+  "ground_truth_only": false,
+  "inputs": [
+    "x_ref_m",
+    "x_meas_m",
+    "v_meas_mps",
+    "enable"
+  ],
+  "library_visible": true,
+  "metadata_relpath": "metadata.json",
+  "name": "PositionController",
+  "outputs": [
+    "valve_cmd",
+    "sat_flag"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "Position reference",
+      "name": "x_ref_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "Measured position",
+      "name": "x_meas_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "Measured velocity",
+      "name": "v_meas_mps",
+      "type": "Real",
+      "unit": "m/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "Enable closed-loop control",
+      "name": "enable",
+      "type": "Boolean",
+      "unit": "-",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Normalized valve command to spool actuator",
+      "name": "valve_cmd",
+      "type": "Real",
+      "unit": "-1..1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "True when command is saturated (for diagnostics)",
+      "name": "sat_flag",
+      "type": "Boolean",
+      "unit": "-",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "Proportional gain in normalized valve command per meter",
+      "name": "Kp",
+      "type": "Real",
+      "unit": "1/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Integral gain",
+      "name": "Ki",
+      "type": "Real",
+      "unit": "1/s^2",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Velocity feedback gain (damping)",
+      "name": "Kv",
+      "type": "Real",
+      "unit": "s/m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Minimum command",
+      "name": "u_min",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Maximum command",
+      "name": "u_max",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Clamp for integrator state to prevent runaway",
+      "name": "integrator_limit",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Back-calculation anti-windup gain",
+      "name": "aw_gain",
+      "type": "Real",
+      "unit": "1/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Small error deadband to reduce chatter",
+      "name": "deadband_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "fixed"
+    }
+  ],
+  "provenance": {
+    "case_id": "case_manual_004",
+    "legacy_fmu_list_entry": {
+      "description": "液压轴位置控制器(PI+速度阻尼+饱和与抗饱和)",
+      "fmu_path": "fmus/PositionController.fmu",
+      "inputs": [
+        {
+          "description": "位置参考",
+          "name": "x_ref_m",
+          "type": "Real",
+          "unit": "m"
+        },
+        {
+          "description": "测量位置",
+          "name": "x_meas_m",
+          "type": "Real",
+          "unit": "m"
+        },
+        {
+          "description": "测量速度",
+          "name": "v_meas_mps",
+          "type": "Real",
+          "unit": "m/s"
+        },
+        {
+          "description": "闭环控制使能",
+          "name": "enable",
+          "type": "Boolean",
+          "unit": "-"
+        }
+      ],
+      "name": "PositionController",
+      "outputs": [
+        {
+          "description": "归一化阀指令",
+          "name": "valve_cmd",
+          "type": "Real",
+          "unit": "-1..1"
+        },
+        {
+          "description": "饱和标志(诊断用)",
+          "name": "sat_flag",
+          "type": "Boolean",
+          "unit": "-"
+        }
+      ],
+      "parameters": [
+        {
+          "default": 18.0,
+          "description": "比例增益",
+          "name": "Kp",
+          "type": "Real",
+          "unit": "1/s"
+        },
+        {
+          "default": 35.0,
+          "description": "积分增益",
+          "name": "Ki",
+          "type": "Real",
+          "unit": "1/s^2"
+        },
+        {
+          "default": 3.0,
+          "description": "速度反馈增益(阻尼)",
+          "name": "Kv",
+          "type": "Real",
+          "unit": "s/m"
+        },
+        {
+          "default": -1.0,
+          "description": "最小指令",
+          "name": "u_min",
+          "type": "Real",
+          "unit": "-"
+        },
+        {
+          "default": 1.0,
+          "description": "最大指令",
+          "name": "u_max",
+          "type": "Real",
+          "unit": "-"
+        },
+        {
+          "default": 0.5,
+          "description": "积分器限幅",
+          "name": "integrator_limit",
+          "type": "Real",
+          "unit": "-"
+        },
+        {
+          "default": 8.0,
+          "description": "抗饱和增益",
+          "name": "aw_gain",
+          "type": "Real",
+          "unit": "1/s"
+        },
+        {
+          "default": 0.0002,
+          "description": "误差死区",
+          "name": "deadband_m",
+          "type": "Real",
+          "unit": "m"
+        }
+      ],
+      "states": [
+        {
+          "description": "积分器内部状态",
+          "name": "i_state"
+        }
+      ]
+    }
+  },
+  "schema": "UNIFIED_ASSET_V1",
+  "source_id": "case_manual_004::PositionController",
+  "source_type": "manual_case_fmu",
+  "tags": [
+    "case_manual_004",
+    "manual_case"
+  ]
+}

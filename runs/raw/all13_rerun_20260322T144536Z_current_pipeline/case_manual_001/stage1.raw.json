@@ -1,0 +1,4255 @@
+[
+  {
+    "tasks": [
+      {
+        "task_id": "task_connection_0",
+        "objective": "Verify transfer from controller to battery",
+        "required_signals": [
+          "current_A"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "current_A",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.current_A",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "current_A",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.current_A"
+          },
+          {
+            "signal_name": "current_A",
+            "direction": "in",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.current_A",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "current_A",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.current_A"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "current_A",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.current_A"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "current_A",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.current_A"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "current_A",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.current_A"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "current_A",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.current_A"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "current_A",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.current_A"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "controller",
+          "battery"
+        ],
+        "grounded_component_types": [
+          "ThermalManagementController",
+          "BatteryPackElectroThermal"
+        ],
+        "grounded_ports": [
+          "current_A"
+        ],
+        "task_trace": {
+          "components": [
+            "controller",
+            "battery"
+          ],
+          "ports": [
+            "current_A"
+          ],
+          "signals": [
+            "current_A"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_1",
+        "objective": "Verify transfer from battery to controller",
+        "required_signals": [
+          "voltage_V"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "voltage_V",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.voltage_V",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "voltage_V",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "signal_name": "voltage_V",
+            "direction": "out",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.voltage_V",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "voltage_V",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.voltage_V"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "voltage_V",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "battery",
+          "controller"
+        ],
+        "grounded_component_types": [
+          "BatteryPackElectroThermal",
+          "ThermalManagementController"
+        ],
+        "grounded_ports": [
+          "voltage_V"
+        ],
+        "task_trace": {
+          "components": [
+            "battery",
+            "controller"
+          ],
+          "ports": [
+            "voltage_V"
+          ],
+          "signals": [
+            "voltage_V"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_2",
+        "objective": "Verify transfer from battery to controller",
+        "required_signals": [
+          "soc"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "soc",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.soc",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "soc",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.soc"
+          },
+          {
+            "signal_name": "soc",
+            "direction": "out",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.soc",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "soc",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.soc"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "soc",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.soc"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "soc",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.soc"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "soc",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.soc"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "soc",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.soc"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "soc",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.soc"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "battery",
+          "controller"
+        ],
+        "grounded_component_types": [
+          "BatteryPackElectroThermal",
+          "ThermalManagementController"
+        ],
+        "grounded_ports": [
+          "soc"
+        ],
+        "task_trace": {
+          "components": [
+            "battery",
+            "controller"
+          ],
+          "ports": [
+            "soc"
+          ],
+          "signals": [
+            "soc"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_3",
+        "objective": "Verify transfer from battery to controller",
+        "required_signals": [
+          "coreTemperature_C"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "coreTemperature_C",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.coreTemperature_C",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "coreTemperature_C",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.coreTemperature_C"
+          },
+          {
+            "signal_name": "coreTemperature_C",
+            "direction": "out",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.coreTemperature_C",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "coreTemperature_C",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coreTemperature_C"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "coreTemperature_C",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.coreTemperature_C"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "coreTemperature_C",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.coreTemperature_C"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "coreTemperature_C",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.coreTemperature_C"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "coreTemperature_C",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.coreTemperature_C"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "coreTemperature_C",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.coreTemperature_C"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "battery",
+          "controller"
+        ],
+        "grounded_component_types": [
+          "BatteryPackElectroThermal",
+          "ThermalManagementController"
+        ],
+        "grounded_ports": [
+          "coreTemperature_C"
+        ],
+        "task_trace": {
+          "components": [
+            "battery",
+            "controller"
+          ],
+          "ports": [
+            "coreTemperature_C"
+          ],
+          "signals": [
+            "coreTemperature_C"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_4",
+        "objective": "Verify transfer from controller to coolingLoop",
+        "required_signals": [
+          "pumpCommand"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "pumpCommand",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.pumpCommand",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "pumpCommand",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.pumpCommand"
+          },
+          {
+            "signal_name": "pumpCommand",
+            "direction": "in",
+            "component_hint": "coolingLoop",
+            "port_hint": "coolingLoop.coolingPort.pumpCommand",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "pumpCommand",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.pumpCommand"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "pumpCommand",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.pumpCommand"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "pumpCommand",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.pumpCommand"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "pumpCommand",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.pumpCommand"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "pumpCommand",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.pumpCommand"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "pumpCommand",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.pumpCommand"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "controller",
+          "coolingLoop"
+        ],
+        "grounded_component_types": [
+          "ThermalManagementController",
+          "CoolingLoop"
+        ],
+        "grounded_ports": [
+          "pumpCommand"
+        ],
+        "task_trace": {
+          "components": [
+            "controller",
+            "coolingLoop"
+          ],
+          "ports": [
+            "pumpCommand"
+          ],
+          "signals": [
+            "pumpCommand"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_5",
+        "objective": "Verify transfer from controller to coolingLoop",
+        "required_signals": [
+          "fanCommand"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "fanCommand",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.fanCommand",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "fanCommand",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.fanCommand"
+          },
+          {
+            "signal_name": "fanCommand",
+            "direction": "in",
+            "component_hint": "coolingLoop",
+            "port_hint": "coolingLoop.coolingPort.fanCommand",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "fanCommand",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.fanCommand"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "fanCommand",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.fanCommand"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "fanCommand",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.fanCommand"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "fanCommand",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.fanCommand"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "fanCommand",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.fanCommand"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "fanCommand",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.fanCommand"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "controller",
+          "coolingLoop"
+        ],
+        "grounded_component_types": [
+          "ThermalManagementController",
+          "CoolingLoop"
+        ],
+        "grounded_ports": [
+          "fanCommand"
+        ],
+        "task_trace": {
+          "components": [
+            "controller",
+            "coolingLoop"
+          ],
+          "ports": [
+            "fanCommand"
+          ],
+          "signals": [
+            "fanCommand"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_6",
+        "objective": "Verify transfer from battery to coolingLoop",
+        "required_signals": [
+          "surfaceTemperature_C"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "surfaceTemperature_C",
+            "direction": "out",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.surfaceTemperature_C",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "surfaceTemperature_C",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.surfaceTemperature_C"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "surfaceTemperature_C",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.surfaceTemperature_C"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "surfaceTemperature_C",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.surfaceTemperature_C"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "surfaceTemperature_C",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.surfaceTemperature_C"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "surfaceTemperature_C",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.surfaceTemperature_C"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "surfaceTemperature_C",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.surfaceTemperature_C"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "battery"
+        ],
+        "grounded_component_types": [
+          "BatteryPackElectroThermal"
+        ],
+        "grounded_ports": [
+          "surfaceTemperature_C"
+        ],
+        "task_trace": {
+          "components": [
+            "battery"
+          ],
+          "ports": [
+            "surfaceTemperature_C"
+          ],
+          "signals": [
+            "surfaceTemperature_C"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": [
+            "dropped_components_without_signal_support"
+          ]
+        }
+      },
+      {
+        "task_id": "task_connection_7",
+        "objective": "Verify transfer from battery to coolingLoop",
+        "required_signals": [
+          "heatGeneration_W",
+          "heatLoad_W"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "heatGeneration_W",
+            "direction": "out",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.heatGeneration_W",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "heatGeneration_W",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.heatGeneration_W"
+          },
+          {
+            "signal_name": "heatLoad_W",
+            "direction": "in",
+            "component_hint": "coolingLoop",
+            "port_hint": "coolingLoop.coolingPort.heatLoad_W",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "heatLoad_W",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.heatLoad_W"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "heatGeneration_W",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.heatGeneration_W"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "heatGeneration_W",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.heatGeneration_W"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "heatGeneration_W",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.heatGeneration_W"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "heatGeneration_W",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.heatGeneration_W"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "heatGeneration_W",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.heatGeneration_W"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "battery",
+          "coolingLoop"
+        ],
+        "grounded_component_types": [
+          "BatteryPackElectroThermal",
+          "CoolingLoop"
+        ],
+        "grounded_ports": [
+          "heatGeneration_W",
+          "heatLoad_W"
+        ],
+        "task_trace": {
+          "components": [
+            "battery",
+            "coolingLoop"
+          ],
+          "ports": [
+            "heatGeneration_W",
+            "heatLoad_W"
+          ],
+          "signals": [
+            "heatGeneration_W",
+            "heatLoad_W"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 2,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_8",
+        "objective": "Verify transfer from coolingLoop to battery",
+        "required_signals": [
+          "coolantInletTemperature_C"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "coolantInletTemperature_C",
+            "direction": "in",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.coolantInletTemperature_C",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "coolantInletTemperature_C",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantInletTemperature_C"
+          },
+          {
+            "signal_name": "coolantInletTemperature_C",
+            "direction": "out",
+            "component_hint": "coolingLoop",
+            "port_hint": "coolingLoop.coolingPort.coolantInletTemperature_C",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "coolantInletTemperature_C",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.coolantInletTemperature_C"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "coolantInletTemperature_C",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantInletTemperature_C"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "coolantInletTemperature_C",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantInletTemperature_C"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "coolantInletTemperature_C",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantInletTemperature_C"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "coolantInletTemperature_C",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantInletTemperature_C"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "coolantInletTemperature_C",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantInletTemperature_C"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "coolingLoop",
+          "battery"
+        ],
+        "grounded_component_types": [
+          "CoolingLoop",
+          "BatteryPackElectroThermal"
+        ],
+        "grounded_ports": [
+          "coolantInletTemperature_C"
+        ],
+        "task_trace": {
+          "components": [
+            "coolingLoop",
+            "battery"
+          ],
+          "ports": [
+            "coolantInletTemperature_C"
+          ],
+          "signals": [
+            "coolantInletTemperature_C"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      },
+      {
+        "task_id": "task_connection_9",
+        "objective": "Verify transfer from coolingLoop to battery",
+        "required_signals": [
+          "coolantFlow_kgps"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "coolantFlow_kgps",
+            "direction": "in",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.coolantFlow_kgps",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "coolantFlow_kgps",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantFlow_kgps"
+          },
+          {
+            "signal_name": "coolantFlow_kgps",
+            "direction": "out",
+            "component_hint": "coolingLoop",
+            "port_hint": "coolingLoop.coolingPort.coolantFlow_kgps",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "coolantFlow_kgps",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.coolantFlow_kgps"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "coolantFlow_kgps",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantFlow_kgps"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "coolantFlow_kgps",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantFlow_kgps"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "coolantFlow_kgps",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantFlow_kgps"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "coolantFlow_kgps",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantFlow_kgps"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "coolantFlow_kgps",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantFlow_kgps"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "coolingLoop",
+          "battery"
+        ],
+        "grounded_component_types": [
+          "CoolingLoop",
+          "BatteryPackElectroThermal"
+        ],
+        "grounded_ports": [
+          "coolantFlow_kgps"
+        ],
+        "task_trace": {
+          "components": [
+            "coolingLoop",
+            "battery"
+          ],
+          "ports": [
+            "coolantFlow_kgps"
+          ],
+          "signals": [
+            "coolantFlow_kgps"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_connection",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 2,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      }
+    ],
+    "rationale": "rule-generated connection-aligned raw task set",
+    "score": 0.8813823529411764,
+    "p_value": 0.9047619047619048,
+    "task_set_id": "taskset_1",
+    "generation_source": "rules_connection",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "controller",
+        "target_component": "battery",
+        "signals": [
+          "current_A",
+          "current_A"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_4",
+          "task_connection_5",
+          "task_connection_6",
+          "task_connection_7",
+          "task_connection_8",
+          "task_connection_9"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "controller",
+            "source_signal": "current_A",
+            "target_component": "battery",
+            "target_signal": "current_A",
+            "must_route": true,
+            "semantic_intent": "controller.current_A -> battery.current_A",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "battery"
+            }
+          }
+        ],
+        "semantic_intent": "controller.current_A -> battery.current_A",
+        "details": {
+          "source_signal": "current_A",
+          "target_signal": "current_A"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "battery",
+        "target_component": "controller",
+        "signals": [
+          "voltage_V",
+          "voltage_V"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_6",
+          "task_connection_7",
+          "task_connection_8",
+          "task_connection_9",
+          "task_connection_4",
+          "task_connection_5"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "battery",
+            "source_signal": "voltage_V",
+            "target_component": "controller",
+            "target_signal": "voltage_V",
+            "must_route": true,
+            "semantic_intent": "battery.voltage_V -> controller.voltage_V",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "battery.voltage_V -> controller.voltage_V",
+        "details": {
+          "source_signal": "voltage_V",
+          "target_signal": "voltage_V"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "battery",
+        "target_component": "controller",
+        "signals": [
+          "soc",
+          "soc"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_6",
+          "task_connection_7",
+          "task_connection_8",
+          "task_connection_9",
+          "task_connection_4",
+          "task_connection_5"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "battery",
+            "source_signal": "soc",
+            "target_component": "controller",
+            "target_signal": "soc",
+            "must_route": true,
+            "semantic_intent": "battery.soc -> controller.soc",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "battery.soc -> controller.soc",
+        "details": {
+          "source_signal": "soc",
+          "target_signal": "soc"
+        }
+      },
+      {
+        "chain_id": "chain_3",
+        "source_component": "battery",
+        "target_component": "controller",
+        "signals": [
+          "coreTemperature_C",
+          "coreTemperature_C"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_6",
+          "task_connection_7",
+          "task_connection_8",
+          "task_connection_9",
+          "task_connection_4",
+          "task_connection_5"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_3_seg_0",
+            "source_component": "battery",
+            "source_signal": "coreTemperature_C",
+            "target_component": "controller",
+            "target_signal": "coreTemperature_C",
+            "must_route": true,
+            "semantic_intent": "battery.coreTemperature_C -> controller.coreTemperature_C",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "battery.coreTemperature_C -> controller.coreTemperature_C",
+        "details": {
+          "source_signal": "coreTemperature_C",
+          "target_signal": "coreTemperature_C"
+        }
+      },
+      {
+        "chain_id": "chain_4",
+        "source_component": "controller",
+        "target_component": "coolingLoop",
+        "signals": [
+          "pumpCommand",
+          "pumpCommand"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_4",
+          "task_connection_5",
+          "task_connection_7",
+          "task_connection_8",
+          "task_connection_9"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_4_seg_0",
+            "source_component": "controller",
+            "source_signal": "pumpCommand",
+            "target_component": "coolingLoop",
+            "target_signal": "pumpCommand",
+            "must_route": true,
+            "semantic_intent": "controller.pumpCommand -> coolingLoop.pumpCommand",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "controller.pumpCommand -> coolingLoop.pumpCommand",
+        "details": {
+          "source_signal": "pumpCommand",
+          "target_signal": "pumpCommand"
+        }
+      },
+      {
+        "chain_id": "chain_5",
+        "source_component": "controller",
+        "target_component": "coolingLoop",
+        "signals": [
+          "fanCommand",
+          "fanCommand"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_4",
+          "task_connection_5",
+          "task_connection_7",
+          "task_connection_8",
+          "task_connection_9"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_5_seg_0",
+            "source_component": "controller",
+            "source_signal": "fanCommand",
+            "target_component": "coolingLoop",
+            "target_signal": "fanCommand",
+            "must_route": true,
+            "semantic_intent": "controller.fanCommand -> coolingLoop.fanCommand",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "controller.fanCommand -> coolingLoop.fanCommand",
+        "details": {
+          "source_signal": "fanCommand",
+          "target_signal": "fanCommand"
+        }
+      },
+      {
+        "chain_id": "chain_6",
+        "source_component": "battery",
+        "target_component": "coolingLoop",
+        "signals": [
+          "surfaceTemperature_C",
+          "batterySurfaceTemperature_C"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_6",
+          "task_connection_7",
+          "task_connection_8",
+          "task_connection_9",
+          "task_connection_4",
+          "task_connection_5"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_6_seg_0",
+            "source_component": "battery",
+            "source_signal": "surfaceTemperature_C",
+            "target_component": "coolingLoop",
+            "target_signal": "batterySurfaceTemperature_C",
+            "must_route": true,
+            "semantic_intent": "battery.surfaceTemperature_C -> coolingLoop.batterySurfaceTemperature_C",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "battery.surfaceTemperature_C -> coolingLoop.batterySurfaceTemperature_C",
+        "details": {
+          "source_signal": "surfaceTemperature_C",
+          "target_signal": "batterySurfaceTemperature_C"
+        }
+      },
+      {
+        "chain_id": "chain_7",
+        "source_component": "battery",
+        "target_component": "coolingLoop",
+        "signals": [
+          "heatGeneration_W",
+          "heatLoad_W"
+        ],
+        "origin_task_ids": [
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_6",
+          "task_connection_7",
+          "task_connection_8",
+          "task_connection_9",
+          "task_connection_4",
+          "task_connection_5"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_7_seg_0",
+            "source_component": "battery",
+            "source_signal": "heatGeneration_W",
+            "target_component": "coolingLoop",
+            "target_signal": "heatLoad_W",
+            "must_route": true,
+            "semantic_intent": "battery.heatGeneration_W -> coolingLoop.heatLoad_W",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "battery.heatGeneration_W -> coolingLoop.heatLoad_W",
+        "details": {
+          "source_signal": "heatGeneration_W",
+          "target_signal": "heatLoad_W"
+        }
+      },
+      {
+        "chain_id": "chain_8",
+        "source_component": "coolingLoop",
+        "target_component": "battery",
+        "signals": [
+          "coolantInletTemperature_C",
+          "coolantInletTemperature_C"
+        ],
+        "origin_task_ids": [
+          "task_connection_4",
+          "task_connection_5",
+          "task_connection_7",
+          "task_connection_8",
+          "task_connection_9",
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_6"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_8_seg_0",
+            "source_component": "coolingLoop",
+            "source_signal": "coolantInletTemperature_C",
+            "target_component": "battery",
+            "target_signal": "coolantInletTemperature_C",
+            "must_route": true,
+            "semantic_intent": "coolingLoop.coolantInletTemperature_C -> battery.coolantInletTemperature_C",
+            "adjacency_evidence": {
+              "source_component": "coolingLoop",
+              "target_component": "battery"
+            }
+          }
+        ],
+        "semantic_intent": "coolingLoop.coolantInletTemperature_C -> battery.coolantInletTemperature_C",
+        "details": {
+          "source_signal": "coolantInletTemperature_C",
+          "target_signal": "coolantInletTemperature_C"
+        }
+      },
+      {
+        "chain_id": "chain_9",
+        "source_component": "coolingLoop",
+        "target_component": "battery",
+        "signals": [
+          "coolantFlow_kgps",
+          "coolantFlow_kgps"
+        ],
+        "origin_task_ids": [
+          "task_connection_4",
+          "task_connection_5",
+          "task_connection_7",
+          "task_connection_8",
+          "task_connection_9",
+          "task_connection_0",
+          "task_connection_1",
+          "task_connection_2",
+          "task_connection_3",
+          "task_connection_6"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_9_seg_0",
+            "source_component": "coolingLoop",
+            "source_signal": "coolantFlow_kgps",
+            "target_component": "battery",
+            "target_signal": "coolantFlow_kgps",
+            "must_route": true,
+            "semantic_intent": "coolingLoop.coolantFlow_kgps -> battery.coolantFlow_kgps",
+            "adjacency_evidence": {
+              "source_component": "coolingLoop",
+              "target_component": "battery"
+            }
+          }
+        ],
+        "semantic_intent": "coolingLoop.coolantFlow_kgps -> battery.coolantFlow_kgps",
+        "details": {
+          "source_signal": "coolantFlow_kgps",
+          "target_signal": "coolantFlow_kgps"
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.9047619047619048,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.1186176470588236,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 0.6875,
+      "criteria_coverage": 1.0,
+      "constraint_completeness": 1.0,
+      "regime_coverage": 1.0,
+      "topology_alignment": 0.9,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.11764705882352941,
+      "final_score": 0.8813823529411764
+    },
+    "meta": {
+      "generation_source": "rules_connection",
+      "generation_family": "rules",
+      "required_chain_count": 10,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_connection_0:component_signal_grounded",
+        "task_connection_1:component_signal_grounded",
+        "task_connection_2:component_signal_grounded",
+        "task_connection_3:component_signal_grounded",
+        "task_connection_4:component_signal_grounded",
+        "task_connection_5:component_signal_grounded",
+        "task_connection_6:component_signal_grounded",
+        "task_connection_7:component_signal_grounded",
+        "task_connection_8:component_signal_grounded",
+        "task_connection_9:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.9047619047619048,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.1186176470588236,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  },
+  {
+    "tasks": [
+      {
+        "task_id": "task_monolithic",
+        "objective": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profil",
+        "required_signals": [
+          "voltage_V",
+          "soc",
+          "driverPowerRequest_W",
+          "current_A",
+          "coolantFlow_kgps"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "voltage_V",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.voltage_V",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "voltage_V",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "signal_name": "voltage_V",
+            "direction": "out",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.voltage_V",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "voltage_V",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.voltage_V"
+          },
+          {
+            "signal_name": "soc",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.soc",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "soc",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.soc"
+          },
+          {
+            "signal_name": "soc",
+            "direction": "out",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.soc",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "soc",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.soc"
+          },
+          {
+            "signal_name": "driverPowerRequest_W",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.driverPowerRequest_W",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "driverPowerRequest_W",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.driverPowerRequest_W"
+          },
+          {
+            "signal_name": "current_A",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.current_A",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "current_A",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.current_A"
+          },
+          {
+            "signal_name": "current_A",
+            "direction": "in",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.current_A",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "current_A",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.current_A"
+          },
+          {
+            "signal_name": "coolantFlow_kgps",
+            "direction": "in",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.coolantFlow_kgps",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "coolantFlow_kgps",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantFlow_kgps"
+          },
+          {
+            "signal_name": "coolantFlow_kgps",
+            "direction": "out",
+            "component_hint": "coolingLoop",
+            "port_hint": "coolingLoop.coolingPort.coolantFlow_kgps",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "coolantFlow_kgps",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.coolantFlow_kgps"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "voltage_V",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "controller",
+          "battery",
+          "coolingLoop"
+        ],
+        "grounded_component_types": [
+          "ThermalManagementController",
+          "BatteryPackElectroThermal",
+          "CoolingLoop"
+        ],
+        "grounded_ports": [
+          "voltage_V",
+          "soc",
+          "driverPowerRequest_W",
+          "current_A",
+          "coolantFlow_kgps"
+        ],
+        "task_trace": {
+          "components": [
+            "controller",
+            "battery",
+            "coolingLoop"
+          ],
+          "ports": [
+            "voltage_V",
+            "soc",
+            "driverPowerRequest_W",
+            "current_A",
+            "coolantFlow_kgps"
+          ],
+          "signals": [
+            "voltage_V",
+            "soc",
+            "driverPowerRequest_W",
+            "current_A",
+            "coolantFlow_kgps"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 3,
+          "grounded_signal_count": 5,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": []
+        }
+      }
+    ],
+    "rationale": "rule-generated holistic raw task set",
+    "score": 0.7096470588235293,
+    "p_value": 0.6190476190476191,
+    "task_set_id": "taskset_2",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "controller",
+        "target_component": "battery",
+        "signals": [
+          "current_A",
+          "current_A"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "controller",
+            "source_signal": "current_A",
+            "target_component": "battery",
+            "target_signal": "current_A",
+            "must_route": true,
+            "semantic_intent": "controller.current_A -> battery.current_A",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "battery"
+            }
+          }
+        ],
+        "semantic_intent": "controller.current_A -> battery.current_A",
+        "details": {
+          "source_signal": "current_A",
+          "target_signal": "current_A"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "battery",
+        "target_component": "controller",
+        "signals": [
+          "voltage_V",
+          "voltage_V"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "battery",
+            "source_signal": "voltage_V",
+            "target_component": "controller",
+            "target_signal": "voltage_V",
+            "must_route": true,
+            "semantic_intent": "battery.voltage_V -> controller.voltage_V",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "battery.voltage_V -> controller.voltage_V",
+        "details": {
+          "source_signal": "voltage_V",
+          "target_signal": "voltage_V"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "battery",
+        "target_component": "controller",
+        "signals": [
+          "soc",
+          "soc"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "battery",
+            "source_signal": "soc",
+            "target_component": "controller",
+            "target_signal": "soc",
+            "must_route": true,
+            "semantic_intent": "battery.soc -> controller.soc",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "battery.soc -> controller.soc",
+        "details": {
+          "source_signal": "soc",
+          "target_signal": "soc"
+        }
+      },
+      {
+        "chain_id": "chain_3",
+        "source_component": "battery",
+        "target_component": "controller",
+        "signals": [
+          "coreTemperature_C",
+          "coreTemperature_C"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_3_seg_0",
+            "source_component": "battery",
+            "source_signal": "coreTemperature_C",
+            "target_component": "controller",
+            "target_signal": "coreTemperature_C",
+            "must_route": true,
+            "semantic_intent": "battery.coreTemperature_C -> controller.coreTemperature_C",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "battery.coreTemperature_C -> controller.coreTemperature_C",
+        "details": {
+          "source_signal": "coreTemperature_C",
+          "target_signal": "coreTemperature_C"
+        }
+      },
+      {
+        "chain_id": "chain_4",
+        "source_component": "controller",
+        "target_component": "coolingLoop",
+        "signals": [
+          "pumpCommand",
+          "pumpCommand"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_4_seg_0",
+            "source_component": "controller",
+            "source_signal": "pumpCommand",
+            "target_component": "coolingLoop",
+            "target_signal": "pumpCommand",
+            "must_route": true,
+            "semantic_intent": "controller.pumpCommand -> coolingLoop.pumpCommand",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "controller.pumpCommand -> coolingLoop.pumpCommand",
+        "details": {
+          "source_signal": "pumpCommand",
+          "target_signal": "pumpCommand"
+        }
+      },
+      {
+        "chain_id": "chain_5",
+        "source_component": "controller",
+        "target_component": "coolingLoop",
+        "signals": [
+          "fanCommand",
+          "fanCommand"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_5_seg_0",
+            "source_component": "controller",
+            "source_signal": "fanCommand",
+            "target_component": "coolingLoop",
+            "target_signal": "fanCommand",
+            "must_route": true,
+            "semantic_intent": "controller.fanCommand -> coolingLoop.fanCommand",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "controller.fanCommand -> coolingLoop.fanCommand",
+        "details": {
+          "source_signal": "fanCommand",
+          "target_signal": "fanCommand"
+        }
+      },
+      {
+        "chain_id": "chain_6",
+        "source_component": "battery",
+        "target_component": "coolingLoop",
+        "signals": [
+          "surfaceTemperature_C",
+          "batterySurfaceTemperature_C"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_6_seg_0",
+            "source_component": "battery",
+            "source_signal": "surfaceTemperature_C",
+            "target_component": "coolingLoop",
+            "target_signal": "batterySurfaceTemperature_C",
+            "must_route": true,
+            "semantic_intent": "battery.surfaceTemperature_C -> coolingLoop.batterySurfaceTemperature_C",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "battery.surfaceTemperature_C -> coolingLoop.batterySurfaceTemperature_C",
+        "details": {
+          "source_signal": "surfaceTemperature_C",
+          "target_signal": "batterySurfaceTemperature_C"
+        }
+      },
+      {
+        "chain_id": "chain_7",
+        "source_component": "battery",
+        "target_component": "coolingLoop",
+        "signals": [
+          "heatGeneration_W",
+          "heatLoad_W"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_7_seg_0",
+            "source_component": "battery",
+            "source_signal": "heatGeneration_W",
+            "target_component": "coolingLoop",
+            "target_signal": "heatLoad_W",
+            "must_route": true,
+            "semantic_intent": "battery.heatGeneration_W -> coolingLoop.heatLoad_W",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "battery.heatGeneration_W -> coolingLoop.heatLoad_W",
+        "details": {
+          "source_signal": "heatGeneration_W",
+          "target_signal": "heatLoad_W"
+        }
+      },
+      {
+        "chain_id": "chain_8",
+        "source_component": "coolingLoop",
+        "target_component": "battery",
+        "signals": [
+          "coolantInletTemperature_C",
+          "coolantInletTemperature_C"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_8_seg_0",
+            "source_component": "coolingLoop",
+            "source_signal": "coolantInletTemperature_C",
+            "target_component": "battery",
+            "target_signal": "coolantInletTemperature_C",
+            "must_route": true,
+            "semantic_intent": "coolingLoop.coolantInletTemperature_C -> battery.coolantInletTemperature_C",
+            "adjacency_evidence": {
+              "source_component": "coolingLoop",
+              "target_component": "battery"
+            }
+          }
+        ],
+        "semantic_intent": "coolingLoop.coolantInletTemperature_C -> battery.coolantInletTemperature_C",
+        "details": {
+          "source_signal": "coolantInletTemperature_C",
+          "target_signal": "coolantInletTemperature_C"
+        }
+      },
+      {
+        "chain_id": "chain_9",
+        "source_component": "coolingLoop",
+        "target_component": "battery",
+        "signals": [
+          "coolantFlow_kgps",
+          "coolantFlow_kgps"
+        ],
+        "origin_task_ids": [
+          "task_monolithic"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_9_seg_0",
+            "source_component": "coolingLoop",
+            "source_signal": "coolantFlow_kgps",
+            "target_component": "battery",
+            "target_signal": "coolantFlow_kgps",
+            "must_route": true,
+            "semantic_intent": "coolingLoop.coolantFlow_kgps -> battery.coolantFlow_kgps",
+            "adjacency_evidence": {
+              "source_component": "coolingLoop",
+              "target_component": "battery"
+            }
+          }
+        ],
+        "semantic_intent": "coolingLoop.coolantFlow_kgps -> battery.coolantFlow_kgps",
+        "details": {
+          "source_signal": "coolantFlow_kgps",
+          "target_signal": "coolantFlow_kgps"
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.6190476190476191,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.2903529411764707,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 0.3125,
+      "criteria_coverage": 1.0,
+      "constraint_completeness": 1.0,
+      "regime_coverage": 1.0,
+      "topology_alignment": 0.1,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.10294117647058823,
+      "final_score": 0.7096470588235293
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "required_chain_count": 10,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_monolithic:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.6190476190476191,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.2903529411764707,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  },
+  {
+    "tasks": [
+      {
+        "task_id": "task_component_0",
+        "objective": "Verify ThermalManagementController behavior for requirement: 电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profil",
+        "required_signals": [
+          "voltage_V",
+          "soc",
+          "driverPowerRequest_W",
+          "current_A"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "voltage_V",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.voltage_V",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "voltage_V",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "signal_name": "soc",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.soc",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "soc",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.soc"
+          },
+          {
+            "signal_name": "driverPowerRequest_W",
+            "direction": "in",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.driverPowerRequest_W",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "driverPowerRequest_W",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.driverPowerRequest_W"
+          },
+          {
+            "signal_name": "current_A",
+            "direction": "out",
+            "component_hint": "controller",
+            "port_hint": "controller.controllerPort.current_A",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "current_A",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.current_A"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "voltage_V",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "controller",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "controller",
+            "grounded_port_ref": "controller.controllerPort.voltage_V"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "controller"
+        ],
+        "grounded_component_types": [
+          "ThermalManagementController"
+        ],
+        "grounded_ports": [
+          "voltage_V",
+          "soc",
+          "driverPowerRequest_W",
+          "current_A"
+        ],
+        "task_trace": {
+          "components": [
+            "controller"
+          ],
+          "ports": [
+            "voltage_V",
+            "soc",
+            "driverPowerRequest_W",
+            "current_A"
+          ],
+          "signals": [
+            "voltage_V",
+            "soc",
+            "driverPowerRequest_W",
+            "current_A"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_component",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 4,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": [
+            "dropped_signals_without_component_support"
+          ]
+        }
+      },
+      {
+        "task_id": "task_component_1",
+        "objective": "Verify BatteryPackElectroThermal behavior for requirement: 电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profil",
+        "required_signals": [
+          "voltage_V",
+          "soc",
+          "current_A",
+          "coolantFlow_kgps"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "voltage_V",
+            "direction": "out",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.voltage_V",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "voltage_V",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.voltage_V"
+          },
+          {
+            "signal_name": "soc",
+            "direction": "out",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.soc",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "soc",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.soc"
+          },
+          {
+            "signal_name": "current_A",
+            "direction": "in",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.current_A",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "current_A",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.current_A"
+          },
+          {
+            "signal_name": "coolantFlow_kgps",
+            "direction": "in",
+            "component_hint": "battery",
+            "port_hint": "battery.batteryPort.coolantFlow_kgps",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "driven",
+            "source_text": "coolantFlow_kgps",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.coolantFlow_kgps"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.voltage_V"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.voltage_V"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "voltage_V",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.voltage_V"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.voltage_V"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "voltage_V",
+            "scope": "battery",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "battery",
+            "grounded_port_ref": "battery.batteryPort.voltage_V"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "battery"
+        ],
+        "grounded_component_types": [
+          "BatteryPackElectroThermal"
+        ],
+        "grounded_ports": [
+          "voltage_V",
+          "soc",
+          "current_A",
+          "coolantFlow_kgps"
+        ],
+        "task_trace": {
+          "components": [
+            "battery"
+          ],
+          "ports": [
+            "voltage_V",
+            "soc",
+            "current_A",
+            "coolantFlow_kgps"
+          ],
+          "signals": [
+            "voltage_V",
+            "soc",
+            "current_A",
+            "coolantFlow_kgps"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_component",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 4,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": [
+            "dropped_signals_without_component_support"
+          ]
+        }
+      },
+      {
+        "task_id": "task_component_2",
+        "objective": "Verify CoolingLoop behavior for requirement: 电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profil",
+        "required_signals": [
+          "coolantFlow_kgps"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "notes": ""
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [
+          {
+            "signal_name": "coolantFlow_kgps",
+            "direction": "out",
+            "component_hint": "coolingLoop",
+            "port_hint": "coolingLoop.coolingPort.coolantFlow_kgps",
+            "unit_hint": "",
+            "type_hint": "Real",
+            "role": "observed",
+            "source_text": "coolantFlow_kgps",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.coolantFlow_kgps"
+          }
+        ],
+        "constraint_set": [
+          {
+            "metric": "within_range(voltage_V)",
+            "operator": "within",
+            "value": [
+              280.0,
+              420.0
+            ],
+            "unit": "",
+            "grounded_signal": "coolantFlow_kgps",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.coolantFlow_kgps"
+          },
+          {
+            "metric": "within_range(pump_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": "",
+            "grounded_signal": "coolantFlow_kgps",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.coolantFlow_kgps"
+          },
+          {
+            "metric": "within_range(fan_cmd)",
+            "operator": "within",
+            "value": [
+              0.0,
+              1.0
+            ],
+            "unit": ".",
+            "grounded_signal": "coolantFlow_kgps",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.coolantFlow_kgps"
+          },
+          {
+            "metric": "max(T_core_C)",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "grounded_signal": "coolantFlow_kgps",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.coolantFlow_kgps"
+          },
+          {
+            "metric": "min(soc)",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "grounded_signal": "coolantFlow_kgps",
+            "scope": "coolingLoop",
+            "source_text": "电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_surface_C, coolant_temp_C, soc. Acceptance criteria: max(T_core_C) <= 55.0; min(soc) >= 0.2; within_range(voltage_V) in [280.0, 420.0]; within_range(pump_cmd) in [0.0, 1.0]; within_range(fan_cmd) in [0.0, 1.0]. Signals of interest: driver_power_request_W, current_A, voltage_V, soc, T_core_C, T_surface_C, coolant_in_temp_C, coolant_flow_kgps, pump_cmd, fan_cmd Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criterion on the monitored signals.",
+            "grounded_component_ref": "coolingLoop",
+            "grounded_port_ref": "coolingLoop.coolingPort.coolantFlow_kgps"
+          }
+        ],
+        "operating_regime": {
+          "start_time": 0.0,
+          "end_time": 1200.0,
+          "inputs": {
+            "ambient_temp_C": "provided",
+            "driver_power_request_W_profile": "provided"
+          },
+          "initial_conditions": {
+            "T_core_C": "provided",
+            "T_surface_C": "provided",
+            "coolant_temp_C": "provided",
+            "soc": "provided"
+          },
+          "assumptions": [],
+          "description": "Extracted from requirement text"
+        },
+        "grounded_components": [
+          "coolingLoop"
+        ],
+        "grounded_component_types": [
+          "CoolingLoop"
+        ],
+        "grounded_ports": [
+          "coolantFlow_kgps"
+        ],
+        "task_trace": {
+          "components": [
+            "coolingLoop"
+          ],
+          "ports": [
+            "coolantFlow_kgps"
+          ],
+          "signals": [
+            "coolantFlow_kgps"
+          ],
+          "connections": [],
+          "notes": [
+            "stage1_enriched"
+          ]
+        },
+        "diagnostics": {
+          "generation_source": "rules_component",
+          "generation_family": "rules",
+          "grounded": true,
+          "grounded_component_count": 1,
+          "grounded_signal_count": 1,
+          "retained_requirement_signals_without_exact_mbse_port": false,
+          "retained_requirement_signals": [],
+          "grounding_notes": [
+            "dropped_signals_without_component_support"
+          ]
+        }
+      }
+    ],
+    "rationale": "rule-generated component-aligned raw task set",
+    "score": 0.6976470588235293,
+    "p_value": 0.6190476190476191,
+    "task_set_id": "taskset_0",
+    "generation_source": "rules_component",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "chain_0",
+        "source_component": "controller",
+        "target_component": "battery",
+        "signals": [
+          "current_A",
+          "current_A"
+        ],
+        "origin_task_ids": [
+          "task_component_0",
+          "task_component_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_0_seg_0",
+            "source_component": "controller",
+            "source_signal": "current_A",
+            "target_component": "battery",
+            "target_signal": "current_A",
+            "must_route": true,
+            "semantic_intent": "controller.current_A -> battery.current_A",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "battery"
+            }
+          }
+        ],
+        "semantic_intent": "controller.current_A -> battery.current_A",
+        "details": {
+          "source_signal": "current_A",
+          "target_signal": "current_A"
+        }
+      },
+      {
+        "chain_id": "chain_1",
+        "source_component": "battery",
+        "target_component": "controller",
+        "signals": [
+          "voltage_V",
+          "voltage_V"
+        ],
+        "origin_task_ids": [
+          "task_component_1",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_1_seg_0",
+            "source_component": "battery",
+            "source_signal": "voltage_V",
+            "target_component": "controller",
+            "target_signal": "voltage_V",
+            "must_route": true,
+            "semantic_intent": "battery.voltage_V -> controller.voltage_V",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "battery.voltage_V -> controller.voltage_V",
+        "details": {
+          "source_signal": "voltage_V",
+          "target_signal": "voltage_V"
+        }
+      },
+      {
+        "chain_id": "chain_2",
+        "source_component": "battery",
+        "target_component": "controller",
+        "signals": [
+          "soc",
+          "soc"
+        ],
+        "origin_task_ids": [
+          "task_component_1",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_2_seg_0",
+            "source_component": "battery",
+            "source_signal": "soc",
+            "target_component": "controller",
+            "target_signal": "soc",
+            "must_route": true,
+            "semantic_intent": "battery.soc -> controller.soc",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "battery.soc -> controller.soc",
+        "details": {
+          "source_signal": "soc",
+          "target_signal": "soc"
+        }
+      },
+      {
+        "chain_id": "chain_3",
+        "source_component": "battery",
+        "target_component": "controller",
+        "signals": [
+          "coreTemperature_C",
+          "coreTemperature_C"
+        ],
+        "origin_task_ids": [
+          "task_component_1",
+          "task_component_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_3_seg_0",
+            "source_component": "battery",
+            "source_signal": "coreTemperature_C",
+            "target_component": "controller",
+            "target_signal": "coreTemperature_C",
+            "must_route": true,
+            "semantic_intent": "battery.coreTemperature_C -> controller.coreTemperature_C",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "controller"
+            }
+          }
+        ],
+        "semantic_intent": "battery.coreTemperature_C -> controller.coreTemperature_C",
+        "details": {
+          "source_signal": "coreTemperature_C",
+          "target_signal": "coreTemperature_C"
+        }
+      },
+      {
+        "chain_id": "chain_4",
+        "source_component": "controller",
+        "target_component": "coolingLoop",
+        "signals": [
+          "pumpCommand",
+          "pumpCommand"
+        ],
+        "origin_task_ids": [
+          "task_component_0",
+          "task_component_2"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_4_seg_0",
+            "source_component": "controller",
+            "source_signal": "pumpCommand",
+            "target_component": "coolingLoop",
+            "target_signal": "pumpCommand",
+            "must_route": true,
+            "semantic_intent": "controller.pumpCommand -> coolingLoop.pumpCommand",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "controller.pumpCommand -> coolingLoop.pumpCommand",
+        "details": {
+          "source_signal": "pumpCommand",
+          "target_signal": "pumpCommand"
+        }
+      },
+      {
+        "chain_id": "chain_5",
+        "source_component": "controller",
+        "target_component": "coolingLoop",
+        "signals": [
+          "fanCommand",
+          "fanCommand"
+        ],
+        "origin_task_ids": [
+          "task_component_0",
+          "task_component_2"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_5_seg_0",
+            "source_component": "controller",
+            "source_signal": "fanCommand",
+            "target_component": "coolingLoop",
+            "target_signal": "fanCommand",
+            "must_route": true,
+            "semantic_intent": "controller.fanCommand -> coolingLoop.fanCommand",
+            "adjacency_evidence": {
+              "source_component": "controller",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "controller.fanCommand -> coolingLoop.fanCommand",
+        "details": {
+          "source_signal": "fanCommand",
+          "target_signal": "fanCommand"
+        }
+      },
+      {
+        "chain_id": "chain_6",
+        "source_component": "battery",
+        "target_component": "coolingLoop",
+        "signals": [
+          "surfaceTemperature_C",
+          "batterySurfaceTemperature_C"
+        ],
+        "origin_task_ids": [
+          "task_component_1",
+          "task_component_2"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_6_seg_0",
+            "source_component": "battery",
+            "source_signal": "surfaceTemperature_C",
+            "target_component": "coolingLoop",
+            "target_signal": "batterySurfaceTemperature_C",
+            "must_route": true,
+            "semantic_intent": "battery.surfaceTemperature_C -> coolingLoop.batterySurfaceTemperature_C",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "battery.surfaceTemperature_C -> coolingLoop.batterySurfaceTemperature_C",
+        "details": {
+          "source_signal": "surfaceTemperature_C",
+          "target_signal": "batterySurfaceTemperature_C"
+        }
+      },
+      {
+        "chain_id": "chain_7",
+        "source_component": "battery",
+        "target_component": "coolingLoop",
+        "signals": [
+          "heatGeneration_W",
+          "heatLoad_W"
+        ],
+        "origin_task_ids": [
+          "task_component_1",
+          "task_component_2"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_7_seg_0",
+            "source_component": "battery",
+            "source_signal": "heatGeneration_W",
+            "target_component": "coolingLoop",
+            "target_signal": "heatLoad_W",
+            "must_route": true,
+            "semantic_intent": "battery.heatGeneration_W -> coolingLoop.heatLoad_W",
+            "adjacency_evidence": {
+              "source_component": "battery",
+              "target_component": "coolingLoop"
+            }
+          }
+        ],
+        "semantic_intent": "battery.heatGeneration_W -> coolingLoop.heatLoad_W",
+        "details": {
+          "source_signal": "heatGeneration_W",
+          "target_signal": "heatLoad_W"
+        }
+      },
+      {
+        "chain_id": "chain_8",
+        "source_component": "coolingLoop",
+        "target_component": "battery",
+        "signals": [
+          "coolantInletTemperature_C",
+          "coolantInletTemperature_C"
+        ],
+        "origin_task_ids": [
+          "task_component_2",
+          "task_component_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_8_seg_0",
+            "source_component": "coolingLoop",
+            "source_signal": "coolantInletTemperature_C",
+            "target_component": "battery",
+            "target_signal": "coolantInletTemperature_C",
+            "must_route": true,
+            "semantic_intent": "coolingLoop.coolantInletTemperature_C -> battery.coolantInletTemperature_C",
+            "adjacency_evidence": {
+              "source_component": "coolingLoop",
+              "target_component": "battery"
+            }
+          }
+        ],
+        "semantic_intent": "coolingLoop.coolantInletTemperature_C -> battery.coolantInletTemperature_C",
+        "details": {
+          "source_signal": "coolantInletTemperature_C",
+          "target_signal": "coolantInletTemperature_C"
+        }
+      },
+      {
+        "chain_id": "chain_9",
+        "source_component": "coolingLoop",
+        "target_component": "battery",
+        "signals": [
+          "coolantFlow_kgps",
+          "coolantFlow_kgps"
+        ],
+        "origin_task_ids": [
+          "task_component_2",
+          "task_component_1"
+        ],
+        "segments": [
+          {
+            "segment_id": "chain_9_seg_0",
+            "source_component": "coolingLoop",
+            "source_signal": "coolantFlow_kgps",
+            "target_component": "battery",
+            "target_signal": "coolantFlow_kgps",
+            "must_route": true,
+            "semantic_intent": "coolingLoop.coolantFlow_kgps -> battery.coolantFlow_kgps",
+            "adjacency_evidence": {
+              "source_component": "coolingLoop",
+              "target_component": "battery"
+            }
+          }
+        ],
+        "semantic_intent": "coolingLoop.coolantFlow_kgps -> battery.coolantFlow_kgps",
+        "details": {
+          "source_signal": "coolantFlow_kgps",
+          "target_signal": "coolantFlow_kgps"
+        }
+      }
+    ],
+    "conformal_info": {
+      "threshold": 0.88,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.6190476190476191,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.3023529411764707,
+      "fallback_retained": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set",
+      "confidence": 0.9,
+      "calibration_artifact": {
+        "artifact_version": "stage1_calibration_v1",
+        "artifact_path": "pipeline/resources/stage1_calibration.json",
+        "calibration_size": 20,
+        "confidence_levels": [
+          0.8,
+          0.9,
+          0.95
+        ],
+        "score_summary": {
+          "min": 0.21,
+          "max": 0.94,
+          "mean": 0.611
+        }
+      }
+    },
+    "score_breakdown": {
+      "component_coverage": 1.0,
+      "signal_coverage": 0.3125,
+      "criteria_coverage": 1.0,
+      "constraint_completeness": 1.0,
+      "regime_coverage": 1.0,
+      "topology_alignment": 0.0,
+      "chain_completeness": 1.0,
+      "requirement_grounding": 0.10294117647058823,
+      "final_score": 0.6976470588235293
+    },
+    "meta": {
+      "generation_source": "rules_component",
+      "generation_family": "rules",
+      "required_chain_count": 10,
+      "grounding_valid": true,
+      "grounding_errors": [],
+      "grounding_notes": [
+        "task_component_0:component_signal_grounded",
+        "task_component_1:component_signal_grounded",
+        "task_component_2:component_signal_grounded"
+      ],
+      "calibration_artifact_version": "stage1_calibration_v1",
+      "calibration_artifact_path": "pipeline/resources/stage1_calibration.json",
+      "calibration_size": 20,
+      "calibration_confidence_levels": [
+        0.8,
+        0.9,
+        0.95
+      ],
+      "calibration_score_summary": {
+        "min": 0.21,
+        "max": 0.94,
+        "mean": 0.611
+      },
+      "confidence": 0.9,
+      "p_value_threshold": 0.09999999999999998,
+      "p_value": 0.6190476190476191,
+      "accepted": true,
+      "accepted_by": "p_value",
+      "nonconformity": 0.3023529411764707,
+      "fallback_retained": false,
+      "forced_fallback": false,
+      "engineering_fallback": false,
+      "calibrated_member": true,
+      "candidate_status": "calibrated_accept",
+      "selection_semantics": "calibrated_set"
+    }
+  }
+]

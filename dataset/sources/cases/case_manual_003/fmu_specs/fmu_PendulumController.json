@@ -1,0 +1,36 @@
+{
+  "name": "PendulumController",
+  "description": "倒立摆小车控制器：角度+位置反馈，包含两个积分状态、执行器一阶滞后，以及非线性饱和/死区/抗积分饱和。",
+  "inputs": [
+    {"name": "x_ref_m", "type": "Real", "unit": "m", "description": "期望位置"},
+    {"name": "theta_ref_rad", "type": "Real", "unit": "rad", "description": "期望摆角（通常为0，竖直向上）"},
+
+    {"name": "x_m", "type": "Real", "unit": "m", "description": "测得小车位置"},
+    {"name": "x_dot_mps", "type": "Real", "unit": "m/s", "description": "测得小车速度"},
+    {"name": "theta_rad", "type": "Real", "unit": "rad", "description": "测得摆角"},
+    {"name": "theta_dot_radps", "type": "Real", "unit": "rad/s", "description": "测得摆角速度"}
+  ],
+  "outputs": [
+    {"name": "force_cmd_N", "type": "Real", "unit": "N", "description": "输出给小车的水平力指令（经过执行器滞后 + 饱和 + 死区）"}
+  ],
+  "parameters": [
+    {"name": "Kp_theta", "type": "Real", "default": 80.0, "unit": "N/rad", "description": "摆角比例增益"},
+    {"name": "Kd_theta", "type": "Real", "default": 12.0, "unit": "N/(rad/s)", "description": "摆角微分增益"},
+    {"name": "Ki_theta", "type": "Real", "default": 10.0, "unit": "N/(rad·s)", "description": "摆角积分增益"},
+
+    {"name": "Kp_x", "type": "Real", "default": 2.0, "unit": "N/m", "description": "位置比例增益"},
+    {"name": "Kd_x", "type": "Real", "default": 2.5, "unit": "N/(m/s)", "description": "位置微分增益"},
+    {"name": "Ki_x", "type": "Real", "default": 0.5, "unit": "N/(m·s)", "description": "位置积分增益"},
+
+    {"name": "u_max_N", "type": "Real", "default": 15.0, "unit": "N", "description": "最大输出力（饱和上限）"},
+    {"name": "deadzone_N", "type": "Real", "default": 0.3, "unit": "N", "description": "死区阈值：|u|<deadzone 时输出置零"},
+
+    {"name": "actuator_tau_s", "type": "Real", "default": 0.05, "unit": "s", "description": "执行器一阶滞后时间常数"},
+    {"name": "antiwindup_gain", "type": "Real", "default": 5.0, "unit": "1/s", "description": "抗积分饱和回算增益（back-calculation）"}
+  ],
+  "states": [
+    {"name": "int_theta", "derivative": "d_int_theta_dt"},
+    {"name": "int_x", "derivative": "d_int_x_dt"},
+    {"name": "force_act_N", "derivative": "d_force_act_dt"}
+  ]
+}

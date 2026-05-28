@@ -1,0 +1,25 @@
+{
+  "correct_fmus": [
+    "fmu_ThermalController",
+    "fmu_CoolantLoopPlant",
+    "fmu_BatteryPackPlant"
+  ],
+  "correct_connections": [
+    {"from": "fmu_ThermalController.pump_cmd", "to": "fmu_CoolantLoopPlant.pump_cmd"},
+
+    {"from": "fmu_BatteryPackPlant.heat_gen_W", "to": "fmu_CoolantLoopPlant.heat_in_W"},
+    {"from": "fmu_CoolantLoopPlant.coolant_temp_C", "to": "fmu_BatteryPackPlant.coolant_in_temp_C"},
+
+    {"from": "fmu_BatteryPackPlant.temp_cell_C", "to": "fmu_ThermalController.temp_cell_C"},
+    {"from": "fmu_CoolantLoopPlant.coolant_temp_C", "to": "fmu_ThermalController.coolant_temp_C"}
+  ],
+  "exogenous_inputs": {
+    "enable": ["fmu_ThermalController.enable"],
+    "temp_ref_C": ["fmu_ThermalController.temp_ref_C"],
+
+    "i_load_A": ["fmu_BatteryPackPlant.i_load_A"],
+
+    "ambient_temp_C": ["fmu_CoolantLoopPlant.ambient_temp_C"]
+  },
+  "expected_behavior": "When enable=true, the controller increases pump_cmd when cell temperature exceeds temp_ref_C (with hysteresis and PI action). The coolant loop removes heat with a pump-dependent UA that saturates at high pump_cmd. Under a step increase in i_load_A, heat_gen_W rises nonlinearly (I^2*R(T,SOC) + |I|*k_pol), causing temp_cell_C to rise; the loop reacts by ramping pump_cmd toward saturation and then settling, keeping temp_cell_C within safe bounds without sustained oscillation. Under a rise in ambient_temp_C, coolant_temp_C increases and the controller compensates by increasing pump_cmd, but heat removal capacity degrades as (T_coolant - T_amb) shrinks."
+}

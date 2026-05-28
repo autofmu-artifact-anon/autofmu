@@ -1,0 +1,103 @@
+{
+  "schema": "EVALUATOR_CASE_METRICS_V2",
+  "retrieval": {
+    "top_k": 5,
+    "oracle_mode": "exact_asset_set",
+    "equivalence_class_id": "",
+    "acceptable_asset_set_count": 1,
+    "acceptable_asset_sets": [
+      [
+        "asset_dtaas_water_tank_swap__x1",
+        "asset_dtaas_water_tank_swap__x2",
+        "asset_dtaas_water_tank_swap__x3",
+        "asset_dtaas_water_tank_swap__x4"
+      ]
+    ],
+    "top1_asset_ids": [
+      "asset_dtaas_water_tank_swap__x4"
+    ],
+    "candidate_asset_sets": [
+      [
+        "asset_dtaas_water_tank_swap__x4"
+      ],
+      [
+        "asset_dtaas_water_tank_swap__x1",
+        "asset_dtaas_water_tank_swap__x2",
+        "asset_dtaas_water_tank_swap__x3",
+        "asset_dtaas_water_tank_swap__x4"
+      ],
+      [
+        "asset_dtaas_water_tank_fi__x1",
+        "asset_dtaas_water_tank_fi__x2",
+        "asset_dtaas_water_tank_swap__x3",
+        "asset_dtaas_water_tank_swap__x4"
+      ]
+    ],
+    "top1_hit": false,
+    "topk_hit": true
+  },
+  "execution": {
+    "supported": true,
+    "success": true,
+    "backend": "mixed_cosim",
+    "execution_time_seconds": 1.7189199361018836,
+    "generated_trajectory_path": "runs/raw/all13_rerun_20260322T144536Z_ablation_stage2_greedy_hybrid/case_dtaas_water_tank_swap/generated_trajectory.csv",
+    "error": null,
+    "warnings": [
+      "non_output_observation:level:asset_dtaas_water_tank_swap__x4.level",
+      "non_output_observation:leak:asset_dtaas_water_tank_swap__x4.leak"
+    ]
+  },
+  "numerical_fidelity": {
+    "supported": true,
+    "mae": 0.35883850400933004,
+    "rmse": 0.5574845114386491,
+    "nrmse": 0.35453811933273416,
+    "max_abs_error": 1.0941567154044156,
+    "aligned_sample_count": 10001,
+    "signal_count": 3,
+    "signals": [
+      "valve",
+      "level",
+      "leak"
+    ],
+    "generated_time_column": "time",
+    "reference_time_column": "time",
+    "generated_signal_map": {
+      "valve": "valve",
+      "level": "level",
+      "leak": "leak"
+    },
+    "reference_signal_map": {
+      "valve": "valve",
+      "level": "level",
+      "leak": "leak"
+    },
+    "unresolved_generated_signals": [],
+    "unresolved_reference_signals": [],
+    "nrmse_common_only": 0.35453811933273416,
+    "common_signal_count": 3,
+    "missing_signal_count": 0,
+    "common_signals": [
+      "valve",
+      "level",
+      "leak"
+    ],
+    "missing_signals": []
+  },
+  "decision": {
+    "supported": true,
+    "predicted_conclusion": "fail",
+    "reference_conclusion": "pass",
+    "passed": false,
+    "correct": false,
+    "evidence": {
+      "rule_kind": "trajectory_tolerance",
+      "decision_policy": "loose_pass_rate",
+      "policy_threshold_kind": "nrmse",
+      "policy_threshold": 0.05,
+      "nrmse": 0.35453811933273416,
+      "max_abs_error": 1.0941567154044156
+    }
+  }
+}

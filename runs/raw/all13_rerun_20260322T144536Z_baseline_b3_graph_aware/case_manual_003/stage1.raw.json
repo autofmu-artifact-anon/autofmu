@@ -1,0 +1,166 @@
+[
+  {
+    "tasks": [
+      {
+        "task_id": "task_neighborhood_0",
+        "objective": "Verify neighborhood behavior around controller: 倒立摆初始化阶段的直立保持. 在 0s 到 1s 的初始化阶段，系统保持 theta_ref_rad=0、x_ref_m=0、disturbance_N=0。Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criter...",
+        "required_signals": [
+          "x_ref_m",
+          "theta_ref_rad",
+          "theta_rad",
+          "theta_dot_radps"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "系统保持 theta_ref_rad",
+            "operator": "=",
+            "value": 0.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "x_ref_m",
+            "operator": "=",
+            "value": 0.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "disturbance_N",
+            "operator": "=",
+            "value": 0.0,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "controller"
+        ],
+        "grounded_component_types": [
+          "PendulumController"
+        ],
+        "grounded_ports": [
+          "x_ref_m",
+          "theta_ref_rad",
+          "theta_rad",
+          "theta_dot_radps"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": true,
+          "anchor_score": 2.1500000000000004,
+          "anchor_reasons": [
+            "port_token_overlap=3",
+            "criteria_token_overlap=3"
+          ]
+        }
+      },
+      {
+        "task_id": "task_neighborhood_1",
+        "objective": "Verify neighborhood behavior around plant: 倒立摆初始化阶段的直立保持. 在 0s 到 1s 的初始化阶段，系统保持 theta_ref_rad=0、x_ref_m=0、disturbance_N=0。Verification should conclude pass only when the co-simulation runs to completion and satisfies every acceptance criter...",
+        "required_signals": [
+          "disturbance_N",
+          "theta_rad",
+          "theta_dot_radps"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "系统保持 theta_ref_rad",
+            "operator": "=",
+            "value": 0.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "x_ref_m",
+            "operator": "=",
+            "value": 0.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "disturbance_N",
+            "operator": "=",
+            "value": 0.0,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "plant"
+        ],
+        "grounded_component_types": [
+          "InvertedPendulumPlant"
+        ],
+        "grounded_ports": [
+          "disturbance_N",
+          "theta_rad",
+          "theta_dot_radps"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": true,
+          "anchor_score": 2.1500000000000004,
+          "anchor_reasons": [
+            "port_token_overlap=3",
+            "criteria_token_overlap=3"
+          ]
+        }
+      }
+    ],
+    "rationale": "heuristic neighborhood raw task set",
+    "score": 1.0,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "heuristic_neighborhood_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.15,
+      "final_score": 1.0
+    },
+    "meta": {
+      "generation_source": "heuristic_neighborhood_raw",
+      "generation_family": "heuristic",
+      "seed_components": [
+        "controller",
+        "plant"
+      ],
+      "expanded_components": [
+        "controller",
+        "plant"
+      ],
+      "anchor_trace": {
+        "controller": {
+          "score": 2.1500000000000004,
+          "reasons": [
+            "port_token_overlap=3",
+            "criteria_token_overlap=3"
+          ]
+        },
+        "plant": {
+          "score": 2.1500000000000004,
+          "reasons": [
+            "port_token_overlap=3",
+            "criteria_token_overlap=3"
+          ]
+        }
+      },
+      "grounding_valid": true,
+      "selection_mode": "single_heuristic_neighborhood"
+    }
+  }
+]

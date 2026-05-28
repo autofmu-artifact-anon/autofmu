@@ -1,0 +1,435 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_neighborhood_0",
+        "objective": "Verify neighborhood behavior around tank1: Three-Tank System Digital Twin bounded-response check. Tank1 outflow and leak signals should remain inside the canonical operating envelope over 0s to 10s.",
+        "required_signals": [
+          "leak"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "tank1"
+        ],
+        "grounded_component_types": [
+          "Linear"
+        ],
+        "grounded_ports": [
+          "leak"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": true,
+          "anchor_score": 4.2,
+          "anchor_reasons": [
+            "component_mentioned",
+            "component_token_overlap=1",
+            "port_token_overlap=1"
+          ]
+        }
+      },
+      {
+        "task_id": "task_neighborhood_1",
+        "objective": "Verify neighborhood behavior around tank2: Three-Tank System Digital Twin bounded-response check. Tank1 outflow and leak signals should remain inside the canonical operating envelope over 0s to 10s.",
+        "required_signals": [
+          "leak"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "tank2"
+        ],
+        "grounded_component_types": [
+          "Linear"
+        ],
+        "grounded_ports": [
+          "leak"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "heuristic_neighborhood_raw",
+          "generation_family": "heuristic",
+          "seed_component": false,
+          "anchor_score": 0.95,
+          "anchor_reasons": [
+            "port_token_overlap=1"
+          ]
+        }
+      },
+      {
+        "task_id": "case_structure_hint_task_0",
+        "objective": "Preserve structural signal path tank1.outport -> tank2.inport",
+        "required_signals": [
+          "outport",
+          "inport"
+        ],
+        "acceptance_criteria": [],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "tank1",
+          "tank2"
+        ],
+        "grounded_component_types": [],
+        "grounded_ports": [
+          "tank1.outport",
+          "tank2.inport"
+        ],
+        "task_trace": {
+          "notes": [
+            "case_structure_hints"
+          ],
+          "structure_hint": {
+            "source_component": "tank1",
+            "source_signal": "outport",
+            "target_component": "tank2",
+            "target_signal": "inport"
+          }
+        },
+        "diagnostics": {
+          "case_structure_hint": true,
+          "case_structure_hint_reason": "Tank1 outflow feeds Tank2 inflow in the canonical cascade."
+        }
+      }
+    ],
+    "rationale": "heuristic neighborhood raw task set",
+    "score": 0.85,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "heuristic_neighborhood_raw",
+    "grounding_status": "grounded",
+    "required_signal_chains": [
+      {
+        "chain_id": "case_structure_hint_chain_0",
+        "source_component": "tank1",
+        "target_component": "tank2",
+        "signals": [
+          "outport",
+          "inport"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_0_seg_0",
+            "source_component": "tank1",
+            "source_signal": "outport",
+            "target_component": "tank2",
+            "target_signal": "inport",
+            "must_route": true,
+            "semantic_intent": "tank1.outport -> tank2.inport",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Tank1 outflow feeds Tank2 inflow in the canonical cascade."
+            }
+          }
+        ],
+        "semantic_intent": "tank1.outport -> tank2.inport",
+        "details": {
+          "source_signal": "outport",
+          "target_signal": "inport",
+          "source": "case_structure_hints",
+          "rationale": "Tank1 outflow feeds Tank2 inflow in the canonical cascade."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_1",
+        "source_component": "tank2",
+        "target_component": "tank3",
+        "signals": [
+          "outport",
+          "inport"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_1_seg_0",
+            "source_component": "tank2",
+            "source_signal": "outport",
+            "target_component": "tank3",
+            "target_signal": "inport",
+            "must_route": true,
+            "semantic_intent": "tank2.outport -> tank3.inport",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Tank2 outflow feeds Tank3 inflow in the canonical cascade."
+            }
+          }
+        ],
+        "semantic_intent": "tank2.outport -> tank3.inport",
+        "details": {
+          "source_signal": "outport",
+          "target_signal": "inport",
+          "source": "case_structure_hints",
+          "rationale": "Tank2 outflow feeds Tank3 inflow in the canonical cascade."
+        }
+      }
+    ],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.0,
+      "final_score": 0.85
+    },
+    "meta": {
+      "generation_source": "heuristic_neighborhood_raw",
+      "generation_family": "heuristic",
+      "seed_components": [
+        "tank1"
+      ],
+      "expanded_components": [
+        "tank1",
+        "tank2"
+      ],
+      "anchor_trace": {
+        "tank1": {
+          "score": 4.2,
+          "reasons": [
+            "component_mentioned",
+            "component_token_overlap=1",
+            "port_token_overlap=1"
+          ]
+        },
+        "tank2": {
+          "score": 0.95,
+          "reasons": [
+            "port_token_overlap=1"
+          ]
+        },
+        "tank3": {
+          "score": 0.95,
+          "reasons": [
+            "port_token_overlap=1"
+          ]
+        }
+      },
+      "grounding_valid": true,
+      "selection_mode": "single_heuristic_neighborhood",
+      "case_structure_hints_applied": true,
+      "case_structure_hint_chain_count": 2,
+      "case_structure_hint_task_count": 1,
+      "required_chain_count": 2
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_neighborhood_0",
+      "task_index": 0,
+      "fmu_uid": "asset_dtaas_three_tank__tank1",
+      "score": 0.5966989464653949,
+      "cost": 1.403301053534605,
+      "hard_ok": true,
+      "semantic_cost": 0.6066021070692098,
+      "hard_mask_value": 2.2,
+      "transport_mass": 1.0,
+      "revision_index": 1,
+      "reasons": [
+        "greedy_hybrid",
+        "comp_exact=1",
+        "sig_exact=2"
+      ],
+      "grounded_components": [
+        "tank1"
+      ]
+    },
+    {
+      "task_id": "task_neighborhood_1",
+      "task_index": 1,
+      "fmu_uid": "asset_dtaas_three_tank__tank1",
+      "score": 0.0,
+      "cost": 2.0464427223462396,
+      "hard_ok": true,
+      "semantic_cost": 0.6928854446924793,
+      "hard_mask_value": 3.4,
+      "transport_mass": 1.0,
+      "revision_index": 1,
+      "reasons": [
+        "greedy_hybrid",
+        "sig_exact=2"
+      ],
+      "grounded_components": [
+        "tank2"
+      ]
+    },
+    {
+      "task_id": "case_structure_hint_task_0",
+      "task_index": 2,
+      "fmu_uid": "asset_dtaas_three_tank__tank2",
+      "score": 0.6313811015731059,
+      "cost": 1.368618898426894,
+      "hard_ok": true,
+      "semantic_cost": 0.6872377968537885,
+      "hard_mask_value": 2.05,
+      "transport_mass": 1.0,
+      "revision_index": 1,
+      "reasons": [
+        "greedy_hybrid",
+        "comp_exact=1",
+        "sig_exact=2",
+        "sig_partial=2"
+      ],
+      "grounded_components": [
+        "tank1",
+        "tank2"
+      ]
+    }
+  ],
+  "selected_fmus": [],
+  "graph": {
+    "nodes": [
+      "asset_dtaas_three_tank__tank1",
+      "asset_dtaas_three_tank__tank2"
+    ],
+    "port_nodes": [
+      "asset_dtaas_three_tank__tank1.level",
+      "asset_dtaas_three_tank__tank1.der(level)",
+      "asset_dtaas_three_tank__tank1.inPort",
+      "asset_dtaas_three_tank__tank1.leak",
+      "asset_dtaas_three_tank__tank1.outPort",
+      "asset_dtaas_three_tank__tank2.level",
+      "asset_dtaas_three_tank__tank2.der(level)",
+      "asset_dtaas_three_tank__tank2.inPort",
+      "asset_dtaas_three_tank__tank2.leak",
+      "asset_dtaas_three_tank__tank2.outPort"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "tank1": "asset_dtaas_three_tank__tank1",
+      "tank2": "asset_dtaas_three_tank__tank1"
+    },
+    "required_signal_chains": [
+      {
+        "chain_id": "case_structure_hint_chain_0",
+        "source_component": "tank1",
+        "target_component": "tank2",
+        "signals": [
+          "outport",
+          "inport"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_0_seg_0",
+            "source_component": "tank1",
+            "source_signal": "outport",
+            "target_component": "tank2",
+            "target_signal": "inport",
+            "must_route": true,
+            "semantic_intent": "tank1.outport -> tank2.inport",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Tank1 outflow feeds Tank2 inflow in the canonical cascade."
+            }
+          }
+        ],
+        "semantic_intent": "tank1.outport -> tank2.inport",
+        "details": {
+          "source_signal": "outport",
+          "target_signal": "inport",
+          "source": "case_structure_hints",
+          "rationale": "Tank1 outflow feeds Tank2 inflow in the canonical cascade."
+        }
+      },
+      {
+        "chain_id": "case_structure_hint_chain_1",
+        "source_component": "tank2",
+        "target_component": "tank3",
+        "signals": [
+          "outport",
+          "inport"
+        ],
+        "origin_task_ids": [
+          "case_structure_hint_task_0"
+        ],
+        "segments": [
+          {
+            "segment_id": "case_structure_hint_chain_1_seg_0",
+            "source_component": "tank2",
+            "source_signal": "outport",
+            "target_component": "tank3",
+            "target_signal": "inport",
+            "must_route": true,
+            "semantic_intent": "tank2.outport -> tank3.inport",
+            "adjacency_evidence": {
+              "source": "case_structure_hints",
+              "rationale": "Tank2 outflow feeds Tank3 inflow in the canonical cascade."
+            }
+          }
+        ],
+        "semantic_intent": "tank2.outport -> tank3.inport",
+        "details": {
+          "source_signal": "outport",
+          "target_signal": "inport",
+          "source": "case_structure_hints",
+          "rationale": "Tank2 outflow feeds Tank3 inflow in the canonical cascade."
+        }
+      }
+    ],
+    "binding_candidates": [],
+    "closure_ok": false,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "hybrid_name_semantic_match"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "retry",
+      "closure_ok": false
+    },
+    {
+      "revision": 1,
+      "status": "failed",
+      "closure_ok": false,
+      "excluded_pair": {
+        "task_index": 1,
+        "fmu_uid": "asset_dtaas_three_tank__tank2"
+      }
+    }
+  ],
+  "final_cost": 4.818362674307739,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "failed",
+      "selected_task_set_cost": 4.818362674307739,
+      "final_cost": 4.818362674307739,
+      "selected_fmus": [
+        "asset_dtaas_three_tank__tank1",
+        "asset_dtaas_three_tank__tank2"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": "port_graph_closure"
+    }
+  ],
+  "selected_task_set_cost": 4.818362674307739,
+  "diagnostics": {
+    "status": "failed",
+    "stage2_variant": "greedy_hybrid",
+    "repair_used": true,
+    "repair_attempted": true,
+    "repair_succeeded": false,
+    "failure_type": "port_graph_closure",
+    "semantic_weight": 0.5,
+    "structural_weight": 0.5
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "asset_id": "asset_case_case_manual_004__PositionController",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "default_experiment": {
+    "startTime": 0.0,
+    "stepSize": 0.01,
+    "stopTime": 1.0
+  },
+  "description": "Hydraulic axis position controller (PI + velocity damping + saturation & anti-windup).",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "inputs": [
+    "x_ref_m",
+    "x_meas_m",
+    "v_meas_mps",
+    "enable"
+  ],
+  "name": "PositionController",
+  "outputs": [
+    "valve_cmd",
+    "sat_flag"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "Position reference",
+      "name": "x_ref_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "Measured position",
+      "name": "x_meas_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "Measured velocity",
+      "name": "v_meas_mps",
+      "type": "Real",
+      "unit": "m/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "Enable closed-loop control",
+      "name": "enable",
+      "type": "Boolean",
+      "unit": "-",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Normalized valve command to spool actuator",
+      "name": "valve_cmd",
+      "type": "Real",
+      "unit": "-1..1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "True when command is saturated (for diagnostics)",
+      "name": "sat_flag",
+      "type": "Boolean",
+      "unit": "-",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "Proportional gain in normalized valve command per meter",
+      "name": "Kp",
+      "type": "Real",
+      "unit": "1/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Integral gain",
+      "name": "Ki",
+      "type": "Real",
+      "unit": "1/s^2",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Velocity feedback gain (damping)",
+      "name": "Kv",
+      "type": "Real",
+      "unit": "s/m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Minimum command",
+      "name": "u_min",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Maximum command",
+      "name": "u_max",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Clamp for integrator state to prevent runaway",
+      "name": "integrator_limit",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Back-calculation anti-windup gain",
+      "name": "aw_gain",
+      "type": "Real",
+      "unit": "1/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Small error deadband to reduce chatter",
+      "name": "deadband_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "fixed"
+    }
+  ],
+  "schema": "UNIFIED_FMU_METADATA_V1"
+}

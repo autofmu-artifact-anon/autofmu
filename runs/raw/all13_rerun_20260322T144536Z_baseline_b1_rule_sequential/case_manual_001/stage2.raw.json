@@ -1,0 +1,863 @@
+{
+  "task_set": {
+    "tasks": [
+      {
+        "task_id": "task_rule_mono_0",
+        "objective": "Verify system-wide: 电池热管理与功率请求跟踪. 在高环境温度和持续功率请求下，控制器应通过冷却与功率降额将电池核心温度限制在安全范围内，同时保持SOC与电压合理。. Scenario time window 0s to 1200s; inputs: ambient_temp_C, driver_power_request_W_profile; initial conditions: T_core_C, T_su...",
+        "required_signals": [
+          "coreTemperature_C",
+          "soc",
+          "voltage_V",
+          "driverPowerRequest_W",
+          "ambientTemperature_C",
+          "current_A",
+          "pumpCommand",
+          "fanCommand",
+          "current_A",
+          "coolantInletTemperature_C"
+        ],
+        "acceptance_criteria": [
+          {
+            "metric": "",
+            "operator": "<=",
+            "value": 55.0,
+            "unit": "",
+            "notes": ""
+          },
+          {
+            "metric": "",
+            "operator": ">=",
+            "value": 0.2,
+            "unit": "",
+            "notes": ""
+          }
+        ],
+        "signal_specs": [],
+        "constraint_set": [],
+        "operating_regime": null,
+        "grounded_components": [
+          "controller",
+          "battery",
+          "coolingLoop"
+        ],
+        "grounded_component_types": [
+          "ThermalManagementController",
+          "BatteryPackElectroThermal",
+          "CoolingLoop"
+        ],
+        "grounded_ports": [
+          "coreTemperature_C",
+          "soc",
+          "voltage_V",
+          "driverPowerRequest_W",
+          "ambientTemperature_C",
+          "current_A",
+          "pumpCommand",
+          "fanCommand",
+          "current_A",
+          "coolantInletTemperature_C"
+        ],
+        "task_trace": {},
+        "diagnostics": {
+          "generation_source": "rules_monolithic",
+          "generation_family": "rules"
+        }
+      }
+    ],
+    "rationale": "rule_template monolithic fallback task set",
+    "score": 1.0,
+    "p_value": 0.0,
+    "task_set_id": "taskset_0",
+    "generation_source": "rules_monolithic",
+    "grounding_status": "grounded",
+    "required_signal_chains": [],
+    "conformal_info": {},
+    "score_breakdown": {
+      "component_ratio": 1.0,
+      "port_ratio": 1.0,
+      "criteria_bonus": 0.15,
+      "final_score": 1.0
+    },
+    "meta": {
+      "generation_source": "rules_monolithic",
+      "generation_family": "rules",
+      "grounding_valid": true,
+      "selection_mode": "single_best_rule_template",
+      "candidate_count": 1
+    }
+  },
+  "assignments": [
+    {
+      "task_id": "task_rule_mono_0",
+      "task_index": 0,
+      "fmu_uid": "asset_case_case_manual_001__CoolingLoop",
+      "score": 3.25,
+      "cost": 1.25,
+      "hard_ok": true,
+      "semantic_cost": 1.25,
+      "hard_mask_value": 0.0,
+      "transport_mass": 1.0,
+      "revision_index": 0,
+      "reasons": [
+        "graph_match_only",
+        "component_exact=coolingloop",
+        "type_exact=coolingloop",
+        "token_signal_hits=8"
+      ],
+      "grounded_components": [
+        "controller",
+        "battery",
+        "coolingLoop"
+      ]
+    }
+  ],
+  "selected_fmus": [
+    {
+      "uid": "asset_case_case_manual_001__CoolingLoop",
+      "name": "CoolingLoop",
+      "description": "Simplified liquid cooling loop with pump + radiator + fan. Produces coolant inlet temperature to battery and flow rate based on commands and heat load. Includes nonlinear flow and UA characteristics plus actuator dynamics.",
+      "path": "dataset/assets/asset_case_case_manual_001__CoolingLoop/model.fmu",
+      "fmi_version": "2.0",
+      "fmi_types": [
+        "Co-Simulation"
+      ],
+      "ports": [
+        {
+          "name": "pump_cmd",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "0..1",
+          "description": "Pump command (normalized).",
+          "dimensions": []
+        },
+        {
+          "name": "fan_cmd",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "0..1",
+          "description": "Radiator fan command (normalized).",
+          "dimensions": []
+        },
+        {
+          "name": "ambient_temp_C",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Ambient air temperature to radiator.",
+          "dimensions": []
+        },
+        {
+          "name": "T_batt_surface_C",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Battery surface temperature (affects heat pickup).",
+          "dimensions": []
+        },
+        {
+          "name": "heat_load_W",
+          "causality": "input",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "W",
+          "description": "Heat that must be removed from battery (positive adds heat to coolant).",
+          "dimensions": []
+        },
+        {
+          "name": "coolant_in_temp_C",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Coolant temperature entering battery cold-plate.",
+          "dimensions": []
+        },
+        {
+          "name": "coolant_flow_kgps",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "kg/s",
+          "description": "Coolant mass flow rate through battery cold-plate.",
+          "dimensions": []
+        },
+        {
+          "name": "radiator_out_temp_C",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Coolant temperature after radiator (entering battery).",
+          "dimensions": []
+        },
+        {
+          "name": "pump_power_W",
+          "causality": "output",
+          "variability": "continuous",
+          "type": "Real",
+          "unit": "W",
+          "description": "Estimated pump electrical power consumption.",
+          "dimensions": []
+        },
+        {
+          "name": "coolant_mass_kg",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "kg",
+          "description": "Effective coolant thermal mass in the loop.",
+          "dimensions": []
+        },
+        {
+          "name": "coolant_cp_JpkgK",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "J/(kg*K)",
+          "description": "Coolant specific heat.",
+          "dimensions": []
+        },
+        {
+          "name": "flow_max_kgps",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "kg/s",
+          "description": "Maximum coolant mass flow at pump_cmd=1.",
+          "dimensions": []
+        },
+        {
+          "name": "pump_tau_s",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "s",
+          "description": "First-order lag time constant for pump speed/flow response.",
+          "dimensions": []
+        },
+        {
+          "name": "UA_base_WpK",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "W/K",
+          "description": "Base radiator conductance (no fan).",
+          "dimensions": []
+        },
+        {
+          "name": "UA_fan_gain",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "W/K",
+          "description": "Additional conductance enabled by fan.",
+          "dimensions": []
+        },
+        {
+          "name": "UA_max_WpK",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "W/K",
+          "description": "Upper bound on effective UA.",
+          "dimensions": []
+        },
+        {
+          "name": "pump_power_max_W",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "W",
+          "description": "Pump electric power at full command.",
+          "dimensions": []
+        },
+        {
+          "name": "T_min_C",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Lower bound for coolant temperature to avoid numerical issues.",
+          "dimensions": []
+        },
+        {
+          "name": "T_max_C",
+          "causality": "parameter",
+          "variability": "fixed",
+          "type": "Real",
+          "unit": "degC",
+          "description": "Upper bound for coolant temperature to avoid numerical issues.",
+          "dimensions": []
+        }
+      ],
+      "inputs": [
+        "pump_cmd",
+        "fan_cmd",
+        "ambient_temp_C",
+        "T_batt_surface_C",
+        "heat_load_W"
+      ],
+      "outputs": [
+        "coolant_in_temp_C",
+        "coolant_flow_kgps",
+        "radiator_out_temp_C",
+        "pump_power_W"
+      ],
+      "tags": [
+        "case_manual_001",
+        "manual_case"
+      ],
+      "capabilities": {
+        "needs_execution_tool": false,
+        "can_handle_variable_communication_step_size": true,
+        "can_interpolate_inputs": false,
+        "can_run_asynchronously": false,
+        "can_be_instantiated_only_once_per_process": false,
+        "provides_directional_derivatives": false,
+        "fixed_internal_step_size": null
+      },
+      "meta": {
+        "asset_dir": "dataset/assets/asset_case_case_manual_001__CoolingLoop",
+        "asset_json": {
+          "asset_id": "asset_case_case_manual_001__CoolingLoop",
+          "backend_kind": "python_source_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "case_origin": [
+            "case_manual_001"
+          ],
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 3600
+          },
+          "description": "Simplified liquid cooling loop with pump + radiator + fan. Produces coolant inlet temperature to battery and flow rate based on commands and heat load. Includes nonlinear flow and UA characteristics plus actuator dynamics.",
+          "description_relpath": "description.md",
+          "fmi_types": [
+            "Co-Simulation"
+          ],
+          "fmi_version": "2.0",
+          "fmu_relpath": "model.fmu",
+          "ground_truth_only": false,
+          "inputs": [
+            "pump_cmd",
+            "fan_cmd",
+            "ambient_temp_C",
+            "T_batt_surface_C",
+            "heat_load_W"
+          ],
+          "library_visible": true,
+          "metadata_relpath": "metadata.json",
+          "name": "CoolingLoop",
+          "outputs": [
+            "coolant_in_temp_C",
+            "coolant_flow_kgps",
+            "radiator_out_temp_C",
+            "pump_power_W"
+          ],
+          "ports": [
+            {
+              "causality": "input",
+              "description": "Pump command (normalized).",
+              "name": "pump_cmd",
+              "type": "Real",
+              "unit": "0..1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Radiator fan command (normalized).",
+              "name": "fan_cmd",
+              "type": "Real",
+              "unit": "0..1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Ambient air temperature to radiator.",
+              "name": "ambient_temp_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Battery surface temperature (affects heat pickup).",
+              "name": "T_batt_surface_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Heat that must be removed from battery (positive adds heat to coolant).",
+              "name": "heat_load_W",
+              "type": "Real",
+              "unit": "W",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Coolant temperature entering battery cold-plate.",
+              "name": "coolant_in_temp_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Coolant mass flow rate through battery cold-plate.",
+              "name": "coolant_flow_kgps",
+              "type": "Real",
+              "unit": "kg/s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Coolant temperature after radiator (entering battery).",
+              "name": "radiator_out_temp_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Estimated pump electrical power consumption.",
+              "name": "pump_power_W",
+              "type": "Real",
+              "unit": "W",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "Effective coolant thermal mass in the loop.",
+              "name": "coolant_mass_kg",
+              "type": "Real",
+              "unit": "kg",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Coolant specific heat.",
+              "name": "coolant_cp_JpkgK",
+              "type": "Real",
+              "unit": "J/(kg*K)",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Maximum coolant mass flow at pump_cmd=1.",
+              "name": "flow_max_kgps",
+              "type": "Real",
+              "unit": "kg/s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "First-order lag time constant for pump speed/flow response.",
+              "name": "pump_tau_s",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Base radiator conductance (no fan).",
+              "name": "UA_base_WpK",
+              "type": "Real",
+              "unit": "W/K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Additional conductance enabled by fan.",
+              "name": "UA_fan_gain",
+              "type": "Real",
+              "unit": "W/K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Upper bound on effective UA.",
+              "name": "UA_max_WpK",
+              "type": "Real",
+              "unit": "W/K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Pump electric power at full command.",
+              "name": "pump_power_max_W",
+              "type": "Real",
+              "unit": "W",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Lower bound for coolant temperature to avoid numerical issues.",
+              "name": "T_min_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Upper bound for coolant temperature to avoid numerical issues.",
+              "name": "T_max_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            }
+          ],
+          "provenance": {
+            "case_id": "case_manual_001",
+            "legacy_fmu_list_entry": {
+              "description": "Simplified liquid cooling loop with pump + radiator + fan. Produces coolant inlet temperature and flow rate based on commands and heat load.",
+              "fmi_version": "2.0",
+              "inputs": [
+                {
+                  "description": "Pump command (normalized)",
+                  "name": "pump_cmd",
+                  "unit": "0..1"
+                },
+                {
+                  "description": "Radiator fan command (normalized)",
+                  "name": "fan_cmd",
+                  "unit": "0..1"
+                },
+                {
+                  "description": "Ambient air temperature",
+                  "name": "ambient_temp_C",
+                  "unit": "degC"
+                },
+                {
+                  "description": "Battery surface temperature",
+                  "name": "T_batt_surface_C",
+                  "unit": "degC"
+                },
+                {
+                  "description": "Heat to be removed from battery",
+                  "name": "heat_load_W",
+                  "unit": "W"
+                }
+              ],
+              "name": "CoolingLoop",
+              "outputs": [
+                {
+                  "description": "Coolant temperature entering battery",
+                  "name": "coolant_in_temp_C",
+                  "unit": "degC"
+                },
+                {
+                  "description": "Coolant mass flow rate",
+                  "name": "coolant_flow_kgps",
+                  "unit": "kg/s"
+                },
+                {
+                  "description": "Radiator outlet temperature",
+                  "name": "radiator_out_temp_C",
+                  "unit": "degC"
+                },
+                {
+                  "description": "Pump electrical power consumption",
+                  "name": "pump_power_W",
+                  "unit": "W"
+                }
+              ],
+              "path": "fmus/CoolingLoop.fmu",
+              "type": "Co-Simulation"
+            }
+          },
+          "schema": "UNIFIED_ASSET_V1",
+          "source_id": "case_manual_001::CoolingLoop",
+          "source_type": "manual_case_fmu",
+          "tags": [
+            "case_manual_001",
+            "manual_case"
+          ]
+        },
+        "metadata_json": {
+          "asset_id": "asset_case_case_manual_001__CoolingLoop",
+          "backend_kind": "python_source_fmu",
+          "capabilities": {
+            "can_be_instantiated_only_once_per_process": false,
+            "can_handle_variable_communication_step_size": true,
+            "can_interpolate_inputs": false,
+            "can_run_asynchronously": false,
+            "needs_execution_tool": false,
+            "provides_directional_derivatives": false
+          },
+          "default_experiment": {
+            "startTime": 0,
+            "stepSize": 0.1,
+            "stopTime": 3600
+          },
+          "description": "Simplified liquid cooling loop with pump + radiator + fan. Produces coolant inlet temperature to battery and flow rate based on commands and heat load. Includes nonlinear flow and UA characteristics plus actuator dynamics.",
+          "fmi_types": [
+            "Co-Simulation"
+          ],
+          "fmi_version": "2.0",
+          "inputs": [
+            "pump_cmd",
+            "fan_cmd",
+            "ambient_temp_C",
+            "T_batt_surface_C",
+            "heat_load_W"
+          ],
+          "name": "CoolingLoop",
+          "outputs": [
+            "coolant_in_temp_C",
+            "coolant_flow_kgps",
+            "radiator_out_temp_C",
+            "pump_power_W"
+          ],
+          "ports": [
+            {
+              "causality": "input",
+              "description": "Pump command (normalized).",
+              "name": "pump_cmd",
+              "type": "Real",
+              "unit": "0..1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Radiator fan command (normalized).",
+              "name": "fan_cmd",
+              "type": "Real",
+              "unit": "0..1",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Ambient air temperature to radiator.",
+              "name": "ambient_temp_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Battery surface temperature (affects heat pickup).",
+              "name": "T_batt_surface_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "input",
+              "description": "Heat that must be removed from battery (positive adds heat to coolant).",
+              "name": "heat_load_W",
+              "type": "Real",
+              "unit": "W",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Coolant temperature entering battery cold-plate.",
+              "name": "coolant_in_temp_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Coolant mass flow rate through battery cold-plate.",
+              "name": "coolant_flow_kgps",
+              "type": "Real",
+              "unit": "kg/s",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Coolant temperature after radiator (entering battery).",
+              "name": "radiator_out_temp_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "continuous"
+            },
+            {
+              "causality": "output",
+              "description": "Estimated pump electrical power consumption.",
+              "name": "pump_power_W",
+              "type": "Real",
+              "unit": "W",
+              "variability": "continuous"
+            },
+            {
+              "causality": "parameter",
+              "description": "Effective coolant thermal mass in the loop.",
+              "name": "coolant_mass_kg",
+              "type": "Real",
+              "unit": "kg",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Coolant specific heat.",
+              "name": "coolant_cp_JpkgK",
+              "type": "Real",
+              "unit": "J/(kg*K)",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Maximum coolant mass flow at pump_cmd=1.",
+              "name": "flow_max_kgps",
+              "type": "Real",
+              "unit": "kg/s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "First-order lag time constant for pump speed/flow response.",
+              "name": "pump_tau_s",
+              "type": "Real",
+              "unit": "s",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Base radiator conductance (no fan).",
+              "name": "UA_base_WpK",
+              "type": "Real",
+              "unit": "W/K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Additional conductance enabled by fan.",
+              "name": "UA_fan_gain",
+              "type": "Real",
+              "unit": "W/K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Upper bound on effective UA.",
+              "name": "UA_max_WpK",
+              "type": "Real",
+              "unit": "W/K",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Pump electric power at full command.",
+              "name": "pump_power_max_W",
+              "type": "Real",
+              "unit": "W",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Lower bound for coolant temperature to avoid numerical issues.",
+              "name": "T_min_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            },
+            {
+              "causality": "parameter",
+              "description": "Upper bound for coolant temperature to avoid numerical issues.",
+              "name": "T_max_C",
+              "type": "Real",
+              "unit": "degC",
+              "variability": "fixed"
+            }
+          ],
+          "schema": "UNIFIED_FMU_METADATA_V1"
+        },
+        "default_experiment": {
+          "startTime": 0,
+          "stepSize": 0.1,
+          "stopTime": 3600
+        },
+        "source_type": "manual_case_fmu"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "asset_case_case_manual_001__CoolingLoop"
+    ],
+    "port_nodes": [
+      "asset_case_case_manual_001__CoolingLoop.pump_cmd",
+      "asset_case_case_manual_001__CoolingLoop.fan_cmd",
+      "asset_case_case_manual_001__CoolingLoop.ambient_temp_C",
+      "asset_case_case_manual_001__CoolingLoop.T_batt_surface_C",
+      "asset_case_case_manual_001__CoolingLoop.heat_load_W",
+      "asset_case_case_manual_001__CoolingLoop.coolant_in_temp_C",
+      "asset_case_case_manual_001__CoolingLoop.coolant_flow_kgps",
+      "asset_case_case_manual_001__CoolingLoop.radiator_out_temp_C",
+      "asset_case_case_manual_001__CoolingLoop.pump_power_W",
+      "asset_case_case_manual_001__CoolingLoop.coolant_mass_kg",
+      "asset_case_case_manual_001__CoolingLoop.coolant_cp_JpkgK",
+      "asset_case_case_manual_001__CoolingLoop.flow_max_kgps",
+      "asset_case_case_manual_001__CoolingLoop.pump_tau_s",
+      "asset_case_case_manual_001__CoolingLoop.UA_base_WpK",
+      "asset_case_case_manual_001__CoolingLoop.UA_fan_gain",
+      "asset_case_case_manual_001__CoolingLoop.UA_max_WpK",
+      "asset_case_case_manual_001__CoolingLoop.pump_power_max_W",
+      "asset_case_case_manual_001__CoolingLoop.T_min_C",
+      "asset_case_case_manual_001__CoolingLoop.T_max_C"
+    ],
+    "bindings": [],
+    "component_to_fmu": {
+      "controller": "asset_case_case_manual_001__CoolingLoop",
+      "battery": "asset_case_case_manual_001__CoolingLoop",
+      "coolingLoop": "asset_case_case_manual_001__CoolingLoop"
+    },
+    "required_signal_chains": [],
+    "binding_candidates": [],
+    "closure_ok": true,
+    "closure_failures": [],
+    "routing_failures": [],
+    "diagnostics": {
+      "builder": "simplified_name_match"
+    }
+  },
+  "discrepancy_set": [],
+  "revision_trace": [
+    {
+      "revision": 0,
+      "status": "ok",
+      "closure_ok": true
+    }
+  ],
+  "final_cost": 1.25,
+  "transport_plans": [],
+  "mask_history": [],
+  "taskset_results": [
+    {
+      "task_set_id": "taskset_0",
+      "status": "ok",
+      "selected_task_set_cost": 1.25,
+      "final_cost": 1.25,
+      "selected_fmus": [
+        "asset_case_case_manual_001__CoolingLoop"
+      ],
+      "discrepancy_count": 0,
+      "failure_type": ""
+    }
+  ],
+  "selected_task_set_cost": 1.25,
+  "diagnostics": {
+    "status": "ok",
+    "stage2_variant": "graph_match_only",
+    "structural_reasoning": true,
+    "semantic_retrieval": false,
+    "binding_count": 0,
+    "fallback_used": false,
+    "failure_type": ""
+  }
+}

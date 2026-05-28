@@ -1,0 +1,405 @@
+{
+  "asset_id": "asset_case_case_manual_004__HydraulicCylinderPlant",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "case_origin": [
+    "case_manual_004"
+  ],
+  "default_experiment": {
+    "startTime": 0.0,
+    "stepSize": 0.01,
+    "stopTime": 1.0
+  },
+  "description": "Double-acting hydraulic cylinder + moving table. Nonlinear orifice flows, pressure dynamics, and friction.",
+  "description_relpath": "description.md",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "fmu_relpath": "model.fmu",
+  "ground_truth_only": false,
+  "inputs": [
+    "spool_u",
+    "load_force_N"
+  ],
+  "library_visible": true,
+  "metadata_relpath": "metadata.json",
+  "name": "HydraulicCylinderPlant",
+  "outputs": [
+    "x_m",
+    "v_mps",
+    "pA_Pa",
+    "pB_Pa",
+    "rod_force_N"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "Normalized spool opening. Positive extends (A->supply, B->tank).",
+      "name": "spool_u",
+      "type": "Real",
+      "unit": "-1..1",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "External load force acting against extension (positive resists extension).",
+      "name": "load_force_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Rod position (0..stroke)",
+      "name": "x_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Rod velocity",
+      "name": "v_mps",
+      "type": "Real",
+      "unit": "m/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Chamber A pressure",
+      "name": "pA_Pa",
+      "type": "Real",
+      "unit": "Pa",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Chamber B pressure",
+      "name": "pB_Pa",
+      "type": "Real",
+      "unit": "Pa",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "Net hydraulic force on rod (A*pA - B*pB)",
+      "name": "rod_force_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "Cylinder stroke",
+      "name": "stroke_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Minimum position (soft stop)",
+      "name": "x_min_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Maximum position (soft stop)",
+      "name": "x_max_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Moving mass",
+      "name": "m_kg",
+      "type": "Real",
+      "unit": "kg",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Soft stop stiffness near limits",
+      "name": "k_stop_Npm",
+      "type": "Real",
+      "unit": "N/m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Soft stop damping near limits",
+      "name": "c_stop_Nspm",
+      "type": "Real",
+      "unit": "N*s/m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Effective area chamber A",
+      "name": "A_A_m2",
+      "type": "Real",
+      "unit": "m^2",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Effective area chamber B",
+      "name": "A_B_m2",
+      "type": "Real",
+      "unit": "m^2",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Dead volume chamber A at x=0",
+      "name": "V0_A_m3",
+      "type": "Real",
+      "unit": "m^3",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Dead volume chamber B at x=stroke",
+      "name": "V0_B_m3",
+      "type": "Real",
+      "unit": "m^3",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Effective bulk modulus",
+      "name": "beta_eff_Pa",
+      "type": "Real",
+      "unit": "Pa",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Internal leakage coefficient between chambers",
+      "name": "leak_C_L",
+      "type": "Real",
+      "unit": "m^3/(s*Pa)",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Supply pressure",
+      "name": "p_supply_Pa",
+      "type": "Real",
+      "unit": "Pa",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Tank/return pressure",
+      "name": "p_tank_Pa",
+      "type": "Real",
+      "unit": "Pa",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Orifice flow coefficient (lumped)",
+      "name": "Cq",
+      "type": "Real",
+      "unit": "m^3/(s*sqrt(Pa))",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Spool normalization for orifice area (|u|<=1)",
+      "name": "u_flow_sat",
+      "type": "Real",
+      "unit": "-",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Coulomb friction",
+      "name": "F_coulomb_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Static friction peak",
+      "name": "F_static_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Stribeck velocity scale",
+      "name": "v_stribeck_mps",
+      "type": "Real",
+      "unit": "m/s",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Viscous friction coefficient",
+      "name": "b_visc_Nspm",
+      "type": "Real",
+      "unit": "N*s/m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "Smoothing velocity for tanh sign",
+      "name": "v_tanh_mps",
+      "type": "Real",
+      "unit": "m/s",
+      "variability": "fixed"
+    }
+  ],
+  "provenance": {
+    "case_id": "case_manual_004",
+    "legacy_fmu_list_entry": {
+      "description": "双作用液压缸+运动台架，非线性节流流动、压力动态和摩擦",
+      "fmu_path": "fmus/HydraulicCylinderPlant.fmu",
+      "inputs": [
+        {
+          "description": "归一化阀芯开度，正值为伸出",
+          "name": "spool_u",
+          "type": "Real",
+          "unit": "-1..1"
+        },
+        {
+          "description": "外部负载力(正值阻碍伸出)",
+          "name": "load_force_N",
+          "type": "Real",
+          "unit": "N"
+        }
+      ],
+      "name": "HydraulicCylinderPlant",
+      "outputs": [
+        {
+          "description": "活塞杆位置(0..行程)",
+          "name": "x_m",
+          "type": "Real",
+          "unit": "m"
+        },
+        {
+          "description": "活塞杆速度",
+          "name": "v_mps",
+          "type": "Real",
+          "unit": "m/s"
+        },
+        {
+          "description": "A腔压力",
+          "name": "pA_Pa",
+          "type": "Real",
+          "unit": "Pa"
+        },
+        {
+          "description": "B腔压力",
+          "name": "pB_Pa",
+          "type": "Real",
+          "unit": "Pa"
+        },
+        {
+          "description": "活塞杆上的净液压力",
+          "name": "rod_force_N",
+          "type": "Real",
+          "unit": "N"
+        }
+      ],
+      "parameters": [
+        {
+          "default": 0.1,
+          "description": "缸行程",
+          "name": "stroke_m",
+          "type": "Real",
+          "unit": "m"
+        },
+        {
+          "default": 12.0,
+          "description": "运动质量",
+          "name": "m_kg",
+          "type": "Real",
+          "unit": "kg"
+        },
+        {
+          "default": 0.0012,
+          "description": "A腔有效面积",
+          "name": "A_A_m2",
+          "type": "Real",
+          "unit": "m^2"
+        },
+        {
+          "default": 0.001,
+          "description": "B腔有效面积",
+          "name": "A_B_m2",
+          "type": "Real",
+          "unit": "m^2"
+        },
+        {
+          "default": 20000000.0,
+          "description": "供油压力",
+          "name": "p_supply_Pa",
+          "type": "Real",
+          "unit": "Pa"
+        },
+        {
+          "default": 200000.0,
+          "description": "回油压力",
+          "name": "p_tank_Pa",
+          "type": "Real",
+          "unit": "Pa"
+        },
+        {
+          "default": 250.0,
+          "description": "库仑摩擦力",
+          "name": "F_coulomb_N",
+          "type": "Real",
+          "unit": "N"
+        },
+        {
+          "default": 900.0,
+          "description": "粘性摩擦系数",
+          "name": "b_visc_Nspm",
+          "type": "Real",
+          "unit": "N*s/m"
+        }
+      ],
+      "states": [
+        {
+          "description": "活塞杆位置",
+          "name": "x_m"
+        },
+        {
+          "description": "活塞杆速度",
+          "name": "v_mps"
+        },
+        {
+          "description": "A腔压力",
+          "name": "pA_Pa"
+        },
+        {
+          "description": "B腔压力",
+          "name": "pB_Pa"
+        }
+      ]
+    }
+  },
+  "schema": "UNIFIED_ASSET_V1",
+  "source_id": "case_manual_004::HydraulicCylinderPlant",
+  "source_type": "manual_case_fmu",
+  "tags": [
+    "case_manual_004",
+    "manual_case"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "case_id": "case_dtaas_mass_spring_damper_monitor",
+  "criteria": [
+    {
+      "metric": "trajectory_match",
+      "notes": "Requires canonical DTaaS reference execution trace.",
+      "operator": "<=",
+      "signals": [
+        "x2",
+        "v2",
+        "y",
+        "_output"
+      ],
+      "value": null
+    }
+  ],
+  "decision_rule": {
+    "kind": "trajectory_tolerance",
+    "requires_ground_truth": true,
+    "signals": [
+      "x2",
+      "v2",
+      "y",
+      "_output"
+    ],
+    "time_column": "time"
+  },
+  "derivation_basis": {
+    "expected_behavior": "The monitor observes the displacement relationship between the two masses through RtI helper FMUs and remains non-violating for the bundled scenario.",
+    "signals_of_interest": [
+      "x2",
+      "v2",
+      "y",
+      "_output"
+    ],
+    "source_root": "sources/dtaas_examples/case_dtaas_mass_spring_damper_monitor"
+  },
+  "judgement_policy": "behavioral_expectation_pending_execution",
+  "scenario_window": {
+    "start_time": 0,
+    "step_size": 0.001,
+    "stop_time": 10
+  },
+  "schema": "CASE_VERIFICATION_REQUIREMENT_V1",
+  "signal_aliases": {
+    "_output": [
+      "_output",
+      "asset_dtaas_mass_spring_damper_monitor__m2._output"
+    ],
+    "v2": [
+      "v2",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.v2"
+    ],
+    "x2": [
+      "x2",
+      "asset_dtaas_mass_spring_damper_monitor__msd2.x2"
+    ],
+    "y": [
+      "y",
+      "asset_dtaas_mass_spring_damper_monitor__rti2.y"
+    ]
+  },
+  "signals": [
+    "x2",
+    "v2",
+    "y",
+    "_output"
+  ],
+  "text": "Mass Spring Damper with Monitor. Mass-spring-damper co-simulation extended with generated monitor FMU and two RtI instances.. Scenario time window 0s to 10s. Signals of interest: x2, v2, y, _output Expected ground-truth behavior: The monitor observes the displacement relationship between the two masses through RtI helper FMUs and remains non-violating for the bundled scenario. A final pass/fail conclusion remains pending until a reference execution trace is normalized.",
+  "time_column_aliases": [
+    "time",
+    "TIME",
+    "Time",
+    "t"
+  ],
+  "title": "Mass Spring Damper with Monitor Verification Requirement",
+  "tolerances": {}
+}

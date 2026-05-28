@@ -1,0 +1,116 @@
+{
+  "dataset_id": "fmu-002558",
+  "source_repo": "fmi-cross-check-master",
+  "source_path": "fmus/2.0/cs/c-code/Test-FMUs/0.0.2/VanDerPol/VanDerPol.fmu",
+  "source_commit": "",
+  "fmi": {
+    "fmiVersion": "2.0",
+    "fmiTypes": [
+      "ModelExchange",
+      "CoSimulation"
+    ],
+    "modelName": "Van der Pol oscillator",
+    "guid": "{8c4e810f-3da3-4a00-8276-176fa3c9f000}",
+    "description": "This model implements the van der Pol oscillator",
+    "author": "",
+    "generationTool": "",
+    "generationDateAndTime": "",
+    "variableNamingConvention": "flat",
+    "numberOfEventIndicators": 0,
+    "defaultExperiment": {
+      "startTime": 0.0,
+      "stopTime": 20.0,
+      "stepSize": 0.01
+    }
+  },
+  "implementation": {
+    "platforms": [
+      "win64",
+      "darwin64",
+      "linux64",
+      "c-code"
+    ],
+    "modelExchange": {
+      "modelIdentifier": "VanDerPol"
+    },
+    "coSimulation": {
+      "modelIdentifier": "VanDerPol",
+      "canHandleVariableCommunicationStepSize": true
+    }
+  },
+  "variables": [
+    {
+      "name": "x0",
+      "valueReference": 0,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "the first state",
+      "initial": "exact",
+      "start": 2.0
+    },
+    {
+      "name": "der(x0)",
+      "valueReference": 1,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "calculated",
+      "derivative": 1
+    },
+    {
+      "name": "x1",
+      "valueReference": 2,
+      "causality": "output",
+      "variability": "continuous",
+      "type": "Real",
+      "description": "the second state",
+      "initial": "exact",
+      "start": 0.0
+    },
+    {
+      "name": "der(x1)",
+      "valueReference": 3,
+      "causality": "local",
+      "variability": "continuous",
+      "type": "Real",
+      "initial": "calculated",
+      "derivative": 3
+    },
+    {
+      "name": "mu",
+      "valueReference": 4,
+      "causality": "parameter",
+      "variability": "fixed",
+      "type": "Real",
+      "initial": "exact",
+      "start": 1.0
+    }
+  ],
+  "interface": {
+    "outputs": [
+      "x0",
+      "x1"
+    ],
+    "parameters": [
+      "mu"
+    ],
+    "locals": [
+      "der(x0)",
+      "der(x1)"
+    ],
+    "states": [
+      "der(x0)",
+      "der(x1)"
+    ]
+  },
+  "test": {
+    "hasReferenceInput": false,
+    "hasReferenceOutput": true,
+    "referenceOutputFile": "Van der Pol oscillator_ref.csv",
+    "simulationOptionsFile": "Van der Pol oscillator_simopt.json"
+  },
+  "validation": {
+    "fmiCompliance": "not_checked"
+  }
+}

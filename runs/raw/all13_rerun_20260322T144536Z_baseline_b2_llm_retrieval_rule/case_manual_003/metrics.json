@@ -1,0 +1,135 @@
+{
+  "schema": "EVALUATOR_CASE_METRICS_V2",
+  "retrieval": {
+    "top_k": 5,
+    "oracle_mode": "exact_asset_set",
+    "equivalence_class_id": "",
+    "acceptable_asset_set_count": 1,
+    "acceptable_asset_sets": [
+      [
+        "asset_case_case_manual_003__InvertedPendulumPlant",
+        "asset_case_case_manual_003__PendulumController"
+      ]
+    ],
+    "top1_asset_ids": [
+      "asset_case_case_manual_003__PendulumController"
+    ],
+    "candidate_asset_sets": [
+      [
+        "asset_case_case_manual_003__PendulumController"
+      ]
+    ],
+    "top1_hit": false,
+    "topk_hit": false
+  },
+  "execution": {
+    "supported": true,
+    "success": true,
+    "backend": "mixed_cosim",
+    "execution_time_seconds": 30.313726326916367,
+    "generated_trajectory_path": "runs/raw/all13_rerun_20260322T144536Z_baseline_b2_llm_retrieval_rule/case_manual_003/generated_trajectory.csv",
+    "error": null,
+    "warnings": [
+      "non_output_observation:theta_rad:asset_case_case_manual_003__PendulumController.theta_rad",
+      "non_output_observation:x_m:asset_case_case_manual_003__PendulumController.x_m"
+    ]
+  },
+  "numerical_fidelity": {
+    "supported": true,
+    "mae": null,
+    "rmse": null,
+    "nrmse": null,
+    "max_abs_error": null,
+    "aligned_sample_count": 0,
+    "signal_count": 0,
+    "signals": [],
+    "generated_time_column": "time",
+    "reference_time_column": "time",
+    "generated_signal_map": {},
+    "reference_signal_map": {},
+    "unresolved_generated_signals": [],
+    "unresolved_reference_signals": []
+  },
+  "decision": {
+    "supported": true,
+    "predicted_conclusion": "fail",
+    "reference_conclusion": "pass",
+    "passed": false,
+    "correct": false,
+    "evidence": {
+      "rule_kind": "acceptance_criteria",
+      "supported": true,
+      "conclusion": "fail",
+      "criterion_results": [
+        {
+          "metric": "max(abs(theta_rad))_during_t=[0s,1s]",
+          "operator": "<=",
+          "expected": 0.2,
+          "observed": 0.12,
+          "passed": true,
+          "error": ""
+        },
+        {
+          "metric": "max(abs(x_m))_during_t=[0s,1s]",
+          "operator": "<=",
+          "expected": 0.2,
+          "observed": 0.0,
+          "passed": true,
+          "error": ""
+        },
+        {
+          "metric": "max(abs(force_cmd_N))_during_t=[0s,1s]",
+          "operator": "<=",
+          "expected": 12.0,
+          "observed": 10.73999999805667,
+          "passed": true,
+          "error": ""
+        },
+        {
+          "metric": "abs(theta_rad) at t=1.0s",
+          "operator": "<=",
+          "expected": 0.05,
+          "observed": 0.12,
+          "passed": false,
+          "error": ""
+        },
+        {
+          "metric": "abs(x_m) at t=1.0s",
+          "operator": "<=",
+          "expected": 0.12,
+          "observed": 0.0,
+          "passed": true,
+          "error": ""
+        }
+      ],
+      "unsupported_criteria": [],
+      "time_coverage": {
+        "observed_start_time": 0.0,
+        "observed_stop_time": 1.0,
+        "declared_start_time": 0,
+        "declared_stop_time": 1,
+        "sample_count": 101
+      },
+      "initial_condition_results": [
+        {
+          "signal": "theta_rad",
+          "expected": 0.12,
+          "observed": 0.12,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        },
+        {
+          "signal": "x_m",
+          "expected": 0.0,
+          "observed": 0.0,
+          "tolerance": 0.001,
+          "passed": true,
+          "error": ""
+        }
+      ],
+      "coverage_failures": [],
+      "decision_policy": "acceptance_criteria_pass"
+    }
+  }
+}

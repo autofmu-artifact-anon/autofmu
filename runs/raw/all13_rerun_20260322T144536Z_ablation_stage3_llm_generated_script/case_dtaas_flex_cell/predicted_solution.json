@@ -1,0 +1,152 @@
+{
+  "schema": "UNIFIED_SOLUTION_V1",
+  "case_id": "case_dtaas_flex_cell",
+  "selected_asset_ids": [
+    "asset_dtaas_flex_cell__kuka",
+    "asset_dtaas_flex_cell__rabbitmq"
+  ],
+  "connections": [
+    {
+      "source": "asset_dtaas_flex_cell__rabbitmq.target_X_kuka",
+      "target": "asset_dtaas_flex_cell__kuka.target_X",
+      "kind": "direct"
+    },
+    {
+      "source": "asset_dtaas_flex_cell__rabbitmq.target_Y_kuka",
+      "target": "asset_dtaas_flex_cell__kuka.target_Y",
+      "kind": "direct"
+    },
+    {
+      "source": "asset_dtaas_flex_cell__rabbitmq.target_Z_kuka",
+      "target": "asset_dtaas_flex_cell__kuka.target_Z",
+      "kind": "direct"
+    },
+    {
+      "source": "asset_dtaas_flex_cell__rabbitmq.motion_time_kuka",
+      "target": "asset_dtaas_flex_cell__kuka.motion_time",
+      "kind": "direct"
+    }
+  ],
+  "external_inputs": [],
+  "initial_conditions": [],
+  "monitored_outputs": [
+    {
+      "name": "actual_q0",
+      "source": "asset_dtaas_flex_cell__kuka.actual_q0"
+    },
+    {
+      "name": "actual_q1",
+      "source": "asset_dtaas_flex_cell__kuka.actual_q1"
+    },
+    {
+      "name": "actual_q2",
+      "source": "asset_dtaas_flex_cell__kuka.actual_q2"
+    },
+    {
+      "name": "actual_q3",
+      "source": "asset_dtaas_flex_cell__kuka.actual_q3"
+    },
+    {
+      "name": "actual_q4",
+      "source": "asset_dtaas_flex_cell__kuka.actual_q4"
+    },
+    {
+      "name": "actual_q5",
+      "source": "asset_dtaas_flex_cell__kuka.actual_q5"
+    },
+    {
+      "name": "actual_q6",
+      "source": "asset_dtaas_flex_cell__kuka.actual_q6"
+    },
+    {
+      "name": "actual_X",
+      "source": "asset_dtaas_flex_cell__kuka.actual_X"
+    },
+    {
+      "name": "actual_Y",
+      "source": "asset_dtaas_flex_cell__kuka.actual_Y"
+    },
+    {
+      "name": "actual_Z",
+      "source": "asset_dtaas_flex_cell__kuka.actual_Z"
+    },
+    {
+      "name": "actual_x",
+      "source": "asset_dtaas_flex_cell__kuka.actual_x"
+    },
+    {
+      "name": "actual_y",
+      "source": "asset_dtaas_flex_cell__kuka.actual_y"
+    },
+    {
+      "name": "actual_z",
+      "source": "asset_dtaas_flex_cell__kuka.actual_z"
+    }
+  ],
+  "schedule": {
+    "kind": "co_simulation",
+    "start_time": 0.0,
+    "stop_time": 10.0,
+    "duration": 10.0,
+    "step_size": 0.2,
+    "execution_order": [
+      "asset_dtaas_flex_cell__rabbitmq",
+      "asset_dtaas_flex_cell__kuka"
+    ],
+    "node_order": [
+      "asset_dtaas_flex_cell__rabbitmq",
+      "asset_dtaas_flex_cell__kuka"
+    ],
+    "warnings": [],
+    "per_node_period": {
+      "asset_dtaas_flex_cell__kuka": 0.2,
+      "asset_dtaas_flex_cell__rabbitmq": 0.2
+    }
+  },
+  "execution_order": [
+    "asset_dtaas_flex_cell__rabbitmq",
+    "asset_dtaas_flex_cell__kuka"
+  ],
+  "adapters": [],
+  "loop_resolution": [],
+  "notes": [
+    "selected_fmu_count=2",
+    "RabbitMQ provides target position commands to KUKA robot.",
+    "KUKA executes motion based on received commands.",
+    "RabbitMQ executes first to provide inputs to KUKA.",
+    "Step size aligned to KUKA default (0.2s) as per scenario window.",
+    "case_extensions_extracted"
+  ],
+  "extensions": {
+    "parameter_overrides": [
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q4_param",
+        "value": -0.073072
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q3_param",
+        "value": -1.851805
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q1_param",
+        "value": 0.287188
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q0_param",
+        "value": 0.285609
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q2_param",
+        "value": 0.220264
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q6_param",
+        "value": 0.536052
+      },
+      {
+        "target": "asset_dtaas_flex_cell__kuka.prev_q5_param",
+        "value": 1.010198
+      }
+    ]
+  }
+}

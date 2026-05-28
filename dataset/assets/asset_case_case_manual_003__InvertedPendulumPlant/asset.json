@@ -1,0 +1,247 @@
+{
+  "asset_id": "asset_case_case_manual_003__InvertedPendulumPlant",
+  "backend_kind": "python_source_fmu",
+  "capabilities": {
+    "can_be_instantiated_only_once_per_process": false,
+    "can_handle_variable_communication_step_size": true,
+    "can_interpolate_inputs": false,
+    "can_run_asynchronously": false,
+    "needs_execution_tool": false,
+    "provides_directional_derivatives": false
+  },
+  "case_origin": [
+    "case_manual_003"
+  ],
+  "default_experiment": {
+    "startTime": 0.0,
+    "stepSize": 0.01,
+    "stopTime": 1.0
+  },
+  "description": "倒立摆-小车非线性动力学（4状态：x, x_dot, theta, theta_dot）。输入为水平作用力与扰动，输出为位置与角度等。",
+  "description_relpath": "description.md",
+  "fmi_types": [
+    "Co-Simulation"
+  ],
+  "fmi_version": "2.0",
+  "fmu_relpath": "model.fmu",
+  "ground_truth_only": false,
+  "inputs": [
+    "force_cmd_N",
+    "disturbance_N"
+  ],
+  "library_visible": true,
+  "metadata_relpath": "metadata.json",
+  "name": "InvertedPendulumPlant",
+  "outputs": [
+    "x_m",
+    "x_dot_mps",
+    "theta_rad",
+    "theta_dot_radps"
+  ],
+  "ports": [
+    {
+      "causality": "input",
+      "description": "控制器输出的水平作用力（施加到小车）",
+      "name": "force_cmd_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "continuous"
+    },
+    {
+      "causality": "input",
+      "description": "外部扰动水平力（风、碰撞等），正向与force_cmd_N同向",
+      "name": "disturbance_N",
+      "type": "Real",
+      "unit": "N",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "小车位置",
+      "name": "x_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "小车速度",
+      "name": "x_dot_mps",
+      "type": "Real",
+      "unit": "m/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "摆杆与竖直向上方向的夹角（theta=0 为竖直向上）",
+      "name": "theta_rad",
+      "type": "Real",
+      "unit": "rad",
+      "variability": "continuous"
+    },
+    {
+      "causality": "output",
+      "description": "摆杆角速度",
+      "name": "theta_dot_radps",
+      "type": "Real",
+      "unit": "rad/s",
+      "variability": "continuous"
+    },
+    {
+      "causality": "parameter",
+      "description": "小车质量",
+      "name": "m_cart_kg",
+      "type": "Real",
+      "unit": "kg",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "摆杆等效质量（集中于质心）",
+      "name": "m_pend_kg",
+      "type": "Real",
+      "unit": "kg",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "摆杆转轴到质心距离",
+      "name": "length_m",
+      "type": "Real",
+      "unit": "m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "重力加速度",
+      "name": "g_mps2",
+      "type": "Real",
+      "unit": "m/s^2",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "小车粘性摩擦系数（与速度成正比的阻力）",
+      "name": "cart_friction_Nspm",
+      "type": "Real",
+      "unit": "N·s/m",
+      "variability": "fixed"
+    },
+    {
+      "causality": "parameter",
+      "description": "摆杆关节粘性阻尼（与角速度成正比的阻尼矩）",
+      "name": "pend_damping_Nms",
+      "type": "Real",
+      "unit": "N·m·s",
+      "variability": "fixed"
+    }
+  ],
+  "provenance": {
+    "case_id": "case_manual_003",
+    "legacy_fmu_list_entry": {
+      "description": "非线性倒立摆小车动力学模型：4状态（位置、速度、角度、角速度），含摩擦和阻尼",
+      "fmi_version": "2.0",
+      "fmu_path": "fmus/InvertedPendulumPlant.fmu",
+      "guid": "{b2c3d4e5-f6a7-8901-bcde-f23456789012}",
+      "inputs": [
+        {
+          "description": "水平控制力指令",
+          "name": "force_cmd_N",
+          "type": "Real",
+          "unit": "N"
+        },
+        {
+          "description": "外部水平扰动力",
+          "name": "disturbance_N",
+          "type": "Real",
+          "unit": "N"
+        }
+      ],
+      "name": "InvertedPendulumPlant",
+      "outputs": [
+        {
+          "description": "小车位置",
+          "name": "x_m",
+          "type": "Real",
+          "unit": "m"
+        },
+        {
+          "description": "小车速度",
+          "name": "x_dot_mps",
+          "type": "Real",
+          "unit": "m/s"
+        },
+        {
+          "description": "摆角（0=竖直向上）",
+          "name": "theta_rad",
+          "type": "Real",
+          "unit": "rad"
+        },
+        {
+          "description": "摆角速度",
+          "name": "theta_dot_radps",
+          "type": "Real",
+          "unit": "rad/s"
+        }
+      ],
+      "parameters": [
+        {
+          "default": 1.0,
+          "name": "m_cart_kg",
+          "unit": "kg"
+        },
+        {
+          "default": 0.2,
+          "name": "m_pend_kg",
+          "unit": "kg"
+        },
+        {
+          "default": 0.5,
+          "name": "length_m",
+          "unit": "m"
+        },
+        {
+          "default": 9.81,
+          "name": "g_mps2",
+          "unit": "m/s^2"
+        },
+        {
+          "default": 0.1,
+          "name": "cart_friction_Nspm",
+          "unit": "N*s/m"
+        },
+        {
+          "default": 0.02,
+          "name": "pend_damping_Nms",
+          "unit": "N*m*s"
+        }
+      ],
+      "states": [
+        {
+          "description": "小车位置",
+          "name": "x_m_state"
+        },
+        {
+          "description": "小车速度",
+          "name": "x_dot_mps_state"
+        },
+        {
+          "description": "摆角",
+          "name": "theta_rad_state"
+        },
+        {
+          "description": "摆角速度",
+          "name": "theta_dot_radps_state"
+        }
+      ],
+      "type": "Co-Simulation"
+    }
+  },
+  "schema": "UNIFIED_ASSET_V1",
+  "source_id": "case_manual_003::InvertedPendulumPlant",
+  "source_type": "manual_case_fmu",
+  "tags": [
+    "case_manual_003",
+    "manual_case"
+  ]
+}
