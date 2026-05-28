@@ -3,8 +3,8 @@
 This package contains the code, dataset, case study material, and precomputed
 experiment outputs for the paper:
 
-> AutoFMU: From MBSE Verification Requirements to Executable FMU Co-Simulation
-> via an End-to-End Constraint-Driven Pipeline
+> AutoFMU: Verifying System Models via Automated Co-Simulation Construction
+> using Large Language Models
 
 The main goal of this README is to make the artifact usable without reading the
 source code first. It explains how to reproduce the full 13-method experiment,
